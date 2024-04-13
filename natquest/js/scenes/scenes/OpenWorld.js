@@ -5,6 +5,7 @@ import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
+import { createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 //import { NextScene } from './NextScene.js'; //this needs to be imported into the collision handler where newscene is called instead
 
 
