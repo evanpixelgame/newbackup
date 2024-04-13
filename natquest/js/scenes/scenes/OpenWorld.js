@@ -176,6 +176,8 @@ export default class OpenWorld extends Phaser.Scene {
 
   update(time, delta) {
 
+    updatePlayerMovement(this, player, velocityChange);
+/*
  if (!this.player) return; // Guard clause
     //   console.log(this.player);
     // Ensure we're accessing the Matter.js body directly
@@ -237,6 +239,8 @@ const velocity = this.velocityChange;
       this.player.anims.stop();
     }
     this.player.setRotation(0);
+
+    */
     
    /*
     // Get player's position and velocity
