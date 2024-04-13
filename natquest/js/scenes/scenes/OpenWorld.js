@@ -107,7 +107,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.cameras.main.setZoom(2);
 
 
-     this.createKeyboardAssignments();
+     this.keyboardAssignment = createKeyboardAssignments();
     // this.createPlayerAnimations();
 
      this.createAnimations();
