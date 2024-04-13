@@ -78,7 +78,7 @@ export default class OpenWorld extends Phaser.Scene {
       layers.push(map.createLayer(i, tilesets, 0, 0));
     }
 
-    this.player = new PlayerSprite(this, 495, 325, 'player', this.VelocityChange); // Create the player object, just took away this.world as 2nd argument
+    this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
     console.log(this.player);
 
 //    this.scene.add('./PlayerControls.js', PlayerControls);
