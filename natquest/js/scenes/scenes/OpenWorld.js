@@ -12,16 +12,18 @@ export default class OpenWorld extends Phaser.Scene {
   constructor() {
     super({ key: 'OpenWorld' });
 
-    this.map = null;
-    this.player = null;
     this.engine = null;
     this.world = null;
+    this.map = null;
+    this.player = null;
+    this.velocityChange = 2;
+
   }
 
   init(data) {
     this.openWorldScene = data.OpenWorld;
     this.player = data.player;
-    this.player.velocityChange = data.velocityChange || 2;
+    this.velocityChange = data.velocityChange || 2;
   }
 
   preload() {
