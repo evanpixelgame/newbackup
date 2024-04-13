@@ -3,7 +3,7 @@ export class PlayerSprite extends Phaser.Physics.Matter.Sprite {
     super(scene.matter.world, x, y, texture);
 
     scene.add.existing(this);
-    this.velocityChange = velocityChange;
+  //  this.velocityChange = velocityChange;
     this.init();
   }
 
