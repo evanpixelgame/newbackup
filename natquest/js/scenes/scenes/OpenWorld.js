@@ -108,9 +108,9 @@ export default class OpenWorld extends Phaser.Scene {
 
 
      createKeyboardAssignments(this);
-    // this.createPlayerAnimations();
+     createPlayerAnimations(this);
 
-     this.createAnimations();
+    // this.createAnimations();
     
     this.NewSceneLaunched = false; //sets a flag that collision handler will change, this will determine whether newScene gets launched (first time) or resumed (subsequent times)
 
@@ -122,6 +122,7 @@ export default class OpenWorld extends Phaser.Scene {
     
     }
 
+  /*
   createAnimations() {
     this.anims.create({
       key: 'walking-up',
@@ -171,7 +172,7 @@ export default class OpenWorld extends Phaser.Scene {
       repeat: -1
     });
   }
-
+*/
 
   update(time, delta) {
 
