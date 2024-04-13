@@ -1,4 +1,4 @@
-export function createKeyboardAssignments() {
+export function createKeyboardAssignments(scene) {
     this.cursors = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
       down: Phaser.Input.Keyboard.KeyCodes.S,
