@@ -1,6 +1,6 @@
 import { PlayerSprite } from '../PlayerSprite.js';
 import { GameUI } from '../GameUI.js';
-import PlayerControls from '../PlayerControls.js';
+// import PlayerControls from '../PlayerControls.js';
 // import { PlayerAnimations } from '../PlayerAnimations.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
@@ -50,8 +50,8 @@ export default class OpenWorld extends Phaser.Scene {
     }
     this.scene.add('./GameUI.js', GameUI);
     this.scene.launch('GameUI', { gameScene: this });
-    this.scene.add('./PlayerAnimations.js', PlayerAnimations);
-    this.scene.launch('PlayerAnimations', { player: this.player, speed: this.speed });
+ //   this.scene.add('./PlayerAnimations.js', PlayerAnimations);
+  //  this.scene.launch('PlayerAnimations', { player: this.player, speed: this.speed });
 
     const map = this.make.tilemap({ key: 'map' });
     // Load tileset
@@ -109,18 +109,69 @@ export default class OpenWorld extends Phaser.Scene {
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
+
+     this.createAnimations();
     
     this.NewSceneLaunched = false; //sets a flag that collision handler will change, this will determine whether newScene gets launched (first time) or resumed (subsequent times)
 
-            this.events.on('resume', () => {
+/*            this.events.on('resume', () => {
             console.log('OpenWorld has been resumed!');
            this.scene.launch('PlayerControls', { player: this.player });
         });
-
-    
+*/
     
     }
-    
+
+  createAnimations() {
+    this.anims.create({
+      key: 'walking-up',
+      frames: this.anims.generateFrameNames('player', {
+        frames: [
+          130, 131, 132, 133, 134, 135, 136, 137, 138
+        ]
+      }),
+      yoyo: false,
+      frameRate: 12,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'walking-left',
+      frames: this.anims.generateFrameNames('player', {
+        frames: [
+          117, 118, 119, 120, 121, 122, 123, 124, 125
+        ]
+      }),
+      yoyo: false,
+      frameRate: 12,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'walking-down',
+      frames: this.anims.generateFrameNames('player', {
+        frames: [
+          104, 105, 106, 107, 108, 109, 110, 111, 112
+        ]
+      }),
+      yoyo: false,
+      frameRate: 12,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'walking-right',
+      frames: this.anims.generateFrameNames('player', {
+        frames: [
+          143, 144, 145, 146, 147, 148, 149, 150, 151
+        ]
+      }),
+      yoyo: false,
+      frameRate: 12,
+      repeat: -1
+    });
+  }
+
 
   update(time, delta) {
 
