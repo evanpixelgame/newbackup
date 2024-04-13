@@ -1,7 +1,7 @@
 import { PlayerSprite } from '../PlayerSprite.js';
 import { GameUI } from '../GameUI.js';
 import PlayerControls from '../PlayerControls.js';
-import { PlayerAnimations } from '../PlayerAnimations.js';
+// import { PlayerAnimations } from '../PlayerAnimations.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -78,8 +78,8 @@ export default class OpenWorld extends Phaser.Scene {
     this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
     console.log(this.player);
 
-    this.scene.add('./PlayerControls.js', PlayerControls);
-    this.scene.launch('PlayerControls', { player: this.player });
+//    this.scene.add('./PlayerControls.js', PlayerControls);
+//    this.scene.launch('PlayerControls', { player: this.player });
 
     // Set world bounds for the player
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
@@ -102,17 +102,88 @@ export default class OpenWorld extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
     this.cameras.main.setZoom(2);
 
+
+    this.cursors = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
+    
     this.NewSceneLaunched = false; //sets a flag that collision handler will change, this will determine whether newScene gets launched (first time) or resumed (subsequent times)
 
             this.events.on('resume', () => {
             console.log('OpenWorld has been resumed!');
            this.scene.launch('PlayerControls', { player: this.player });
         });
+
+    
     
     }
     
 
   update(time, delta) {
+
+ if (!this.player) return; // Guard clause
+    //   console.log(this.player);
+    // Ensure we're accessing the Matter.js body directly
+    const playerBody = this.player.body;
+
+    // Define a constant velocity value
+    const velocity = this.player.velocityChange; // This might need adjustment based on your scale
+
+    // Initialize velocity changes to 0
+    let velocityX = 0;
+    let velocityY = 0;
+
+    if (this.cursors.left.isDown) {
+      velocityX = -velocity; // Move left
+      //     this.player.anims.play('walking-left', true);
+    } else if (this.cursors.right.isDown) {
+      velocityX = velocity; // Move right
+      //       this.player.anims.play('walking-right', true);
+
+    }
+
+    if (this.cursors.up.isDown) {
+      velocityY = -velocity; // Move up
+      //   this.player.anims.play('walking-down', true);
+    } else if (this.cursors.down.isDown) {
+      velocityY = velocity; // Move down
+      //  this.player.anims.play('walking-up', true);
+    }
+
+    // Set the player's velocity directly
+    // Ensure we're working with the Matter body, which might require adjusting how you access the player's body
+    //  Matter.Body.setVelocity(playerBody, { x: velocityX, y: velocityY });
+    if (this.player && this.player.body) {
+      Matter.Body.setVelocity(this.player.body, { x: velocityX, y: velocityY });
+    }
+
+    // Optional: Reset to zero velocity if no key is pressed
+    if (this.player && this.player.body) {
+      if (!this.cursors.left.isDown && !this.cursors.right.isDown && !this.cursors.up.isDown && !this.cursors.down.isDown) {
+        Matter.Body.setVelocity(playerBody, { x: 0, y: 0 });
+        //    this.player.anims.stop();
+      }
+    }
+
+    if (velocityX !== 0 || velocityY !== 0) {
+      if (velocityX > 0) {
+        this.player.anims.play('walking-right', true);
+      } else if (velocityX < 0) {
+        this.player.anims.play('walking-left', true);
+      } else if (velocityY < 0) {
+        this.player.anims.play('walking-down', true);
+      } else if (velocityY > 0) {
+        this.player.anims.play('walking-up', true);
+      }
+    } else {
+      // Stop animation when no movement
+      this.player.anims.stop();
+    }
+    this.player.setRotation(0);
+    
    /*
     // Get player's position and velocity
     let posX = this.player.body.position.x;
