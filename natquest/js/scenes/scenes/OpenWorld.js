@@ -176,7 +176,7 @@ export default class OpenWorld extends Phaser.Scene {
 
   update(time, delta) {
 
-    updatePlayerMovement(this, player, velocityChange);
+    updatePlayerMovement(this, this.player, this.velocityChange);
 /*
  if (!this.player) return; // Guard clause
     //   console.log(this.player);
