@@ -184,7 +184,9 @@ export default class OpenWorld extends Phaser.Scene {
     const playerBody = this.player.body;
 
     // Define a constant velocity value
-    const velocity = this.player.velocityChange; // This might need adjustment based on your scale
+   // const velocity = this.player.velocityChange; // This might need adjustment based on your scale
+const velocity = this.velocityChange;
+
 
     // Initialize velocity changes to 0
     let velocityX = 0;
