@@ -1,4 +1,4 @@
-export function assignKeys() {
+export function createKeyboardAssignments() {
     this.cursors = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
       down: Phaser.Input.Keyboard.KeyCodes.S,
@@ -7,7 +7,7 @@ export function assignKeys() {
     });
 }
 
-export function updateMovement(player, velocityChange) {
+export function updatePlayerMovement(player, velocityChange) {
 
   if (!this.player) return; // Guard clause
     //   console.log(this.player);
@@ -73,7 +73,7 @@ const velocity = this.velocityChange;
   
 }
 
-export function playerAnimations() { //maybe scene and/or player needed for arguments?
+export function createPlayerAnimations() { //maybe scene and/or player needed for arguments?
 
   this.anims.create({
       key: 'walking-up',
