@@ -206,8 +206,8 @@ export class TopIcons {
     const { width, height } = gameSize;
 
     // Resize the game canvas
-    game.canvas.style.width = width + 'px';
-    game.canvas.style.height = height + 'px';
+    this.game.canvas.style.width = width + 'px';
+    this.game.canvas.style.height = height + 'px';
 
     // Resize the game config to match the new size
     this.sys.game.config.width = width;
