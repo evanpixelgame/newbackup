@@ -21,7 +21,7 @@ export class TopIcons {
   }
   
 
-  
+// Inside your createIcons method
 createIcons(xPositions, y) {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
@@ -43,28 +43,14 @@ createIcons(xPositions, y) {
     // Add the container to the scene
     this.scene.add.existing(iconContainer);
 
-    // Set the scroll factor of the icon container to (0, 0)
-    iconContainer.setScrollFactor(0);
-    iconContainer.setDepth(1000);
-
-
-    return iconContainer;
+    return icons;
 }
 
 
 
-setupIconInteractions() {
-    // You can add event listeners or interactions here
-    this.icons.list.forEach(icon => {
-        icon.on('pointerdown', () => {
-            console.log(`${icon.name} icon clicked.`);
-        });
-    });
-}
 
 
-
- setupIconInteractionsasd() {
+ setupIconInteractions() {
     // You can add event listeners or interactions here
      this.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
