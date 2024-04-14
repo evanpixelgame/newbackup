@@ -1,4 +1,4 @@
-export function createTopUI() {
+export function createTopUI(scene) {
     const vw = window.innerWidth;
     const xMid = vw * .5;
     const vh = window.innerHeight;
@@ -6,11 +6,11 @@ export function createTopUI() {
     // ****************************************************************TOP BAR UI ICONS*************************************************************
 
 
-    const infoIcon = add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive();
-    const settingsIcon = add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
-    const zoomInIcon = add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
-    const zoomOutIcon = add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
-    const fullscreenIcon = add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive();
+    const infoIcon = scene.add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive();
+    const settingsIcon = scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
+    const zoomInIcon = scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
+    const zoomOutIcon = scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
+    const fullscreenIcon = scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive();
 
     infoIcon.setScale(.18);
     settingsIcon.setScale(0.11);
