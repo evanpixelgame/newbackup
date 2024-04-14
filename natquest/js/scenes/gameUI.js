@@ -38,11 +38,11 @@ createIcons() {
 
     // Add icons to the container
     const icons = {
-        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18).setScrollFactor(0),
+        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11).setScrollFactor(0),
+        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2).setScrollFactor(0),
+        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2).setScrollFactor(0),
+        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12).setScrollFactor(0),
     };
 
     // Add icons to the container
