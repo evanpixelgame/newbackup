@@ -43,23 +43,31 @@ export default class OpenWorld extends Phaser.Scene {
     this.scene.add('./GameUI.js', GameUI);
     this.scene.launch('GameUI', { gameScene: this });
 
+    //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
-    this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); //Create the matter.js player body object
+    //Creates a new instance of the PlayerSprite class to add a matter.js player body object to the scene
+    this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player');
 
+    //Creates a boundary around outer border of map so player cannot move outside the visible map
     createMapBoundary(this, this.map);
 
     //Takes the scene's map and creates the barriers where the player cannot pass through from the map's Collision Layer
     this.collisionObjects = createCollisionObjects(this, this.map);
+    
     //Takes the scene's map and creates sensor objects based on the map's Sensor Layer
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
+    
     //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
     this.sensorHandling = sensorHandler(this, this.map, this.player);
+    
     //Starting configuration for camera, also makes sure camera follow the player
     createCameraConstraints(this, this.map, this.player);
+    
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
     createMobileConrols(this); } else { createKeyboardAssignments(this); }
+    
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
           }
