@@ -5,6 +5,12 @@ export class TopIcons {
     this.scene = scene;
     this.icons = this.createIcons(xPositions, y);
     this.setupIconInteractions();
+
+    // Bind the context of the event handler to the class instance
+    this.handleFullscreenChange = this.handleFullscreenChange.bind(this);
+
+    // Add the resize event listener
+    this.scene.scale.on('resize', this.handleFullscreenChange);
   }
 
   createIcons(xPositions, y) {
@@ -140,10 +146,10 @@ export class TopIcons {
 
     // ****************************************************************EVENT LISTENERS*************************************************************
 
-    this.requestFullScreen(); //JUST ADDED THIS AS TEST TO SEE IF IT WORKS TO START OFF IN AUTOFULLSCREEN
+ //   this.requestFullScreen(); //just removed and moved to constructor
 
-    //   this.scale.on('fullscreenchange', this.handleFullscreenChange.bind(this));
-    this.scale.on('resize', this.handleFullscreenChange, this);
+    //   this.scale.on('fullscreenchange', this.handleFullscreenChange.bind(this)); //old, delete this
+  //  this.scale.on('resize', this.handleFullscreenChange, this); //just removed and moved to constructor
 
   }
   // ^^^closing brackets of create func
