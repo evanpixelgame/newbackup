@@ -3,7 +3,7 @@ import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createMap, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createMapBoundary, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
@@ -58,17 +58,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
     console.log(this.player);
 
-    // Set world bounds for the player
-    const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
-    const worldBounds = new Phaser.Geom.Rectangle(
-      boundaryOffset,
-      boundaryOffset,
-      this.map.widthInPixels - 2 * boundaryOffset,
-      this.map.heightInPixels - 2 * boundaryOffset
-    );
-
-    this.matter.world.setBounds(0, 0, worldBounds.width, worldBounds.height);
-    console.log(this.world);
+  this.worldBoundary = createWorldBoundary(this, this.map);
 
     this.collisionObjects = createCollisionObjects(this, this.map);
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
