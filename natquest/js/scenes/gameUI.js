@@ -29,10 +29,10 @@ createIcons() {
     // Define icon positions
     const xIconPositions = {
         info: 1 * vw / 11,
-        settings: 200,
-        zoomIn: 300,
-        zoomOut: 400,
-        fullscreen: 500
+        settings: 6.5 * vw / 9,
+        zoomIn: 7 * vw / 9,
+        zoomOut: 7.5 * vw / 9,
+        fullscreen: 8.1 * vw / 9
     };
     const yIcons = 50; // Set yIcons to your desired value
 
