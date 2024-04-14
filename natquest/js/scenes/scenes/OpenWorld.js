@@ -24,6 +24,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.startPosX = null;
     this.startPosY = null;
     this.velocityChange = null;
+    this.topIcons = null;
   }
 
   init(data) {
@@ -33,6 +34,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.velocityChange = data.velocityChange || 2;
     this.startPosX = data.startPosX || 495;
     this.startPosY = data.startPosY || 325;
+    this.topIcons = data.topIcons;
   }
 
   create() {
