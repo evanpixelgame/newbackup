@@ -23,6 +23,21 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     return map;
 }
 
+export function createMapBoundary(this, map) {
+
+    // Set world bounds for the player
+    const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
+    const worldBounds = new Phaser.Geom.Rectangle(
+      boundaryOffset,
+      boundaryOffset,
+      scene.map.widthInPixels - 2 * boundaryOffset,
+      scene.map.heightInPixels - 2 * boundaryOffset
+    );
+
+    return worldBounds;
+
+}
+
 export function createKeyboardAssignments(scene) {
     scene.cursors = scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
