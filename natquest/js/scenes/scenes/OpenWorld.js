@@ -94,7 +94,7 @@ export default class OpenWorld extends Phaser.Scene {
         this.uiContainer = this.add.container(0, 0);
 
     // Add UI elements to the container
-    this.uiContainer.add([topIcons.infoIcon, topIcons.settingsIcon, topIcons.zoomInIcon, topIcons.zoomOutIcon, topIcons.fullscreenIcon]);
+    this.uiContainer.add([this.topIcons.infoIcon, this.topIcons.settingsIcon, this.topIcons.zoomInIcon, this.topIcons.zoomOutIcon, this.topIcons.fullscreenIcon]);
 
     // Optionally, you can set the position of the container relative to the camera
     this.uiContainer.setScrollFactor(0);
