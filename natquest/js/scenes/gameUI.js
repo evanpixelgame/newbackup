@@ -19,9 +19,9 @@ export class TopIcons {
     return icons;
   }
 
-  setupIconInteractions() {
+ setupIconInteractions() {
     // You can add event listeners or interactions here
-    this.icons.infoIcon.on('pointerdown', () => {
+     this.topIcons.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
     });
     
