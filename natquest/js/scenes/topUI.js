@@ -128,7 +128,7 @@ export function createTopUI(scene) {
 
     // ****************************************************************EVENT LISTENERS*************************************************************
 
-    requestFullScreen(); //JUST ADDED scene AS TEST TO SEE IF IT WORKS TO START OFF IN AUTOFULLSCREEN
+    scene.requestFullScreen(); //JUST ADDED scene AS TEST TO SEE IF IT WORKS TO START OFF IN AUTOFULLSCREEN
 
     //   scene.scale.on('fullscreenchange', scene.handleFullscreenChange.bind(scene));
     scene.scale.on('resize', scene.handleFullscreenChange, scene);
