@@ -1,3 +1,28 @@
+export function createMap(scene, mapKey) { //mapkey argument is where you input which map is loaded based on key in preloader scene
+    const map = this.make.tilemap({ key: mapKey });
+    // Load tileset
+    const tilesetsData = [
+      { name: 'tilesheetTerrain', key: 'tilesheetTerrain' },
+      { name: 'tilesheetInterior', key: 'tilesheetInterior' },
+      { name: 'tilesheetBuildings', key: 'tilesheetBuildings' },
+      { name: 'tilesheetWalls', key: 'tilesheetWalls' },
+      { name: 'tilesheetObjects', key: 'tilesheetObjects' },
+      { name: 'tilesheetFlourishes', key: 'tilesheetFlourishes' }
+    ];
+
+    const tilesets = [];
+    tilesetsData.forEach(tilesetData => {
+      tilesets.push(map.addTilesetImage(tilesetData.name, tilesetData.key));
+    });
+
+    // Create layers using all tilesets
+    const layers = [];
+    for (let i = 0; i < map.layers.length; i++) {
+      layers.push(map.createLayer(i, tilesets, 0, 0));
+    }
+
+}
+
 export function createKeyboardAssignments(scene) {
     scene.cursors = scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
