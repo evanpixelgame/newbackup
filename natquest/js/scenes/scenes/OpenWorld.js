@@ -83,7 +83,7 @@ export default class OpenWorld extends Phaser.Scene {
     };
     new TopIcons(this, xPositions, y);
   }
-          }
+        
 
   update(time, delta) {
     //Update the position of player based on user input and velocity
