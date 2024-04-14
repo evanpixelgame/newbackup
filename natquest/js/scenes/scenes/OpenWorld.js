@@ -79,9 +79,9 @@ export default class OpenWorld extends Phaser.Scene {
      this.topIcons = createTopUI(this);
 
     // Add the icons to the scene
-    topIcons.forEach(icon => {
-      this.add.existing(icon); // Add each icon to the scene
-    });
+//    topIcons.forEach(icon => {
+  //    this.add.existing(icon); // Add each icon to the scene
+ //   });
   }
 
   update(time, delta) {
