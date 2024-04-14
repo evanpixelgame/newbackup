@@ -53,10 +53,18 @@ createIcons(xPositions, y) {
 
 
 
+setupIconInteractions() {
+    // You can add event listeners or interactions here
+    this.icons.list.forEach(icon => {
+        icon.on('pointerdown', () => {
+            console.log(`${icon.name} icon clicked.`);
+        });
+    });
+}
 
 
 
- setupIconInteractions() {
+ setupIconInteractionsasd() {
     // You can add event listeners or interactions here
      this.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
