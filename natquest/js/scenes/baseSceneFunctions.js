@@ -23,7 +23,7 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     return map;
 }
 
-export function createMapBoundary(this, map) {
+export function createMapBoundary(scene, map) {
 
     // Set world bounds for the player
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
