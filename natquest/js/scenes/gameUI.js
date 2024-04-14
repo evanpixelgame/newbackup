@@ -22,9 +22,9 @@ export class TopIcons {
   
 
 createIcons(xPositions, y) {
-    // Get a reference to the main camera
-    const mainCamera = this.scene.cameras.main;
 
+
+  
     // Define icon positions
     const xIconPositions = {
         info: 100,
@@ -34,10 +34,6 @@ createIcons(xPositions, y) {
         fullscreen: 500
     };
     const yIcons = 50; // Set yIcons to your desired value
-
-    // Define offsets
-    const xOffset = 100; // Set your desired xOffset
-    const yOffset = 100; // Set your desired yOffset
 
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
