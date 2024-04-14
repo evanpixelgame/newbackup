@@ -1,3 +1,8 @@
+//STILL TO DO: add resize handler to gameUI and then import and create gameUI 
+//(make sure to return gameUI or the array needed so that can hide visibility of it as needed)
+//once resize handler is removed from start menu and put in gameUI, startMenu scene can be removed safely
+//then can just switch removal of prior scenes to the event listener that starts basescene/openworld
+
 import { PlayerSprite } from '../PlayerSprite.js';
 import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
