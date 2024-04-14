@@ -45,6 +45,17 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
+     const xIconPositions = {
+            info: 100,
+            settings: 200,
+            zoomIn: 300,
+            zoomOut: 400,
+            fullscreen: 500
+        };
+        const yIcons = 50;
+        // Create a new instance of the TopIcons class
+        this.topIcons = new TopIcons(this, this.sys.game, xIconPositions, yIcons);
+
     //this.scene.add('./GameUI.js', GameUI);
   //  this.scene.launch('GameUI', { gameScene: this });
 
@@ -76,33 +87,7 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
     
-     //this.gameUI = new GameUI(this);
 
-   //  this.topIcons = createTopUI(this);
- const xIconPositions = {
-            info: 100,
-            settings: 200,
-            zoomIn: 300,
-            zoomOut: 400,
-            fullscreen: 500
-        };
-        const yIcons = 50;
-
-        // Create a new instance of the TopIcons class
-        this.topIcons = new TopIcons(this, this.sys.game, xIconPositions, yIcons);
-
- //       this.uiContainer = this.add.container(0, 0);
-
-    // Add UI elements to the container
-//    this.uiContainer.add([this.topIcons.infoIcon, this.topIcons.settingsIcon, this.topIcons.zoomInIcon, this.topIcons.zoomOutIcon, this.topIcons.fullscreenIcon]);
-
-    // Optionally, you can set the position of the container relative to the camera
-//    this.uiContainer.setScrollFactor(0);
-
-    // Add the icons to the scene
-//    topIcons.forEach(icon => {
-  //    this.add.existing(icon); // Add each icon to the scene
- //   });
   }
 
   update(time, delta) {
