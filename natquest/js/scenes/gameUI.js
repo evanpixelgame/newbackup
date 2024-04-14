@@ -43,12 +43,12 @@ createIcons(xPositions, y) {
     const iconContainer = this.scene.add.container();
 
     // Calculate the final position of the icons relative to the camera's scroll position and add an offset
-    const icons = {
-        infoIcon: this.scene.add.sprite(xIconPositions.info - mainCamera.scrollX + xOffset, yIcons - mainCamera.scrollY + yOffset, 'infoIcon').setInteractive().setScale(0.18).setScrollFactor(0),
-        settingsIcon: this.scene.add.sprite(xIconPositions.settings - mainCamera.scrollX + xOffset, yIcons - mainCamera.scrollY + yOffset, 'settingsIcon').setInteractive().setScale(0.11).setScrollFactor(0),
-        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn - mainCamera.scrollX + xOffset, yIcons - mainCamera.scrollY + yOffset, 'zoomInIcon').setInteractive().setScale(0.2).setScrollFactor(0),
-        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut - mainCamera.scrollX + xOffset, yIcons - mainCamera.scrollY + yOffset, 'zoomOutIcon').setInteractive().setScale(0.2).setScrollFactor(0),
-        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen - mainCamera.scrollX + xOffset, yIcons - mainCamera.scrollY + yOffset, 'fullscreenIcon').setInteractive().setScale(0.12).setScrollFactor(0),
+ const icons = {
+        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18).setScrollFactor(0, 0),
+        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11).setScrollFactor(0, 0),
+        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2).setScrollFactor(0, 0),
+        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2).setScrollFactor(0, 0),
+        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12).setScrollFactor(0, 0),
     };
 
     // Add icons to the container
