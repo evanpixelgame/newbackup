@@ -87,7 +87,7 @@ export default class OpenWorld extends Phaser.Scene {
         const yIcons = 50;
 
         // Create a new instance of the TopIcons class
-        this.topIcons = new TopIcons(this, xIconPositions, yIcons);
+        this.topIcons = new TopIcons(this, this.sys.game, xIconPositions, yIcons);
 
     // Add the icons to the scene
 //    topIcons.forEach(icon => {
