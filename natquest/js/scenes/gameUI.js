@@ -11,6 +11,7 @@ export class TopIcons {
 
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
+    this.resizeGame = this.resizeGame.bind(this);
   }
 
   createIcons(xPositions, y) {
