@@ -4,9 +4,6 @@
 //then can just switch removal of prior scenes to the event listener that starts basescene/openworld
 
 import { PlayerSprite } from '../PlayerSprite.js';
-// import { GameUI } from '../GameUI.js';
-//import { createTopUI } from '../topUI.js'; //most recent used before TopIcons
-//import { requestFullscreen, handleFullscreenChange, resizeGame, isFullscreen, exitFullscreen, createDropdownMenu, zoomIn, zoomOut } from '../topUIFunctions.js';
 import { TopIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -45,9 +42,6 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-    //this.scene.add('./GameUI.js', GameUI);
-  //  this.scene.launch('GameUI', { gameScene: this });
-
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
@@ -78,7 +72,6 @@ export default class OpenWorld extends Phaser.Scene {
 
         // Create a new instance of the TopIcons class
         this.topIcons = new TopIcons(this, this.game);
-
   }
 
   update(time, delta) {
