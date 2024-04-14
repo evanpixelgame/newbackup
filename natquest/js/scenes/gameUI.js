@@ -21,36 +21,34 @@ export class TopIcons {
   }
   
 
-// Inside your createIcons method
 createIcons() {
-    const vw = window.innerWidth;
-    const xMid = vw * .5;
-    const vh = window.innerHeight;
-    // Define icon positions
-    const xIconPositions = {
-        info: 1 * vw / 11,
-        settings: 6.5 * vw / 9,
-        zoomIn: 7 * vw / 9,
-        zoomOut: 7.5 * vw / 9,
-        fullscreen: 8.1 * vw / 9
-    };
-    const yIcons = 50; // Set yIcons to your desired value
+  const uiCamera = this.scene.cameras.add(0, 0, window.innerWidth, window.innerHeight); // Create a UI camera with full viewport size
+  uiCamera.setScroll(0, 0); // Set UI camera scroll to 0 (fixed position)
 
-    // Create a container for the icons
-    const iconContainer = this.scene.add.container();
+  // Define icon positions relative to the UI camera viewport
+  const xIconPositions = {
+    info: 1 * uiCamera.viewport.width / 11,
+    settings: 6.5 * uiCamera.viewport.width / 9,
+    zoomIn: 7 * uiCamera.viewport.width / 9,
+    zoomOut: 7.5 * uiCamera.viewport.width / 9,
+    fullscreen: 8.1 * uiCamera.viewport.width / 9
+  };
+  const yIcons = 50; // Set yIcons to your desired value
 
-    // Add icons to the container
-    const icons = {
-        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
-    };
+  // Create a container for the icons (optional)
+  const iconContainer = uiCamera.scene.add.container(); // Add the container to the UI camera scene
 
-    return icons;
+  // Add icons to the container (using uiCamera.scene.add...)
+  const icons = {
+    infoIcon: uiCamera.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+    settingsIcon: uiCamera.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
+    zoomInIcon: uiCamera.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
+    zoomOutIcon: uiCamera.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
+    fullscreenIcon: uiCamera.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+  };
+
+  return icons;
 }
-
 
 
 
