@@ -35,12 +35,15 @@ export default class OpenWorld extends Phaser.Scene {
   }
 
   create() {
+    
     // Create Matter.js engine
     this.matterEngine = Phaser.Physics.Matter.Matter.World;
     this.engine = this.matter.world;
     this.world = this.matterEngine.create({
       // your Matter.js world options here
     });
+
+     this.topIcons = new TopIcons(this, this.game);
 
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
@@ -60,7 +63,7 @@ export default class OpenWorld extends Phaser.Scene {
     //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
     this.sensorHandling = sensorHandler(this, this.map, this.player);
 
-      this.topIcons = new TopIcons(this, this.game);
+     
     
     //Starting configuration for camera, also makes sure camera follow the player
     createCameraConstraints(this, this.map, this.player);
