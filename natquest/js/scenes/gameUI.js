@@ -1,11 +1,11 @@
 
 // gameUI.js
 export class TopIcons {
-  constructor(scene, game, xPositions, y) {
+  constructor(scene, game) {
     this.scene = scene;
     this.game = game;
   //  this.game = scene.sys.game;
-    this.icons = this.createIcons(xPositions, y);
+    this.icons = this.createIcons();
     this.setupIconInteractions();
 
     // Bind the context of the event handler to the class instance
@@ -22,17 +22,25 @@ export class TopIcons {
   
 
 // Inside your createIcons method
-createIcons(xPositions, y) {
+createIcons() {
+   const xIconPositions = {
+            info: 100,
+            settings: 200,
+            zoomIn: 300,
+            zoomOut: 400,
+            fullscreen: 500
+        };
+        const yIconPos = 50;
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
 
     // Add icons to the container
     const icons = {
-        infoIcon: this.scene.add.sprite(xPositions.info, y, 'infoIcon').setInteractive().setScale(0.18),
-        settingsIcon: this.scene.add.sprite(xPositions.settings, y, 'settingsIcon').setInteractive().setScale(0.11),
-        zoomInIcon: this.scene.add.sprite(xPositions.zoomIn, y, 'zoomInIcon').setInteractive().setScale(0.2),
-        zoomOutIcon: this.scene.add.sprite(xPositions.zoomOut, y, 'zoomOutIcon').setInteractive().setScale(0.2),
-        fullscreenIcon: this.scene.add.sprite(xPositions.fullscreen, y, 'fullscreenIcon').setInteractive().setScale(0.12),
+        infoIcon: this.scene.add.sprite(xIconPositions, yIconPos, 'infoIcon').setInteractive().setScale(0.18),
+        settingsIcon: this.scene.add.sprite(xIconPositions, yIconPos, 'settingsIcon').setInteractive().setScale(0.11),
+        zoomInIcon: this.scene.add.sprite(xIconPositions, yIconPos, 'zoomInIcon').setInteractive().setScale(0.2),
+        zoomOutIcon: this.scene.add.sprite(xIconPositions, yIconPos, 'zoomOutIcon').setInteractive().setScale(0.2),
+        fullscreenIcon: this.scene.add.sprite(xIconPositions, yIconPos, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
     // Add icons to the container
