@@ -53,7 +53,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.scene.launch('GameUI', { gameScene: this });
 
 
-    createMao(this, this.mapKey );
+    createMap(this, this.mapKey);
 /*
     const map = this.make.tilemap({ key: 'map' });
     // Load tileset
