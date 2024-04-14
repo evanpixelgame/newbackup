@@ -14,6 +14,8 @@ export default class OpenWorld extends Phaser.Scene {
     this.map = null;
     this.mapKey = null;
     this.player = null;
+    this.startPosX = null;
+    this.startPosY = null;
     this.velocityChange = null;
   }
 
@@ -22,6 +24,8 @@ export default class OpenWorld extends Phaser.Scene {
     this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
+    this.startPosX = data.startPosX || 495;
+    this.startPosY = data.startPosY || 325;
   }
 
   preload() {
@@ -52,11 +56,9 @@ export default class OpenWorld extends Phaser.Scene {
     this.scene.add('./GameUI.js', GameUI);
     this.scene.launch('GameUI', { gameScene: this });
 
-
     this.map = createMap(this, this.mapKey);
 
-    this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
-   // console.log(this.player);
+    this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); // Create the player object, just took away this.world as 2nd argument
 
     reateWorldBoundary(this, this.map);
 
@@ -67,23 +69,10 @@ export default class OpenWorld extends Phaser.Scene {
      createCameraConstraints(this, this.map, this.player);
      createKeyboardAssignments(this);
      createPlayerAnimations(this);
-
           }
 
-    /* 
-    this.NewSceneLaunched = false; //sets a flag that collision handler will change, this will determine whether newScene gets launched (first time) or resumed (subsequent times)
-     this.events.on('resume', () => {
-            console.log('OpenWorld has been resumed!');
-           this.scene.launch('PlayerControls', { player: this.player });
-        });       */
-
-  
-
-
   update(time, delta) {
-    
-    updatePlayerMovement(this, this.player, this.velocityChange);
-    
+    updatePlayerMovement(this, this.player, this.velocityChange); 
   }
   
 }
