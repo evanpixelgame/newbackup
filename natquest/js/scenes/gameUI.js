@@ -45,6 +45,8 @@ createIcons(xPositions, y) {
 
     // Set the scroll factor of the icon container to (0, 0)
     iconContainer.setScrollFactor(0);
+    iconContainer.setDepth(1000);
+
 
     return iconContainer;
 }
