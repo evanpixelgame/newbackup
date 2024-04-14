@@ -45,25 +45,27 @@ export default class OpenWorld extends Phaser.Scene {
 
     this.map = createMap(this, this.mapKey);
 
-    this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); // Create the player object, just took away this.world as 2nd argument
+    this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); //Create the matter.js player body object
 
     createMapBoundary(this, this.map);
 
+    //Takes the scene's map and creates the barriers where the player cannot pass through from the map's Collision Layer
     this.collisionObjects = createCollisionObjects(this, this.map);
+    //Takes the scene's map and creates sensor objects based on the map's Sensor Layer
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
+    //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
     this.sensorHandling = sensorHandler(this, this.map, this.player);
-
-     createCameraConstraints(this, this.map, this.player);
-
-  //create mobile or desktop controls for player input, ie. (joystick || keyboard)
-   if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
+    //Starting configuration for camera, also makes sure camera follow the player
+    createCameraConstraints(this, this.map, this.player);
+    //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
+    if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
     createMobileConrols(this); } else { createKeyboardAssignments(this); }
-     
-   // createKeyboardAssignments(this);
+     //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
           }
 
   update(time, delta) {
+    //Update the position of player based on user input and velocity
     updatePlayerMovement(this, this.player, this.velocityChange); 
   }
   
