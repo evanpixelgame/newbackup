@@ -21,7 +21,11 @@ export class TopIcons {
   }
   
 
-  createIcons(xPositions, y) {
+createIcons(xPositions, y) {
+    // Create a container for the icons
+    const iconContainer = this.scene.add.container();
+
+    // Add icons to the container
     const icons = {
         infoIcon: this.scene.add.sprite(xPositions.info, y, 'infoIcon').setInteractive().setScale(0.18),
         settingsIcon: this.scene.add.sprite(xPositions.settings, y, 'settingsIcon').setInteractive().setScale(0.11),
@@ -29,7 +33,15 @@ export class TopIcons {
         zoomOutIcon: this.scene.add.sprite(xPositions.zoomOut, y, 'zoomOutIcon').setInteractive().setScale(0.2),
         fullscreenIcon: this.scene.add.sprite(xPositions.fullscreen, y, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
-    
+
+    // Add icons to the container
+    Object.values(icons).forEach(icon => {
+        iconContainer.add(icon);
+    });
+
+    // Add the container to the UI layer
+    this.scene.ui.add(iconContainer);
+
     return icons;
 }
 
