@@ -1,5 +1,5 @@
 
-// TopIcons.js
+// gameUI.js
 export class TopIcons {
   constructor(scene, game, xPositions, y) {
     this.scene = scene;
