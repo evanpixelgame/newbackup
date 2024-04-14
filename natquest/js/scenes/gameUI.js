@@ -48,14 +48,6 @@ createIcons() {
         fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
-    // Add icons to the container
- //   Object.values(icons).forEach(icon => {
-  //      iconContainer.add(icon);
- //   });
-
-    // Add the container to the scene
-   // this.scene.add.existing(iconContainer);
-
     return icons;
 }
 
