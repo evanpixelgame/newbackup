@@ -4,7 +4,8 @@
 //then can just switch removal of prior scenes to the event listener that starts basescene/openworld
 
 import { PlayerSprite } from '../PlayerSprite.js';
-import { GameUI } from '../GameUI.js';
+//import { GameUI } from '../GameUI.js';
+import { gameUI } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
@@ -40,8 +41,8 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-    this.scene.add('./GameUI.js', GameUI);
-    this.scene.launch('GameUI', { gameScene: this });
+    //this.scene.add('./GameUI.js', GameUI);
+  //  this.scene.launch('GameUI', { gameScene: this });
 
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
@@ -70,6 +71,18 @@ export default class OpenWorld extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
+
+        const vw = window.innerWidth;
+    const y = 50;
+    const xPositions = {
+      info: 1 * vw / 11,
+      settings: 6.5 * vw / 9,
+      zoomIn: 7 * vw / 9,
+      zoomOut: 7.5 * vw / 9,
+      fullscreen: 8.1 * vw / 9
+    };
+    new TopIcons(this, xPositions, y);
+  }
           }
 
   update(time, delta) {
