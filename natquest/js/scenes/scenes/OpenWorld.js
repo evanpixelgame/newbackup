@@ -77,7 +77,7 @@ export default class OpenWorld extends Phaser.Scene {
      createPlayerAnimations(this);
 
         // Create a new instance of the TopIcons class
-        this.topIcons = new TopIcons(this, this.sys.game);
+        this.topIcons = new TopIcons(this, this.game);
 
   }
 
