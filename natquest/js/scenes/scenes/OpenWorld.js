@@ -5,6 +5,7 @@
 
 import { PlayerSprite } from '../PlayerSprite.js';
 import { GameUI } from '../GameUI.js';
+import { createTopUI } from '../topUI.js';
 //import { topIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -72,7 +73,15 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
     
-     this.gameUI = new GameUI(this);
+     //this.gameUI = new GameUI(this);
+
+     const topIcons = createTopUI(this);
+
+    // Add the icons to the scene
+    topIcons.forEach(icon => {
+      this.add.existing(icon); // Add each icon to the scene
+    });
+  }
 
   }
 
