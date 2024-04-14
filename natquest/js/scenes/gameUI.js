@@ -21,7 +21,7 @@ export class TopIcons {
   }
   
 
-// Inside your createIcons method
+  
 createIcons(xPositions, y) {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
@@ -43,8 +43,12 @@ createIcons(xPositions, y) {
     // Add the container to the scene
     this.scene.add.existing(iconContainer);
 
-    return icons;
+    // Set the scroll factor of the icon container to (0, 0)
+    iconContainer.setScrollFactor(0);
+
+    return iconContainer;
 }
+
 
 
 
