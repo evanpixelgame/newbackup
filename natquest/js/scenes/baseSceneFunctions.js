@@ -20,7 +20,7 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     for (let i = 0; i < map.layers.length; i++) {
       layers.push(map.createLayer(i, tilesets, 0, 0));
     }
-
+    return map;
 }
 
 export function createKeyboardAssignments(scene) {
