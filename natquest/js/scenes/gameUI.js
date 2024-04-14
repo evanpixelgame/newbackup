@@ -3,6 +3,7 @@
 export class TopIcons {
   constructor(scene, xPositions, y) {
     this.scene = scene;
+    this.game = scene.sys.game;
     this.icons = this.createIcons(xPositions, y);
     this.setupIconInteractions();
 
