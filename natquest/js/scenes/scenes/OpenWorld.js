@@ -3,7 +3,7 @@ import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createMap, createMapBoundary, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
@@ -56,20 +56,15 @@ export default class OpenWorld extends Phaser.Scene {
     this.map = createMap(this, this.mapKey);
 
     this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
-    console.log(this.player);
+   // console.log(this.player);
 
-  this.worldBoundary = createWorldBoundary(this, this.map);
+    reateWorldBoundary(this, this.map);
 
     this.collisionObjects = createCollisionObjects(this, this.map);
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
     this.sensorHandling = sensorHandler(this, this.map, this.player);
 
-    // Constrain the camera
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
-    this.cameras.main.setZoom(2);
-
-
+     createCameraConstraints(this, this.map, this.player);
      createKeyboardAssignments(this);
      createPlayerAnimations(this);
 
