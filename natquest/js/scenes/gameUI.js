@@ -1,5 +1,5 @@
 
-// gameUI.js
+// gameUI.js, new instance to be made in MainScene
 export class TopIcons {
   constructor(scene, game) {
     this.scene = scene;
@@ -16,8 +16,7 @@ export class TopIcons {
 
         // Add each icon to the scene
     Object.values(this.icons).forEach(icon => {
-        //this.scene.add.existing(icon);
-      this.add.existing(icon);
+        this.scene.add.existing(icon);
     });
   }
   
@@ -37,9 +36,6 @@ createIcons() {
     };
     const yIcons = 50; // Set yIcons to your desired value
 
-    // Create a container for the icons
-    const iconContainer = this.scene.add.container();
-
     // Add icons to the container
     const icons = {
         infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
@@ -51,8 +47,6 @@ createIcons() {
 
     return icons;
 }
-
-
 
 
  setupIconInteractions() {
