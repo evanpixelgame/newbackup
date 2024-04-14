@@ -7,7 +7,7 @@ import { PlayerSprite } from '../PlayerSprite.js';
 import { GameUI } from '../GameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
