@@ -15,18 +15,27 @@ export class TopIcons {
     this.scene.scale.on('resize', this.handleFullscreenChange);
     //this.resizeGame = this.resizeGame.bind(this); //this didnt work, delete later
   }
+  
 
   createIcons(xPositions, y) {
     const icons = {
-      infoIcon: this.scene.add.sprite(xPositions.info, y, 'infoIcon').setInteractive().setScale(0.18),
-      settingsIcon: this.scene.add.sprite(xPositions.settings, y, 'settingsIcon').setInteractive().setScale(0.11),
-      zoomInIcon: this.scene.add.sprite(xPositions.zoomIn, y, 'zoomInIcon').setInteractive().setScale(0.2),
-      zoomOutIcon: this.scene.add.sprite(xPositions.zoomOut, y, 'zoomOutIcon').setInteractive().setScale(0.2),
-      fullscreenIcon: this.scene.add.sprite(xPositions.fullscreen, y, 'fullscreenIcon').setInteractive().setScale(0.12),
+        infoIcon: this.scene.add.sprite(xPositions.info, y, 'infoIcon').setInteractive().setScale(0.18),
+        settingsIcon: this.scene.add.sprite(xPositions.settings, y, 'settingsIcon').setInteractive().setScale(0.11),
+        zoomInIcon: this.scene.add.sprite(xPositions.zoomIn, y, 'zoomInIcon').setInteractive().setScale(0.2),
+        zoomOutIcon: this.scene.add.sprite(xPositions.zoomOut, y, 'zoomOutIcon').setInteractive().setScale(0.2),
+        fullscreenIcon: this.scene.add.sprite(xPositions.fullscreen, y, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
+    // Add each icon to the scene
+    Object.values(icons).forEach(icon => {
+        this.scene.add.existing(icon);
+    });
+
     return icons;
-  }
+}
+
+
+
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
