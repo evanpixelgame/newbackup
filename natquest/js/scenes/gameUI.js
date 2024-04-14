@@ -15,7 +15,7 @@ export class TopIcons {
     this.scene.scale.on('resize', this.handleFullscreenChange);
 
         // Add each icon to the scene
-    Object.values(icons).forEach(icon => {
+    Object.values(this.icons).forEach(icon => {
         this.scene.add.existing(icon);
     });
   }
