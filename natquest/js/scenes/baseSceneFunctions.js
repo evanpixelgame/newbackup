@@ -38,6 +38,12 @@ export function createMapBoundary(scene, map) {
 
 }
 
+const createCameraConstraints(scene, map, player) {
+    scene.cameras.main.setBounds(0, 0, scene.map.widthInPixels, scene.map.heightInPixels);
+    scene.cameras.main.startFollow(scene.player, true, 0.05, 0.05);
+    scene.cameras.main.setZoom(2);
+}
+
 export function createKeyboardAssignments(scene) {
     scene.cursors = scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
