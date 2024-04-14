@@ -171,8 +171,6 @@ export class TopIcons {
   }
 
   handleFullscreenChange() {
-
-
     // Check if the game is running on a mobile device
     const isMobile = /Mobi|Android|iOS/i.test(navigator.userAgent);
 
@@ -180,7 +178,7 @@ export class TopIcons {
     if (isMobile) {
       // Wait for a short delay before resizing
       setTimeout(() => {
-        if (this.scale.isFullscreen) {
+        if (this.scene.scale.isFullscreen) {
 
           this.resizeGame({ width: window.innerWidth, height: window.innerHeight });
         } else {
@@ -190,7 +188,7 @@ export class TopIcons {
       }, 1000); // Adjust the delay time as needed
     } else {
       // Resize immediately without delay for desktop
-      if (this.scale.isFullscreen) {
+      if (this.scene.scale.isFullscreen) {
 
         this.resizeGame({ width: window.innerWidth, height: window.innerHeight });
       } else {
