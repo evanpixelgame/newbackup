@@ -53,30 +53,8 @@ export default class OpenWorld extends Phaser.Scene {
     this.scene.launch('GameUI', { gameScene: this });
 
 
-    createMap(this, this.mapKey);
-/*
-    const map = this.make.tilemap({ key: 'map' });
-    // Load tileset
-    const tilesetsData = [
-      { name: 'tilesheetTerrain', key: 'tilesheetTerrain' },
-      { name: 'tilesheetInterior', key: 'tilesheetInterior' },
-      { name: 'tilesheetBuildings', key: 'tilesheetBuildings' },
-      { name: 'tilesheetWalls', key: 'tilesheetWalls' },
-      { name: 'tilesheetObjects', key: 'tilesheetObjects' },
-      { name: 'tilesheetFlourishes', key: 'tilesheetFlourishes' }
-    ];
+    this.map = createMap(this, this.mapKey);
 
-    const tilesets = [];
-    tilesetsData.forEach(tilesetData => {
-      tilesets.push(map.addTilesetImage(tilesetData.name, tilesetData.key));
-    });
-
-    // Create layers using all tilesets
-    const layers = [];
-    for (let i = 0; i < map.layers.length; i++) {
-      layers.push(map.createLayer(i, tilesets, 0, 0));
-    }
-*/
     this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
     console.log(this.player);
 
@@ -85,19 +63,19 @@ export default class OpenWorld extends Phaser.Scene {
     const worldBounds = new Phaser.Geom.Rectangle(
       boundaryOffset,
       boundaryOffset,
-      map.widthInPixels - 2 * boundaryOffset,
-      map.heightInPixels - 2 * boundaryOffset
+      this.map.widthInPixels - 2 * boundaryOffset,
+      this.map.heightInPixels - 2 * boundaryOffset
     );
 
     this.matter.world.setBounds(0, 0, worldBounds.width, worldBounds.height);
     console.log(this.world);
 
-    this.collisionObjects = createCollisionObjects(this, map);
-    this.sensorMapping = sensorMapSet(this, map, this.sensorID);
-    this.sensorHandling = sensorHandler(this, map, this.player);
+    this.collisionObjects = createCollisionObjects(this, this.map);
+    this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
+    this.sensorHandling = sensorHandler(this, this.map, this.player);
 
     // Constrain the camera
-    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
     this.cameras.main.setZoom(2);
 
