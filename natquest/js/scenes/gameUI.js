@@ -23,9 +23,14 @@ export class TopIcons {
 
 // Inside your createIcons method
 createIcons() {
+
+    const vw = window.innerWidth;
+    const xMid = vw * .5;
+    const vh = window.innerHeight;
+  
     // Define icon positions
     const xIconPositions = {
-        info: 100,
+        info: 1 * vw / 11,
         settings: 200,
         zoomIn: 300,
         zoomOut: 400,
