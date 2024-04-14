@@ -1,4 +1,4 @@
- export function requestFullScreen() {
+ export function requestFullscreen() {
     const element = document.documentElement;
 
     if (element.requestFullscreen) {
@@ -58,7 +58,7 @@
     scene.events.emit('resize', gameSize);
   }
 
- export function isFullScreen() {
+ export function isFullscreen() {
     return (
       document.fullscreenElement ||
       document.mozFullScreenElement ||
@@ -67,7 +67,7 @@
     );
   }
 
- export function exitFullScreen() {
+ export function exitFullscreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
