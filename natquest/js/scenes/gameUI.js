@@ -16,7 +16,8 @@ export class TopIcons {
 
         // Add each icon to the scene
     Object.values(this.icons).forEach(icon => {
-        this.scene.add.existing(icon);
+        //this.scene.add.existing(icon);
+      this.add.existing(icon);
     });
   }
   
