@@ -60,7 +60,7 @@ export default class OpenWorld extends Phaser.Scene {
 
     this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); // Create the player object, just took away this.world as 2nd argument
 
-    reateWorldBoundary(this, this.map);
+    createWorldBoundary(this, this.map);
 
     this.collisionObjects = createCollisionObjects(this, this.map);
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
