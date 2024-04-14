@@ -76,8 +76,6 @@ export default class OpenWorld extends Phaser.Scene {
 
   // Create a new instance of the TopIcons class (assuming it accepts the UI camera)
   this.topIcons = new TopIcons(this, this.game, uiCamera);
-        // Create a new instance of the TopIcons class
-        //this.topIcons = new TopIcons(this, this.game);
   }
 
   update(time, delta) {
