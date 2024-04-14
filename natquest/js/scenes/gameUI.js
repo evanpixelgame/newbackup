@@ -214,7 +214,7 @@ export class TopIcons {
     this.game.config.height = height;
 
     // Call resize events on all scenes
-    this.events.emit('resize', gameSize);
+    this.scene.events.emit('resize', gameSize);
   }
 
   isFullScreen() {
