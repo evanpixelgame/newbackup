@@ -58,7 +58,7 @@ export class TopIcons {
 
     // ****************************************************************ZOOM IN ICON FUNC*************************************************************
 
-    zoomInIcon.on('pointerdown', () => {
+    this.icons.zoomInIcon.on('pointerdown', () => {
 
 
       this.zoomIn();
@@ -66,7 +66,7 @@ export class TopIcons {
 
     // ****************************************************************ZOOM OUT ICON FUNC*************************************************************
 
-    zoomOutIcon.on('pointerdown', () => {
+    this.icons.zoomOutIcon.on('pointerdown', () => {
 
 
       this.zoomOut();
@@ -76,7 +76,7 @@ export class TopIcons {
 
     // ****************************************************************FULLSCREEN ICON FUNC*************************************************************
 
-    fullscreenIcon.on('pointerdown', () => {
+    this.icons.fullscreenIcon.on('pointerdown', () => {
       // Handle fullscreen icon click
 
       if (this.isFullScreen()) {
@@ -95,7 +95,7 @@ export class TopIcons {
 
 
     // Add event listener to the info icon
-    infoIcon.on('pointerdown', () => {
+    this.icons.infoIcon.on('pointerdown', () => {
       // Toggle message visibility
       isMessageDisplayed = !isMessageDisplayed;
 
