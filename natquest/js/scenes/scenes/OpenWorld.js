@@ -3,7 +3,7 @@ import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
@@ -12,12 +12,14 @@ export default class OpenWorld extends Phaser.Scene {
     this.engine = null;
     this.world = null;
     this.map = null;
+    this.mapKey = null;
     this.player = null;
     this.velocityChange = null;
   }
 
   init(data) {
     this.openWorldScene = data.OpenWorld;
+    this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
   }
@@ -50,6 +52,9 @@ export default class OpenWorld extends Phaser.Scene {
     this.scene.add('./GameUI.js', GameUI);
     this.scene.launch('GameUI', { gameScene: this });
 
+
+    createMao(this, mapKey );
+/*
     const map = this.make.tilemap({ key: 'map' });
     // Load tileset
     const tilesetsData = [
@@ -71,7 +76,7 @@ export default class OpenWorld extends Phaser.Scene {
     for (let i = 0; i < map.layers.length; i++) {
       layers.push(map.createLayer(i, tilesets, 0, 0));
     }
-
+*/
     this.player = new PlayerSprite(this, 495, 325, 'player'); // Create the player object, just took away this.world as 2nd argument
     console.log(this.player);
 
