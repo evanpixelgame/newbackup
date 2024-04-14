@@ -8,7 +8,7 @@ import { GameUI } from '../GameUI.js';
 import { MobileControls } from '../MobileControls.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createMap, createWorldBoundary, createCameraConstraints, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
@@ -65,7 +65,7 @@ export default class OpenWorld extends Phaser.Scene {
 
     this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player'); // Create the player object, just took away this.world as 2nd argument
 
-    createWorldBoundary(this, this.map);
+    createMapBoundary(this, this.map);
 
     this.collisionObjects = createCollisionObjects(this, this.map);
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
