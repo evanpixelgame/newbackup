@@ -45,7 +45,6 @@ const config = {
   //ie. you could list StartMenu in the list of scenes below and have NameSelect scene listed here too OR you could you just list StartMenu and in StartMenu scene link it directly to NameSelect
   scene: [
     Preloader,
-    { key: 'Cameras', plugin: CamerasPlugin, mapping: 'cameras' },
    // StartMenu,
 //    Settings,
    // NameSelect,
