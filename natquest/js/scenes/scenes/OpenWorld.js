@@ -6,6 +6,7 @@
 import { PlayerSprite } from '../PlayerSprite.js';
 // import { GameUI } from '../GameUI.js';
 import { createTopUI } from '../topUI.js';
+//import { createTopUIm list all } from '../topUIFunctions.js';
 //import { topIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -75,7 +76,7 @@ export default class OpenWorld extends Phaser.Scene {
     
      //this.gameUI = new GameUI(this);
 
-     const topIcons = createTopUI(this);
+     this.topIcons = createTopUI(this);
 
     // Add the icons to the scene
     topIcons.forEach(icon => {
