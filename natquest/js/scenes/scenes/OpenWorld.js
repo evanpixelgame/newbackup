@@ -6,7 +6,7 @@
 import { PlayerSprite } from '../PlayerSprite.js';
 // import { GameUI } from '../GameUI.js';
 import { createTopUI } from '../topUI.js';
-//import { createTopUIm list all } from '../topUIFunctions.js';
+//import { requestFullscreen, handleFullscreenChange, resizeGame, isFullscreen, exitFullscreen, createDropdownMenu, zoomIn, zoomOut } from '../topUIFunctions.js';
 //import { topIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
