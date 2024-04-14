@@ -210,8 +210,8 @@ export class TopIcons {
     this.game.canvas.style.height = height + 'px';
 
     // Resize the game config to match the new size
-    this.sys.game.config.width = width;
-    this.sys.game.config.height = height;
+    this.game.config.width = width;
+    this.game.config.height = height;
 
     // Call resize events on all scenes
     this.events.emit('resize', gameSize);
