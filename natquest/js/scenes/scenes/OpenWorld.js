@@ -4,7 +4,7 @@
 //then can just switch removal of prior scenes to the event listener that starts basescene/openworld
 
 import { PlayerSprite } from '../PlayerSprite.js';
-import { GameUI } from '../GameUI.js';
+// import { GameUI } from '../GameUI.js';
 import { createTopUI } from '../topUI.js';
 //import { topIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
