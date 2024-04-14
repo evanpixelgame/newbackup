@@ -81,7 +81,7 @@ export default class OpenWorld extends Phaser.Scene {
       zoomOut: 7.5 * vw / 9,
       fullscreen: 8.1 * vw / 9
     };
-    new TopIcons(this, xPositions, y);
+   this.gameUI = new TopIcons(this, xPositions, y);
   }
         
 
