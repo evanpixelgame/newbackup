@@ -55,7 +55,7 @@ export default class OpenWorld extends Phaser.Scene {
 
      createCameraConstraints(this, this.map, this.player);
 
-    //DONT DELETE: once mobilecontrolsworking as imported function, switch to if statement below for controls 
+  //create mobile or desktop controls for player input, ie. (joystick || keyboard)
    if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
     createMobileConrols(this); } else { createKeyboardAssignments(this); }
      
