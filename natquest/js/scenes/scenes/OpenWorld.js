@@ -4,7 +4,7 @@
 //then can just switch removal of prior scenes to the event listener that starts basescene/openworld
 
 import { PlayerSprite } from '../PlayerSprite.js';
-//import { GameUI } from '../GameUI.js';
+import { GameUI } from '../GameUI.js';
 import { topIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -71,19 +71,10 @@ export default class OpenWorld extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
+    
+     this.gameUI = new GameUI(this);
 
-        const vw = window.innerWidth;
-    const y = 50;
-    const xPositions = {
-      info: 1 * vw / 11,
-      settings: 6.5 * vw / 9,
-      zoomIn: 7 * vw / 9,
-      zoomOut: 7.5 * vw / 9,
-      fullscreen: 8.1 * vw / 9
-    };
-   this.gameUI = new TopIcons(this, xPositions, y);
   }
-        
 
   update(time, delta) {
     //Update the position of player based on user input and velocity
