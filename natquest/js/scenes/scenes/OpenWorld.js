@@ -44,6 +44,7 @@ export default class OpenWorld extends Phaser.Scene {
     });
 
      this.topIcons = new TopIcons(this, this.game);
+    this.topIcons.setDepth(1000); 
 
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
