@@ -21,7 +21,7 @@ export class TopIcons {
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
-     this.topIcons.icons.infoIcon.on('pointerdown', () => {
+     this.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
     });
     
@@ -33,7 +33,7 @@ export class TopIcons {
   
 
   
-    settingsIcon.on('pointerdown', () => {
+    this.icons.settingsIcon.on('pointerdown', () => {
 
     this.dropdownContainer = this.add.group();
     let isDropdownVisible = false;
