@@ -91,6 +91,14 @@ export default class OpenWorld extends Phaser.Scene {
         // Create a new instance of the TopIcons class
         this.topIcons = new TopIcons(this, this.sys.game, xIconPositions, yIcons);
 
+        this.uiContainer = this.add.container(0, 0);
+
+    // Add UI elements to the container
+    this.uiContainer.add([topIcons.infoIcon, topIcons.settingsIcon, topIcons.zoomInIcon, topIcons.zoomOutIcon, topIcons.fullscreenIcon]);
+
+    // Optionally, you can set the position of the container relative to the camera
+    this.uiContainer.setScrollFactor(0);
+
     // Add the icons to the scene
 //    topIcons.forEach(icon => {
   //    this.add.existing(icon); // Add each icon to the scene
