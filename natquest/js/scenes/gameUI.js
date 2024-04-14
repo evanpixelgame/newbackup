@@ -1,9 +1,10 @@
 
 // TopIcons.js
 export class TopIcons {
-  constructor(scene, xPositions, y) {
+  constructor(scene, game, xPositions, y) {
     this.scene = scene;
-    this.game = scene.sys.game;
+    this.game = game;
+  //  this.game = scene.sys.game;
     this.icons = this.createIcons(xPositions, y);
     this.setupIconInteractions();
 
