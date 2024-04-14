@@ -21,10 +21,8 @@ export class TopIcons {
   }
   
 
-createIcons(xPositions, y) {
-
-
-  
+// Inside your createIcons method
+createIcons() {
     // Define icon positions
     const xIconPositions = {
         info: 100,
@@ -38,10 +36,10 @@ createIcons(xPositions, y) {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
 
-    // Calculate the final position of the icons relative to the camera's scroll position and add an offset
- const icons = {
+    // Add icons to the container
+    const icons = {
         infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive(),
+        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
         zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
         zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
         fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
