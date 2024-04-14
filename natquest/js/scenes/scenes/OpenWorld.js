@@ -82,14 +82,17 @@ export default class OpenWorld extends Phaser.Scene {
 
      createKeyboardAssignments(this);
      createPlayerAnimations(this);
- 
+
+          }
+
+    /* 
     this.NewSceneLaunched = false; //sets a flag that collision handler will change, this will determine whether newScene gets launched (first time) or resumed (subsequent times)
-    /*  this.events.on('resume', () => {
+     this.events.on('resume', () => {
             console.log('OpenWorld has been resumed!');
            this.scene.launch('PlayerControls', { player: this.player });
         });       */
 
-    }
+  
 
 
   update(time, delta) {
