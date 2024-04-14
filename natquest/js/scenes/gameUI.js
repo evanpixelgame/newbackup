@@ -13,7 +13,11 @@ export class TopIcons {
 
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
-    //this.resizeGame = this.resizeGame.bind(this); //this didnt work, delete later
+
+        // Add each icon to the scene
+    Object.values(icons).forEach(icon => {
+        this.scene.add.existing(icon);
+    });
   }
   
 
@@ -25,12 +29,7 @@ export class TopIcons {
         zoomOutIcon: this.scene.add.sprite(xPositions.zoomOut, y, 'zoomOutIcon').setInteractive().setScale(0.2),
         fullscreenIcon: this.scene.add.sprite(xPositions.fullscreen, y, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
-
-    // Add each icon to the scene
-    Object.values(icons).forEach(icon => {
-        this.scene.add.existing(icon);
-    });
-
+    
     return icons;
 }
 
