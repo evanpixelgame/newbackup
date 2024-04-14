@@ -21,6 +21,7 @@ export class TopIcons {
   }
   
 
+// Inside your createIcons method
 createIcons(xPositions, y) {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
@@ -39,11 +40,12 @@ createIcons(xPositions, y) {
         iconContainer.add(icon);
     });
 
-    // Add the container to the UI layer
-    this.scene.ui.add(iconContainer);
+    // Add the container to the scene
+    this.scene.add.existing(iconContainer);
 
     return icons;
 }
+
 
 
 
