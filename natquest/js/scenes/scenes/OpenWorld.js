@@ -5,9 +5,9 @@
 
 import { PlayerSprite } from '../PlayerSprite.js';
 // import { GameUI } from '../GameUI.js';
-import { createTopUI } from '../topUI.js';
+//import { createTopUI } from '../topUI.js'; //most recent used before TopIcons
 //import { requestFullscreen, handleFullscreenChange, resizeGame, isFullscreen, exitFullscreen, createDropdownMenu, zoomIn, zoomOut } from '../topUIFunctions.js';
-//import { topIcons } from '../gameUI.js';
+import { TopIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
@@ -76,7 +76,18 @@ export default class OpenWorld extends Phaser.Scene {
     
      //this.gameUI = new GameUI(this);
 
-     this.topIcons = createTopUI(this);
+   //  this.topIcons = createTopUI(this);
+ const xIconPositions = {
+            info: 100,
+            settings: 200,
+            zoomIn: 300,
+            zoomOut: 400,
+            fullscreen: 500
+        };
+        const yIcons = 50;
+
+        // Create a new instance of the TopIcons class
+        this.topIcons = new TopIcons(this, xIconPositions, yIcons);
 
     // Add the icons to the scene
 //    topIcons.forEach(icon => {
