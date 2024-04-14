@@ -83,8 +83,6 @@ export default class OpenWorld extends Phaser.Scene {
     });
   }
 
-  }
-
   update(time, delta) {
     //Update the position of player based on user input and velocity
     updatePlayerMovement(this, this.player, this.velocityChange); 
