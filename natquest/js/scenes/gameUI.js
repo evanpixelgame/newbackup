@@ -263,12 +263,21 @@ export class TopIcons {
   zoomIn() {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
-      camera.zoom *= 1.1; // Increase zoom by 10%
+      const zoomFactor = 1.1;
+      camera.zoom *= zoomFactor; // Increase zoom by 10%
+
+   //   Object.values(this.icons).forEach(icon => {
+ //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
+//});
       //this.scene.icons.infoIcon.setScale(1.1);
       this.scene.icons.infoIcon.scaleX /= 1.1;
       this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.x = 1 * vw / 11;
-      this.scene.icons.infoIcon.y = 50;
+      this.scene.icons.infoIcon.x = camera.width / 10;
+      this.scene.icons.infoIcon.y = camera.height / 10;
+
+    Object.values(this.icons).forEach(icon => {
+    icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
+});
       
       
      // this.scene.icons.infoIcon.y = vh / 11; // Set the new Y position
