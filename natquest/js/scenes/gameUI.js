@@ -48,11 +48,13 @@ export class TopIcons {
         fullscreenIcon.setScale(.12);
 
      infoIcon.setOrigin(.5, 0);
-       settingsIcon.setOrigin(.5, 0);
+       settingsIcon.setOrigin(0, 0);
         zoomInIcon.setOrigin(.5, 0);
         zoomOutIcon.setOrigin(.5, 0);
         fullscreenIcon.setOrigin(.5, 0);
-    
+
+    infoIcon.setScrollFactor(1, 1);
+    settingsIcon.setScrollFactor(1, 1);
     // Add icons to the container
     const icons = {
       infoIcon,
