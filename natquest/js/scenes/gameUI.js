@@ -25,7 +25,7 @@ export class TopIcons {
 
     // Create a container and fix it relative to the camera
     const iconContainer = this.scene.add.container(0, 0);
-    iconContainer.setScrollFactor(0);
+    iconContainer.setScrollFactor(0).setDepth(100);
 
     // Add icons to the container
     const icons = {
