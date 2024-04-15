@@ -83,6 +83,7 @@ this.icons = createUIIcons(this);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
    //  addZoomChangeListener(this);
+    updateUIPositions(this);
     addZoomChangeListener(this.cameras.main);
   
   }
