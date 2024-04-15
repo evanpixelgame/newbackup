@@ -268,7 +268,6 @@ export class TopIcons {
       this.scene.icons.infoIcon.scaleX /= 1.1;
       this.scene.icons.infoIcon.scaleY /= 1.1;
       this.scene.icons.infoIcon.x *= 1.1;
-      this.scene.icons.infoIcon.y *= 1.1;
       
      // this.scene.icons.infoIcon.y = vh / 11; // Set the new Y position
     } else {
@@ -280,6 +279,10 @@ export class TopIcons {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom > 1) { // Set a minimum zoom level (1 is just an example)
       camera.zoom /= 1.1; // Decrease zoom by 10%
+      this.scene.icons.infoIcon.scaleX *= 1.1;
+      this.scene.icons.infoIcon.scaleY *= 1.1;
+      this.scene.icons.infoIcon.x /= 1.1;
+      this.scene.icons.infoIcon.y /= 1.1;
     } else {
       console.log('Minimum zoom level reached.');
     }
