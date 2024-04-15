@@ -39,15 +39,14 @@ export function createMapBoundary(scene, map) {
 }
 */
 
-export function createMapBoundary(scene, map, world) {
+export function createMapBoundary(scene, map) {
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
-    scene.world.setBounds(
-        boundaryOffset,
-        boundaryOffset,
-        map.widthInPixels - 2 * boundaryOffset,
-        map.heightInPixels - 2 * boundaryOffset,
-        true, true, true, true
-    );
+const worldBounds = new Phaser.Geom.Rectangle(
+  boundaryOffset, // Offset from left edge
+  boundaryOffset, // Offset from top edge
+  scene.map.widthInPixels - 2 * boundaryOffset, // Width based on map size
+  scene.map.heightInPixels - 2 * boundaryOffset // Height based on map size
+);
 }
 
 
