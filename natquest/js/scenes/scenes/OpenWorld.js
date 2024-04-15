@@ -77,6 +77,8 @@ export default class OpenWorld extends Phaser.Scene {
     // Create a new layer for UI elements
  //   this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
 
+    const vw = window.innerWidth;
+
          const infoIcon = this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
         const settingsIcon = this.scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
         const zoomInIcon = this.scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
@@ -88,6 +90,7 @@ export default class OpenWorld extends Phaser.Scene {
 
     // Add the uiLayer to the scene
    // this.add.existing(this.uiLayer);
+    
 
   }
 
