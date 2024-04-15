@@ -19,7 +19,7 @@ export class TopIcons {
     });
 
       // Enable input on the scene
-     this.input.enable(this.uiLayer);
+    // this.input.enable(this.uiLayer);
 
     this.setupIconInteractions();
   }
@@ -53,7 +53,7 @@ export class TopIcons {
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
-     this.uiLayer.icons.infoIcon.on('pointerdown', () => {
+     this.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
     });
     
