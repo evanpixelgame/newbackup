@@ -33,7 +33,7 @@ export class TopIcons {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
     //iconContainer.setOrigin(0, 0); 
-     uiContainer.setScrollFactor(0);
+     uiContainer.setScrollFactor(0, 0);
     
     // Add icons to the container
     const icons = {
