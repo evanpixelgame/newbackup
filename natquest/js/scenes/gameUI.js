@@ -35,7 +35,7 @@ export class TopIcons {
 
     // Add icons to the container
     const icons = {
-      infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+      infoIcon: this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive().setScale(0.18),
       settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
       zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
       zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
