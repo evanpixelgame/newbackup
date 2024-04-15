@@ -85,8 +85,15 @@ export default class OpenWorld extends Phaser.Scene {
         const zoomOutIcon = this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
         const fullscreenIcon = this.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
 
+    this.icons = {
+      infoIcon,
+      settingsIcon,
+      zoomInIcon,
+      zoomOutIcon,
+      fullscreenIcon,
+    };
     // Instantiate the gameUI class within the uiLayer
-    this.gameUI = new TopIcons(this, this.game, this.uiLayer);
+    this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
     // Add the uiLayer to the scene
    // this.add.existing(this.uiLayer);
