@@ -19,32 +19,39 @@ export class TopIcons {
     });
   }
 
-  // Inside your createIcons method
-  createIcons() {
-    const vw = window.innerWidth;
-    const xMid = vw * .5;
-    const vh = window.innerHeight;
+createIcons() {
     // Define icon positions
     const xIconPositions = {
-      info: 1 * vw / 11,
-      settings: 6.5 * vw / 9,
-      zoomIn: 7 * vw / 9,
-      zoomOut: 7.5 * vw / 9,
-      fullscreen: 8.1 * vw / 9
+        info: 100,
+        settings: 200,
+        zoomIn: 300,
+        zoomOut: 400,
+        fullscreen: 500
     };
     const yIcons = 50; // Set yIcons to your desired value
 
     // Add icons to the container
     const icons = {
-      infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-      settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-      zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-      zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-      fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
+        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
+        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
+        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
+    // Adjust icon positions based on the camera's scroll
+    const mainCamera = this.scene.cameras.main;
+    const xOffset = mainCamera.scrollX;
+    const yOffset = mainCamera.scrollY;
+
+    Object.values(icons).forEach(icon => {
+        icon.x -= xOffset;
+        icon.y -= yOffset;
+    });
+
     return icons;
-  }
+}
+
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
