@@ -41,7 +41,7 @@ export function createMapBoundary(scene, map) {
 
 export function createMapBoundary(scene, map, world) {
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
-    scene.physics.world.setBounds(
+    scene.world.setBounds(
         boundaryOffset,
         boundaryOffset,
         map.widthInPixels - 2 * boundaryOffset,
