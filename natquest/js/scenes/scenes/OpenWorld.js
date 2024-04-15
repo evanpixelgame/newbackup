@@ -50,7 +50,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player');
 
     //Creates a boundary around outer border of map so player cannot move outside the visible map
-    this.worldBounds = createMapBoundary(this, this.map);
+    this.worldBounds = createMapBoundary(this, this.map, this.world);
 
     //Takes the scene's map and creates the barriers where the player cannot pass through from the map's Collision Layer
     this.collisionObjects = createCollisionObjects(this, this.map);
