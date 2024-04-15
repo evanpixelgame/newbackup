@@ -76,10 +76,12 @@ export default class OpenWorld extends Phaser.Scene {
 
     // Create a new layer for UI elements
  //   this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
-
+    const camera = this.cameras.main;
+const vq = camera.viewport.width;
+const vh = camera.viewport.height;
     const vw = window.innerWidth;
 
-         const infoIcon = this.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
+         const infoIcon = this.add.sprite(1 * vw/ 11, vh /2 , 'infoIcon').setInteractive();
         const settingsIcon = this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
         const zoomInIcon = this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
         const zoomOutIcon = this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
@@ -110,18 +112,7 @@ export default class OpenWorld extends Phaser.Scene {
     // Instantiate the gameUI class within the uiLayer
     this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
-    // Add the uiLayer to the scene
-   // this.add.existing(this.uiLayer);
-
-        // Update icon positions based on camera movement
-    this.scene.cameras.main.on('cameraupdate', () => {
-        const cameraPosition = this.scene.cameras.main.worldView; // Get camera position
-        Object.keys(icons).forEach(iconKey => {
-            icons[iconKey].x = iconPositions[iconKey] + cameraPosition.x;
-        });
-    });
-    
-
+  
   }
 
   update(time, delta) {
