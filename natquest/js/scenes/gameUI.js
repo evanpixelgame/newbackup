@@ -43,9 +43,6 @@ export class TopIcons {
 
     return icons;
   }
-}
-
-
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
