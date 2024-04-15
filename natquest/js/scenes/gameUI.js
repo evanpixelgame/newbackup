@@ -1,8 +1,7 @@
 export class TopIcons {
-  constructor(scene, game, uiLayer) {
+  constructor(scene, game) {
     this.scene = scene;
     this.game = game;
-    this.uiLayer = uiLayer;
     this.icons = this.createIcons();
     this.setupIconInteractions();
 
@@ -11,16 +10,11 @@ export class TopIcons {
 
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
-
-    // Add each icon to the uiLayer
-    Object.values(this.icons).forEach(icon => {
-      this.uiLayer.add(icon);
-    });
   }
 
-  // Inside your createIcons method
   createIcons() {
     const vw = window.innerWidth;
+    const yIcons = 50; // Set yIcons to your desired value
     const xIconPositions = {
       info: 1 * vw / 11,
       settings: 6.5 * vw / 9,
@@ -28,13 +22,11 @@ export class TopIcons {
       zoomOut: 7.5 * vw / 9,
       fullscreen: 8.1 * vw / 9
     };
-    const yIcons = 50; // Set yIcons to your desired value
 
-    // Create a container for the icons
-    const iconContainer = this.scene.add.container();
-    //iconContainer.setOrigin(0, 0); 
-     iconContainer.setScrollFactor(0, 0);
-    
+    // Create a container and fix it relative to the camera
+    const iconContainer = this.scene.add.container(0, 0);
+    iconContainer.setScrollFactor(0);
+
     // Add icons to the container
     const icons = {
       infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
@@ -49,12 +41,9 @@ export class TopIcons {
       iconContainer.add(icon);
     });
 
-    // Add the container to the uiLayer
-    this.uiLayer.add(iconContainer);
-
     return icons;
   }
-
+}
 
 
 
