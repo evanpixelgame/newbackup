@@ -63,7 +63,7 @@ export default class OpenWorld extends Phaser.Scene {
 
     //Starting configuration for camera, also makes sure camera follow the player
    // this.cameraConstraints = createCameraConstraints(this, this.map, this.player);
-    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
     this.cameras.main.setZoom(2);
     
