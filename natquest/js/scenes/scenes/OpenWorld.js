@@ -7,7 +7,7 @@ import { PlayerSprite } from '../PlayerSprite.js';
 import { TopIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
-import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations } from '../baseSceneFunctions.js';
+import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from '../baseSceneFunctions.js';
 
 export default class OpenWorld extends Phaser.Scene {
   constructor() {
@@ -73,7 +73,7 @@ export default class OpenWorld extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
-const vw = window.innerWidth;
+/* const vw = window.innerWidth;
 
 //const icons = {
   this.icons = {
@@ -85,8 +85,10 @@ const vw = window.innerWidth;
 };
 
 //this.icons = icons;
-
-// Instantiate the gameUI class within the uiLayer
+*/
+//creates the UI icons and graphics and make up the game's UI/HUD
+createUIIcons(this);
+// Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   
   }
