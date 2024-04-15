@@ -36,11 +36,11 @@ export class TopIcons {
 
     // Add icons to the container
     const icons = {
-      infoIcon: this.uiLayer.create(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-      settingsIcon: this.uiLayer.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-      zoomInIcon: this.uiLayer.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-      zoomOutIcon: this.uiLayer.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-      fullscreenIcon: this.uiLayer.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+      infoIcon: this.uiLayer.add(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+      settingsIcon: this.uiLayer.add(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
+      zoomInIcon: this.uiLayer.create(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
+      zoomOutIcon: this.uiLayer.create(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
+      fullscreenIcon: this.uiLayer.create(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
     return icons;
