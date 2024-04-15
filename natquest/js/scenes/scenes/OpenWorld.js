@@ -74,13 +74,13 @@ export default class OpenWorld extends Phaser.Scene {
     //cyrrently shows the icons, but only at the map, their positioning is relative to the map when it shouldnt be
 //  this.topIcons = new TopIcons(this, this.game);
     // Create a new layer for UI elements
-    this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
+ //   this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
 
     // Instantiate the gameUI class within the uiLayer
     this.gameUI = new TopIcons(this, this.game, this.uiLayer);
 
     // Add the uiLayer to the scene
-    this.add.existing(this.uiLayer);
+//    this.add.existing(this.uiLayer);
 
   }
 
