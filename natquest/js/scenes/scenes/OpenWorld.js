@@ -15,8 +15,8 @@ export default class OpenWorld extends Phaser.Scene {
 
     this.engine = null;
     this.world = null;
-    this.sceneMap = null;
     this.map = null;
+    this.mapKey = null;
     this.player = null;
     this.startPosX = null;
     this.startPosY = null;
@@ -26,7 +26,7 @@ export default class OpenWorld extends Phaser.Scene {
 
   init(data) {
     this.openWorldScene = data.OpenWorld;
-    this.map = data.map || 'map';
+    this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
     this.startPosX = data.startPosX || 495;
@@ -44,25 +44,25 @@ export default class OpenWorld extends Phaser.Scene {
     });
 
     //Creates the scene's map from Tiled JSON data
-    this.sceneMap = createMap(this, this.map);
+    this.map = createMap(this, this.mapKey);
 
     //Creates a new instance of the PlayerSprite class to add a matter.js player body object to the scene
     this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player');
 
     //Creates a boundary around outer border of map so player cannot move outside the visible map
-    createMapBoundary(this, this.sceneMap);
+    createMapBoundary(this, this.map);
 
     //Takes the scene's map and creates the barriers where the player cannot pass through from the map's Collision Layer
-    this.collisionObjects = createCollisionObjects(this, this.sceneMap);
+    this.collisionObjects = createCollisionObjects(this, this.map);
     
     //Takes the scene's map and creates sensor objects based on the map's Sensor Layer
-    this.sensorMapping = sensorMapSet(this, this.sceneMap, this.sensorID);
+    this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
     
     //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
-    this.sensorHandling = sensorHandler(this, this.sceneMap, this.player);
+    this.sensorHandling = sensorHandler(this, this.map, this.player);
 
     //Starting configuration for camera, also makes sure camera follow the player
-    createCameraConstraints(this, this.sceneMap, this.player);
+    createCameraConstraints(this, this.map, this.player);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
