@@ -2,12 +2,7 @@ export class TopIcons {
   constructor(scene, game, uiLayer = null) {
     this.scene = scene;
     this.game = game;
-    this.uiLayer = uiLayer;
-
-    // Create a new layer if not provided
-    if (!uiLayer) {
-      this.uiLayer = this.scene.add.container();
-    }
+    this.uiLayer = this.scene.add.container();
 
     this.icons = this.createIcons();
     this.setupIconInteractions();
