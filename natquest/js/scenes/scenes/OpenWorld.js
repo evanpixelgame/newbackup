@@ -74,16 +74,20 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-    //cyrrently shows the icons, but only at the map, their positioning is relative to the map when it shouldnt be
-//  this.topIcons = new TopIcons(this, this.game);
     // Create a new layer for UI elements
-    this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
+ //   this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
+
+         const infoIcon = this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
+        const settingsIcon = this.scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
+        const zoomInIcon = this.scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
+        const zoomOutIcon = this.scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
+        const fullscreenIcon = this.scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
 
     // Instantiate the gameUI class within the uiLayer
     this.gameUI = new TopIcons(this, this.game, this.uiLayer);
 
     // Add the uiLayer to the scene
-    this.add.existing(this.uiLayer);
+   // this.add.existing(this.uiLayer);
 
   }
 
