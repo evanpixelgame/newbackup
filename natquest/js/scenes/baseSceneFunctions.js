@@ -47,6 +47,7 @@ const worldBounds = new Phaser.Geom.Rectangle(
   scene.map.widthInPixels - 2 * boundaryOffset, // Width based on map size
   scene.map.heightInPixels - 2 * boundaryOffset // Height based on map size
 );
+     scene.matter.world.setBounds(0, 0, worldBounds.width, worldBounds.height);
 }
 
 
