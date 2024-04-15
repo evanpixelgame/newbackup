@@ -275,9 +275,9 @@ export class TopIcons {
       this.scene.icons.infoIcon.x = camera.width / 10;
       this.scene.icons.infoIcon.y = camera.height / 10;
 
-    Object.values(this.icons).forEach(icon => {
-    icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
-});
+ //   Object.values(this.icons).forEach(icon => {
+ //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
+//});
       
       
      // this.scene.icons.infoIcon.y = vh / 11; // Set the new Y position
