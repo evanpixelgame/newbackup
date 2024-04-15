@@ -41,7 +41,7 @@ export class TopIcons {
 
     // Add icons to the container
     const icons = {
-      infoIcon: this.uiLayer.icons.add.sprite(xIconPositions.info, yIcons, 'infoIcon'),
+      infoIcon: this.uiLayer.icons.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
       settingsIcon: this.uiLayer.add(xIconPositions.settings, yIcons, 'settingsIcon'),
       zoomInIcon: this.uiLayer.add(xIconPositions.zoomIn, yIcons, 'zoomInIcon'),
       zoomOutIcon: this.uiLayer.add(xIconPositions.zoomOut, yIcons, 'zoomOutIcon'),
