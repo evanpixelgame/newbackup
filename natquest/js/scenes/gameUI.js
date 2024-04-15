@@ -16,7 +16,7 @@ export class TopIcons {
 
         // Add each icon to the scene
     Object.values(this.icons).forEach(icon => {
-        this.uiLayer.add.existing(icon);
+        this.uiCamera.add(icon);
     });
   }
   
