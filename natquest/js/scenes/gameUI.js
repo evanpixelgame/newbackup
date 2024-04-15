@@ -12,11 +12,6 @@ export class TopIcons {
 
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
-
-    // Add each icon to the uiLayer
-    Object.values(this.icons).forEach(icon => {
-      this.uiLayer.add(icon);
-    });
   }
 
   // Inside your createIcons method
