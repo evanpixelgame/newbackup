@@ -255,17 +255,8 @@ const vw = scene.cameras.main.width;
 // Add listener for camera zoom change event
 scene.cameras.main.on('zoom', () => {
     // Recalculate UI positions based on camera zoom level
-    this.updateUIPositions();
+scene.updateUIPositions();
 });
-
-// Function to update UI positions
-updateUIPositions(scene) {
-    const vw = scene.cameras.main.width; // Get viewport width
-    const vh = scene.cameras.main.height; // Get viewport height
-    
-    // Recalculate positions of UI elements based on viewport dimensions
-    // Update positions of UI elements here...
-}
 
 // Function to update UI positions
 export function updateUIPositions(scene) {
