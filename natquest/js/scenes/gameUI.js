@@ -268,8 +268,8 @@ export class TopIcons {
       camera.zoom *= 1.1; // Increase zoom by 10%
       //this.scene.icons.infoIcon.setScale(1.1);
       
-      this.scene.icons.infoIcon.x *= 1.1;
-      this.scene.icons.infoIcon.y *= 1.1;// Set the new X position
+      this.scene.icons.infoIcon.x *= 100;
+      this.scene.icons.infoIcon.y *= 100;// Set the new X position
      // this.scene.icons.infoIcon.y = vh / 11; // Set the new Y position
     } else {
       console.log('Maximum zoom level reached.');
