@@ -77,8 +77,8 @@ export default class OpenWorld extends Phaser.Scene {
     // Create a new layer for UI elements
  //   this.uiLayer = this.add.layer(0, 0, this.game.config.width, this.game.config.height);
     const camera = this.cameras.main;
-const vq = this.cameras.main.viewport.width;
-const vh = this.cameras.main.viewport.height;
+//const vq = this.cameras.main.viewport.width;
+//const vh = this.cameras.main.viewport.height;
     const vw = window.innerWidth;
 
          const infoIcon = this.add.sprite(1 * vw/ 11, vh /2 , 'infoIcon').setInteractive();
