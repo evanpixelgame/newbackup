@@ -112,6 +112,14 @@ export default class OpenWorld extends Phaser.Scene {
 
     // Add the uiLayer to the scene
    // this.add.existing(this.uiLayer);
+
+        // Update icon positions based on camera movement
+    this.scene.cameras.main.on('cameraupdate', () => {
+        const cameraPosition = this.scene.cameras.main.worldView; // Get camera position
+        Object.keys(icons).forEach(iconKey => {
+            icons[iconKey].x = iconPositions[iconKey] + cameraPosition.x;
+        });
+    });
     
 
   }
