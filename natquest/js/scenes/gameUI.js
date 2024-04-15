@@ -35,11 +35,11 @@ export class TopIcons {
 
 
     
-        const infoIcon = this.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
-        const settingsIcon = this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
-        const zoomInIcon = this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
-        const zoomOutIcon = this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
-        const fullscreenIcon = this.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
+        const infoIcon = this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
+        const settingsIcon = this.scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
+        const zoomInIcon = this.scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
+        const zoomOutIcon = this.scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
+        const fullscreenIcon = this.scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
 
        infoIcon.setScale(.18);
        settingsIcon.setScale(0.11);
