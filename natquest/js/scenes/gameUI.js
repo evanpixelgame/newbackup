@@ -33,13 +33,27 @@ export class TopIcons {
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
 
+
+    
+        const infoIcon = this.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
+        const settingsIcon = this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
+        const zoomInIcon = this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
+        const zoomOutIcon = this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
+        const fullscreenIcon = this.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
+
+       infoIcon.setScale(.18);
+       settingsIcon.setScale(0.11);
+        zoomInIcon.setScale(0.2);
+        zoomOutIcon.setScale(0.2);
+        fullscreenIcon.setScale(.12);
+    
     // Add icons to the container
     const icons = {
-      infoIcon: this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive().setScale(0.18),
-      settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-      zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-      zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-      fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+      infoIcon,
+      settingsIcon,
+      zoomInIcon,
+      zoomOutIcon,
+      fullscreenIcon,
     };
 
     // Add icons to the container
