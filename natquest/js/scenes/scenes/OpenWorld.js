@@ -108,7 +108,7 @@ const vh = camera.viewport.height;
         fullscreenIcon.setOrigin(.5, 0);
 
     infoIcon.setScrollFactor(1, 1);
-    settingsIcon.setScrollFactor(1, 1);
+    settingsIcon.setScrollFactor(0, 0);
     // Instantiate the gameUI class within the uiLayer
     this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
