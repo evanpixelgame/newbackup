@@ -240,10 +240,11 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 
 export function createUIIcons(scene) {
 const vw = scene.cameras.main.width;
+    const vh = scene.cameras.main.height;
 
 //const icons = {
   scene.icons = {
-  infoIcon: scene.add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
+  infoIcon: scene.add.sprite(1 * vw / 11, vh / 11, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
   settingsIcon: scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0),
   zoomInIcon: scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
   zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
