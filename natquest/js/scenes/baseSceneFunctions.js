@@ -239,7 +239,7 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 }
 
 export function createUIIcons(scene) {
-const vw = scene.cameras.main.width;
+const vw = window.innerWidth;
 
 //const icons = {
   scene.icons = {
