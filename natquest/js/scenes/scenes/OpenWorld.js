@@ -92,6 +92,21 @@ export default class OpenWorld extends Phaser.Scene {
       zoomOutIcon,
       fullscreenIcon,
     };
+
+      infoIcon.setScale(.18);
+       settingsIcon.setScale(0.11);
+        zoomInIcon.setScale(0.2);
+        zoomOutIcon.setScale(0.2);
+        fullscreenIcon.setScale(.12);
+
+     infoIcon.setOrigin(.5, 0);
+       settingsIcon.setOrigin(0, 0);
+        zoomInIcon.setOrigin(.5, 0);
+        zoomOutIcon.setOrigin(.5, 0);
+        fullscreenIcon.setOrigin(.5, 0);
+
+    infoIcon.setScrollFactor(1, 1);
+    settingsIcon.setScrollFactor(1, 1);
     // Instantiate the gameUI class within the uiLayer
     this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
