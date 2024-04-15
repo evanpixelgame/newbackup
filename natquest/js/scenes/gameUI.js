@@ -15,6 +15,8 @@ export class TopIcons {
   }
 
  setupIconInteractions() {
+
+   
     // You can add event listeners or interactions here
      this.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
@@ -262,6 +264,7 @@ export class TopIcons {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
       camera.zoom *= 1.1; // Increase zoom by 10%
+      this.scene.icons.setScale *= 1.1;
     } else {
       console.log('Maximum zoom level reached.');
     }
