@@ -1,5 +1,5 @@
 export class TopIcons {
-  constructor(scene, game) {
+  constructor(scene, game, uiLayer) {
     this.scene = scene;
     this.game = game;
     this.uiLayer = uiLayer;
