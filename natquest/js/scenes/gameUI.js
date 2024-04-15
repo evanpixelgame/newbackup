@@ -267,8 +267,8 @@ export class TopIcons {
       //this.scene.icons.infoIcon.setScale(1.1);
       this.scene.icons.infoIcon.scaleX /= 1.1;
       this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.x = camera.width / 2;
-      this.scene.icons.infoIcon.y = camera.height / 2;
+      this.scene.icons.infoIcon.x = 1 * vw / 11;
+      this.scene.icons.infoIcon.y = 50;
       
       
      // this.scene.icons.infoIcon.y = vh / 11; // Set the new Y position
