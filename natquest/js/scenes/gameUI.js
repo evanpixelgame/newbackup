@@ -35,7 +35,7 @@ export class TopIcons {
  //   iconContainer.setOrigin(0.5, 0);
 
     
-        const infoIcon = this.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
+        const infoIcon = this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
         const settingsIcon = this.scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
         const zoomInIcon = this.scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
         const zoomOutIcon = this.scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
