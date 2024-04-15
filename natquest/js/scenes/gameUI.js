@@ -32,7 +32,7 @@ export class TopIcons {
 
     // Create a container for the icons
     const iconContainer = this.scene.add.container();
-
+    iconContainer.setOrigin(0, 0); 
     // Add icons to the container
     const icons = {
       infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
