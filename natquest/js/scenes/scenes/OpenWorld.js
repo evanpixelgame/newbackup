@@ -101,7 +101,7 @@ export default class OpenWorld extends Phaser.Scene {
         zoomOutIcon.setScale(0.2);
         fullscreenIcon.setScale(.12);
 
-     infoIcon.setOrigin(.5, 0);
+     infoIcon.setOrigin(0, 0);
        settingsIcon.setOrigin(0, 0);
         zoomInIcon.setOrigin(.5, 0);
         zoomOutIcon.setOrigin(.5, 0);
