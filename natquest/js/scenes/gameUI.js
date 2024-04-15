@@ -301,7 +301,7 @@ export class TopIcons {
   //**********************************************************************ZOOM METHODS****************************************************************
 
   zoomIn() {
-    let camera = this.gameScene.cameras.main; // Adjust this line
+    let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
       camera.zoom *= 1.1; // Increase zoom by 10%
     } else {
@@ -310,7 +310,7 @@ export class TopIcons {
   }
 
   zoomOut() {
-    let camera = this.gameScene.cameras.main; // Adjust this line
+    let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom > 1) { // Set a minimum zoom level (1 is just an example)
       camera.zoom /= 1.1; // Decrease zoom by 10%
     } else {
