@@ -75,7 +75,8 @@ export default class OpenWorld extends Phaser.Scene {
      createPlayerAnimations(this);
 const vw = window.innerWidth;
 
-const icons = {
+//const icons = {
+  this.icons = {
   infoIcon: this.add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
   settingsIcon: this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0),
   zoomInIcon: this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
@@ -83,7 +84,7 @@ const icons = {
   fullscreenIcon: this.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0)
 };
 
-this.icons = icons;
+//this.icons = icons;
 
 // Instantiate the gameUI class within the uiLayer
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
