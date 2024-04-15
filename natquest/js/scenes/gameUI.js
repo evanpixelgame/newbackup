@@ -5,7 +5,7 @@ export class TopIcons {
     this.uiLayer = this.scene.add.layer(0, 0, window.innerWidth, window.innerHeight);
 
     this.icons = this.createIcons();
-    this.setupIconInteractions();
+   // this.setupIconInteractions();
 
     // Bind the context of the event handler to the class instance
     this.handleFullscreenChange = this.handleFullscreenChange.bind(this);
@@ -20,6 +20,8 @@ export class TopIcons {
 
       // Enable input on the scene
      this.input.enable(this.uiLayer);
+
+    this.setupIconInteractions();
   }
 
   // Inside your createIcons method
