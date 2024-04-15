@@ -14,66 +14,6 @@ export class TopIcons {
     this.scene.scale.on('resize', this.handleFullscreenChange);
   }
 
-  // Inside your createIcons method
-  createIcons() {
-    const vw = window.innerWidth;
-    const xIconPositions = {
-      info: 1 * vw / 11,
-      settings: 6.5 * vw / 9,
-      zoomIn: 7 * vw / 9,
-      zoomOut: 7.5 * vw / 9,
-      fullscreen: 8.1 * vw / 9
-    };
-    const yIcons = 50; // Set yIcons to your desired value
-
-    // Create a container for the icons
-    const iconContainer = this.scene.add.container();
- //   iconContainer.setOrigin(0.5, 0);
-
-    
-        const infoIcon = this.scene.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
-        const settingsIcon = this.scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
-        const zoomInIcon = this.scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
-        const zoomOutIcon = this.scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
-        const fullscreenIcon = this.scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive();
-
-       infoIcon.setScale(.18);
-       settingsIcon.setScale(0.11);
-        zoomInIcon.setScale(0.2);
-        zoomOutIcon.setScale(0.2);
-        fullscreenIcon.setScale(.12);
-
-     infoIcon.setOrigin(.5, 0);
-       settingsIcon.setOrigin(0, 0);
-        zoomInIcon.setOrigin(.5, 0);
-        zoomOutIcon.setOrigin(.5, 0);
-        fullscreenIcon.setOrigin(.5, 0);
-
-    infoIcon.setScrollFactor(1, 1);
-    settingsIcon.setScrollFactor(1, 1);
-    // Add icons to the container
-    const icons = {
-      infoIcon,
-      settingsIcon,
-      zoomInIcon,
-      zoomOutIcon,
-      fullscreenIcon,
-    };
-
-    // Add icons to the container
-    Object.values(icons).forEach(icon => {
-      iconContainer.add(icon);
-    });
-
-    // Add the container to the uiLayer
-   // this.uiLayer.add(iconContainer);
-
-    return icons;
-  }
-
-
-
-
  setupIconInteractions() {
     // You can add event listeners or interactions here
      this.icons.infoIcon.on('pointerdown', () => {
