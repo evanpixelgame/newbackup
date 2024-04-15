@@ -251,3 +251,24 @@ const vw = scene.cameras.main.width;
 };
     return scene.icons;
 }
+
+// Add listener for camera zoom change event
+this.cameras.main.on('zoom', () => {
+    // Recalculate UI positions based on camera zoom level
+    this.updateUIPositions();
+});
+
+// Function to update UI positions
+export updateUIPositions(scene) {
+    const vw = scene.cameras.main.width; // Get viewport width
+    const vh = scene.cameras.main.height; // Get viewport height
+    
+    // Recalculate positions of UI elements based on viewport dimensions
+    // Update positions of UI elements here...
+}
+
+// Function to add listener for camera zoom change event
+export function addZoomChangeListener(camera) {
+    // Add listener for camera zoom change event
+    camera.on('zoom', handleZoomChange);
+}
