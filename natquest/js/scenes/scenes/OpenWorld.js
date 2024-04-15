@@ -68,7 +68,8 @@ export default class OpenWorld extends Phaser.Scene {
     //Starting configuration for camera, also makes sure camera follow the player
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
-    this.cameras.main.setZoom(this.cameraZoomLevel);
+  //  this.cameras.main.setZoom(this.cameraZoomLevel);
+     this.cameras.main.setZoom(2);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
