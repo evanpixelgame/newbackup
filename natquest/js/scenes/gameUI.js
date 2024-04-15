@@ -3,7 +3,7 @@ export class TopIcons {
     this.scene = scene;
     this.game = game;
     this.uiLayer = uiLayer;
-    this.icons = this.createIcons();
+  //  this.icons = this.createIcons();
     this.setupIconInteractions();
 
     // Bind the context of the event handler to the class instance
@@ -70,7 +70,7 @@ export class TopIcons {
     });
 
     // Add the container to the uiLayer
-    this.uiLayer.add(iconContainer);
+   // this.uiLayer.add(iconContainer);
 
     return icons;
   }
