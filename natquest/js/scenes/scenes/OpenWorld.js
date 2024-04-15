@@ -73,19 +73,7 @@ export default class OpenWorld extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
-/* const vw = window.innerWidth;
 
-//const icons = {
-  this.icons = {
-  infoIcon: this.add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
-  settingsIcon: this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0),
-  zoomInIcon: this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
-  zoomOutIcon: this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
-  fullscreenIcon: this.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0)
-};
-
-//this.icons = icons;
-*/
 //creates the UI icons and graphics and make up the game's UI/HUD
 this.icons = createUIIcons(this);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
