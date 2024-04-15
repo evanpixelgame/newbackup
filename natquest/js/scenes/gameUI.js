@@ -17,6 +17,9 @@ export class TopIcons {
     Object.values(this.icons).forEach(icon => {
       this.uiLayer.add(icon);
     });
+
+      // Enable input on the scene
+     this.input.enable(this.uiLayer);
   }
 
   // Inside your createIcons method
