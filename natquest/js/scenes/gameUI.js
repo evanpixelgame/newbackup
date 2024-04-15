@@ -1,4 +1,4 @@
-export class TopIcons extends Phaser.Scene {
+export class TopIcons {
   constructor(scene, game, uiLayer) {
     this.scene = scene;
     this.game = game;
