@@ -70,11 +70,11 @@ export default class OpenWorld extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
-const uiLayer = this.add.layer(0, 0, window.innerWidth, window.innerHeight);
-  uiLayer.setScroll(0, 0); // Set UI camera scroll to 0 (fixed position)
+this.uiLayer = this.add.layer(0, 0, window.innerWidth, window.innerHeight);
+  //this.uiLayer.setScroll(0, 0); // Set UI camera scroll to 0 (fixed position)
 
   // Create a new instance of the TopIcons class (assuming it accepts the UI camera)
-  this.topIcons = new TopIcons(this, this.game, uiLayer);
+  this.topIcons = new TopIcons(this, this.game, this.uiLayer);
   }
 
   update(time, delta) {
