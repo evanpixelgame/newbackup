@@ -1,4 +1,4 @@
-export function createMap(scene, map) { //mapkey argument is where you input which map is loaded based on key in preloader scene
+export function createMap(scene, mapKey) { //mapkey argument is where you input which map is loaded based on key in preloader scene
     const map = scene.make.tilemap({ key: mapKey });
     // Load tileset
     const tilesetsData = [
