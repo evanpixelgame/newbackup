@@ -22,7 +22,7 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     }
     return map;
 }
-
+/*
 export function createMapBoundary(scene, map) {
 
     // Set world bounds for the player
@@ -37,6 +37,19 @@ export function createMapBoundary(scene, map) {
     return worldBounds;
 
 }
+*/
+
+export function createMapBoundary(scene, map) {
+    const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
+    scene.physics.world.setBounds(
+        boundaryOffset,
+        boundaryOffset,
+        map.widthInPixels - 2 * boundaryOffset,
+        map.heightInPixels - 2 * boundaryOffset,
+        true, true, true, true
+    );
+}
+
 
 export function createCameraConstraints(scene, map, player) {
     scene.cameras.main.setBounds(0, 0, scene.map.widthInPixels, scene.map.heightInPixels);
