@@ -1,11 +1,12 @@
+
+// gameUI.js
 export class TopIcons {
   constructor(scene, game) {
     this.scene = scene;
     this.game = game;
     this.uiLayer = this.scene.add.layer(0, 0, window.innerWidth, window.innerHeight);
-
     this.icons = this.createIcons();
-   // this.setupIconInteractions();
+    this.setupIconInteractions();
 
     // Bind the context of the event handler to the class instance
     this.handleFullscreenChange = this.handleFullscreenChange.bind(this);
@@ -13,43 +14,45 @@ export class TopIcons {
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
 
-    // Add each icon to the UI layer
+        // Add each icon to the scene
     Object.values(this.icons).forEach(icon => {
-      this.uiLayer.add(icon);
+        this.scene.add.existing(icon);
     });
-
-      // Enable input on the scene
-    // this.input.enable(this.uiLayer);
-
-    this.setupIconInteractions();
   }
+  
 
-  // Inside your createIcons method
-  createIcons() {
+// Inside your createIcons method
+createIcons() {
     const vw = window.innerWidth;
     const xMid = vw * .5;
     const vh = window.innerHeight;
     // Define icon positions
     const xIconPositions = {
-      info: 1 * vw / 11,
-      settings: 6.5 * vw / 9,
-      zoomIn: 7 * vw / 9,
-      zoomOut: 7.5 * vw / 9,
-      fullscreen: 8.1 * vw / 9
+        info: 1 * vw / 11,
+        settings: 6.5 * vw / 9,
+        zoomIn: 7 * vw / 9,
+        zoomOut: 7.5 * vw / 9,
+        fullscreen: 8.1 * vw / 9
     };
     const yIcons = 50; // Set yIcons to your desired value
 
+    // Create a container for the icons
+    const iconContainer = this.scene.add.container();
+
     // Add icons to the container
     const icons = {
-      infoIcon: this.uiLayer.icons.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-      settingsIcon: this.uiLayer.add(xIconPositions.settings, yIcons, 'settingsIcon'),
-      zoomInIcon: this.uiLayer.add(xIconPositions.zoomIn, yIcons, 'zoomInIcon'),
-      zoomOutIcon: this.uiLayer.add(xIconPositions.zoomOut, yIcons, 'zoomOutIcon'),
-      fullscreenIcon: this.uiLayer.add(xIconPositions.fullscreen, yIcons, 'fullscreenIcon'),
+        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
+        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
+        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
+        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
     return icons;
-  }
+}
+
+
+
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
