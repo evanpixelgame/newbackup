@@ -81,7 +81,7 @@ export default class OpenWorld extends Phaser.Scene {
 //const vh = this.cameras.main.viewport.height;
     const vw = window.innerWidth;
 
-         const infoIcon = this.add.sprite(1 * vw/ 11, vh /2 , 'infoIcon').setInteractive();
+         const infoIcon = this.add.sprite(1 * vw/ 11, 50, 'infoIcon').setInteractive();
         const settingsIcon = this.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive();
         const zoomInIcon = this.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive();
         const zoomOutIcon = this.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive();   //was at 7.5 vw changed temp for diagnosis
