@@ -51,7 +51,7 @@ export class TopIcons {
 
  setupIconInteractions() {
     // You can add event listeners or interactions here
-     uiLayer.icons.infoIcon.on('pointerdown', () => {
+     this.uiLayer.icons.infoIcon.on('pointerdown', () => {
       console.log('Info icon clicked.');
     });
     
