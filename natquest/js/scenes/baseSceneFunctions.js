@@ -238,7 +238,7 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
     });
 }
 
-export functions createUIIcons(scene) {
+export function createUIIcons(scene) {
 const vw = window.innerWidth;
 
 //const icons = {
