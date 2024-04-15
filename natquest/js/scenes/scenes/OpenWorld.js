@@ -62,7 +62,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.sensorHandling = sensorHandler(this, this.map, this.player);
 
     //Starting configuration for camera, also makes sure camera follow the player
-    createCameraConstraints(this, this.map, this.player);
+    this.cameraConstraints = createCameraConstraints(this, this.map, this.player);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
