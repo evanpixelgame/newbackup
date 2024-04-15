@@ -249,4 +249,5 @@ const vw = window.innerWidth;
   zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
   fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0)
 };
+    return scene.icons;
 }
