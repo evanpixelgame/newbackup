@@ -37,10 +37,10 @@ export class TopIcons {
     // Add icons to the container
     const icons = {
       infoIcon: this.uiLayer.add(xIconPositions.info, yIcons, 'infoIcon'),
-      settingsIcon: this.uiLayer.add(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-      zoomInIcon: this.uiLayer.create(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-      zoomOutIcon: this.uiLayer.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-      fullscreenIcon: this.uiLayer.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+      settingsIcon: this.uiLayer.add(xIconPositions.settings, yIcons, 'settingsIcon'),
+      zoomInIcon: this.uiLayer.create(xIconPositions.zoomIn, yIcons, 'zoomInIcon'),
+      zoomOutIcon: this.uiLayer.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon'),
+      fullscreenIcon: this.uiLayer.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon'),
     };
 
     return icons;
