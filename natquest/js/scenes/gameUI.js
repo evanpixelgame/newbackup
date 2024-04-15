@@ -1,10 +1,14 @@
-
-// gameUI.js, new instance to be made in MainScene
 export class TopIcons {
   constructor(scene, game, uiLayer = null) {
     this.scene = scene;
     this.game = game;
     this.uiLayer = uiLayer;
+
+    // Create a new layer if not provided
+    if (!uiLayer) {
+      this.uiLayer = this.scene.add.container();
+    }
+
     this.icons = this.createIcons();
     this.setupIconInteractions();
 
@@ -14,39 +18,38 @@ export class TopIcons {
     // Add the resize event listener
     this.scene.scale.on('resize', this.handleFullscreenChange);
 
-        // Add each icon to the scene
+    // Add each icon to the UI layer
     Object.values(this.icons).forEach(icon => {
-       // this.scene.add.existing(icon);
-          uiLayer.add(icon);
+      this.uiLayer.add(icon);
     });
   }
-  
 
-// Inside your createIcons method
-createIcons() {
+  // Inside your createIcons method
+  createIcons() {
     const vw = window.innerWidth;
     const xMid = vw * .5;
     const vh = window.innerHeight;
     // Define icon positions
     const xIconPositions = {
-        info: 1 * vw / 11,
-        settings: 6.5 * vw / 9,
-        zoomIn: 7 * vw / 9,
-        zoomOut: 7.5 * vw / 9,
-        fullscreen: 8.1 * vw / 9
+      info: 1 * vw / 11,
+      settings: 6.5 * vw / 9,
+      zoomIn: 7 * vw / 9,
+      zoomOut: 7.5 * vw / 9,
+      fullscreen: 8.1 * vw / 9
     };
     const yIcons = 50; // Set yIcons to your desired value
 
     // Add icons to the container
     const icons = {
-        infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
-        settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
-        zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
-        zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
-        fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
+      infoIcon: this.scene.add.sprite(xIconPositions.info, yIcons, 'infoIcon').setInteractive().setScale(0.18),
+      settingsIcon: this.scene.add.sprite(xIconPositions.settings, yIcons, 'settingsIcon').setInteractive().setScale(0.11),
+      zoomInIcon: this.scene.add.sprite(xIconPositions.zoomIn, yIcons, 'zoomInIcon').setInteractive().setScale(0.2),
+      zoomOutIcon: this.scene.add.sprite(xIconPositions.zoomOut, yIcons, 'zoomOutIcon').setInteractive().setScale(0.2),
+      fullscreenIcon: this.scene.add.sprite(xIconPositions.fullscreen, yIcons, 'fullscreenIcon').setInteractive().setScale(0.12),
     };
 
     return icons;
+  }
 }
 
 
