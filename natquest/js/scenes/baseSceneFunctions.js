@@ -39,7 +39,7 @@ export function createMapBoundary(scene, map) {
 }
 */
 
-export function createMapBoundary(scene, map) {
+export function createMapBoundary(scene, map, world) {
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
 const worldBounds = new Phaser.Geom.Rectangle(
   boundaryOffset, // Offset from left edge
