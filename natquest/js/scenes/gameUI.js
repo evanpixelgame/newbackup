@@ -1,10 +1,10 @@
 
 // gameUI.js, new instance to be made in MainScene
 export class TopIcons {
-  constructor(scene, game, uiCamera = null) {
+  constructor(scene, game, uiLayer = null) {
     this.scene = scene;
     this.game = game;
-    this.uiCamera = uiCamera;
+    this.uiLayer = uiLayer;
     this.icons = this.createIcons();
     this.setupIconInteractions();
 
@@ -16,7 +16,7 @@ export class TopIcons {
 
         // Add each icon to the scene
     Object.values(this.icons).forEach(icon => {
-        this.uiCamera.add(icon);
+        this.uiLayer.add.existing(icon);
     });
   }
   
