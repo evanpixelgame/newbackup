@@ -63,8 +63,8 @@ export default class OpenWorld extends Phaser.Scene {
 
     //Starting configuration for camera, also makes sure camera follow the player
    // this.cameraConstraints = createCameraConstraints(this, this.map, this.player);
-    this.cameras.main.setBounds(0, 0, scene.map.widthInPixels, scene.map.heightInPixels);
-    this.cameras.main.startFollow(scene.player, true, 0.05, 0.05);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
     this.cameras.main.setZoom(2);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
