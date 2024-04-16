@@ -101,7 +101,7 @@ const canvasHeight = this.sys.game.config.height;
 const text2 = this.add.text(10, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
 
 // Position text in the upper-left corner of the canvas
-text2.setOrigin(0, 0);
+text2.setOrigin(0, 0).setScrollFactor(0, 0);
   }
 
   update(time, delta) {
