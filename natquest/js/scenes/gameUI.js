@@ -263,8 +263,9 @@ export class TopIcons {
   zoomIn() {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
-      const zoomFactor = 1.1;
+    //  const zoomFactor = 1.1;
       camera.zoom *= zoomFactor; // Increase zoom by 10%
+      this.scene.map.setScale(1.2);
 
    //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
