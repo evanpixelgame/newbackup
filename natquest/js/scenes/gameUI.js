@@ -267,7 +267,7 @@ export class TopIcons {
 
       this.scene.icons.infoIcon.setVisible(false);
       camera.zoom *= zoomFactor; // Increase zoom by 10%
-      //this.scene.icons.infoIcon.setVisible(true);
+      this.scene.icons.infoIcon.setVisible(true);
 
       
    //   Object.values(this.icons).forEach(icon => {
@@ -276,7 +276,7 @@ export class TopIcons {
       //this.scene.icons.infoIcon.setScale(1.1);
       this.scene.icons.infoIcon.scaleX /= 1.1;
       this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.setPosition(100, 59);
+     // this.scene.icons.infoIcon.setPosition(100, 59);
 
  //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
