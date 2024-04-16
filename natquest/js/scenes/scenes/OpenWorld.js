@@ -49,10 +49,6 @@ export default class OpenWorld extends Phaser.Scene {
 
  // this.icons = createUIIcons(this);
 
-    const { icons, iconContainer } = createUIIcons(this);
-    this.icons = icons;
-    this.iconContainer = iconContainer;
-    
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
@@ -84,6 +80,10 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
+     const { icons, iconContainer } = createUIIcons(this);
+    this.icons = icons;
+    this.iconContainer = iconContainer;
+    
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
