@@ -264,8 +264,12 @@ export class TopIcons {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
       const zoomFactor = 1.1;
-      camera.zoom *= zoomFactor; // Increase zoom by 10%
 
+      this.scene.icons.infoIcon.setVisible(false);
+      camera.zoom *= zoomFactor; // Increase zoom by 10%
+      //this.scene.icons.infoIcon.setVisible(true);
+
+      
    //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
 //});
