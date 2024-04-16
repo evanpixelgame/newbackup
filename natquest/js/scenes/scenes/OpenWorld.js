@@ -47,7 +47,7 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-    this.icons = createUIIcons(this, iconCamera);
+    this.icons = createUIIcons(this);
     
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
