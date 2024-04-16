@@ -47,11 +47,21 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-// Add text to the scene
+// Create a container for the text
+const textContainer = this.add.container(0, 0);
+
+// Add text to the container
 const text = this.add.text(200, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
 
 // Position text in the upper-left corner of the canvas
-text.setOrigin(0, 0).setScrollFactor(0, 0).setDepth(2000);
+text.setOrigin(0, 0);
+
+// Add text to the container
+textContainer.add(text);
+
+// Optionally, set scroll factor and depth for the container
+textContainer.setScrollFactor(0, 0); // Make the container not affected by camera movement
+textContainer.setDepth(2000);
 
     
     this.icons = createUIIcons(this);
