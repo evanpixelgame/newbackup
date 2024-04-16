@@ -80,14 +80,6 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-  //   const { icons, iconContainer } = createUIIcons(this);
-  //  this.icons = icons;
-  //  this.iconContainer = iconContainer;
-    
-// Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-//this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
-
-
 // Create a new camera for UI elements
 const uiCamera = scene.cameras.add(0, 0, scene.sys.game.config.width, scene.sys.game.config.height);
 
@@ -103,13 +95,6 @@ uiCamera.ignore(uiContainer.getAll()); // Make all the UI elements inside the co
 const uiElement = scene.add.sprite(uiCamera.width / 2, uiCamera.height / 2, 'infoIcon');
 uiContainer.add(uiElement); // Add UI element to the container
 
-// Handle input events for UI elements considering coordinates relative to the UI camera
-//uiElement.setInteractive();
-//uiElement.on('pointerdown', () => {
-    // Handle pointer down event for UI element
-//});
-
-    
   }
 
   update(time, delta) {
