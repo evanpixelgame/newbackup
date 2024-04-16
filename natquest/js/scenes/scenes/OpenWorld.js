@@ -47,22 +47,7 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
- // this.icons = createUIIcons(this);
-// Create a new camera for UI elements
-const uiCamera = this.cameras.add(0, 0, this.sys.game.config.width, this.sys.game.config.height);
-
-// Configure camera settings
-uiCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Transparent background
-
-// Add UI elements to the UI camera's display list
-const uiContainer = this.add.container(0, 0);
-uiCamera.ignore(uiContainer); // Make the container not affected by the UI camera
-uiCamera.ignore(uiContainer.getAll()); // Make all the UI elements inside the container not affected by the UI camera
-
-// Position UI elements relative to the UI camera's viewport
-const uiElement = this.add.sprite(uiCamera.width / 2, uiCamera.height / 2, 'infoIcon');
-uiContainer.add(uiElement); // Add UI element to the container
-
+    this.icons = createUIIcons(this);
     
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
@@ -86,7 +71,7 @@ uiContainer.add(uiElement); // Add UI element to the container
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   //  this.cameras.main.setZoom(this.cameraZoomLevel);
-   // this.cameras.main.setZoom(2);
+   //  this.cameras.main.setZoom(2);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
@@ -95,8 +80,10 @@ uiContainer.add(uiElement); // Add UI element to the container
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-
-
+//creates the UI icons and graphics and make up the game's UI/HUD
+//this.icons = createUIIcons(this);
+// Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
+this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
