@@ -83,7 +83,7 @@ export default class OpenWorld extends Phaser.Scene {
      createPlayerAnimations(this);
 
 
-  this.uiCamera = this.cameras.add(0, 0, 800, 600);
+ // this.uiCamera = this.cameras.add(0, 0, 800, 600);
 
     //this.uiCamera.add.image(100, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100);
      this.icons = createUIIcons(this);
