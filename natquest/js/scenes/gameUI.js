@@ -265,16 +265,16 @@ export class TopIcons {
     if (camera.zoom < 3) {
       const zoomFactor = 1.1;
       camera.zoom *= zoomFactor; // Increase zoom by 10%
-      this.scene.textContainer.setScale(1 / this.cameras.main.zoom);
+    //  this.scene.textContainer.setScale(1 / this.cameras.main.zoom);
 
    //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
 //});
       //this.scene.icons.infoIcon.setScale(1.1);
-      this.scene.icons.infoIcon.scaleX /= 1.1;
-      this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.x = camera.width / 5;
-      this.scene.icons.infoIcon.y = camera.height / 5;
+     // this.scene.icons.infoIcon.scaleX /= 1.1;
+    //  this.scene.icons.infoIcon.scaleY /= 1.1;
+    //  this.scene.icons.infoIcon.x = camera.width / 5;
+    //  this.scene.icons.infoIcon.y = camera.height / 5;
 
  //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
