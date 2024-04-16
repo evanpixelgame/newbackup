@@ -263,28 +263,17 @@ export class TopIcons {
   zoomIn() {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom < 3) {
-    //  const zoomFactor = 1.1;
-   //   camera.zoom *= zoomFactor; // Increase zoom by 10%
-      this.scene.map.setScale(1.2);
+      const zoomFactor = 1.1;
+      camera.zoom *= zoomFactor; // Increase zoom by 10%
 
    //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
 //});
       //this.scene.icons.infoIcon.setScale(1.1);
-      
-    /*  this.scene.icons.infoIcon.scaleX /= 1.1;
-     this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.x *= 1.1;
-      this.scene.icons.infoIcon.y *= 1.1;
-      this.scene.icons.zoomInIcon.scaleX /= 1.1;
-     this.scene.icons.zoomInIcon.scaleY /= 1.1;
-      this.scene.icons.zoomInIcon.x *= 1.1;
-      this.scene.icons.zoomInIcon.y *= 1.1;
-    this.scene.icons.zoomOutIcon.scaleX /= 1.1;
-     this.scene.icons.zoomOutIcon.scaleY /= 1.1;
-      this.scene.icons.zoomOutIcon.x *= 1.1;
-      this.scene.icons.zoomOutcon.y *= 1.1;
-      */
+      this.scene.icons.infoIcon.scaleX /= 1.1;
+      this.scene.icons.infoIcon.scaleY /= 1.1;
+      this.scene.icons.infoIcon.x = camera.width / 5;
+      this.scene.icons.infoIcon.y = camera.height / 5;
 
  //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
@@ -301,18 +290,10 @@ export class TopIcons {
     let camera = this.scene.cameras.main; // Adjust this line
     if (camera.zoom > 1) { // Set a minimum zoom level (1 is just an example)
       camera.zoom /= 1.1; // Decrease zoom by 10%
-  /*    this.scene.icons.infoIcon.scaleX *= 1.1;
+      this.scene.icons.infoIcon.scaleX *= 1.1;
       this.scene.icons.infoIcon.scaleY *= 1.1;
-       this.scene.icons.infoIcon.x /= 1.1;
-      this.scene.icons.infoIcon.y /= 1.1;
-        this.scene.icons.zoomInIcon.scaleX *= 1.1;
-     this.scene.icons.zoomInIcon.scaleY *= 1.1;
-      this.scene.icons.zoomInIcon.x /= 1.1;
-      this.scene.icons.zoomInIcon.y /= 1.1;
-    this.scene.icons.zoomOutIcon.scaleX *= 1.1;
-     this.scene.icons.zoomOutIcon.scaleY *= 1.1;
-      this.scene.icons.zoomOutIcon.x /= 1.1;
-      this.scene.icons.zoomOutcon.y /= 1.1; */
+      this.scene.icons.infoIcon.x = camera.width / 5;
+      this.scene.icons.infoIcon.y = camera.height / 5;
     } else {
       console.log('Minimum zoom level reached.');
     }
