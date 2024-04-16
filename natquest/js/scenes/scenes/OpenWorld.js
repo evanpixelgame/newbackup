@@ -98,10 +98,10 @@ this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 const canvasHeight = this.sys.game.config.height;
 
 // Add text to the scene
-const text = this.add.text(10, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
+const text2 = this.add.text(10, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
 
 // Position text in the upper-left corner of the canvas
-text.setOrigin(0, 0);
+text2.setOrigin(0, 0);
   }
 
   update(time, delta) {
