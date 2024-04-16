@@ -292,8 +292,8 @@ export class TopIcons {
       camera.zoom /= 1.1; // Decrease zoom by 10%
       this.scene.icons.infoIcon.scaleX *= 1.1;
       this.scene.icons.infoIcon.scaleY *= 1.1;
-      this.scene.icons.infoIcon.x = camera.width / 2;
-      this.scene.icons.infoIcon.y = camera.height / 2;
+      this.scene.icons.infoIcon.x = camera.width / 4;
+      this.scene.icons.infoIcon.y = camera.height / 4;
     } else {
       console.log('Minimum zoom level reached.');
     }
