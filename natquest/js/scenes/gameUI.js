@@ -272,8 +272,8 @@ export class TopIcons {
       //this.scene.icons.infoIcon.setScale(1.1);
       this.scene.icons.infoIcon.scaleX /= 1.1;
       this.scene.icons.infoIcon.scaleY /= 1.1;
-      this.scene.icons.infoIcon.x = camera.width / 5;
-      this.scene.icons.infoIcon.y = camera.height / 5;
+      this.scene.icons.infoIcon.x = camera.width - (camera.width - 50);
+      this.scene.icons.infoIcon.y = camera.height - (camera.height - 50);
 
  //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
@@ -292,8 +292,8 @@ export class TopIcons {
       camera.zoom /= 1.1; // Decrease zoom by 10%
       this.scene.icons.infoIcon.scaleX *= 1.1;
       this.scene.icons.infoIcon.scaleY *= 1.1;
-      this.scene.icons.infoIcon.x = camera.width / 5;
-      this.scene.icons.infoIcon.y = camera.height / 5;
+      this.scene.icons.infoIcon.x = camera.width - (camera.width - 50);
+      this.scene.icons.infoIcon.y = camera.height - (camera.height - 50);
     } else {
       console.log('Minimum zoom level reached.');
     }
