@@ -79,9 +79,9 @@ export default class OpenWorld extends Phaser.Scene {
      createPlayerAnimations(this);
 
 //creates the UI icons and graphics and make up the game's UI/HUD
-this.icons = createUIIcons(this);
+const { icons, iconContainer } = createUIIcons(scene);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+this.gameUI = new TopIcons(this, this.game, this.uiLayer, icons);
 
   const iconContainer = this.add.container();
     
