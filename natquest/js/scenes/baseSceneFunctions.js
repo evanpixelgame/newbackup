@@ -22,22 +22,6 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     }
     return map;
 }
-/*
-export function createMapBoundary(scene, map) {
-
-    // Set world bounds for the player
-    const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
-    const worldBounds = new Phaser.Geom.Rectangle(
-      boundaryOffset,
-      boundaryOffset,
-      scene.map.widthInPixels - 2 * boundaryOffset,
-      scene.map.heightInPixels - 2 * boundaryOffset
-    );
-
-    return worldBounds;
-
-}
-*/
 
 export function createMapBoundary(scene, map, world) {
     const boundaryOffset = 2; // increase value to decrease how close player can get to map edge
@@ -251,38 +235,3 @@ const vw = scene.cameras.main.width;
 };
     return scene.icons;
 }
-
-
-/*
-export function createUIIcons(scene) {
-const vw = scene.cameras.main.width;
-    const vh = scene.cameras.main.height;
-    
-//const icons = {
-  scene.icons = {
-  infoIcon: scene.add.sprite(1 * vw / 11, vh / 11, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
-  settingsIcon: scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0),
-  zoomInIcon: scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
-  zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
-  fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0)
-};
-
-  return scene.icons;
-}
-
-
-// Function to update UI positions
-export function updateUIPositions(scene) {
-    const vw = scene.cameras.main.width; // Get viewport width
-    const vh = scene.cameras.main.height; // Get viewport height
-    
-    // Recalculate positions of UI elements based on viewport dimensions
-    // Update positions of UI elements here...
-}
-
-// Function to add listener for camera zoom change event
-export function addZoomChangeListener(camera) {
-    // Add listener for camera zoom change event
-    camera.on('zoom', updateUIPositions);
-}
-*/
