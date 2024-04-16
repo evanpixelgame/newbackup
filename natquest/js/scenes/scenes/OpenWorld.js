@@ -84,6 +84,17 @@ export default class OpenWorld extends Phaser.Scene {
 //this.icons = createUIIcons(this);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+
+
+
+    const canvasWidth = this.sys.game.config.width;
+const canvasHeight = this.sys.game.config.height;
+
+// Add text to the scene
+const text = this.add.text(10, 10, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
+
+// Position text in the upper-left corner of the canvas
+text.setOrigin(0, 0);
   }
 
   update(time, delta) {
