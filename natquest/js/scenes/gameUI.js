@@ -274,8 +274,8 @@ export class TopIcons {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
 //});
       //this.scene.icons.infoIcon.setScale(1.1);
-      this.scene.icons.infoIcon.scaleX /= 1.1;
-      this.scene.icons.infoIcon.scaleY /= 1.1;
+    //  this.scene.icons.infoIcon.scaleX /= 1.1;
+    //  this.scene.icons.infoIcon.scaleY /= 1.1;
      // this.scene.icons.infoIcon.setPosition(100, 59);
 
  //   Object.values(this.icons).forEach(icon => {
