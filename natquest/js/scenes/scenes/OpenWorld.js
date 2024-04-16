@@ -57,7 +57,7 @@ this.text = this.add.text(200, 100, 'Your Text Here', { fontFamily: 'Arial', fon
 this.text.setOrigin(0, 0);
 
 // Add text to the container
-this.textContainer.add(text);
+this.textContainer.add(this.text);
 
 // Optionally, set scroll factor and depth for the container
 this.textContainer.setScrollFactor(0, 0); // Make the container not affected by camera movement
