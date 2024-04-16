@@ -23,6 +23,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.velocityChange = null;
     this.cameraZoomLevel = 2;
     this.topIcons = null;
+    this.uiCamera = null;
   }
 
   init(data) {
@@ -36,6 +37,7 @@ export default class OpenWorld extends Phaser.Scene {
     this.playerPosY = data.playerPosY || 325;
     this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
     this.topIcons = data.topIcons;
+    this.uiCamera = data.uiCamera;
   }
 
   create() {
