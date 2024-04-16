@@ -267,7 +267,11 @@ export class TopIcons {
 
       this.scene.icons.infoIcon.setVisible(false);
       camera.zoom *= zoomFactor; // Increase zoom by 10%
-      this.scene.icons.infoIcon.setVisible(true);
+      const delayMilliseconds = 500; // Adjust the delay time as needed (e.g., 500 milliseconds)
+setTimeout(() => {
+    this.scene.icons.infoIcon.setVisible(true);
+}, delayMilliseconds);
+     // this.scene.icons.infoIcon.setVisible(true);
 
       
    //   Object.values(this.icons).forEach(icon => {
