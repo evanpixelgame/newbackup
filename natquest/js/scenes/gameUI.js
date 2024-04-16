@@ -265,6 +265,7 @@ export class TopIcons {
     if (camera.zoom < 3) {
       const zoomFactor = 1.1;
       camera.zoom *= zoomFactor; // Increase zoom by 10%
+      this.scene.textContainer.setScale(1 / this.cameras.main.zoom);
 
    //   Object.values(this.icons).forEach(icon => {
  //   icon.setScale(icon.scaleX * scaleFactor, icon.scaleY * scaleFactor);
