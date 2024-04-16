@@ -223,21 +223,18 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 }
 
 export function createUIIcons(scene) {
-    const vw = scene.cameras.main.width;
+    const canvasWidth = scene.game.config.width;
+    const canvasHeight = scene.game.config.height;
 
     const icons = {
-        infoIcon: scene.add.sprite(100, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
-        settingsIcon: scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
-        zoomInIcon: scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0).setDepth(100),
-        zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0).setDepth(100),
-        fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0).setDepth(100)
+        infoIcon: scene.add.sprite(canvasWidth * 0.1, canvasHeight * 0.1, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setDepth(100),
+        settingsIcon: scene.add.sprite(canvasWidth * 0.65, canvasHeight * 0.1, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setDepth(100),
+        zoomInIcon: scene.add.sprite(canvasWidth * 0.7, canvasHeight * 0.1, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setDepth(100),
+        zoomOutIcon: scene.add.sprite(canvasWidth * 0.75, canvasHeight * 0.1, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setDepth(100),
+        fullscreenIcon: scene.add.sprite(canvasWidth * 0.81, canvasHeight * 0.1, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setDepth(100)
     };
-
-    // Set ignoreCamera to true for each sprite
-    Object.values(icons).forEach(icon => {
-        icon.ignoreCamera = true;
-    });
 
     return icons;
 }
+
 
