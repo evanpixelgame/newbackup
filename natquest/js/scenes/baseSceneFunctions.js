@@ -223,29 +223,15 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 }
 
 export function createUIIcons(scene) {
-    const canvasWidth = scene.sys.game.config.width;
-    const canvasHeight = scene.sys.game.config.height;
+const vw = scene.cameras.main.width;
 
-    // Create a container for the icons
-    const iconContainer = scene.add.container(0, 0);
-
-    // Add icons to the container
-    const icons = {
-        infoIcon: iconContainer.add(scene.add.sprite(canvasWidth * 0.1, canvasHeight * 0.1, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setDepth(100)),
-        settingsIcon: iconContainer.add(scene.add.sprite(canvasWidth * 0.65, canvasHeight * 0.1, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setDepth(100)),
-        zoomInIcon: iconContainer.add(scene.add.sprite(canvasWidth * 0.7, canvasHeight * 0.1, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0, 0).setDepth(100)),
-        zoomOutIcon: iconContainer.add(scene.add.sprite(canvasWidth * 0.75, canvasHeight * 0.1, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0, 0).setDepth(100)),
-        fullscreenIcon: iconContainer.add(scene.add.sprite(canvasWidth * 0.81, canvasHeight * 0.1, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0, 0).setDepth(100))
-    };
-
-    // Create a separate camera for the icon container
-    const iconCamera = scene.cameras.add(0, 0, canvasWidth, canvasHeight);
-
-    // Set up the icon camera to only render the icon container
-    iconCamera.ignore(iconContainer);
-    iconCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set background color to transparent
-
-    // Return both the icons and the icon container
-    return { icons, iconContainer };
+//const icons = {
+  scene.icons = {
+  infoIcon: scene.add.sprite(1 * vw / 11, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
+  settingsIcon: scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
+  zoomInIcon: scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
+  zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100),
+  fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100)
+};
+    return scene.icons;
 }
-
