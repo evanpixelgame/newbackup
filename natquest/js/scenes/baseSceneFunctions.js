@@ -279,7 +279,7 @@ const vw = scene.cameras.main.width;
 
   return scene.icons;
 }
-/*
+
 
 // Function to update UI positions
 export function updateUIPositions(scene) {
@@ -295,3 +295,4 @@ export function addZoomChangeListener(camera) {
     // Add listener for camera zoom change event
     camera.on('zoom', updateUIPositions);
 }
+*/
