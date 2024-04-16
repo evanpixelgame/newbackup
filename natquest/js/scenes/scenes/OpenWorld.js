@@ -89,7 +89,7 @@ export default class OpenWorld extends Phaser.Scene {
      this.icons = createUIIcons(this);
     
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-//this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+  this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
