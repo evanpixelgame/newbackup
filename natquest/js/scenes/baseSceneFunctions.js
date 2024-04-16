@@ -239,6 +239,32 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 }
 
 export function createUIIcons(scene) {
+    const vw = scene.cameras.main.width;
+    const vh = scene.cameras.main.height;
+
+    const icons = {
+        infoIcon: scene.add.sprite(1 * vw / 11, vh / 11, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0),
+        settingsIcon: scene.add.sprite(6.5 * vw / 9, 50, 'settingsIcon').setInteractive().setScale(0.11).setOrigin(0, 0),
+        zoomInIcon: scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0),
+        zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0),
+        fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0)
+    };
+
+    // Create a container for the icons
+    const iconContainer = scene.add.container(0, 0);
+
+    // Add icons to the container
+    Object.values(icons).forEach(icon => {
+        iconContainer.add(icon);
+    });
+
+    // Return both the icons object and the container
+    return { icons, iconContainer };
+}
+
+
+/*
+export function createUIIcons(scene) {
 const vw = scene.cameras.main.width;
     const vh = scene.cameras.main.height;
     
@@ -253,12 +279,7 @@ const vw = scene.cameras.main.width;
 
   return scene.icons;
 }
-
-// Add listener for camera zoom change event
-//this.cameras.main.on('zoom', () => {
-    // Recalculate UI positions based on camera zoom level
-//scene.updateUIPositions(scene);
-//});
+/*
 
 // Function to update UI positions
 export function updateUIPositions(scene) {
