@@ -47,7 +47,11 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-  this.icons = createUIIcons(this);
+ // this.icons = createUIIcons(this);
+
+    const { icons, iconContainer } = createUIIcons(this);
+    this.icons = icons;
+    this.iconContainer = iconContainer;
     
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
@@ -80,16 +84,6 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-    // Create a transparent UI camera
-//let uiCamera = this.cameras.add(0, 0, this.cameras.main.width, this.cameras.main.height, 0x00000000);
-
-// Add UI elements to the UI camera
-//let infoIcon = uiCamera.add.sprite(100, 50, 'infoIcon').setInteractive();
-// ... (add other UI elements)
-
-//creates the UI icons and graphics and make up the game's UI/HUD
-
-  //   this.icons = createUIIcons(this);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
