@@ -55,9 +55,10 @@ this.text = this.add.text(200, 100, 'Your Text Here', { fontFamily: 'Arial', fon
 
 // Position text in the upper-left corner of the canvas
 this.text.setOrigin(0, 0);
-
+this.testIcon = this.add.sprite(200, 200, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100);
 // Add text to the container
 this.textContainer.add(this.text);
+    this.textContainer.add(this.testIcon);
 
 // Optionally, set scroll factor and depth for the container
 this.textContainer.setScrollFactor(0, 0); // Make the container not affected by camera movement
