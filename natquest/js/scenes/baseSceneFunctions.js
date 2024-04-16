@@ -241,7 +241,8 @@ export function createPlayerAnimations(scene) { //maybe scene and/or player need
 export function createUIIcons(scene) {
 const vw = scene.cameras.main.width;
     const vh = scene.cameras.main.height;
-
+const iconContainer = scene.add.container();
+    
 //const icons = {
   scene.icons = {
   infoIcon: scene.add.sprite(1 * vw / 11, vh / 11, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0),
@@ -250,7 +251,15 @@ const vw = scene.cameras.main.width;
   zoomOutIcon: scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2).setOrigin(0.5, 0).setScrollFactor(0, 0),
   fullscreenIcon: scene.add.sprite(8.1 * vw / 9, 50, 'fullscreenIcon').setInteractive().setScale(0.12).setOrigin(0.5, 0).setScrollFactor(0, 0)
 };
-    return scene.icons;
+
+        Object.values(icons).forEach(icon => {
+        iconContainer.add(icon);
+    });
+
+    return iconContainer;
+
+    
+  //  return scene.icons;
 }
 
 // Add listener for camera zoom change event
