@@ -85,7 +85,7 @@ export default class OpenWorld extends Phaser.Scene {
 
   this.uiCamera = this.cameras.add(0, 0, 800, 600);
 
-    this.uiCamera.add.image(100, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100);
+    //this.uiCamera.add.image(100, 50, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100);
      this.icons = createUIIcons(this);
     
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
