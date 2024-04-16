@@ -48,7 +48,22 @@ export default class OpenWorld extends Phaser.Scene {
     });
 
  // this.icons = createUIIcons(this);
+// Create a new camera for UI elements
+const uiCamera = this.cameras.add(0, 0, this.sys.game.config.width, this.sys.game.config.height);
 
+// Configure camera settings
+uiCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Transparent background
+
+// Add UI elements to the UI camera's display list
+const uiContainer = this.add.container(0, 0);
+uiCamera.ignore(uiContainer); // Make the container not affected by the UI camera
+uiCamera.ignore(uiContainer.getAll()); // Make all the UI elements inside the container not affected by the UI camera
+
+// Position UI elements relative to the UI camera's viewport
+const uiElement = this.add.sprite(uiCamera.width / 2, uiCamera.height / 2, 'infoIcon');
+uiContainer.add(uiElement); // Add UI element to the container
+
+    
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
@@ -80,20 +95,7 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-// Create a new camera for UI elements
-const uiCamera = this.cameras.add(0, 0, this.sys.game.config.width, this.sys.game.config.height);
 
-// Configure camera settings
-uiCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Transparent background
-
-// Add UI elements to the UI camera's display list
-const uiContainer = this.add.container(0, 0);
-uiCamera.ignore(uiContainer); // Make the container not affected by the UI camera
-uiCamera.ignore(uiContainer.getAll()); // Make all the UI elements inside the container not affected by the UI camera
-
-// Position UI elements relative to the UI camera's viewport
-const uiElement = this.add.sprite(uiCamera.width / 2, uiCamera.height / 2, 'infoIcon');
-uiContainer.add(uiElement); // Add UI element to the container
 
   }
 
