@@ -24,6 +24,7 @@ export default class NextSceneTest extends BaseScene {
   // Add any additional methods specific to CustomScene
 
   create() {
+    console.log('made it to next room fucking pierre');
     // Call the create method of the base scene
 
     // Add any additional creation logic specific to CustomScene
