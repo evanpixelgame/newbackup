@@ -26,16 +26,8 @@ export default class NewScene extends OpenWorld {
 
   create() {
     // Use the existing Matter.js engine and world from the OpenWorld scene
-    this.engine = this.scene.get('OpenWorld').engine;
-    this.world = this.scene.get('OpenWorld').world;
-
-    // Get the reference to the already launched CompUI scene
-    const gameUIScene = this.scene.get('GameUI');
-
-    // If the CompUI scene exists, update its gameScene property
-    if (gameUIScene) {
-      gameUIScene.gameScene = this;
-    }
+   // this.engine = this.scene.get('OpenWorld').engine;
+   // this.world = this.scene.get('OpenWorld').world;
 
     // Create the map
     const map = this.make.tilemap({ key: 'insidemap' });
@@ -61,8 +53,6 @@ export default class NewScene extends OpenWorld {
     this.player = new PlayerSprite(this, 850, 790, 'player'); //any values that should be carried over should be saved to GameManager and then accessed through parameters ie. new PlayerSprite(this, data.player.x, data.player.y, 'player');
     console.log(this.player);
     this.player.setScale(1);
-
-    this.scene.launch('PlayerControls', { player: this.player });
 
 
     // Set world bounds for the player
