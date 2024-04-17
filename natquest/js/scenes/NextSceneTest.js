@@ -1,4 +1,4 @@
-//import BaseScene from './BaseScene.js'; // Import your base scene
+import BaseScene from './BaseScene.js'; // Import your base scene
 
 export default class NextSceneTest extends BaseScene {
   constructor() {
