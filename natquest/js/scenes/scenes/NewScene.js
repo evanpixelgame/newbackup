@@ -17,10 +17,11 @@ import OpenWorld from './OpenWorld.js';
   }
 
   create() {
-   
+   super.create();
   }
 
   update(time, delta) {
+   super.create(time, delta);
     // Update logic for the scene, if necessary
   }
 }
