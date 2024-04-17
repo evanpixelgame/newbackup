@@ -1,8 +1,8 @@
 import BaseScene from './BaseScene.js'; // Import your base scene
 
-export default class NextScene extends BaseScene {
+export default class NextSceneTest extends BaseScene {
   constructor() {
-    super({ key: 'CustomScene' });
+    super({ key: 'CustomSceneTest' });
         this.mapKey = 'insideroom';
     // Add any additional properties specific to CustomScene
   }
