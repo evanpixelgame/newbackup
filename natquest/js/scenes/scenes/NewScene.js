@@ -1,23 +1,15 @@
-import { PlayerSprite } from '../PlayerSprite.js';
-import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
-import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
 import OpenWorld from './OpenWorld.js';
 
-export default class NewScene extends OpenWorld {
+ class NewScene extends OpenWorld {
   constructor() {
     super({ key: 'NewScene' });
-
-    this.map = null;
-    this.player = null;
-    this.collisionObjects = null;
-    this.transitionSensors = null;
-    this.engine = null;
-    this.world = null;
+    
   }
 
   init(data) {
     // Initialize scene properties from the data passed from the previous scene
-    this.player = data.player;
+    super.init();
+    this.mapKey = 'insidemap'; 
     console.log('Player received in NewScene:', this.player);
   }
 
