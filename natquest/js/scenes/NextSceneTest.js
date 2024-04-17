@@ -14,7 +14,6 @@ export default class NextSceneTest extends BaseScene {
   // Override any methods from BaseScene as needed
   init(data) {
     // Call the init method of the base scene to inherit its behavior
-    super.init(data);
 
     // Customize starting position and map for CustomScene
  //   this.startPosX = data.startPosX || 970; // Example different starting X position
@@ -26,7 +25,6 @@ export default class NextSceneTest extends BaseScene {
 
   create() {
     // Call the create method of the base scene
-    super.create();
 
     // Add any additional creation logic specific to CustomScene
   }
