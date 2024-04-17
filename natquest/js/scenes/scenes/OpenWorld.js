@@ -1,8 +1,3 @@
-//STILL TO DO: add resize handler to gameUI and then import and create gameUI 
-//(make sure to return gameUI or the array needed so that can hide visibility of it as needed)
-//once resize handler is removed from start menu and put in gameUI, startMenu scene can be removed safely
-//then can just switch removal of prior scenes to the event listener that starts basescene/openworld
-
 import { PlayerSprite } from '../PlayerSprite.js';
 import { TopIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
@@ -80,10 +75,11 @@ export default class OpenWorld extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-//creates the UI icons and graphics and make up the game's UI/HUD
-//this.icons = createUIIcons(this);
-// Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+    //creates the UI icons and graphics and make up the game's UI/HUD
+    this.icons = createUIIcons(this);
+    
+    // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
+    this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
