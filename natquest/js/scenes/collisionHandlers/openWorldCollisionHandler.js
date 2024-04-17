@@ -59,9 +59,9 @@ export function sensorHandler(scene, map, player, transitionSensors) {
 });
     break;
               
-            case 'BackToOpenWorld':
-       to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
-              break;
+         //   case 'BackToOpenWorld':
+    
+            //  break;
               
             case 'InsideRoomToNextRoom':
               console.log('take me back home again daddy');
