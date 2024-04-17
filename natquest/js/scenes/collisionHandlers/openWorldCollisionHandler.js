@@ -1,7 +1,7 @@
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
-import NextSceneTest from '../scenes/NextSceneTest.js';
+import NewScene from '../scenes/NewScene.js';
 import OpenWorld from '../scenes/OpenWorld.js';
 import BaseScene from '../BaseScene.js';
 import NextSceneTest from '../NextSceneTest.js';
@@ -81,8 +81,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.player.setPosition(850, 790); // Set the player position slightly away so that when scene is resume, the player isn't already touching sensor
        scene.scene.pause('NextSceneTest');
       scene.scene.pause('PlayerControls');
-       scene.scene.resume('OpenWorld', { sourceScene: 'NextSceneTest' });
-       scene.scene.bringToTop('OpenWorld'); //instead of bringingopenworld to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
+       scene.scene.resume('BaseScene', { sourceScene: 'NextSceneTest' });
+       scene.scene.bringToTop('BaseScene'); //instead of bringingBaseScene to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
               break;
               
             case 'InsideRoomToNextRoom':
