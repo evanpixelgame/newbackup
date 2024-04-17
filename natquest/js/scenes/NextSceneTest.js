@@ -3,8 +3,10 @@ import BaseScene from './BaseScene.js'; // Import your base scene
 export default class NextSceneTest extends BaseScene {
   constructor() {
     super({ key: 'CustomSceneTest' });
-        this.mapKey = 'insideroom';
+        this.mapKey = 'insidemap';
         this.NextSceneTestLaunched = true;
+        this.startPosX = null;
+        this.startPosY = null;
     // Add any additional properties specific to CustomScene
   }
 
