@@ -38,7 +38,7 @@ export default class BaseScene extends Phaser.Scene {
     this.world = this.matterEngine.create({
       // your Matter.js world options here
     });
-
+console.log('NO FUCKING PIERRE');
     this.icons = createUIIcons(this);
     
     //Creates the scene's map from Tiled JSON data
