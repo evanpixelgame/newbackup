@@ -19,7 +19,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.BaseSceneScene = data.BaseScene;
+  //  this.BaseSceneScene = data.BaseScene;
     this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
