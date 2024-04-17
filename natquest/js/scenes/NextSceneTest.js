@@ -1,6 +1,6 @@
 import BaseScene from './BaseScene.js'; // Import your base scene
 
-class NextSceneTest extends BaseScene {
+export class NextSceneTest extends BaseScene {
   constructor() {
     super({ key: 'NextSceneTest' });
 
