@@ -22,7 +22,7 @@ export default class OpenWorld extends Phaser.Scene {
   }
 
   init(data) {
-    this.openWorldScene = data.OpenWorld;
+  //  this.openWorldScene = data.OpenWorld;
     this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
