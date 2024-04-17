@@ -1,6 +1,6 @@
 import OpenWorld from './OpenWorld.js';
 
- export class NewScene extends OpenWorld {
+ export default class NewScene extends OpenWorld {
   constructor() {
     super({ key: 'NewScene' });
     
