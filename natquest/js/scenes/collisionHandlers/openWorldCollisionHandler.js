@@ -1,11 +1,9 @@
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
-//import NewScene from '../scenes/NewScene.js';
-//import OpenWorld from '../scenes/OpenWorld.js';
-//import BaseScene from '../BaseScene.js';
-import NextSceneTest from '../NextSceneTest.js';
-//import PlayerControls from '../PlayerControls.js';
+import NewScene from '../scenes/NewScene.js';
+import OpenWorld from '../scenes/OpenWorld.js';
+import PlayerControls from '../PlayerControls.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
@@ -20,45 +18,42 @@ export function sensorHandler(scene, map, player, transitionSensors) {
     
         if (isCustom) {
           switch (otherBody.customID) {
-          /*    
+              
            case 'OpenWorldToInsideRoom':
-    // Check if 'NextSceneTest' is already active
-    const NextSceneTest = scene.scene.get('NextSceneTest');
-    if (scene.NextSceneTestLaunched == true) {
+    // Check if 'NewScene' is already active
+    const newScene = scene.scene.get('NewScene');
+    if (scene.NewSceneLaunched == true) {
       console.log('You hit the door sensor again!');
-        // If 'NextSceneTest' is already active, resume it
+        // If 'NewScene' is already active, resume it
         scene.scene.pause('OpenWorld');
         scene.scene.pause('PlayerControls');
-        scene.scene.resume('NextSceneTest');
-        scene.scene.bringToTop('NextSceneTest'); 
+        scene.scene.resume('NewScene');
+        scene.scene.bringToTop('NewScene'); 
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
       scene.player.setPosition(560, 685);
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
        
-      scene.NextSceneTestLaunched = true;
-      // If 'NextSceneTest' is not active, launch it
+      scene.NewSceneLaunched = true;
+      // If 'NewScene' is not active, launch it
         scene.scene.pause('OpenWorld');
-       scene.scene.add('NextSceneTest', NextSceneTest);
-        scene.scene.launch('NextSceneTest', {
+       scene.scene.add('NewScene', NewScene);
+        scene.scene.launch('NewScene', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
         });
     }
     break;
-           */   
-
-           case 'OpenWorldToInsideRoom':
-   scene.scene.remove('BaseScene');
-  scene.scene.add('NextSceneTest', NextSceneTest);
-  scene.scene.start('NextSceneTest');
-    break;
               
-         //   case 'BackToOpenWorld':
-    
-            //  break;
+            case 'BackToOpenWorld':
+        scene.player.setPosition(850, 790); // Set the player position slightly away so that when scene is resume, the player isn't already touching sensor
+       scene.scene.pause('NewScene');
+      scene.scene.pause('PlayerControls');
+       scene.scene.resume('OpenWorld', { sourceScene: 'NewScene' });
+       scene.scene.bringToTop('OpenWorld'); //instead of bringingopenworld to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
+              break;
               
             case 'InsideRoomToNextRoom':
               console.log('take me back home again daddy');
@@ -101,14 +96,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               
             case 'fastZone': //reverses the velocity change made in the collisionstart fastZone switch case
               console.log('whee woo, collision overlap over, -2 speed');
-              //scene.velocityChange -= 2; 
-scene.scene.transition({
-  target: 'NextSceneTest',
-  duration: 500, // Optional: Transition duration (milliseconds)
-  data: {  // Optional data to send back to BaseScene (if needed)
-    // ...
-  }
-});
+              scene.velocityChange -= 2; 
               break;
               
             // Add more cases for other sensor names as needed
