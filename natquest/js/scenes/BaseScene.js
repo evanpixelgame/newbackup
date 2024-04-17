@@ -3,9 +3,9 @@ import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSe
 import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from '../baseSceneFunctions.js';
 
-export default class OpenWorld extends Phaser.Scene {
+export default class BaseScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'OpenWorld' });
+    super({ key: 'BaseScene' });
 
     this.engine = null;
     this.world = null;
@@ -19,7 +19,7 @@ export default class OpenWorld extends Phaser.Scene {
   }
 
   init(data) {
-    this.openWorldScene = data.OpenWorld;
+    this.BaseSceneScene = data.BaseScene;
     this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
