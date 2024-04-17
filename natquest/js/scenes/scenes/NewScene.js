@@ -17,9 +17,7 @@ import OpenWorld from './OpenWorld.js';
   }
 
   create() {
-    // Use the existing Matter.js engine and world from the OpenWorld scene
-   // this.engine = this.scene.get('OpenWorld').engine;
-   // this.world = this.scene.get('OpenWorld').world;
+   
   }
 
   update(time, delta) {
