@@ -126,7 +126,15 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               
             case 'fastZone': //reverses the velocity change made in the collisionstart fastZone switch case
               console.log('whee woo, collision overlap over, -2 speed');
-              scene.velocityChange -= 2; 
+              //scene.velocityChange -= 2; 
+
+                      scene.scene.pause('BaseScene');
+       scene.scene.add('NextSceneTest', NextSceneTest);
+        scene.scene.launch('NextSceneTest', {
+            player: scene.player,
+            engine: scene.matter.world,
+            world: scene.world,
+        });
               break;
               
             // Add more cases for other sensor names as needed
