@@ -53,10 +53,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
            case 'OpenWorldToInsideRoom':
    
   scene.scene.add('NextSceneTest', NextSceneTest);
-  scene.scene.transition({
-  target: 'NextSceneTest',
-  duration: 500, // Optional: Transition duration (milliseconds)
-});
+  scene.scene.start('NextSceneTest');
     break;
               
          //   case 'BackToOpenWorld':
