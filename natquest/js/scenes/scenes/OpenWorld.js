@@ -47,24 +47,6 @@ export default class OpenWorld extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-// Create a container for the text
-this.textContainer = this.add.container(0, 0);
-
-// Add text to the container
-this.text = this.add.text(200, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
-
-// Position text in the upper-left corner of the canvas
-this.text.setOrigin(0, 0);
-this.testIcon = this.add.sprite(200, 200, 'infoIcon').setInteractive().setScale(0.18).setOrigin(0, 0).setScrollFactor(0, 0).setDepth(100);
-// Add text to the container
-this.textContainer.add(this.text);
-    this.textContainer.add(this.testIcon);
-
-// Optionally, set scroll factor and depth for the container
-this.textContainer.setScrollFactor(0, 0); // Make the container not affected by camera movement
-this.textContainer.setDepth(2000);
-
-    
     this.icons = createUIIcons(this);
     
     //Creates the scene's map from Tiled JSON data
@@ -89,7 +71,7 @@ this.textContainer.setDepth(2000);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   //  this.cameras.main.setZoom(this.cameraZoomLevel);
-   this.cameras.main.setZoom(1.5);
+   //  this.cameras.main.setZoom(2);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
@@ -102,17 +84,6 @@ this.textContainer.setDepth(2000);
 //this.icons = createUIIcons(this);
 // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
 this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
-
-
-
-    const canvasWidth = this.sys.game.config.width;
-const canvasHeight = this.sys.game.config.height;
-
-// Add text to the scene
-const text2 = this.add.text(10, 100, 'Your Text Here', { fontFamily: 'Arial', fontSize: '16px', fill: '#ffffff' });
-
-// Position text in the upper-left corner of the canvas
-text2.setOrigin(0, 0).setScrollFactor(1, 1);
   }
 
   update(time, delta) {
