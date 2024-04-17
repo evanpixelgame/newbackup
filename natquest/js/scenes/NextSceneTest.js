@@ -4,6 +4,7 @@ export default class NextSceneTest extends BaseScene {
   constructor() {
     super({ key: 'CustomSceneTest' });
         this.mapKey = 'insideroom';
+        this.NextSceneTestLaunched = true;
     // Add any additional properties specific to CustomScene
   }
 
