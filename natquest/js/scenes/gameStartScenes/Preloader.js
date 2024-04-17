@@ -52,6 +52,7 @@ export class Preloader extends Phaser.Scene {
     this.load.tilemapTiledJSON('nextroommap', 'assets/json/nextroommap.json');
     this.load.image('base', 'assets/images/base.png');
     this.load.image('thumb', 'assets/images/thumb.png');
+    this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
     this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
     this.load.image('zoomInIcon', 'assets/UI/icons/zoom-icon.png');
     this.load.image('zoomOutIcon', 'assets/UI/icons/zoom-out-icon.png');
