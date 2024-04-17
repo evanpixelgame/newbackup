@@ -1,7 +1,7 @@
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
-import NewScene from '../scenes/NewScene.js';
+import NextSceneTest from '../scenes/NextSceneTest.js';
 import OpenWorld from '../scenes/OpenWorld.js';
 import BaseScene from '../BaseScene.js';
 import NextSceneTest from '../NextSceneTest.js';
@@ -22,26 +22,26 @@ export function sensorHandler(scene, map, player, transitionSensors) {
           switch (otherBody.customID) {
           /*    
            case 'OpenWorldToInsideRoom':
-    // Check if 'NewScene' is already active
-    const newScene = scene.scene.get('NewScene');
-    if (scene.NewSceneLaunched == true) {
+    // Check if 'NextSceneTest' is already active
+    const NextSceneTest = scene.scene.get('NextSceneTest');
+    if (scene.NextSceneTestLaunched == true) {
       console.log('You hit the door sensor again!');
-        // If 'NewScene' is already active, resume it
+        // If 'NextSceneTest' is already active, resume it
         scene.scene.pause('OpenWorld');
         scene.scene.pause('PlayerControls');
-        scene.scene.resume('NewScene');
-        scene.scene.bringToTop('NewScene'); 
+        scene.scene.resume('NextSceneTest');
+        scene.scene.bringToTop('NextSceneTest'); 
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
       scene.player.setPosition(560, 685);
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
        
-      scene.NewSceneLaunched = true;
-      // If 'NewScene' is not active, launch it
+      scene.NextSceneTestLaunched = true;
+      // If 'NextSceneTest' is not active, launch it
         scene.scene.pause('OpenWorld');
-       scene.scene.add('NewScene', NewScene);
-        scene.scene.launch('NewScene', {
+       scene.scene.add('NextSceneTest', NextSceneTest);
+        scene.scene.launch('NextSceneTest', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
@@ -51,11 +51,11 @@ export function sensorHandler(scene, map, player, transitionSensors) {
            */   
 
            case 'OpenWorldToInsideRoom':
-    // Check if 'NewScene' is already active
-    const newScene = scene.scene.get('NextSceneTest');
-    if (scene.NewSceneLaunched == true) {
+    // Check if 'NextSceneTest' is already active
+    const NextSceneTest = scene.scene.get('NextSceneTest');
+    if (scene.NextSceneTestLaunched == true) {
       console.log('You hit the door sensor again!');
-        // If 'NewScene' is already active, resume it
+        // If 'NextSceneTest' is already active, resume it
         scene.scene.pause('BaseScene');
         scene.scene.resume('NextSceneTest');
         scene.scene.bringToTop('NextSceneTest'); 
@@ -65,8 +65,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.player.setPosition(560, 685);
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
        
-      scene.NewSceneLaunched = true;
-      // If 'NewScene' is not active, launch it
+      scene.NextSceneTestLaunched = true;
+      // If 'NextSceneTest' is not active, launch it
         scene.scene.pause('BaseScene');
        scene.scene.add('NextSceneTest', NextSceneTest);
         scene.scene.launch('NextSceneTest', {
@@ -79,9 +79,9 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               
             case 'BackToOpenWorld':
         scene.player.setPosition(850, 790); // Set the player position slightly away so that when scene is resume, the player isn't already touching sensor
-       scene.scene.pause('NewScene');
+       scene.scene.pause('NextSceneTest');
       scene.scene.pause('PlayerControls');
-       scene.scene.resume('OpenWorld', { sourceScene: 'NewScene' });
+       scene.scene.resume('OpenWorld', { sourceScene: 'NextSceneTest' });
        scene.scene.bringToTop('OpenWorld'); //instead of bringingopenworld to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
               break;
               
