@@ -4,7 +4,7 @@
 import NewScene from '../scenes/NewScene.js';
 import OpenWorld from '../scenes/OpenWorld.js';
 import BaseScene from '../BaseScene.js';
-import NewScene from '../scenes/NewSceneTest.js';
+import NewSceneTest from '../scenes/NewSceneTest.js';
 import PlayerControls from '../PlayerControls.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
@@ -20,7 +20,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
     
         if (isCustom) {
           switch (otherBody.customID) {
-              
+          /*    
            case 'OpenWorldToInsideRoom':
     // Check if 'NewScene' is already active
     const newScene = scene.scene.get('NewScene');
@@ -42,6 +42,34 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.pause('OpenWorld');
        scene.scene.add('NewScene', NewScene);
         scene.scene.launch('NewScene', {
+            player: scene.player,
+            engine: scene.matter.world,
+            world: scene.world,
+        });
+    }
+    break;
+           */   
+
+           case 'OpenWorldToInsideRoom':
+    // Check if 'NewScene' is already active
+    const newScene = scene.scene.get('NewSceneTest');
+    if (scene.NewSceneLaunched == true) {
+      console.log('You hit the door sensor again!');
+        // If 'NewScene' is already active, resume it
+        scene.scene.pause('BaseScene');
+        scene.scene.resume('NewSceneTest');
+        scene.scene.bringToTop('NewSceneTest'); 
+    } else {
+      console.log('youve hit the door sensor for the first time');
+      console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
+      scene.player.setPosition(560, 685);
+      console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
+       
+      scene.NewSceneLaunched = true;
+      // If 'NewScene' is not active, launch it
+        scene.scene.pause('BaseScene');
+       scene.scene.add('NewSceneTest', NewSceneTest);
+        scene.scene.launch('NewSceneTest', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
