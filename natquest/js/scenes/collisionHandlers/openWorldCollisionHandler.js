@@ -52,13 +52,13 @@ export function sensorHandler(scene, map, player, transitionSensors) {
 
            case 'OpenWorldToInsideRoom':
     // Check if 'NewScene' is already active
-    const newScene = scene.scene.get('NewSceneTest');
+    const newScene = scene.scene.get('NextSceneTest');
     if (scene.NewSceneLaunched == true) {
       console.log('You hit the door sensor again!');
         // If 'NewScene' is already active, resume it
         scene.scene.pause('BaseScene');
-        scene.scene.resume('NewSceneTest');
-        scene.scene.bringToTop('NewSceneTest'); 
+        scene.scene.resume('NextSceneTest');
+        scene.scene.bringToTop('NextSceneTest'); 
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -68,8 +68,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.NewSceneLaunched = true;
       // If 'NewScene' is not active, launch it
         scene.scene.pause('BaseScene');
-       scene.scene.add('NewSceneTest', NewSceneTest);
-        scene.scene.launch('NewSceneTest', {
+       scene.scene.add('NextSceneTest', NextSceneTest);
+        scene.scene.launch('NextSceneTest', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
