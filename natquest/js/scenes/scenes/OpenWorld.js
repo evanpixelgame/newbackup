@@ -86,7 +86,7 @@ export default class OpenWorld extends Phaser.Scene {
     // Add a delay before starting a new scene
 const delayMilliseconds = 2000; // Adjust this value to set the delay time (in milliseconds)
 setTimeout(() => {
-    this.scene.start('NewScene', NewScene, true); // 'newSceneKey' is a unique key for the scene, NewScene is the constructor function for the new scene, and true indicates auto-start
+    this.scene.start('NewScene'); // 'newSceneKey' is a unique key for the scene, NewScene is the constructor function for the new scene, and true indicates auto-start
 }, delayMilliseconds);
   }
 
