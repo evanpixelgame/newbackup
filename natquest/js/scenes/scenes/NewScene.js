@@ -2,8 +2,9 @@ import BaseScene from '../BaseScene.js';
 
  export default class NewScene extends BaseScene {
   constructor() {
-    super({ key: 'NewScene' });
-   this.scene.key = 'NewScene';
+   super('NewScene');
+   // super({ key: 'NewScene' });
+  // this.scene.key = 'NewScene';
   }
 
   init(data) {
