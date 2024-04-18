@@ -1,8 +1,8 @@
 import BaseScene from '../BaseScene.js';
 
- export default class NewScene extends BaseScene {
+ export default class OpenWorld extends BaseScene {
   constructor() {
-   super('NewScene');
+   super('OpenWorld');
   }
 
   init(data) {
