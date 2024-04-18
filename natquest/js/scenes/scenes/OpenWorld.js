@@ -61,13 +61,12 @@ export default class OpenWorld extends Phaser.Scene {
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
     
     //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
-  //  this.sensorHandling = sensorHandler(this, this.map, this.player);
+   this.sensorHandling = sensorHandler(this, this.map, this.player);
 
     //Starting configuration for camera, also makes sure camera follow the player
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
     this.cameras.main.setZoom(this.cameraZoomLevel);
-   // this.cameras.main.setZoom(2);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
