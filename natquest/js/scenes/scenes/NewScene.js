@@ -1,4 +1,5 @@
 import BaseScene from '../BaseScene.js';
+import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js';
 
  export default class NewScene extends BaseScene {
   constructor() {
@@ -24,6 +25,7 @@ import BaseScene from '../BaseScene.js';
 
   create() {
    super.create();
+   this.sensorHandling = sensorHandler(this, this.map, this.player);
   }
 
   update(time, delta) {
