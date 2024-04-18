@@ -1,5 +1,10 @@
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
+//instead of using if else maybe just use the once  event listeners to start the scenes for first time
+//so they only run once and then do sleep/wake from then on
+//test out switching laumch pause and resume with sleep and wake 
+//maybe try making the collision handlers and other interaction handlers classes that i can make new isntances of
+//see if i can make the switch cases easier to set up if made as a class
 
 import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
