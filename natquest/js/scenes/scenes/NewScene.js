@@ -1,7 +1,7 @@
 import BaseScene from '../BaseScene.js';
 
  export default class NewScene extends BaseScene {
-  constructor() {
+  constructor(key) {
    super('NewScene');
   }
 
