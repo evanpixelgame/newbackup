@@ -16,7 +16,7 @@ import BaseScene from '../BaseScene.js';
     this.playerPosX = 970;
      this.playerPosY = 665;
     this.cameraZoomLevel = 2;
-    console.log('Player received in NewScene:', this.player);
+    console.log('Player received in NextRoom:', this.player);
   }
 
   preload() {
