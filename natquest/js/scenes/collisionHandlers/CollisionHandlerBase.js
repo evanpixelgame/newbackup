@@ -1,3 +1,6 @@
+//SINCE THIS IS THE BASE SCENE be sure to document how to do common things in the handlers
+// ie. stuff like switching scenes for first time/switching scenes from then on, motion effects, enviro interactions etc.
+
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
