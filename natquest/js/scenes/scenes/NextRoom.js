@@ -1,7 +1,7 @@
 import BaseScene from '../BaseScene.js';
 
  export default class NextRoom extends BaseScene {
-  constructor(key) {
+  constructor() {
    super('NextRoom');
   }
 
