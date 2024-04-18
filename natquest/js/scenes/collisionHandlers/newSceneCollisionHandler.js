@@ -4,6 +4,7 @@
 import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
 import NextRoom from '../scenes/NextRoom.js';
+import NextRoom from '../scenes/InsideRoom.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
