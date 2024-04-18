@@ -9,7 +9,7 @@ import BaseScene from '../BaseScene.js';
     // Initialize scene properties from the data passed from the previous scene
     super.init();
     this.mapKey = 'nextroommap';
-    this.player = data.player;
+    //this.player = data.player;
     this.velocityChange = 2;
     this.startPosX = 970;
     this.startPosY = 665;
