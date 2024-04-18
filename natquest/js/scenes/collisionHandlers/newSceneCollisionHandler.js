@@ -4,7 +4,6 @@
 import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
 import NextRoom from '../scenes/NextRoom.js';
-import NextRoom from '../scenes/InsideRoom.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
@@ -22,14 +21,13 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               
            case 'InsideRoomToNextRoom':
     // Check if 'NewScene' is already active
-    const newScene = scene.scene.get('InsideRoom');
+    //const newScene = scene.scene.get('NextRoom');
     if (scene.NewSceneLaunched == true) {
       console.log('You hit the door sensor again!');
         // If 'NewScene' is already active, resume it
         scene.scene.pause('NewScene');
-        scene.scene.pause('PlayerControls');
-        scene.scene.resume('InsideRoom');
-        scene.scene.bringToTop('InsideRoom'); 
+        scene.scene.resume('NextRoom');
+        scene.scene.bringToTop('NextRoom'); 
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -39,8 +37,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.NewSceneLaunched = true;
       // If 'NewScene' is not active, launch it
         scene.scene.pause('NewScene');
-       scene.scene.add('InsideRoom', InsideRoom);
-        scene.scene.launch('InsideRoom', {
+       scene.scene.add('NextRoom', NextRoom);
+        scene.scene.launch('NextRoom', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
