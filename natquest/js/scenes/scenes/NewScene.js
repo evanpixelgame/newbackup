@@ -13,11 +13,8 @@ import BaseScene from '../BaseScene.js';
     this.velocityChange = 2;
     this.startPosX = 970;
     this.startPosY = 665;
-   // this.playerPosX = data.playerPosX || 495;
-   // this.playerPosY = data.playerPosY || 325;
     this.playerPosX = 970;
      this.playerPosY = 665;
-  //  this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
     this.cameraZoomLevel = 2;
     console.log('Player received in NewScene:', this.player);
   }
