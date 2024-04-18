@@ -1,8 +1,9 @@
 // If a sensor is supposed to be more of an overlap property rather than just an on collision
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
-import NewScene from '../scenes/NewScene.js';
 import OpenWorld from '../scenes/OpenWorld.js';
+import NewScene from '../scenes/NewScene.js';
+import OpenWorld from '../scenes/NextRoom.js';
 import PlayerControls from '../PlayerControls.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
