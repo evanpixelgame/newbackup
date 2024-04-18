@@ -1,6 +1,6 @@
 //import { gameManager } from '../../gameState.js';
 import OpenWorld from '../scenes/OpenWorld.js';
-import NewScene from '../scenes/NewScene.js';
+//import NewScene from '../scenes/NewScene.js';
 export class WelcomePlayer extends Phaser.Scene {
   constructor() {
     super({ key: 'WelcomePlayer' });
@@ -68,7 +68,7 @@ export class WelcomePlayer extends Phaser.Scene {
       if (orientation.includes('landscape')) {
         // Execute event handler code only in landscape mode
         this.scene.add('OpenWorld', OpenWorld);
-        this.scene.add('NewScene', NewScene);
+      //  this.scene.add('NewScene', NewScene);
         this.scene.launch('OpenWorld');
         console.log('Click event in landscape mode2');
       } else {
