@@ -60,7 +60,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               
                 scene.scene.pause('NewScene');
                 scene.scene.add('NextRoom', NextRoom);
-                scene.scene.start('NextRoom', { initialized: true }); 
+                scene.scene.launch('NextRoom'); 
               /*
               console.log('take me back home again daddy');
               scene.scene.start('NextRoom', {
