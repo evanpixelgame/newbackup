@@ -3,7 +3,7 @@ import OpenWorld from './OpenWorld.js';
  export default class NewScene extends OpenWorld {
   constructor() {
     super();
-    this.scene.key = 'NewScene';
+   // this.scene.key = 'NewScene';
   }
 
   init(data) {
