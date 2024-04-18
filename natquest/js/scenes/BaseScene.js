@@ -1,11 +1,12 @@
 import { PlayerSprite } from './PlayerSprite.js';
+import { TopIcons } from './gameUI.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
 import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
 
 export default class BaseScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'BaseScene' });
+  constructor(key) {
+    super({ key: key );
 
     this.engine = null;
     this.world = null;
@@ -16,10 +17,11 @@ export default class BaseScene extends Phaser.Scene {
     this.startPosY = null;
     this.velocityChange = null;
     this.cameraZoomLevel = 2;
+    this.topIcons = null;
   }
 
   init(data) {
-  //  this.BaseSceneScene = data.BaseScene;
+  //  this.openWorldScene = data.OpenWorld;
     this.mapKey = data.mapKey || 'map';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
@@ -28,6 +30,7 @@ export default class BaseScene extends Phaser.Scene {
     this.playerPosX = data.playerPosX || 495;
     this.playerPosY = data.playerPosY || 325;
     this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
+    this.topIcons = data.topIcons;
   }
 
   create() {
@@ -38,7 +41,7 @@ export default class BaseScene extends Phaser.Scene {
     this.world = this.matterEngine.create({
       // your Matter.js world options here
     });
-console.log('NO FUCKING PIERRE');
+
     this.icons = createUIIcons(this);
     
     //Creates the scene's map from Tiled JSON data
@@ -62,8 +65,7 @@ console.log('NO FUCKING PIERRE');
     //Starting configuration for camera, also makes sure camera follow the player
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
-  //  this.cameras.main.setZoom(this.cameraZoomLevel);
-   //  this.cameras.main.setZoom(2);
+    this.cameras.main.setZoom(this.cameraZoomLevel);
     
     //Create mobile or desktop controls for player input, ie. (joystick || keyboard)
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
@@ -71,6 +73,12 @@ console.log('NO FUCKING PIERRE');
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
+
+    //creates the UI icons and graphics and make up the game's UI/HUD
+    this.icons = createUIIcons(this);
+    
+    // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
+    this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
