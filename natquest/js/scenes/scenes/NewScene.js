@@ -1,9 +1,8 @@
-import OpenWorld from './OpenWorld.js';
+import BaseScene from '../BaseScene.js';
 
- export default class NewScene extends OpenWorld {
+ export default class NewScene extends BaseScene {
   constructor() {
-    super();
-   // this.scene.key = 'NewScene';
+    super({ key: 'myNewScene' });
   }
 
   init(data) {
