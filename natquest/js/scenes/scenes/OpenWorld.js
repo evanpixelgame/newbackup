@@ -1,5 +1,5 @@
 import { PlayerSprite } from '../PlayerSprite.js';
-//import NewScene from './NewScene.js';
+import NewScene from './NewScene.js';
 import { TopIcons } from '../gameUI.js';
 import { sensorMapSet, createCollisionObjects } from '../collisionHandlers/mapSetter.js';
 //import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
@@ -86,6 +86,7 @@ export default class OpenWorld extends Phaser.Scene {
     // Add a delay before starting a new scene
 const delayMilliseconds = 2000; // Adjust this value to set the delay time (in milliseconds)
 setTimeout(() => {
+    this.scene.add('NewScene', NewScene);
     this.scene.start('NewScene'); // 'newSceneKey' is a unique key for the scene, NewScene is the constructor function for the new scene, and true indicates auto-start
 }, delayMilliseconds);
   }
