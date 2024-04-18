@@ -22,7 +22,7 @@ import BaseScene from '../BaseScene.js';
   }
 
   update(time, delta) {
-   super.create(time, delta);
+   super.update(time, delta);
     // Update logic for the scene, if necessary
   }
 }
