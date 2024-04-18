@@ -8,7 +8,7 @@ import BaseScene from '../BaseScene.js';
   init(data) {
     // Initialize scene properties from the data passed from the previous scene
     super.init();
-    this.mapKey = 'insidemap'; 
+   // this.mapKey = 'insidemap'; 
     console.log('Player received in NewScene:', this.player);
   }
 
