@@ -57,12 +57,22 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               break;
               
             case 'InsideRoomToNextRoom':
+              
+                scene.scene.pause('NewScene');
+                scene.scene.add('NextRoom', NextRoom);
+                scene.scene.launch('NextRoom', {
+                    player: scene.player,
+                    engine: scene.matter.world,
+                    world: scene.world,
+                      });
+              /*
               console.log('take me back home again daddy');
               scene.scene.start('NextRoom', {
                 player: scene.player,
                 speed: scene.speed,
                 controls: scene.controls, // Passing the controls object here
               });
+              */
               break;
 
                case 'fastZone':  //Make sure to reverse the velocityChange in the collisionend case so that it acts as an overlap sensor
