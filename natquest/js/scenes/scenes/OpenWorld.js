@@ -25,6 +25,7 @@ import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js
 
   create() {
    super.create();
+   this.sensorHandling = sensorHandler(this, this.map, this.player);
   }
 
   update(time, delta) {
