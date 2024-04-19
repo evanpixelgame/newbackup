@@ -1,4 +1,5 @@
 import BaseScene from '../BaseScene.js';
+import OpenWorld from './OpenWorld.js';
 //import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js';
 
  export default class InitScene extends BaseScene {
@@ -25,7 +26,12 @@ import BaseScene from '../BaseScene.js';
 
   create() {
    super.create();
-   this.sensorHandling = sensorHandler(this, this.map, this.player);
+  // this.sensorHandling = sensorHandler(this, this.map, this.player);
+
+      this.load.on('complete', () => {
+      this.scene.add('OpenWorld', OpenWorld);
+      this.scene.start('OpenWorld');
+    });
   }
 
   update(time, delta) {
