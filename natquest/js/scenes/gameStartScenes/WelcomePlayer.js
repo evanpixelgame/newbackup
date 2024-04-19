@@ -1,6 +1,6 @@
 //import { gameManager } from '../../gameState.js';
 import OpenWorld from '../scenes/OpenWorld.js';
-import InitScene from '../scenes/InitScene.js';
+//import InitScene from '../scenes/InitScene.js';
 //import NewScene from '../scenes/NewScene.js';
 export class WelcomePlayer extends Phaser.Scene {
   constructor() {
