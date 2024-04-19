@@ -8,7 +8,7 @@ import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js
 
   init(data) {
     // Initialize scene properties from the data passed from the previous scene
-   // super.init();
+    super.init();
     this.mapKey = 'map';
     //this.player = data.player;
     this.velocityChange = 2;
