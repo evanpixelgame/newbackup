@@ -12,12 +12,12 @@ import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js
     super.init();
     this.mapKey = 'map';
     //this.player = data.player;
-    this.velocityChange = 4;
+    this.velocityChange = 2;
     this.startPosX = 495;
     this.startPosY = 325;
     this.playerPosX = 495;
      this.playerPosY = 325;
-    this.cameraZoomLevel = 2;
+    this.cameraZoomLevel = 4;
     console.log('Player received in NextRoom:', this.player);
   }
 
