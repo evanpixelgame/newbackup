@@ -1,4 +1,5 @@
 import BaseScene from '../BaseScene.js';
+import NewScene from '../NewScene.js';
 
  export default class NextRoom extends BaseScene {
   constructor() {
