@@ -75,8 +75,9 @@ export default class BaseScene extends Phaser.Scene {
     //Takes the scene's map and creates sensor objects based on the map's Sensor Layer
     this.sensorMapping = sensorMapSet(this, this.map, this.sensorID);
     
-    //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map, each scene may need its own unique sensorHandler
-    this.sensorHandling = sensorHandler(this, this.map, this.player);
+    //Creates switch cases with event listeners for what should happen when sensors ojjects are triggered in this scene/map
+    //each scene needs its own unique sensorHandler. possibly more for different types of interactions that are scene specific
+   // this.sensorHandling = sensorHandler(this, this.map, this.player);
 
     //Starting configuration for camera, also makes sure camera follow the player
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
