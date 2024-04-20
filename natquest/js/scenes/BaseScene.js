@@ -83,6 +83,66 @@ export default class BaseScene extends Phaser.Scene {
     
     // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
    // this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+
+     var dialog = this.rexUI.add.dialog({
+            x: 400,
+            y: 300,
+
+            background: this.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x1565c0),
+
+            title: this.rexUI.add.label({
+                background: this.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x003c8f),
+                text: this.add.text(0, 0, 'Title', {
+                    fontSize: '24px'
+                }),
+                space: {
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: 10
+                }
+            }),
+
+            content: this.add.text(0, 0, 'Do you want to build a snow man?', {
+                fontSize: '24px'
+            }),
+
+            actions: [], // Assing an empty array instead of `undefined`
+
+            choices: [], // Assing an empty array instead of `undefined`
+
+            space: {
+                title: 25,
+                content: 25,
+                action: 15,
+                choice: 15,
+
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: 20,
+                choices: 20,
+            },
+
+            align: {
+                actions: 'right', // 'center'|'left'|'right'
+            },
+
+            expand: {
+                content: false,  // Content is a pure text object
+            }
+        })
+            .addAction([
+                createLabel(this, 'Yes'),
+                createLabel(this, 'No')
+            ])
+            .addChoice([
+                createLabel(this, 'Choice-A'),
+                createLabel(this, 'Choice-B')
+            ])
+            .layout()
+            // .drawBounds(this.add.graphics(), 0xff0000)
+            .popUp(1000);
   }
 
   update(time, delta) {
