@@ -21,33 +21,19 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   init(data) {
-  //  this.openWorldScene = data.OpenWorld;
-//   /*
+  /*  in future scenes, can accept arguments for passed data with backup cases if there's info to transfer across scenes
     this.mapKey = data.mapKey || 'map';
-  //  this.mapKey = 'insidemap';
-    this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
-    this.startPosX = data.startPosX || 495;
-    this.startPosY = data.startPosY || 325;
     this.playerPosX = data.playerPosX || 495;
     this.playerPosY = data.playerPosY || 325;
-    this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
-    this.topIcons = data.topIcons;
-   // */
-/*
+    */
     this.mapKey = 'insidemap';
-   // this.player = data.player;
     this.velocityChange = 2;
     this.startPosX = 495;
     this.startPosY = 325;
-   // this.playerPosX = data.playerPosX || 495;
-   // this.playerPosY = data.playerPosY || 325;
     this.playerPosX = 495;
-     this.playerPosY = 325;
-  //  this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
+    this.playerPosY = 325;
     this.cameraZoomLevel = 2;
-*/
-    
   }
 
   create() {
