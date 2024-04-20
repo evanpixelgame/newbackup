@@ -12,7 +12,7 @@ import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js
     super.init();
     this.mapKey = 'map';
     //this.player = data.player;
-    this.velocityChange = 2;
+    this.velocityChange = 4;
     this.startPosX = 495;
     this.startPosY = 325;
     this.playerPosX = 495;
