@@ -133,12 +133,12 @@ export default class BaseScene extends Phaser.Scene {
             }
         })
             .addAction([
-                createLabel('Yes'),
-                createLabel('No')
+                this.createLabel('Yes'),
+                this.createLabel('No')
             ])
             .addChoice([
-                createLabel('Choice-A'),
-                createLabel('Choice-B')
+                this.createLabel('Choice-A'),
+                this.createLabel('Choice-B')
             ])
             .layout()
             // .drawBounds(this.add.graphics(), 0xff0000)
