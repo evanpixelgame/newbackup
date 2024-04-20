@@ -1,5 +1,5 @@
 import { PlayerSprite } from './PlayerSprite.js';
-import { TopIcons } from './gameUI.js';
+//import { TopIcons } from './gameUI.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
 //import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
@@ -79,10 +79,10 @@ export default class BaseScene extends Phaser.Scene {
      createPlayerAnimations(this);
 
     //creates the UI icons and graphics and make up the game's UI/HUD
-    this.icons = createUIIcons(this);
+  //  this.icons = createUIIcons(this);
     
     // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-    this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+   // this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
