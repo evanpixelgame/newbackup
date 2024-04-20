@@ -147,14 +147,14 @@ export default class BaseScene extends Phaser.Scene {
 
 
 //METHOD
- function createLabel (scene, text) {
-    return scene.rexUI.add.label({
+ createLabel(this, text) {
+    return this.rexUI.add.label({
         // width: 40,
         // height: 40,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x5e92f3),
+        background: this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x5e92f3),
 
-        text: scene.add.text(0, 0, text, {
+        text: this.add.text(0, 0, text, {
             fontSize: '24px'
         }),
 
