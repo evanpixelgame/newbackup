@@ -3,6 +3,7 @@ import { TopIcons } from './gameUI.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
 import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
+import OpenWorld from './scenes/OpenWorld';
 
 export default class BaseScene extends Phaser.Scene {
   constructor(key) {
@@ -94,6 +95,11 @@ export default class BaseScene extends Phaser.Scene {
     
     // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
     this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
+      
+      this.load.on('complete', () => {
+      this.scene.add('OpenWorld', OpenWorld);
+      this.scene.start('OpenWorld');
+    });
   }
 
   update(time, delta) {
