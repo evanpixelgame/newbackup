@@ -141,6 +141,8 @@ export default class BaseScene extends Phaser.Scene {
                 this.createLabel('Choice-B')
             ])
             .layout()
+            .setScale(.1)
+            .setScrollFactor(0, 0)
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
   }
