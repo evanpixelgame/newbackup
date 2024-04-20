@@ -22,9 +22,9 @@ export default class BaseScene extends Phaser.Scene {
 
   init(data) {
   //  this.openWorldScene = data.OpenWorld;
-   /*
-   // this.mapKey = data.mapKey || 'map';
-    this.mapKey = 'insidemap';
+//   /*
+    this.mapKey = data.mapKey || 'map';
+  //  this.mapKey = 'insidemap';
     this.player = data.player;
     this.velocityChange = data.velocityChange || 2;
     this.startPosX = data.startPosX || 495;
@@ -33,8 +33,8 @@ export default class BaseScene extends Phaser.Scene {
     this.playerPosY = data.playerPosY || 325;
     this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
     this.topIcons = data.topIcons;
-    */
-
+   // */
+/*
     this.mapKey = 'insidemap';
    // this.player = data.player;
     this.velocityChange = 2;
@@ -46,6 +46,8 @@ export default class BaseScene extends Phaser.Scene {
      this.playerPosY = 325;
   //  this.cameraZoomLevel = data.cameraZoomLevel || this.cameraZoomLevel;
     this.cameraZoomLevel = 2;
+*/
+    
   }
 
   create() {
