@@ -35,14 +35,6 @@ export default class BaseScene extends Phaser.Scene {
     this.playerPosY = 325;
     this.cameraZoomLevel = 2;
   }
-
-    preload() { 
-        this.load.scenePlugin({
-            key: 'rexuiplugin',
-            url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
-            sceneKey: 'rexUI'
-        });      
-    }
   
   create() {
     
@@ -152,6 +144,28 @@ export default class BaseScene extends Phaser.Scene {
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
   }
+
+
+//METHOD
+  var createLabel = function (scene, text) {
+    return scene.rexUI.add.label({
+        // width: 40,
+        // height: 40,
+
+        background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x5e92f3),
+
+        text: scene.add.text(0, 0, text, {
+            fontSize: '24px'
+        }),
+
+        space: {
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10
+        }
+    });
+}
 
   update(time, delta) {
     //Update the position of player based on user input and velocity
