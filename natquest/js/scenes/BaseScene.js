@@ -146,11 +146,12 @@ export default class BaseScene extends Phaser.Scene {
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
 
-       this.uiElement = this.rexUI.add.text(100, 50, 'Your UI Text', {
-  // ... other UI element configuration options
-});
+    const redRectangle = this.add.graphics();
+redRectangle.fillStyle(0xff0000); // Set red fill color
+redRectangle.fillRect(200, 200, 50, 25); // Draw rectangle at (200, 200) with width 50 and height 25
 
-this.uiElement.setScrollFactor(0, 0);
+// Optional: Disable camera influence (if using a camera)
+redRectangle.setScrollFactor(0, 0);
 
     
   }
