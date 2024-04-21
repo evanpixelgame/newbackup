@@ -160,7 +160,7 @@ this.redRectangle.fillRect(0, 0, 50, 25); // Draw rectangle (assuming it's alrea
 
 this.redRectangle.setPosition(this.uiLayer.width / 2, this.uiLayer.height / 2); 
 
-this.redRectanle.setScrollFactor(0, 0);
+//this.redRectanle.setScrollFactor(0, 0);
 this.uiLayer.add(this.redRectangle);
 // Optional: Set origin point for rotation or scaling (e.g., center)
 
