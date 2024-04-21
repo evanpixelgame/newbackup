@@ -158,7 +158,7 @@ this.redRectangle.fillStyle(0xff0000); // Set red fill color (assuming it's alre
 this.redRectangle.fillRect(0, 0, 50, 25); // Draw rectangle (assuming it's already defined)
 
 
-this.redRectangle.setPosition(this.container.width / 2, this.container.height / 2); 
+this.redRectangle.setPosition(this.uiLayer.width / 2, this.uiLayer.height / 2); 
 
 this.redRectanle.setScrollFactor(0, 0);
 this.uiLayer.add(this.redRectangle);
