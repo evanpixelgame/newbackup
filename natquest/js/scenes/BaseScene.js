@@ -33,7 +33,7 @@ export default class BaseScene extends Phaser.Scene {
     this.startPosY = 325;
     this.playerPosX = 495;
     this.playerPosY = 325;
-    this.cameraZoomLevel = 2;
+    this.cameraZoomLevel = 1;
   }
   
   create() {
@@ -152,10 +152,10 @@ this.redRectangle = this.add.graphics(); // Create red rectangle graphics object
 this.redRectangle.fillStyle(0xff0000); // Set red fill color (assuming it's already defined)
 this.redRectangle.fillRect(0, 0, 50, 25); // Draw rectangle (assuming it's already defined)
 
-this.container.add(redRectangle); // Add rectangle to the container
+this.container.add(this.redRectangle); // Add rectangle to the container
 
 // Set relative position within the container (e.g., centered)
-this.redRectangle.setPosition(container.width / 2, container.height / 2); 
+this.redRectangle.setPosition(this.container.width / 2, this.container.height / 2); 
 
 // Optional: Set origin point for rotation or scaling (e.g., center)
 this.redRectangle.setOrigin(0.5, 0.5);
