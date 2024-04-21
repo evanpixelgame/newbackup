@@ -146,11 +146,16 @@ export default class BaseScene extends Phaser.Scene {
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
 
-     this.healthBar = this.add.rectangle(100, 100, 200, 20, 0x00ff00);
-
+     this.healthBar = this.add.rectangle(
+    this.cameras.main.scrollX,  // X coordinate relative to the viewport
+    this.cameras.main.scrollY,  // Y coordinate relative to the viewport
+    100,  // Width of the object
+    100,  // Height of the object
+    0xff0000  // Color of the object (red)
+);
     // Set the original position of the health bar
-    this.healthBar.originalX = 100;
-    this.healthBar.originalY = 100;
+    this.healthBar.originalX = this.cameras.main.scrollX;
+    this.healthBar.originalY = this.cameras.main.scrollY;
     this.healthBar.setScrollFactor(0, 0);
 
     // Set up camera zoom event
