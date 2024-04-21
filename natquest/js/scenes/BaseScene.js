@@ -153,6 +153,7 @@ export default class BaseScene extends Phaser.Scene {
     100,  // Height of the object
     0xff0000  // Color of the object (red)
 );
+    this.healthBar.setScrollFactor(0, 0);
     // Set the original position of the health bar
     this.healthBar.originalX = this.scale.width / 6;
     this.healthBar.originalY = this.scale.height / 6;
@@ -166,8 +167,8 @@ export default class BaseScene extends Phaser.Scene {
 adjustHealthBarPosition() {
   console.log('attemptingreadjusthealthbar');
     // Calculate the new position of the health bar
-    this.newX = this.cameras.main.viewport.width / 6;
-    this.newY = this.cameras.main.viewport.width / 6;
+    this.newX = this.scale.width / 6;
+    this.newY = this.scale.height / 6;
 
     // Update the position of the health bar
     this.healthBar.setPosition(this.newX, this.newY);
