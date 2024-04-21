@@ -164,6 +164,7 @@ export default class BaseScene extends Phaser.Scene {
 
   //METHOD
 adjustHealthBarPosition() {
+  console.log('attemptingreadjusthealthbar');
     // Calculate the new position of the health bar
     this.newX = this.healthBar.originalX * (1 / this.cameras.main.zoom);
     this.newY = this.healthBar.originalY * (1 / this.cameras.main.zoom);
