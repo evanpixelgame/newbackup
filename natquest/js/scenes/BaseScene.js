@@ -167,6 +167,12 @@ export default class BaseScene extends Phaser.Scene {
             bottom: 10
         }
     });
+
+   this.uiElement = this.rexUI.add.text(100, 50, 'Your UI Text', {
+  // ... other UI element configuration options
+});
+
+this.uiElement.setScrollFactor(0, 0);
 }
 
   update(time, delta) {
