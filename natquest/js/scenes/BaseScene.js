@@ -159,7 +159,7 @@ this.redRectangle.setPosition(this.container.width / 2, this.container.height / 
 
 // Optional: Set origin point for rotation or scaling (e.g., center)
 //this.container.setOrigin(0.5, 0.5);
-//this.container.setScrollFactor(0, 0);
+this.container.setScrollFactor(0, 0);
     
   }
 
