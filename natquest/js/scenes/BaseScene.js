@@ -146,6 +146,11 @@ export default class BaseScene extends Phaser.Scene {
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
 
+this.uiCamera = this.cameras.add(0, 0, this.game.config.width, this.game.config.height);
+this.uiCamera.zoom = 1;
+this.uiCamera.setViewport(0, 0, this.game.config.width, this.game.config.height);
+
+    
 this.container = this.add.container(); // Create a container
 
 this.redRectangle = this.add.graphics(); // Create red rectangle graphics object (assuming it's already defined)
@@ -160,6 +165,8 @@ this.redRectangle.setPosition(this.container.width / 2, this.container.height / 
 // Optional: Set origin point for rotation or scaling (e.g., center)
 //this.container.setOrigin(0.5, 0.5);
 this.container.setScrollFactor(0, 0);
+
+this.uiCamera.add(this.container);
     
   }
 
