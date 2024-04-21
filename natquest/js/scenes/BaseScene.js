@@ -85,8 +85,8 @@ export default class BaseScene extends Phaser.Scene {
    // this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
 
      var dialog = this.rexUI.add.dialog({
-            x: 400 / this.cameras.main.zoom,
-            y: 300 / this.cameras.main.zoom,
+            x: 400,
+            y: 300,
 
             background: this.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x1565c0),
 
