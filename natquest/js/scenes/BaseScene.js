@@ -147,15 +147,15 @@ export default class BaseScene extends Phaser.Scene {
             .popUp(1000);
 
      this.healthBar = this.add.rectangle(
-    this.cameras.main.scrollX,  // X coordinate relative to the viewport
-    this.cameras.main.scrollY,  // Y coordinate relative to the viewport
+    this.cameras.main.viewport.width / 6,  // X coordinate relative to the viewport
+    this.cameras.main.viewport.height / 6,  // Y coordinate relative to the viewport
     100,  // Width of the object
     100,  // Height of the object
     0xff0000  // Color of the object (red)
 );
     // Set the original position of the health bar
-    this.healthBar.originalX = this.cameras.main.scrollX;
-    this.healthBar.originalY = this.cameras.main.scrollY;
+    this.healthBar.originalX = this.cameras.main.viewport.width / 6;
+    this.healthBar.originalY = this.cameras.main.viewport.height / 6;
     this.healthBar.setScrollFactor(0, 0);
 
     // Set up camera zoom event
@@ -166,8 +166,8 @@ export default class BaseScene extends Phaser.Scene {
 adjustHealthBarPosition() {
   console.log('attemptingreadjusthealthbar');
     // Calculate the new position of the health bar
-    this.newX = this.healthBar.originalX * (1 / this.cameras.main.zoom);
-    this.newY = this.healthBar.originalY * (1 / this.cameras.main.zoom);
+    this.newX = this.cameras.main.viewport.width / 6;
+    this.newY = this.cameras.main.viewport.width / 6;
 
     // Update the position of the health bar
     this.healthBar.setPosition(this.newX, this.newY);
