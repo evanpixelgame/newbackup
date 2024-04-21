@@ -156,7 +156,8 @@ export default class BaseScene extends Phaser.Scene {
     this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
   }
 
-adjustHealthBarPosition(camera, zoom) {
+  //METHOD
+adjustHealthBarPosition() {
     // Calculate the new position of the health bar
     this.newX = this.healthBar.originalX * (1 / this.cameras.main.zoom);
     this.newY = this.healthBar.originalY * (1 / this.cameras.main.zoom);
@@ -164,6 +165,7 @@ adjustHealthBarPosition(camera, zoom) {
     // Update the position of the health bar
     this.healthBar.setPosition(this.newX, this.newY);
 }
+  
 //METHOD
  createLabel(text) {
     return this.rexUI.add.label({
