@@ -145,10 +145,25 @@ export default class BaseScene extends Phaser.Scene {
             .setScrollFactor(0, 0)
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
-    
+
+     this.healthBar = this.add.rectangle(100, 100, 200, 20, 0x00ff00);
+
+    // Set the original position of the health bar
+    this.healthBar.originalX = 100;
+    this.healthBar.originalY = 100;
+
+    // Set up camera zoom event
+    this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
   }
 
+adjustHealthBarPosition(camera, zoom) {
+    // Calculate the new position of the health bar
+    this.newX = this.healthBar.originalX * (1 / this.cameras.main.zoom);
+    this.newY = this.healthBar.originalY * (1 / this.cameras.main.zoom);
 
+    // Update the position of the health bar
+    this.healthBar.setPosition(this.newX, this.newY);
+}
 //METHOD
  createLabel(text) {
     return this.rexUI.add.label({
