@@ -14,7 +14,7 @@ export default class OverlayScene extends Phaser.Scene {
 
   create() {
     
-    this.healthBar = this.add.rectangle(
+    this.healthBar = this.rexUI.add.rectangle(
     (window.innerWidth / 4) / 2 / 2,  // X coordinate relative to the viewport
     (window.innerHeight / 4) / 2 / 2,  // Y coordinate relative to the viewport
     50,  // Width of the object
