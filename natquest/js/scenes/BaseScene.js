@@ -1,8 +1,7 @@
 import { PlayerSprite } from './PlayerSprite.js';
-import { TopIcons } from './gameUI.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
-//import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
+//import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 
 export default class BaseScene extends Phaser.Scene {
   constructor(key) {
@@ -17,7 +16,7 @@ export default class BaseScene extends Phaser.Scene {
     this.startPosY = null;
     this.velocityChange = null;
     this.cameraZoomLevel = 1;
-    this.topIcons = null;
+   // this.topIcons = null;
   }
 
   init(data) {
@@ -45,38 +44,6 @@ export default class BaseScene extends Phaser.Scene {
       // your Matter.js world options here
     });
 
-    this.icons = createUIIcons(this);
-         this.healthBar = this.add.rectangle(
-    (window.innerWidth / 4) / 2 / 2,  // X coordinate relative to the viewport
-    (window.innerHeight / 4) / 2 / 2,  // Y coordinate relative to the viewport
-    50,  // Width of the object
-    300,  // Height of the object
-    0xff0000  // Color of the object (red)
-);
-
-    this.healthBar.setScrollFactor(0, 0);
-    this.healthBar.setDepth(1000);
-   // this.healthBar.setScale(this.cameraZoomLevel / 2);
-    // Set the original position of the health bar
-    this.healthBar.originalX = window.innerWidth / 6;
-    this.healthBar.originalY = window.innerHeight / 6;
-  //  this.healthBar.setScrollFactor(0, 0);
- //   this.world.add(this.healthBar);
-
-    // Set up camera zoom event
- //   this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
-
-
-// Create a new camera with width and height equal to the window size
-//this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
-
-// Set camera properties
-//this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent background
-
-// Configure camera position, size, and other settings as needed
-//this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
-    
-//    this.icons.setMask(0b010);
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
@@ -107,18 +74,6 @@ export default class BaseScene extends Phaser.Scene {
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
-
-    //this.uiContainer = this.add.container(0, 0);
-//this.uiContainer.setScale(1);
- //   this.uiContainer.add(this.icons);
-    this.uiContainer = this.add.container(0, 0);
-this.uiContainer.setSize(window.innerWidth, window.innerHeight); // 100% width and height
-
-
-    this.text = this.add.text(0, 0, 'This is a UI overlay', { font: '24px Arial', fill: '#ffffff' }).setOrigin(0.5); // Center within container
-this.text.setPosition(this.uiContainer.width - 10, 10); // 10 pixels from the right and 10 pixels from the top (relative to container)
-this.uiContainer.add(this.text);
- this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
