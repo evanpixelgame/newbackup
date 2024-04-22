@@ -159,7 +159,7 @@ export default class BaseScene extends Phaser.Scene {
     this.healthBar.originalX = window.innerWidth / 6;
     this.healthBar.originalY = window.innerHeight / 6;
   //  this.healthBar.setScrollFactor(0, 0);
-    this.world.add(this.healthBar);
+ //   this.world.add(this.healthBar);
 
     // Set up camera zoom event
  //   this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
