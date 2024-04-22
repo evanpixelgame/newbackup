@@ -154,6 +154,7 @@ export default class BaseScene extends Phaser.Scene {
     0xff0000  // Color of the object (red)
 );
     this.healthBar.setScrollFactor(0, 0);
+    this.healthBar.setScale(this.cameraZoomLevel);
     // Set the original position of the health bar
     this.healthBar.originalX = window.innerWidth / 6;
     this.healthBar.originalY = window.innerHeight / 6;
