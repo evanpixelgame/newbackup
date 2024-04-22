@@ -16,7 +16,7 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
     this.startPosY = 665;
     this.playerPosX = 970;
      this.playerPosY = 665;
-    this.cameraZoomLevel = 2;
+    this.cameraZoomLevel = 1;
     console.log('Player received in NewScene:', this.player);
   }
 
