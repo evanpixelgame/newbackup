@@ -27,7 +27,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         // If 'NewScene' is already active, resume it
         scene.scene.pause('NewScene');
         scene.scene.resume('NextRoom');
-        scene.scene.bringToTop('NextRoom'); 
+        scene.scene.bringToTop('NextRoom');
+      scene.scene.bringToTop('OverlayScene'); 
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -43,6 +44,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
             engine: scene.matter.world,
             world: scene.world,
         });
+       scene.scene.bringToTop('OverlayScene'); 
     }
     break;
               
@@ -52,6 +54,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.scene.pause('PlayerControls');
        scene.scene.resume('OpenWorld', { sourceScene: 'NewScene' });
        scene.scene.bringToTop('OpenWorld'); //instead of bringingopenworld to top, maybe setting visibility to 0? also maybe pause and resume would work with controls if player is passed continueously?
+            scene.scene.bringToTop('OverlayScene');  
               break;
               
             case 'InsideRoomToNextRoom':
