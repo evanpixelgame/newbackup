@@ -177,7 +177,7 @@ this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // 
 // Set the background color to make it visible (optional)
 //this.cameras.main.setBackgroundColor(0x000000); // Black background for the main camera
 
-this.healthBar.setRenderToTexture(overlayCamera); // Render the sprite to the overlay camera
+this.healthBar.setRenderToTexture(this.overlayCamera); // Render the sprite to the overlay camera
 
 // Make the sprite invisible on the main camera
 this.healthBar.setVisible(false);
