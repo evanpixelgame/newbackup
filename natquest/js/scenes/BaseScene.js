@@ -147,8 +147,8 @@ export default class BaseScene extends Phaser.Scene {
             .popUp(1000);
 
      this.healthBar = this.add.rectangle(
-    (window.innerWidth / 4) / 3,  // X coordinate relative to the viewport
-    (window.innerHeight / 4) / 3,  // Y coordinate relative to the viewport
+    (window.innerWidth / 12),  // X coordinate relative to the viewport
+    (window.innerHeight / 12),  // Y coordinate relative to the viewport
     500,  // Width of the object
     100,  // Height of the object
     0xff0000  // Color of the object (red)
