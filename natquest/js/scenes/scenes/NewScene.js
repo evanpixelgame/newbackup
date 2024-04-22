@@ -32,6 +32,9 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
   // this.map.setDisplaySize(2, 2);
   // this.map.height *= 2;
  //  this.map.width *= 2;
+   this.map.layers.forEach(layer => {
+    layer.setScale(2); // Set scale to 2 for doubling the size, for example
+});
    this.player.setScale(2);
   }
 
