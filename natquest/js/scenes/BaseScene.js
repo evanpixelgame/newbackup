@@ -108,9 +108,9 @@ export default class BaseScene extends Phaser.Scene {
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
 
-    this.uiContainer = this.add.container(0, 0);
-this.uiContainer.setScale(1);
-    this.uiContainer.add(this.icons);
+    //this.uiContainer = this.add.container(0, 0);
+//this.uiContainer.setScale(1);
+ //   this.uiContainer.add(this.icons);
     
   }
 
