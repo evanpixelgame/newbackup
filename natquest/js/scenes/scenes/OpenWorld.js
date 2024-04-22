@@ -27,6 +27,8 @@ import OverlayScene from '../OverlayScene.js';
   create() {
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
+   this.scene.add('OverlayScene', OverlayScene);
+   this.scene.launch('OverlayScene');
  //  console.log(this.cameras.main.id);
    // console.log(this.overlayCamera.id);
   }
