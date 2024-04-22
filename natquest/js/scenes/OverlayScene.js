@@ -1,8 +1,7 @@
 export class OverlayScene extends Phaser.Scene {
   constructor() {
-    super({
-      key: 'OverlayScene'
-    })
+    super({ key: 'OverlayScene' })
+    
   }
 
   init(data) {
