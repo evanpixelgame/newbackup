@@ -180,7 +180,7 @@ this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // 
 //this.healthBar.setRenderToTexture(this.overlayCamera); // Render the sprite to the overlay camera
 
 // Make the sprite invisible on the main camera
-this.healthBar.setVisible(false);
+//this.healthBar.setVisible(false);
     
     
   }
