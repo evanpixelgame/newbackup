@@ -18,9 +18,10 @@ export function createMap(scene, mapKey) { //mapkey argument is where you input 
     // Create layers using all tilesets
     const layers = [];
     for (let i = 0; i < map.layers.length; i++) {
+         layers[i].setScale(2);
       layers.push(map.createLayer(i, tilesets, 0, 0));
     }
-    map.setScale(2);
+   
     return map;
 }
 
