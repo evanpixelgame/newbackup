@@ -17,7 +17,7 @@ import OverlayScene from '../OverlayScene.js';
     this.startPosY = 325;
     this.playerPosX = 495;
      this.playerPosY = 325;
-    this.cameraZoomLevel = 1;
+    this.cameraZoomLevel = 2;
     console.log('Player received in NextRoom:', this.player);
   }
 
