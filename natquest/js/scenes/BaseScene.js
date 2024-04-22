@@ -118,7 +118,7 @@ this.uiContainer.setSize(window.innerWidth, window.innerHeight); // 100% width a
     this.text = this.add.text(0, 0, 'This is a UI overlay', { font: '24px Arial', fill: '#ffffff' }).setOrigin(0.5); // Center within container
 this.text.setPosition(this.uiContainer.width - 10, 10); // 10 pixels from the right and 10 pixels from the top (relative to container)
 this.uiContainer.add(this.text);
-
+ this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
   }
 
   update(time, delta) {
