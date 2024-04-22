@@ -17,7 +17,7 @@ import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js
     this.startPosY = 325;
     this.playerPosX = 495;
      this.playerPosY = 325;
-    this.cameraZoomLevel = 2;
+    this.cameraZoomLevel = 3;
     console.log('Player received in NextRoom:', this.player);
   }
 
