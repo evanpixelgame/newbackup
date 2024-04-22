@@ -46,6 +46,27 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     this.icons = createUIIcons(this);
+    this.healthBar.setScrollFactor(0, 0);
+    this.healthBar.setScale(this.cameraZoomLevel / 2);
+    // Set the original position of the health bar
+    this.healthBar.originalX = window.innerWidth / 6;
+    this.healthBar.originalY = window.innerHeight / 6;
+  //  this.healthBar.setScrollFactor(0, 0);
+ //   this.world.add(this.healthBar);
+
+    // Set up camera zoom event
+ //   this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
+
+
+// Create a new camera with width and height equal to the window size
+this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
+
+// Set camera properties
+this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent background
+
+// Configure camera position, size, and other settings as needed
+this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
+    
     
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
@@ -153,26 +174,7 @@ export default class BaseScene extends Phaser.Scene {
     100,  // Height of the object
     0xff0000  // Color of the object (red)
 );
-    this.healthBar.setScrollFactor(0, 0);
-    this.healthBar.setScale(this.cameraZoomLevel / 2);
-    // Set the original position of the health bar
-    this.healthBar.originalX = window.innerWidth / 6;
-    this.healthBar.originalY = window.innerHeight / 6;
-  //  this.healthBar.setScrollFactor(0, 0);
- //   this.world.add(this.healthBar);
 
-    // Set up camera zoom event
- //   this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
-
-
-// Create a new camera with width and height equal to the window size
-this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
-
-// Set camera properties
-this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent background
-
-// Configure camera position, size, and other settings as needed
-this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
     
 
 // Set the background color to make it visible (optional)
