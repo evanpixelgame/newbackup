@@ -22,7 +22,7 @@ export default class OverlayScene extends Phaser.Scene {
     0xff0000  // Color of the object (red)
 );
     this.healthBar.setScrollFactor(0, 0);
-    this.healthBar.setDepth(1000);
+    this.healthBar.setDepth(100000);
     
   }
   
