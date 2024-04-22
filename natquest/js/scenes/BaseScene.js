@@ -114,8 +114,9 @@ export default class BaseScene extends Phaser.Scene {
     this.uiContainer = this.add.container(0, 0);
 this.uiContainer.setSize(window.innerWidth, window.innerHeight); // 100% width and height
 
-this.text = this.add.text(200, 100, 'This is a UI overlay', { font: '24px Arial', fill: '#ffffff' }).setOrigin(0.5); // Center within container
-this.text.setPosition(0.5, 0.5); // Center horizontally and vertically (relative to container)
+
+    this.text = this.add.text(0, 0, 'This is a UI overlay', { font: '24px Arial', fill: '#ffffff' }).setOrigin(0.5); // Center within container
+this.text.setPosition(this.uiContainer.width - 10, 10); // 10 pixels from the right and 10 pixels from the top (relative to container)
 this.uiContainer.add(this.text);
 
   }
