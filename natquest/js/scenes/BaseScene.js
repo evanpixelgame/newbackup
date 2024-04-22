@@ -46,6 +46,14 @@ export default class BaseScene extends Phaser.Scene {
     });
 
     this.icons = createUIIcons(this);
+         this.healthBar = this.add.rectangle(
+    (window.innerWidth / 4),  // X coordinate relative to the viewport
+    (window.innerHeight / 4),  // Y coordinate relative to the viewport
+    500,  // Width of the object
+    100,  // Height of the object
+    0xff0000  // Color of the object (red)
+);
+
     this.healthBar.setScrollFactor(0, 0);
     this.healthBar.setScale(this.cameraZoomLevel / 2);
     // Set the original position of the health bar
@@ -167,13 +175,6 @@ this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // 
             // .drawBounds(this.add.graphics(), 0xff0000)
             .popUp(1000);
 
-     this.healthBar = this.add.rectangle(
-    (window.innerWidth / 4),  // X coordinate relative to the viewport
-    (window.innerHeight / 4),  // Y coordinate relative to the viewport
-    500,  // Width of the object
-    100,  // Height of the object
-    0xff0000  // Color of the object (red)
-);
 
     
 
