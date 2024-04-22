@@ -1,5 +1,5 @@
 import { PlayerSprite } from './PlayerSprite.js';
-//import { TopIcons } from './gameUI.js';
+import { TopIcons } from './gameUI.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
 //import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
