@@ -29,6 +29,8 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
   console.log(this.map.height, this.map.width);
  //  this.map.gameObject.setScale(2, 2);
   // this.map.setDisplaySize(2, 2);
+   this.map.height *= 2;
+   this.map.width *= 2;
    this.player.setScale(2);
   }
 
