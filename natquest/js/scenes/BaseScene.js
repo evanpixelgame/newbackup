@@ -65,7 +65,9 @@ export default class BaseScene extends Phaser.Scene {
 
     // Set up camera zoom event
  //   this.cameras.main.on('zoom', this.adjustHealthBarPosition); //took away ,this as last argument 
-
+this.uiContainer = this.add.container(0, 0);
+this.uiContainer.setScale(1);
+    this.uiContainer.add(this.icons);
 
 // Create a new camera with width and height equal to the window size
 //this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
