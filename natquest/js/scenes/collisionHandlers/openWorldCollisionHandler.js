@@ -33,6 +33,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.pause('PlayerControls');
         scene.scene.resume('NewScene');
         scene.scene.bringToTop('NewScene'); 
+      scene.scene.bringToTop('OverlayScene');
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -48,6 +49,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
             engine: scene.matter.world,
             world: scene.world,
         });
+      scene.scene.bringToTop('OverlayScene');
     }
     break;
               
