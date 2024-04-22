@@ -68,13 +68,13 @@ export default class BaseScene extends Phaser.Scene {
 
 
 // Create a new camera with width and height equal to the window size
-this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
+//this.overlayCamera = this.cameras.add(0, 0, window.innerWidth, window.innerHeight);
 
 // Set camera properties
-this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent background
+//this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent background
 
 // Configure camera position, size, and other settings as needed
-this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
+//this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
     
 //    this.icons.setMask(0b010);
     //Creates the scene's map from Tiled JSON data
@@ -107,120 +107,8 @@ this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // 
     
      //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
      createPlayerAnimations(this);
-
-    //creates the UI icons and graphics and make up the game's UI/HUD
-  //  this.icons = createUIIcons(this);
-    
-    // Instantiate the gameUI class within the uiLayer, gives functionality to the icons at the top of screen
-   // this.gameUI = new TopIcons(this, this.game, this.uiLayer, this.icons);
-
-     var dialog = this.rexUI.add.dialog({
-            x: 400,
-            y: 300,
-
-            background: this.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x1565c0),
-
-            title: this.rexUI.add.label({
-                background: this.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x003c8f),
-                text: this.add.text(0, 0, 'Title', {
-                    fontSize: '24px'
-                }),
-                space: {
-                    left: 15,
-                    right: 15,
-                    top: 10,
-                    bottom: 10
-                }
-            }),
-
-            content: this.add.text(0, 0, 'Do you want to build a snow man?', {
-                fontSize: '24px'
-            }),
-
-            actions: [], // Assing an empty array instead of `undefined`
-
-            choices: [], // Assing an empty array instead of `undefined`
-
-            space: {
-                title: 25,
-                content: 25,
-                action: 15,
-                choice: 15,
-
-                left: 20,
-                right: 20,
-                top: 20,
-                bottom: 20,
-                choices: 20,
-            },
-
-            align: {
-                actions: 'right', // 'center'|'left'|'right'
-            },
-
-            expand: {
-                content: false,  // Content is a pure text object
-            }
-        })
-            .addAction([
-                this.createLabel('Yes'),
-                this.createLabel('No')
-            ])
-            .addChoice([
-                this.createLabel('Choice-A'),
-                this.createLabel('Choice-B')
-            ])
-            .layout()
-            .setScale(.1)
-            .setScrollFactor(0, 0)
-            // .drawBounds(this.add.graphics(), 0xff0000)
-            .popUp(1000);
-
-
-    
-
-// Set the background color to make it visible (optional)
-//this.cameras.main.setBackgroundColor(0x000000); // Black background for the main camera
-
-//this.healthBar.setRenderToTexture(this.overlayCamera); // Render the sprite to the overlay camera
-
-// Make the sprite invisible on the main camera
-//this.healthBar.setVisible(false);
-    
     
   }
-
-  //METHOD
-adjustHealthBarPosition() {
-  console.log('attemptingreadjusthealthbar');
-    // Calculate the new position of the health bar
-    this.newX = this.scale.width / 6;
-    this.newY = this.scale.height / 6;
-
-    // Update the position of the health bar
-    this.healthBar.setPosition(this.newX, this.newY);
-}
-  
-//METHOD
- createLabel(text) {
-    return this.rexUI.add.label({
-        // width: 40,
-        // height: 40,
-
-        background: this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x5e92f3),
-
-        text: this.add.text(0, 0, text, {
-            fontSize: '24px'
-        }),
-
-        space: {
-            left: 10,
-            right: 10,
-            top: 10,
-            bottom: 10
-        }
-    });
-}
 
   update(time, delta) {
     //Update the position of player based on user input and velocity
