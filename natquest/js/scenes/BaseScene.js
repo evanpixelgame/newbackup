@@ -172,10 +172,16 @@ this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent ba
 
 // Configure camera position, size, and other settings as needed
 this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
+    
 
 // Set the background color to make it visible (optional)
 //this.cameras.main.setBackgroundColor(0x000000); // Black background for the main camera
 
+this.healthBar.setRenderToTexture(overlayCamera); // Render the sprite to the overlay camera
+
+// Make the sprite invisible on the main camera
+this.healthBar.setVisible(false);
+    
     
   }
 
