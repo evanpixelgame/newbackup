@@ -26,7 +26,7 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
   create() {
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
-   this.map.setScale(2, 2);
+   this.map.setDisplaySize(2, 2);
    this.player.setScale(2);
   }
 
