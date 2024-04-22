@@ -55,6 +55,7 @@ export default class BaseScene extends Phaser.Scene {
 );
 
     this.healthBar.setScrollFactor(0, 0);
+    this.healthBar.setDepth(1000);
     this.healthBar.setScale(this.cameraZoomLevel / 2);
     // Set the original position of the health bar
     this.healthBar.originalX = window.innerWidth / 6;
@@ -75,7 +76,7 @@ this.overlayCamera.setBackgroundColor('rgba(0, 0, 0, 0)'); // Set transparent ba
 // Configure camera position, size, and other settings as needed
 this.overlayCamera.setViewport(0, 0, window.innerWidth, window.innerHeight); // Adjust position and size as needed
     
-    
+    this.icons.setMask(0b010);
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
