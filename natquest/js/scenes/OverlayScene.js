@@ -1,4 +1,4 @@
-export class OverlayScene extends Phaser.Scene {
+export default class OverlayScene extends Phaser.Scene {
   constructor() {
     super({ key: 'OverlayScene' })
     
