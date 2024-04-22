@@ -80,8 +80,6 @@ export default class BaseScene extends Phaser.Scene {
     //Creates the scene's map from Tiled JSON data
     this.map = createMap(this, this.mapKey);
 
-    this.map.setScale(2, 2);
-
     //Creates a new instance of the PlayerSprite class to add a matter.js player body object to the scene
     this.player = new PlayerSprite(this, this.startPosX, this.startPosY, 'player');
 
