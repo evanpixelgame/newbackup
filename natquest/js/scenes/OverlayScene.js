@@ -23,6 +23,7 @@ export default class OverlayScene extends Phaser.Scene {
 );
     this.healthBar.setScrollFactor(0, 0);
     this.healthBar.setDepth(100000);
+    this.healthBar.popUp(1000);
     
   }
   
