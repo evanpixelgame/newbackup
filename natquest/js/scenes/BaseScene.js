@@ -16,7 +16,7 @@ export default class BaseScene extends Phaser.Scene {
     this.startPosX = null;
     this.startPosY = null;
     this.velocityChange = null;
-    this.cameraZoomLevel = 2;
+    this.cameraZoomLevel = 1;
     this.topIcons = null;
   }
 
