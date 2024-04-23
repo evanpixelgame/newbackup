@@ -51,20 +51,21 @@ this.scene.manager.scenes
     
   }
 
+
 getActiveScenes() {
   const sceneManager = this.scene.manager;
   const loadedScenes = sceneManager.scenes;
   const activeScenes = [];
 
   for (const scene of loadedScenes) {
-    if (!scene.isSleeping()) {
+    if (scene.scene.isVisible()) {
       activeScenes.push(scene);
     }
   }
 
   return activeScenes;
 }
-
+  
   update() {
 
   }
