@@ -73,7 +73,7 @@ getActiveScenes() {
 
   const activeScenes = loadedScenes.filter(scene => scene.scene.isVisible() && scene.key !== 'OverlayScene');
 
-  return activeScenes;
+  return activeScenes[0];
 }
   
   update() {
