@@ -11,6 +11,7 @@ export default class OverlayScene extends Phaser.Scene {
 
   init(data) {
    // this.player = data.player;
+    this.activeScene = null;
   }
 
   preload() {
@@ -24,10 +25,16 @@ export default class OverlayScene extends Phaser.Scene {
  //   console.log('this.scene.manager from Overlay Scene: ' + this.scene.manager);
   //  console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
 
+    
     this.scene.manager.scenes.forEach(scene => {
     console.log(scene.scene.key); // Access the key of each scene
     console.log(scene); // Log each scene object
+    if (scene.scene.key !== 'OverlayScene') {
+    this.activeScene = scene.scene.key);
+}
 });
+
+    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene);
 
 this.scene.manager.scenes
     .filter(scene => scene.isActive)
