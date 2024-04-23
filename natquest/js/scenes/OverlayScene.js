@@ -23,9 +23,11 @@ export default class OverlayScene extends Phaser.Scene {
 //add a function that determines the active scene and set up event listener so that it updates it when active scene changes
     console.log('this.scene.manager from Overlay Scene: ' + this.scene.manager);
     console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
-     console.log('this.scene.manager.scenes.scene from Overlay Scene: ' + this.scene.manager.scenes.scene);
-         console.log('this.scene.manager.getScene() from Overlay Scene: ' + this.scene.manager.getScene());
-    console.log(JSON.stringify(this.scene.manager, null, 2));
+
+    this.scene.manager.scenes.forEach(scene => {
+    console.log(scene.key); // Access the key of each scene
+    console.log(scene); // Log each scene object
+});
 
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
