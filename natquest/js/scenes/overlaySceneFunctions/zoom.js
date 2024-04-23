@@ -5,6 +5,8 @@ export function createZoomIcons(scene, activeScene) {
    const zoomInIcon = scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2);
    const zoomOutIcon = scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2);
 
+ scene.events.on('activeSceneChanged', scene.updateActiveScene, this);
+  
  zoomInIcon.on('pointerdown', () => {
          if (activeScene.cameras.main.zoom < 3) {
     activeScene.cameras.main.zoom *= 1.1; // Increase zoom by 10%
