@@ -43,7 +43,7 @@ this.scale.on('resize', () => {
 }, this);
 
   }
-  
+ /* 
   resizeGame(gameSize) {
       
         const { width, height } = gameSize;
@@ -59,7 +59,7 @@ this.scale.on('resize', () => {
         // Call resize events on all scenes
         this.events.emit('resize', gameSize);
     }
-
+*/
   
   update() {
 
