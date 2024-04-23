@@ -13,3 +13,9 @@ export function resizeGame(scene, gameSize) {
         // Call resize events on all scenes
         scene.events.emit('resize', gameSize);
     }
+
+export function setupResizeListener(scene) {
+    scene.scale.on('resize', () => {
+        resizeGame(scene, { width: window.innerWidth, height: window.innerHeight });
+    });
+}
