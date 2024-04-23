@@ -19,17 +19,9 @@ export default class OverlayScene extends Phaser.Scene {
   }
 
   create() {
- 
-    
-    this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
 
-   // this.zoomIcons = createZoomIcons(this, this.activeScene); // positioned directly to left of fullscreen icon, at about 3/4 viewport 
     
-    this.healthBar = createHealthBar(this);
-
-    this.resizer = setupResizeListener(this);
-       
-    this.scene.manager.scenes.forEach(scene => {
+     this.scene.manager.scenes.forEach(scene => {
    // console.log(scene.scene.key); // Access the key of each scene
    // console.log(scene); // Log each scene object
     if (scene.scene.key !== 'OverlayScene') {
@@ -41,6 +33,17 @@ export default class OverlayScene extends Phaser.Scene {
 
     console.log(this.activeScene.cameraZoomLevel);
     this.activeScene.velocityChange = 5;
+
+    
+    
+    this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
+
+    this.zoomIcons = createZoomIcons(this, this.activeScene); // positioned directly to left of fullscreen icon, at about 3/4 viewport 
+    
+    this.healthBar = createHealthBar(this);
+
+    this.resizer = setupResizeListener(this);
+       
   }
 
   
