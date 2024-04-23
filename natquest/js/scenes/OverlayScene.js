@@ -25,7 +25,7 @@ export default class OverlayScene extends Phaser.Scene {
   //  console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
 
     this.scene.manager.scenes.forEach(scene => {
-    console.log(scene.key); // Access the key of each scene
+    console.log(scene.name); // Access the key of each scene
     console.log(scene); // Log each scene object
 });
 
@@ -52,21 +52,6 @@ this.scene.manager.scenes
     
   }
 
-/*
-getActiveScenes() {
-  const sceneManager = this.scene.manager;
-  const loadedScenes = sceneManager.scenes;
-  const activeScenes = [];
-
-  for (const scene of loadedScenes) {
-    if (scene.scene.isVisible()) {
-      activeScenes.push(scene);
-    }
-  }
-
-  return activeScenes;
-}
-*/
   
  getActiveScenes() {
   const sceneManager = this.scene.manager;
