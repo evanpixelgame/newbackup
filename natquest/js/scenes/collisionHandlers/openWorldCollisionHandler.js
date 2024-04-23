@@ -35,7 +35,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.bringToTop('NewScene'); 
       scene.scene.bringToTop('OverlayScene');
      // OverlayScene.handleSceneChange();
-      scene.sceneChangeEmitter.emit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
+      OverlayScene.eventEmitter.emit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -53,8 +53,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         });
       scene.scene.bringToTop('OverlayScene');
       // OverlayScene.handleSceneChange();
-      scene.sceneChangeEmitter = new Phaser.Events.EventEmitter();
-      scene.sceneChangeEmitter.emit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
+     // scene.eventEmitter = new Phaser.Events.EventEmitter();
+     OverlayScene.eventEmitter.emit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
     }
     break;
               
