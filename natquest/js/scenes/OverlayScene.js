@@ -70,7 +70,7 @@ getActiveScenes() {
  getActiveScenes() {
   const sceneManager = this.scene.manager;
   const loadedScenes = sceneManager.scenes;
-  const targetSceneKey = 'OverlayScene'; // Replace with the scene key
+  const targetSceneKey = 'OverlayScene';
 
   const activeScenes = loadedScenes.filter(scene => scene.scene.isVisible() && scene.key !== targetSceneKey);
 
