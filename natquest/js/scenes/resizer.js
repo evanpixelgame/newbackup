@@ -1,3 +1,5 @@
+/*
+
 export function resizer(scene) {
     return handleFullscreenChange.bind(scene); // Bind the scene context to the event listener function
 }
@@ -17,6 +19,12 @@ function handleFullscreenChange() {
     // Call resize events on all scenes
     scene.events.emit('resize', { width, height });
 }
+
+*/
+
+
+
+
 
 
 /*
