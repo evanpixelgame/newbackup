@@ -30,7 +30,6 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       console.log('You hit the door sensor again!');
         // If 'NewScene' is already active, resume it
         scene.scene.pause('OpenWorld');
-        scene.scene.pause('PlayerControls');
         scene.scene.resume('NewScene');
         scene.scene.bringToTop('NewScene'); 
       scene.scene.bringToTop('OverlayScene');
