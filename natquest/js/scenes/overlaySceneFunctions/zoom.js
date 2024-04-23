@@ -1,5 +1,6 @@
   
 export function createZoomIcons(scene) {
+  const vw = window.innerWidth;
   
    const zoomInIcon = scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2);
    const zoomOutIcon = scene.add.sprite(7.5 * vw / 9, 50, 'zoomOutIcon').setInteractive().setScale(0.2);
@@ -14,6 +15,8 @@ export function createZoomIcons(scene) {
   
   return 
 }
+
+// const activeScene = ;
 
 function zoomIn(scene) {
   if (scene.cameras.main.zoom < 3) {
