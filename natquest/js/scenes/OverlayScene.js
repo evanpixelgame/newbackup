@@ -1,6 +1,6 @@
 import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
 import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
-import { resizer } from './resizer.js';
+//import { resizer } from './resizer.js';
 
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
@@ -36,7 +36,7 @@ export default class OverlayScene extends Phaser.Scene {
     this.healthBar.setDepth(100000);
 
 
-    this.scale.on('resize', resizer(this));
+  //  this.scale.on('resize', resizer(this));
     
   }
   
