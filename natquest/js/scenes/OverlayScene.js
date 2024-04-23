@@ -20,12 +20,13 @@ export default class OverlayScene extends Phaser.Scene {
 
   create() {
 
+    this.eventEmitter = new Phaser.Events.EventEmitter();
     this.updateActiveScene();
     
   // Create an instance of EventEmitter
 //   this.sceneChangeEmitter = new Phaser.Events.EventEmitter();
 
-    this.sceneChangeEmitter.on('activeSceneChanged', this.updateActiveScene, this); //subscribe to event emitter
+    this.eventEmitter.on('activeSceneChanged', this.updateActiveScene, this); //subscribe to event emitter
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
     
@@ -50,7 +51,7 @@ export default class OverlayScene extends Phaser.Scene {
 
     console.log(this.activeScene.cameraZoomLevel);
   //  this.activeScene.velocityChange = 5;  // <= example of changing active scene from the overlay scene
-
+    
     this.events.emit('newActiveScene', this.activeScene);
  
 }
