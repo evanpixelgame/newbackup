@@ -23,7 +23,7 @@ export default class OverlayScene extends Phaser.Scene {
     this.updateActiveScene();
     
   // Create an instance of EventEmitter
-   this.sceneChangeEmitter = new Phaser.Events.EventEmitter();
+//   this.sceneChangeEmitter = new Phaser.Events.EventEmitter();
 
     this.sceneChangeEmitter.on('activeSceneChanged', this.updateActiveScene, this); //subscribe to event emitter
     
