@@ -1,5 +1,5 @@
   
-export function createZoomIcons(scene, scene.activeSceme) {
+export function createZoomIcons(scene) {
   const vw = window.innerWidth;
   
    const zoomInIcon = scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2);
