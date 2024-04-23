@@ -62,6 +62,7 @@ this.scene.manager.scenes
     }
     return activeScenes;
   }
+ }
 
   update() {
 
