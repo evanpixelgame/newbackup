@@ -1,4 +1,26 @@
 export function resizer(scene) {
+    return handleFullscreenChange.bind(scene); // Bind the scene context to the event listener function
+}
+
+function handleFullscreenChange() {
+    const scene = this; // Since we bound the scene context, 'this' refers to the scene
+    const { width, height } = scene.scale.gameSize;
+
+    // Resize the game canvas
+    scene.sys.game.canvas.style.width = width + 'px';
+    scene.sys.game.canvas.style.height = height + 'px';
+
+    // Resize the game config to match the new size
+    scene.sys.game.config.width = width;
+    scene.sys.game.config.height = height;
+
+    // Call resize events on all scenes
+    scene.events.emit('resize', { width, height });
+}
+
+
+/*
+export function resizer(scene) {
 
 scene.scale.on('resize', handleFullscreenChange, scene);
 
@@ -15,7 +37,7 @@ scene.scale.on('resize', handleFullscreenChange, scene);
     }
   }
 
-resizeGame(gameSize) {
+function resizeGame(gameSize) {
 
     const { width, height } = gameSize;
 
@@ -30,4 +52,4 @@ resizeGame(gameSize) {
     // Call resize events on all scenes
     scene.events.emit('resize', gameSize);
   }
-
+*/
