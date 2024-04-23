@@ -53,14 +53,13 @@ getActiveScenes() {
   const activeScenes = [];
 
   for (const scene of loadedScenes) {
-    if (!scene.isSleeping()) {
+    if (scene.scene.isVisible()) {
       activeScenes.push(scene);
     }
   }
 
   return activeScenes;
 }
-  
   
   update(time, delta) {
    super.update(time, delta);
