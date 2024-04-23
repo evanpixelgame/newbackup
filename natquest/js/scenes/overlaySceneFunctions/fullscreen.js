@@ -18,9 +18,7 @@ const fullscreenIcon = scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setIn
     
    // this.scale.on('fullscreenchange', this.handleFullscreenChange.bind(this));
   //  this.scale.on('resize', this.handleFullscreenChange, this);
-
-}
-  // ^^^closing brackets of create func
+//the two above were in the create func previously from old examples
 
    // ****************************************************************FULL SCREEN BUTTON METHODS*************************************************************
 
