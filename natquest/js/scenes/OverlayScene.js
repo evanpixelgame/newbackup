@@ -33,6 +33,9 @@ export default class OverlayScene extends Phaser.Scene {
   }
 
   updateActiveScene() {
+    
+    this.zoomIcons.destroy(); //destroy previous zoom controls before creating new ones with the new scene instance
+    
     console.log('handling scene change okee');
     this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
