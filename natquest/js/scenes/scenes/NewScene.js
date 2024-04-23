@@ -34,6 +34,13 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
     console.log(scene); // Log each scene object
 });
 
+   this.scene.manager.scenes
+    .filter(scene => scene.isActive)
+    .forEach(activeScene => {
+        console.log(activeScene.key); // Log the key of each active scene
+    });
+
+
   }
 
   update(time, delta) {
