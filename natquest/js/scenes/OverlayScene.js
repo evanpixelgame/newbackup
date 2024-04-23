@@ -29,6 +29,13 @@ export default class OverlayScene extends Phaser.Scene {
     console.log(scene); // Log each scene object
 });
 
+this.scene.manager.scenes
+    .filter(scene => scene.isActive)
+    .forEach(activeScene => {
+        console.log(activeScene.key); // Log the key of each active scene
+    });
+
+    
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
 
