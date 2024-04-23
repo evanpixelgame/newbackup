@@ -23,21 +23,3 @@ export function createZoomIcons(scene, activeScene) {
   
   return 
 }
-
-// const activeScene = ;
-
-function zoomIn(scene) {
-  if (scene.cameras.main.zoom < 3) {
-    scene.cameras.main.zoom *= 1.1; // Increase zoom by 10%
-  } else {
-    console.log('Maximum zoom level reached.');
-  }
-}
-
-function zoomOut(scene) {
-  if (scene.cameras.main.zoom > 1) { // Set a minimum zoom level (0.2 is just an example)
-    scene.cameras.main.zoom /= 1.1; // Decrease zoom by 10%
-  } else {
-    console.log('Minimum zoom level reached.');
-  }
-}
