@@ -69,7 +69,7 @@ export class WelcomePlayer extends Phaser.Scene {
       //  this.scene.add('NewScene', NewScene);
         this.scene.launch('OpenWorld');
         this.scene.remove('Preloader');
-        this.scene.remove('StartMenu');
+    //    this.scene.remove('StartMenu');
         this.scene.remove('WelcomePlayer'); 
         console.log('Click event in landscape mode2');
       } else {
