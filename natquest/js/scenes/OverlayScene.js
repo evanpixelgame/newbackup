@@ -21,8 +21,8 @@ export default class OverlayScene extends Phaser.Scene {
 //    this.activeScene = 'gottafigureout';
 
 //add a function that determines the active scene and set up event listener so that it updates it when active scene changes
-    console.log('this.scene.manager from Overlay Scene: ' + this.scene.manager);
-    console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
+ //   console.log('this.scene.manager from Overlay Scene: ' + this.scene.manager);
+  //  console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
 
     this.scene.manager.scenes.forEach(scene => {
     console.log(scene.key); // Access the key of each scene
