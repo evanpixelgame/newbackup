@@ -26,8 +26,9 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
   create() {
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
-       console.log('this.scene.manager from NewScene Scene: ' + this.scene.manager);
-    console.log('this.scene.manager.scenes from NewScene Scene: ' + this.scene.manager.scenes);
+   
+//       console.log('this.scene.manager from NewScene Scene: ' + this.scene.manager);
+//    console.log('this.scene.manager.scenes from NewScene Scene: ' + this.scene.manager.scenes);
 
    this.scene.manager.scenes.forEach(scene => {
     console.log(scene.key); // Access the key of each scene
