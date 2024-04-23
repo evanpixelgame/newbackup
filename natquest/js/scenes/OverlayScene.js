@@ -39,7 +39,7 @@ export default class OverlayScene extends Phaser.Scene {
 
     console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene.scene.key + this.activeScene);
 
-    this.activeScene.cameraZoomLevel = 3;
+    console.log(this.activeScene.cameraZoomLevel);
     
   }
 
