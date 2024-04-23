@@ -26,6 +26,8 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
   create() {
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
+       console.log('this.scene.manager from NewScene Scene: ' + this.scene.manager);
+    console.log('this.scene.manager.scenes from NewScene Scene: ' + this.scene.manager.scenes);
   }
 
   update(time, delta) {
