@@ -6,7 +6,7 @@ import { createHealthBar } from './overlaySceneFunctions/healthBar.js';
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
     super({ key: 'OverlayScene' })
-    
+    this.eventEmitter = new Phaser.Events.EventEmitter();
   }
 
   init(data) {
@@ -20,7 +20,7 @@ export default class OverlayScene extends Phaser.Scene {
 
   create() {
 
-    this.eventEmitter = new Phaser.Events.EventEmitter();
+  //  this.eventEmitter = new Phaser.Events.EventEmitter();
     this.updateActiveScene();
     
   // Create an instance of EventEmitter
@@ -55,6 +55,13 @@ export default class OverlayScene extends Phaser.Scene {
     this.events.emit('newActiveScene', this.activeScene);
  
 }
+
+
+customEmit(eventName) {
+  this.eventEmitter.emit(eventName);
+  // this.eventEmitter.emit(eventName, eventData);
+}
+
   
   update() {
 
