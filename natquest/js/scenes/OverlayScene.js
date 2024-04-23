@@ -47,7 +47,7 @@ export default class OverlayScene extends Phaser.Scene {
   }
 
   handleSceneChange() {
-    
+    console.log('handling scene change okee');
     this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
     this.activeScene = scene;
