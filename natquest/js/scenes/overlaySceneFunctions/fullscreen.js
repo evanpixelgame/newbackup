@@ -1,14 +1,14 @@
-export function createFullscreenIcon() {
+export function createFullscreenIcon(scene) {
 
-const fullscreenIcon = this.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive().setScale(.12);
+const fullscreenIcon = scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setInteractive().setScale(.12);
 
     fullscreenIcon.on('pointerdown', () => {
             // Handle fullscreen icon click
           
-              if (this.isFullScreen()) {
-              this.exitFullScreen();
+              if (scene.isFullScreen()) {
+              scene.exitFullScreen();
                 } else {
-              this.requestFullScreen();
+              scene.requestFullScreen();
                 }
                     });
 
