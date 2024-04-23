@@ -58,7 +58,7 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
     }
     return activeScenes;
   }
-
+ }
   
   
   update(time, delta) {
