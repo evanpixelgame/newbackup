@@ -24,6 +24,7 @@ export default class OverlayScene extends Phaser.Scene {
     console.log('this.scene.manager from Overlay Scene: ' + this.scene.manager);
     console.log('this.scene.manager.scenes from Overlay Scene: ' + this.scene.manager.scenes);
      console.log('this.scene.manager.scenes.scene from Overlay Scene: ' + this.scene.manager.scenes.scene);
+         console.log('this.scene.manager.getScene() from Overlay Scene: ' + this.scene.manager.getScene());
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
 
