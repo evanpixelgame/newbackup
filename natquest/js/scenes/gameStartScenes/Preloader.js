@@ -1,4 +1,5 @@
-import { StartMenu } from "./StartMenu.js";
+//import { StartMenu } from "./StartMenu.js";
+import { WelcomePlayer } from "./WelcomePlayer.js";
 
 export class Preloader extends Phaser.Scene {
   constructor() {
@@ -63,8 +64,8 @@ export class Preloader extends Phaser.Scene {
     this.load.on('complete', () => {
       progressText.destroy(); // Remove the progress text when loading is complete
       progressBar.destroy(); // Remove the progress bar when loading is complete
-      this.scene.add('StartMenu', StartMenu);
-      this.scene.start('StartMenu');
+      this.scene.add('WelcomePlayer', WelcomePlayer);
+      this.scene.start('WelcomePlayer');
     });
   }
 
