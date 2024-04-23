@@ -47,7 +47,7 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
 
 
 
-function getActiveScenes() {
+getActiveScenes() {
   const sceneManager = this.scene.manager;
   const loadedScenes = sceneManager.scenes;
   const activeScenes = [];
