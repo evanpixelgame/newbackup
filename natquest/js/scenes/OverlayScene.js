@@ -1,3 +1,5 @@
+import { createFullscreenIcon } from './overlayFunctions/fullscreen.js';
+
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
     super({ key: 'OverlayScene' })
@@ -13,6 +15,7 @@ export default class OverlayScene extends Phaser.Scene {
   }
 
   create() {
+    this.fullscreenIcon = createFullscreenIcon(this);
     
     this.healthBar = this.add.rectangle(
     (window.innerWidth / 4) / 2 / 2,  // X coordinate relative to the viewport
