@@ -39,7 +39,7 @@ export default class OverlayScene extends Phaser.Scene {
 
   //  this.scale.on('resize', this.handleFullscreenChange, this);
 this.scale.on('resize', () => {
-    resizeGame({ width: window.innerWidth, height: window.innerHeight });
+    resizeGame(this, { width: window.innerWidth, height: window.innerHeight });
 }, this);
 
   }
