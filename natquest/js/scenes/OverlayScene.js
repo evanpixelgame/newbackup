@@ -1,6 +1,6 @@
 import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
 import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
-import { resizeGame } from './resizer.js';
+import { resizeGame } from './overlaySceneFunctions/resizer.js';
 
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
