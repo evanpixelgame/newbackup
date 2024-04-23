@@ -56,7 +56,7 @@ export default class OverlayScene extends Phaser.Scene {
  
 }
 
-
+//customEmit(eventName, eventData) {
 customEmit(eventName) {
   this.eventEmitter.emit(eventName);
   // this.eventEmitter.emit(eventName, eventData);
