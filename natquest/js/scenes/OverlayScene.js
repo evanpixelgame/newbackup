@@ -35,11 +35,11 @@ export default class OverlayScene extends Phaser.Scene {
     console.log(scene.scene.key); // Access the key of each scene
     console.log(scene); // Log each scene object
     if (scene.scene.key !== 'OverlayScene') {
-    this.activeScene = scene.scene.key;
+    this.activeScene = scene.scene;
 }
 });
 
-    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene);
+    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene + this.activeScene.key);
 
     
   }
