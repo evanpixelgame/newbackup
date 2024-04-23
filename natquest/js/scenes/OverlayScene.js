@@ -36,6 +36,8 @@ export default class OverlayScene extends Phaser.Scene {
 
    */ 
 
+    this.updateActiveScene();
+
     this.scene.events.on('activeSceneChanged', this.updateActiveScene, this);
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
