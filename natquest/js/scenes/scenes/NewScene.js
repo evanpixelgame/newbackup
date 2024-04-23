@@ -27,16 +27,18 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
 
-
-       this.scene.manager.scenes.forEach(scene => {
-    console.log(scene.scene.key); // Access the key of each scene
-    console.log(scene); // Log each scene object
+      
+    this.scene.manager.scenes.forEach(scene => {
+   // console.log(scene.scene.key); // Access the key of each scene
+   // console.log(scene); // Log each scene object
     if (scene.scene.key !== 'OverlayScene') {
-    this.activeScene = scene.scene.key;
+    this.activeScene = scene;
 }
 });
 
-    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene);
+    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene.scene.key + this.activeScene);
+
+    
 
   }
 
