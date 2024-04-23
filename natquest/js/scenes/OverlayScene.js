@@ -46,8 +46,9 @@ this.scene.manager.scenes
 
     this.resizer = setupResizeListener(this);
 
-    this.activeScenes = this.getActiveScenes();
-    console.log('this should make an arry of active scenes: ' + this.activeScenes);
+    this.activeScene = this.getActiveScenes();
+    console.log('this should make an arry of active scenes: ' + this.activeScene);
+     console.log('this should make an arry of active scenes: ' + this.activeScene.key);
     
   }
 
@@ -71,7 +72,7 @@ getActiveScenes() {
   const sceneManager = this.scene.manager;
   const loadedScenes = sceneManager.scenes;
 
-  const activeScenes = loadedScenes.filter(scene => scene.scene.isVisible() && scene.key !== 'OverlayScene');
+  const activeScenes = loadedScenes.filter(scene => scene.scene.isVisible() && scene.scene.key !== 'OverlayScene');
 
   return activeScenes[0];
 }
