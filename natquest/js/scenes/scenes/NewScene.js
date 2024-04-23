@@ -27,7 +27,7 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
    super.create();
    this.sensorHandling = sensorHandler(this, this.map, this.player);
 
-      
+/*      
     this.scene.manager.scenes.forEach(scene => {
    // console.log(scene.scene.key); // Access the key of each scene
    // console.log(scene); // Log each scene object
@@ -36,9 +36,10 @@ import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js'
 }
 });
 
+
     console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene.scene.key + this.activeScene);
 
-    
+    */
 
   }
 
