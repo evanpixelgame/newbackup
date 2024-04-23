@@ -5,10 +5,10 @@ const fullscreenIcon = scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setIn
 
     fullscreenIcon.on('pointerdown', () => {
             // Handle fullscreen icon click
-              if (scene.isFullScreen()) {
-              this.exitFullScreen();
+              if (isFullScreen()) {
+              exitFullScreen();
                 } else {
-              this.requestFullScreen();
+              requestFullScreen();
                 }
                     });
     
@@ -22,7 +22,7 @@ const fullscreenIcon = scene.add.sprite(8.1 * vw/ 9, 50, 'fullscreenIcon').setIn
 
    // ****************************************************************FULL SCREEN BUTTON METHODS*************************************************************
 
- requestFullScreen() {
+function requestFullScreen() {
     const element = document.documentElement;
 
     if (element.requestFullscreen) {
@@ -82,7 +82,7 @@ handleFullscreenChange() {
     }
 */
 
-  isFullScreen() {
+ function isFullScreen() {
     return (
         document.fullscreenElement ||
         document.mozFullScreenElement ||
@@ -91,7 +91,7 @@ handleFullscreenChange() {
     );
 }
 
-exitFullScreen() {
+function exitFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
