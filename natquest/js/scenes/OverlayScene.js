@@ -37,6 +37,7 @@ this.scene.manager.scenes
 
     
     
+    
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
 
    // this.zoomIcons = createZoomIcons(this, this.activeScene); // positioned directly to left of fullscreen icon, at about 3/4 viewport 
@@ -44,10 +45,24 @@ this.scene.manager.scenes
     this.healthBar = createHealthBar(this);
 
     this.resizer = setupResizeListener(this);
+
+    this.activeScenes = this.getActiveScenes();
+    console.log('this should make an arry of active scenes: ' + this.activeScenes);
     
   }
 
-  
+ getActiveScenes() {
+  const sceneManager = this.scene.manager;
+  const loadedScenes = sceneManager.scenes;
+  const activeScenes = [];
+
+  for (const scene of loadedScenes) {
+    if (scene.isActive()) {
+      activeScenes.push(scene);
+    }
+    return activeScenes;
+  }
+
   update() {
 
   }
