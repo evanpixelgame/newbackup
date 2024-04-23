@@ -21,6 +21,8 @@ export default class OverlayScene extends Phaser.Scene {
   create() {
     this.events.on('start', this.handleSceneChange, this);
     this.events.on('resume', this.handleSceneChange, this);
+    this.scene.manager.events.on('start', this.handleSceneChange, this);
+    this.scene.manager.events.on('resume', this.handleSceneChange, this);
    /*
     this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
