@@ -1,4 +1,4 @@
-import { createFullscreenIcon } from './overlayFunctions/fullscreen.js';
+import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
 
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
