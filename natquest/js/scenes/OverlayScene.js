@@ -36,12 +36,15 @@ export default class OverlayScene extends Phaser.Scene {
     this.healthBar.setDepth(100000);
 
 
-  //  this.scale.on('resize', resizer(this));
-    this.scale.on('resize', this.handleFullscreenChange, this);
-    
+
+  //  this.scale.on('resize', this.handleFullscreenChange, this);
+this.scale.on('resize', () => {
+    this.resizeGame({ width: window.innerWidth, height: window.innerHeight });
+}, this);
+
   }
   
-
+/*
  handleFullscreenChange() {
     
         if (this.scale.isFullscreen) {
@@ -52,6 +55,7 @@ export default class OverlayScene extends Phaser.Scene {
             this.resizeGame({ width: window.innerWidth, height: window.innerHeight });
         }
     }
+    */
 
   resizeGame(gameSize) {
       
