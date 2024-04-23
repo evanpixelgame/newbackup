@@ -8,6 +8,7 @@
 
 import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
+import OverlayScene from '../OverlayScene.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
