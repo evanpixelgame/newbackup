@@ -51,7 +51,7 @@ this.scene.manager.scenes
     
   }
 
-
+/*
 getActiveScenes() {
   const sceneManager = this.scene.manager;
   const loadedScenes = sceneManager.scenes;
@@ -62,6 +62,17 @@ getActiveScenes() {
       activeScenes.push(scene);
     }
   }
+
+  return activeScenes;
+}
+*/
+  
+ getActiveScenes() {
+  const sceneManager = this.scene.manager;
+  const loadedScenes = sceneManager.scenes;
+  const targetSceneKey = 'yourSceneKeyToRemove'; // Replace with the scene key
+
+  const activeScenes = loadedScenes.filter(scene => scene.scene.isVisible() && scene.key !== targetSceneKey);
 
   return activeScenes;
 }
