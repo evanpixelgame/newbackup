@@ -28,8 +28,6 @@ export default class OverlayScene extends Phaser.Scene {
     this.healthBar = createHealthBar(this);
 
     this.resizer = setupResizeListener(this);
-
- //   this.activeScene = this.getActiveScenes();
        
     this.scene.manager.scenes.forEach(scene => {
    // console.log(scene.scene.key); // Access the key of each scene
