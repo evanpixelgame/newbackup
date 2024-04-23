@@ -1,6 +1,6 @@
 import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
 import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
-import { resizeGame } from './overlaySceneFunctions/resizer.js';
+import { resizeGame, setupResizeListener } from './overlaySceneFunctions/resizer.js';
 
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
@@ -36,12 +36,13 @@ export default class OverlayScene extends Phaser.Scene {
     this.healthBar.setDepth(100000);
 
 
-
-  //  this.scale.on('resize', this.handleFullscreenChange, this);
+this.resizer = setupResizeListener(this);
+/*
 this.scale.on('resize', () => {
     resizeGame(this, { width: window.innerWidth, height: window.innerHeight });
 }, this);
-
+*/
+    
   }
  /* 
   resizeGame(gameSize) {
