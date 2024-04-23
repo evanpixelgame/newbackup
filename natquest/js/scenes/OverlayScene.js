@@ -19,8 +19,8 @@ export default class OverlayScene extends Phaser.Scene {
   }
 
   create() {
-    this.events.on('start', this.handleSceneChange, this);
-    this.events.on('resume', this.handleSceneChange, this);
+ //   this.events.on('start', this.handleSceneChange, this);
+ //   this.events.on('resume', this.handleSceneChange, this);
 
    /*
     this.scene.manager.scenes.forEach(scene => {
@@ -35,6 +35,8 @@ export default class OverlayScene extends Phaser.Scene {
   //  this.activeScene.velocityChange = 5;  // <= example of changing active scene from the overlay scene
 
    */ 
+
+    this.scene.events.on('activeSceneChanged', this.updateActiveScene, this);
     
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
 
@@ -46,7 +48,7 @@ export default class OverlayScene extends Phaser.Scene {
        
   }
 
-  handleSceneChange() {
+  updateActiveScene() {
     console.log('handling scene change okee');
     this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
