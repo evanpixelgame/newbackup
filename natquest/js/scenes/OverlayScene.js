@@ -1,5 +1,5 @@
 import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
-//import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
+import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
 import { resizeGame, setupResizeListener } from './overlaySceneFunctions/resizer.js';
 import { createHealthBar } from './overlaySceneFunctions/healthBar.js';
 
