@@ -15,6 +15,9 @@ import customEmitter from '../../main.js';
 
 
 export function sensorHandler(scene, map, player, transitionSensors) {
+ 
+  //add the scene early so event emitter works right?
+  scene.scene.add('NewScene', NewScene);
 
   player.scene.matter.world.on('collisionstart', (eventData) => {
     // Loop through pairs of colliding bodies
@@ -51,7 +54,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.NewSceneLaunched = true;
       // If 'NewScene' is not active, launch it
         scene.scene.pause('OpenWorld');
-       scene.scene.add('NewScene', NewScene);
+      // scene.scene.add('NewScene', NewScene);
         scene.scene.launch('NewScene', {
             player: scene.player,
             engine: scene.matter.world,
