@@ -54,9 +54,9 @@ export default class OverlayScene extends Phaser.Scene {
     
   // this.eventEmitter.on('newActiveScene', this.activeScene);
 
-    this.eventEmitter.on('newActiveScene', eventData => {
+    this.eventEmitter.on('newActiveScene', => {
     // Handle the event here
-    console.log('Event received:', eventData);
+    console.log('Event received:');
 });
  
 }
