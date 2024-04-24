@@ -5,7 +5,8 @@ import CustomEmitter from './scenes/CustomEmitter.js';
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-const customEmitter = new CustomEmitter();   
+const customEmitter = new CustomEmitter();
+export default customEmitter;
 
 const config = {
   type: Phaser.AUTO,
