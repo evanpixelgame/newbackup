@@ -61,7 +61,7 @@ updateActiveScene() {
       this.activeScene = newScene;
       console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
      // customEmitter.emit('SwitchOverlayActiveScene', scene);
-  });
+  };
 
   
   
