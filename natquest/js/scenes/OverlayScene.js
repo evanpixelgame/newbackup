@@ -23,6 +23,10 @@ export default class OverlayScene extends Phaser.Scene {
 
     this.getInitialActiveScene();
 
+customEmitter.on('activeSceneChanged', (newSceneKey) => {
+    this.updateActiveSceneWithData(newSceneKey);
+});
+    /*
     customEmitter.on('activeSceneChanged', (newSceneKey) => {
       
   console.log('updateActiveScene method activating');
@@ -35,6 +39,7 @@ export default class OverlayScene extends Phaser.Scene {
     }
   });
 }); 
+*/
                      
                      // ^^^ subscribe to global instance of custom event emitter
 
@@ -47,16 +52,7 @@ export default class OverlayScene extends Phaser.Scene {
     this.resizer = setupResizeListener(this);
        
   }
-/*
-updateActiveScene() {
-  console.log('updateActiveScene method activating');
-  this.scene.manager.scenes.forEach(scene => {
-    if (scene.scene.key !== 'OverlayScene') {
-    this.activeScene = scene;
-}
-}); 
-}
-*/
+
 
   getInitialActiveScene = () => {
   console.log('getInitialActiveScene method activating');
@@ -68,25 +64,19 @@ updateActiveScene() {
   });
 }
 
-    updateActiveScene = (newSceneKey) => {
+
+
+updateActiveScene = (newSceneKey) => {     
   console.log('updateActiveScene method activating');
+      console.log(this);
    let newScene = newSceneKey;   
   this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key === newScene) {
       this.activeScene = scene;
-      console.log('got initial active scene' + this.activeScene.scene.key + this.activeScene);
+      console.log('got new active scene ' + this.activeScene.scene.key + this.activeScene);
     }
   });
 }
-
-  /*
-  updateActiveScene = (newScene) => {
-  console.log('updateActiveScene method activating');
-      this.activeScene = newScene;
-      console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
-     // customEmitter.emit('SwitchOverlayActiveScene', scene);
-  };
-*/
   
   
   update() {
