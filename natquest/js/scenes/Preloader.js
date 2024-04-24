@@ -1,4 +1,4 @@
-import OpenWorld from '../scenes/OpenWorld.js';
+import OpenWorld from './scenes/OpenWorld.js';
 
 export class Preloader extends Phaser.Scene {
   constructor() {
