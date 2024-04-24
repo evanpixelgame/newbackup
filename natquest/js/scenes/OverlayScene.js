@@ -12,6 +12,7 @@ export default class OverlayScene extends Phaser.Scene {
   init(data) {
    // this.player = data.player;
     this.activeScene = null;
+   // this.player = this.activeScene.player;
   }
 
   preload() {
