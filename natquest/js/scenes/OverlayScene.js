@@ -34,40 +34,25 @@ export default class OverlayScene extends Phaser.Scene {
     this.resizer = setupResizeListener(this);
        
   }
-
+/*
 updateActiveScene() {
   console.log('updateActiveScene method activating');
   this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
     this.activeScene = scene;
 }
-});
-  
+}); 
 }
-  
-/*
-  updateActiveScene() { 
-    console.log('handling scene change okee');
-    this.scene.manager.scenes.forEach(scene => {
+*/
+  updateActiveScene = () => {
+  console.log('updateActiveScene method activating');
+  this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
-    this.activeScene = scene;
+      this.activeScene = scene;
+    }
+  });
 }
-});
-    console.log('titi is the prettiest in universe and here is only active under scene: ' + this.activeScene.scene.key + this.activeScene);
-    console.log(this.activeScene.cameraZoomLevel);
-  //  this.activeScene.velocityChange = 5;  // <= example of changing active scene from the overlay scene   
-  // this.eventEmitter.on('newActiveScene', this.activeScene);
-  //  this.eventEmitter.on('newActiveScene', this.updateActiveScene);
-}
-*/
-  /*
-//customEmit(eventName, eventData) {
-customEmit(eventName) {
-  console.log('customemit method called');
-  this.eventEmitter.emit(eventName);
-  // this.eventEmitter.emit(eventName, eventData);
-}
-*/
+  
   
   update() {
 
