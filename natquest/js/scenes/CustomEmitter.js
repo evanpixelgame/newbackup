@@ -1,5 +1,5 @@
 // Define a custom event emitter class
-export default class CustomEmitter {
+export default class CustomEmitter extends Phaser.Events.EventEmitter {
     constructor() {
         this.events = {};
     }
