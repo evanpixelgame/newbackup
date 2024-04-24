@@ -1,4 +1,4 @@
-import { Preloader } from "./scenes/gameStartScenes/Preloader.js";
+import { Preloader } from "./scenes/Preloader.js";
 import CustomEmitter from './scenes/CustomEmitter.js';
 
 const customEmitter = new CustomEmitter();
