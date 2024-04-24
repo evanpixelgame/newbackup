@@ -62,7 +62,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
      // scene.eventEmitter = new Phaser.Events.EventEmitter();
     // overlayScene.customEmit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
   //  scene.scene.get('OverlayScene').customEmit('activeSceneChanged');
-       customEmitter.emit('activeSceneChanged');
+        customEmitter.emit('activeSceneChanged', scene.scene.get('NewScene'));
     }
     break;
               
