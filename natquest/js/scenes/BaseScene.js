@@ -2,6 +2,7 @@ import { PlayerSprite } from './PlayerSprite.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
 import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './baseSceneFunctions.js';
 //import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
+import customEmitter from '../main.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor(key) {
