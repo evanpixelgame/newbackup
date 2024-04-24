@@ -9,7 +9,7 @@
 import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
 import OverlayScene from '../OverlayScene.js';
-import customEmitter from './CustomEmitter.js';
+//import customEmitter from './CustomEmitter.js';
 
 
 
