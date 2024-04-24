@@ -1,5 +1,6 @@
 //import { StartMenu } from "./StartMenu.js";
-import { WelcomePlayer } from "./WelcomePlayer.js";
+//import { WelcomePlayer } from "./WelcomePlayer.js";
+import OpenWorld from '../scenes/OpenWorld.js';
 
 export class Preloader extends Phaser.Scene {
   constructor() {
@@ -35,11 +36,12 @@ export class Preloader extends Phaser.Scene {
 
 
     // Load your assets here using Phaser's loading methods
+    
     // this.load.image('backgroundPortrait', 'assets/backgrounds/startScreenBackground.png');
-    this.load.image('sprite1', 'assets/sprites/charSelect/sprite1.png');
-    this.load.image('Baby Mouse', 'assets/sprites/charSelect/babyMouse64.png');
-    this.load.image('Confused Woman', 'assets/sprites/charSelect/confusedWoman64.png');
-    this.load.image('Fat Wolf', 'assets/sprites/charSelect/fatWolf64.png');
+   // this.load.image('sprite1', 'assets/sprites/charSelect/sprite1.png');
+   // this.load.image('Baby Mouse', 'assets/sprites/charSelect/babyMouse64.png');
+ //   this.load.image('Confused Woman', 'assets/sprites/charSelect/confusedWoman64.png');
+//    this.load.image('Fat Wolf', 'assets/sprites/charSelect/fatWolf64.png');
     this.load.image('backgroundLandscape', 'assets/backgrounds/startScreenBackgroundLandscape.png');
     this.load.image('tiles', 'assets/tilesets/tilemap2.png');
     this.load.image('tilesheetInterior', 'assets/tilesets/tilesheetInterior.png');
@@ -60,12 +62,16 @@ export class Preloader extends Phaser.Scene {
     this.load.image('settingsIcon', 'assets/UI/icons/settings-icon.png');
     this.load.image('fullscreenIcon', 'assets/UI/icons/full-screen-icon.png');
     this.load.image('infoIcon', 'assets/UI/icons/info-icon.png');
+          this.load.spritesheet("player", "assets/sprites/player/fatWolf.png", {
+        frameWidth: 64,
+        frameHeight: 64
+      });
 
     this.load.on('complete', () => {
       progressText.destroy(); // Remove the progress text when loading is complete
       progressBar.destroy(); // Remove the progress bar when loading is complete
-      this.scene.add('WelcomePlayer', WelcomePlayer);
-      this.scene.start('WelcomePlayer');
+      this.scene.add('OpenWorld', OpenWorld);
+      this.scene.start('OpenWorld');
     });
   }
 
