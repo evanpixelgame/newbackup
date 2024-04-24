@@ -55,14 +55,25 @@ updateActiveScene() {
   });
 }
 
-  
+    updateActiveScene = (newSceneKey) => {
+  console.log('updateActiveScene method activating');
+   let newScene = newSceneKey;   
+  this.scene.manager.scenes.forEach(scene => {
+    if (scene.scene.key === newScene) {
+      this.activeScene = scene;
+      console.log('got initial active scene' + this.activeScene.scene.key + this.activeScene);
+    }
+  });
+}
+
+  /*
   updateActiveScene = (newScene) => {
   console.log('updateActiveScene method activating');
       this.activeScene = newScene;
       console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
      // customEmitter.emit('SwitchOverlayActiveScene', scene);
   };
-
+*/
   
   
   update() {
