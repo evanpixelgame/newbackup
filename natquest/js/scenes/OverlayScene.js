@@ -23,6 +23,7 @@ export default class OverlayScene extends Phaser.Scene {
 
     this.updateActiveScene('OpenWorld'); //Put the key of whatever the initial scene is as the argument here to initialize it
 
+    //in collision handlers, custom event emitter will say what new scene key is when transitioning scenes
 customEmitter.on('activeSceneChanged', (newSceneKey) => {
     this.updateActiveScene(newSceneKey);
 });
