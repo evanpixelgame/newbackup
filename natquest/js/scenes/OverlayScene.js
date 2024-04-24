@@ -24,7 +24,7 @@ export default class OverlayScene extends Phaser.Scene {
     this.getInitialActiveScene();
 
 customEmitter.on('activeSceneChanged', (newSceneKey) => {
-    this.updateActiveSceneWithData(newSceneKey);
+    this.updateActiveScene(newSceneKey);
 });
     /*
     customEmitter.on('activeSceneChanged', (newSceneKey) => {
