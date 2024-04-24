@@ -1,5 +1,11 @@
-  
+import customEmitter from '../../main.js';  
+
 export function createZoomIcons(scene) {
+
+ customEmitter.on('switchOverlayActiveScene', (newScene) => {
+scene.activeScene = newScene;
+});
+  
   const vw = window.innerWidth;
   
    const zoomInIcon = scene.add.sprite(7 * vw / 9, 50, 'zoomInIcon').setInteractive().setScale(0.2);
