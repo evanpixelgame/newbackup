@@ -49,7 +49,7 @@ updateActiveScene() {
   this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
       this.activeScene = scene;
-      console.log('attempting to console new active scene: ' + this.activeScene.key + this.activeScene);
+      console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
       customEmitter.emit('SwitchOverlayActiveScene', scene);
     }
   });
