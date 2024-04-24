@@ -21,28 +21,12 @@ export default class OverlayScene extends Phaser.Scene {
 
   create() {
 
-    this.getInitialActiveScene();
+    this.updateActiveScene('OpenWorld'); //Put the key of whatever the initial scene is as the argument here to initialize it
 
 customEmitter.on('activeSceneChanged', (newSceneKey) => {
     this.updateActiveScene(newSceneKey);
 });
-    /*
-    customEmitter.on('activeSceneChanged', (newSceneKey) => {
-      
-  console.log('updateActiveScene method activating');
-      console.log(this);
-   let newScene = newSceneKey;   
-  this.scene.manager.scenes.forEach(scene => {
-    if (scene.scene.key === newScene) {
-      this.activeScene = scene;
-      console.log('got new active scene ' + this.activeScene.scene.key + this.activeScene);
-    }
-  });
-}); 
-*/
-                     
-                     // ^^^ subscribe to global instance of custom event emitter
-
+  
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
     
     this.zoomIcons = createZoomIcons(this); // positioned directly to left of fullscreen icon, at about 3/4 viewport 
@@ -52,17 +36,6 @@ customEmitter.on('activeSceneChanged', (newSceneKey) => {
     this.resizer = setupResizeListener(this);
        
   }
-
-
-  getInitialActiveScene = () => {
-  console.log('getInitialActiveScene method activating');
-  this.scene.manager.scenes.forEach(scene => {
-    if (scene.scene.key !== 'OverlayScene' && scene.paused !== true) {
-      this.activeScene = scene;
-      console.log('got initial active scene' + this.activeScene.scene.key + this.activeScene);
-    }
-  });
-}
 
 
 
