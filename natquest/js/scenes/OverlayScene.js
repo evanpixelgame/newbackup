@@ -21,7 +21,7 @@ export default class OverlayScene extends Phaser.Scene {
 
   create() {
 
-    this.updateActiveScene();
+    this.getInitialActiveScene();
 
     customEmitter.on('activeSceneChanged', this.updateActiveScene); //subscribe to global instance of custom event emitter
 
@@ -44,16 +44,25 @@ updateActiveScene() {
 }); 
 }
 */
-  updateActiveScene = () => {
-  console.log('updateActiveScene method activating');
+
+  getInitialActiveScene = () => {
+  console.log('getInitialActiveScene method activating');
   this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene') {
       this.activeScene = scene;
-      console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
-      customEmitter.emit('SwitchOverlayActiveScene', scene);
+      console.log('got initial active scene');
     }
   });
 }
+
+  
+  updateActiveScene = (newScene) => {
+  console.log('updateActiveScene method activating');
+      this.activeScene = newScene;
+      console.log('attempting to console new active scene: ' + this.activeScene.scene.key + this.activeScene);
+     // customEmitter.emit('SwitchOverlayActiveScene', scene);
+  });
+
   
   
   update() {
