@@ -51,7 +51,7 @@ updateActiveScene() {
       this.activeScene = scene;
     }
   });
-    console.log('attempting to console new active scene: ' + this.activeScene);
+    console.log('attempting to console new active scene: ' + this.activeScene.key + this.activeScene);
 }
   
   
