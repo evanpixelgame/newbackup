@@ -1,5 +1,5 @@
 import { Preloader } from "./scenes/gameStartScenes/Preloader.js";
-//import CustomEmitter from './scenes/CustomEmitter.js';
+import CustomEmitter from './scenes/CustomEmitter.js';
 
 //set the width and height of the canvas equal the width and height of the screen it's being played on
 const width = window.innerWidth;
