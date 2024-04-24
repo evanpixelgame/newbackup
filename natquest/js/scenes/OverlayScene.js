@@ -50,7 +50,7 @@ updateActiveScene() {
   this.scene.manager.scenes.forEach(scene => {
     if (scene.scene.key !== 'OverlayScene' && scene.paused !== true) {
       this.activeScene = scene;
-      console.log('got initial active scene');
+      console.log('got initial active scene' + this.activeScene.scene.key + this.activeScene);
     }
   });
 }
