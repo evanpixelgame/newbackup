@@ -1,5 +1,5 @@
 // Define a custom event emitter class
-export default class EventEmitter {
+export default class CustomEmitter {
     constructor() {
         this.events = {};
     }
