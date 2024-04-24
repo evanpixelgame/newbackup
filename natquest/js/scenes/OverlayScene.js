@@ -52,7 +52,7 @@ export default class OverlayScene extends Phaser.Scene {
     console.log(this.activeScene.cameraZoomLevel);
   //  this.activeScene.velocityChange = 5;  // <= example of changing active scene from the overlay scene
     
-    this.events.emit('newActiveScene', this.activeScene);
+    this.events.on('newActiveScene', this.activeScene);
  
 }
 
