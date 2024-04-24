@@ -23,7 +23,7 @@ export default class OverlayScene extends Phaser.Scene {
 
     this.getInitialActiveScene();
 
-    customEmitter.on('activeSceneChanged', this.getInitialActiveScene); //subscribe to global instance of custom event emitter
+    customEmitter.on('activeSceneChanged', this.updateActiveScene); //subscribe to global instance of custom event emitter
 
     this.fullscreenIcon = createFullscreenIcon(this); //fullscreen icon, positioned in top right corner of viewport
     
