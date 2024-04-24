@@ -2,7 +2,7 @@ import { createFullscreenIcon } from './overlaySceneFunctions/fullscreen.js';
 import { createZoomIcons } from './overlaySceneFunctions/zoom.js';
 import { resizeGame, setupResizeListener } from './overlaySceneFunctions/resizer.js';
 import { createHealthBar } from './overlaySceneFunctions/healthBar.js';
-import customEmitter from './CustomEmitter.js';
+//import customEmitter from './CustomEmitter.js';
 
 export default class OverlayScene extends Phaser.Scene {
   constructor() {
