@@ -40,7 +40,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.pause('OpenWorld');
         scene.scene.resume('NewScene');
         scene.scene.bringToTop('NewScene'); 
-      scene.scene.bringToTop('OverlayScene');
+    //  scene.scene.bringToTop('OverlayScene');
      // OverlayScene.handleSceneChange();
       //overlayScene.customEmit('activeSceneChanged');  //if this works, add bring to top to the active scene change method
       // scene.scene.get('OverlayScene').customEmit('activeSceneChanged');
@@ -60,7 +60,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
             engine: scene.matter.world,
             world: scene.world,
         });
-      scene.scene.bringToTop('OverlayScene');
+   //   scene.scene.bringToTop('OverlayScene');
       // OverlayScene.handleSceneChange();
      // scene.eventEmitter = new Phaser.Events.EventEmitter();
     // overlayScene.customEmit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
