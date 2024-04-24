@@ -10,7 +10,7 @@ import OpenWorld from '../scenes/OpenWorld.js';
 import NewScene from '../scenes/NewScene.js';
 import OverlayScene from '../OverlayScene.js';
 
-const overlaySceneInstance = new OverlayScene();
+const overlayScene = scene.get('OverlayScene');
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
@@ -37,7 +37,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.bringToTop('NewScene'); 
       scene.scene.bringToTop('OverlayScene');
      // OverlayScene.handleSceneChange();
-      OverlaySceneInstance.customEmit('activeSceneChanged');  //if this works, add bring to top to the active scene change method
+      overlayScene.customEmit('activeSceneChanged');  //if this works, add bring to top to the active scene change method
     } else {
       console.log('youve hit the door sensor for the first time');
       console.log('x position: ' + scene.player.x + '  y position: ' + scene.player.y);
@@ -56,7 +56,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.scene.bringToTop('OverlayScene');
       // OverlayScene.handleSceneChange();
      // scene.eventEmitter = new Phaser.Events.EventEmitter();
-     OverlaySceneInstance.customEmit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
+     overlayScene.customEmit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
     }
     break;
               
