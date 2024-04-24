@@ -30,8 +30,6 @@ export class WelcomePlayer extends Phaser.Scene {
 
   create() {
 
-    console.log(gameManager.selectedCharacter + ': should be being displayed');
-
     const vw = window.innerWidth;
     const xMid = vw * .5;
     const vh = window.innerHeight;
