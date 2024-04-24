@@ -42,6 +42,11 @@ export default class OverlayScene extends Phaser.Scene {
        
   }
 
+updateActiveScene() {
+  console.log('updateActiveScene method activating');
+}
+  
+/*
   updateActiveScene() { 
     console.log('handling scene change okee');
     this.scene.manager.scenes.forEach(scene => {
@@ -55,7 +60,7 @@ export default class OverlayScene extends Phaser.Scene {
   // this.eventEmitter.on('newActiveScene', this.activeScene);
   //  this.eventEmitter.on('newActiveScene', this.updateActiveScene);
 }
-
+*/
   /*
 //customEmit(eventName, eventData) {
 customEmit(eventName) {
