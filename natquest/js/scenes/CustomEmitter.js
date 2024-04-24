@@ -1,8 +1,13 @@
-// Define a custom event emitter class
+let instance = null;
+
 export default class CustomEmitter extends Phaser.Events.EventEmitter {
     constructor() {
         super();
-        this.events = {};
+        if (!instance) {
+            instance = this;
+            this.events = {};
+        }
+        return instance;
     }
 
     // Method to subscribe to events
