@@ -44,6 +44,12 @@ export default class OverlayScene extends Phaser.Scene {
 
 updateActiveScene() {
   console.log('updateActiveScene method activating');
+  this.scene.manager.scenes.forEach(scene => {
+    if (scene.scene.key !== 'OverlayScene') {
+    this.activeScene = scene;
+}
+});
+  
 }
   
 /*
