@@ -1,10 +1,10 @@
-import customEmitter from '../../main.js';  
+//import customEmitter from '../../main.js';  
 
 export function createZoomIcons(scene) {
 
- customEmitter.on('switchOverlayActiveScene', (newScene) => {
-scene.activeScene = newScene;
-});
+// customEmitter.on('switchOverlayActiveScene', (newScene) => {
+//scene.activeScene = newScene;
+//});
   
   const vw = window.innerWidth;
   
