@@ -48,7 +48,7 @@ updateActiveScene() {
   getInitialActiveScene = () => {
   console.log('getInitialActiveScene method activating');
   this.scene.manager.scenes.forEach(scene => {
-    if (scene.scene.key !== 'OverlayScene') {
+    if (scene.scene.key !== 'OverlayScene' && scene.paused !== true) {
       this.activeScene = scene;
       console.log('got initial active scene');
     }
