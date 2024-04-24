@@ -40,6 +40,7 @@ customEmitter.on('activeSceneChanged', (newSceneKey) => {
 
 
 updateActiveScene = (newSceneKey) => {     
+   this.scene.bringToTop('OverlayScene');
   console.log('updateActiveScene method activating');
       console.log(this);
    let newScene = newSceneKey;   
