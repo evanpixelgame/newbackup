@@ -1,5 +1,5 @@
 import { Preloader } from "./scenes/Preloader.js";
-import CustomEmitter from './scenes/utils/CustomEmitter.js';
+import CustomEmitter from './scenes/utils/globalUtils/CustomEmitter.js';
 
 const customEmitter = new CustomEmitter();
 export default customEmitter;
