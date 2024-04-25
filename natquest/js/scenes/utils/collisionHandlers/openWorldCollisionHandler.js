@@ -6,11 +6,10 @@
 //maybe try making the collision handlers and other interaction handlers classes that i can make new isntances of
 //see if i can make the switch cases easier to set up if made as a class
 
-import OpenWorld from '../scenes/OpenWorld.js';
-import NewScene from '../scenes/NewScene.js';
-import OverlayScene from '../OverlayScene.js';
-//import customEmitter from './CustomEmitter.js';
-import customEmitter from '../../main.js';
+import OpenWorld from '../../scenes/OpenWorld.js';
+import NewScene from '../../scenes/NewScene.js';
+import OverlayScene from '../../OverlayScene.js';
+import customEmitter from '../../../main.js';
 
 
 
