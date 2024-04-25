@@ -6,7 +6,6 @@ import { createCameraConstraints } from './utils/baseSceneUtils/cameraConstraint
 import { createKeyboardAssignments, createMobileControls } from './utils/baseSceneUtils/playerControls.js';
 import { createPlayerAnimations } from './utils/baseSceneUtils/playerAnimations.js';
 import { updatePlayerMovement } from './utils/baseSceneUtils/updatePlayer.js';
-
 //import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 import customEmitter from '../main.js';
 
