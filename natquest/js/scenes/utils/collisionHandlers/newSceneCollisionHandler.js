@@ -2,9 +2,9 @@
 // Then make sure to give it a on collisionend switch case that reverses the effect after the collisionstart
 
 //import OpenWorld from '../scenes/OpenWorld.js';
-import NewScene from '../scenes/NewScene.js';
-import NextRoom from '../scenes/NextRoom.js';
-import customEmitter from '../../main.js';
+import NewScene from '../../scenes/NewScene.js';
+import NextRoom from '../../scenes/NextRoom.js';
+import customEmitter from '../../../main.js';
 
 export function sensorHandler(scene, map, player, transitionSensors) {
 
