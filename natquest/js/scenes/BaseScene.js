@@ -1,6 +1,6 @@
 import { PlayerSprite } from './PlayerSprite.js';
 import { createMap, createMapBoundary } from './utils/baseSceneUtils/createMap.js';
-import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
+import { sensorMapSet, createCollisionObjects } from './utils/baseSceneUtils/mapSetter.js';
 import { createCameraConstraints } from './utils/baseSceneUtils/cameraConstraints.js';
 import { createKeyboardAssignments, createMobileControls } from './utils/baseSceneUtils/playerControls.js';
 import { createPlayerAnimations } from './utils/baseSceneUtils/playerAnimations.js';
