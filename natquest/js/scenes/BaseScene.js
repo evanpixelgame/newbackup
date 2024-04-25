@@ -1,6 +1,12 @@
 import { PlayerSprite } from './PlayerSprite.js';
 import { sensorMapSet, createCollisionObjects } from './collisionHandlers/mapSetter.js';
-import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './utils/baseSceneUtils/baseSceneFunctions.js';
+//import { createMap, createMapBoundary, createCameraConstraints, createKeyboardAssignments, createMobileControls, updatePlayerMovement, createPlayerAnimations, createUIIcons } from './utils/baseSceneUtils/baseSceneFunctions.js';
+import { createMap, createMapBoundary } from './utils/baseSceneUtils/createMap.js';
+import { createCameraConstraints } from './utils/baseSceneUtils/cameraConstraints.js';
+import { createKeyboardAssignments, createMobileControls } from './utils/baseSceneUtils/playerControls.js';
+import { createPlayerAnimations } from './utils/baseSceneUtils/playerAnimations.js';
+import { updatePlayerMovement } from './utils/baseSceneUtils/updatePlayer.js';
+
 //import { sensorHandler } from './collisionHandlers/openWorldCollisionHandler.js'; //need to be sure to import each scenes collisionhandler
 import customEmitter from '../main.js';
 
