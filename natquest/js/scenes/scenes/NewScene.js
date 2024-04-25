@@ -1,5 +1,5 @@
 import BaseScene from '../BaseScene.js';
-import { sensorHandler } from '../collisionHandlers/newSceneCollisionHandler.js';
+import { sensorHandler } from '../utils/collisionHandlers/newSceneCollisionHandler.js';
 
 export default class NewScene extends BaseScene {
     constructor() {
