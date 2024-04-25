@@ -1,5 +1,5 @@
 import BaseScene from '../BaseScene.js';
-import { sensorHandler } from '../collisionHandlers/openWorldCollisionHandler.js';
+import { sensorHandler } from '../utils/collisionHandlers/openWorldCollisionHandler.js';
 import OverlayScene from '../OverlayScene.js';
 
 export default class OpenWorld extends BaseScene {
