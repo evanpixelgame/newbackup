@@ -16,7 +16,7 @@ export default class NewScene extends BaseScene {
         this.startPosY = 665;
         this.playerPosX = 970;
         this.playerPosY = 665;
-        this.cameraZoomLevel = 1;
+        this.cameraZoomLevel = 2;
         console.log('Player received in NewScene:', this.player);
     }
 
