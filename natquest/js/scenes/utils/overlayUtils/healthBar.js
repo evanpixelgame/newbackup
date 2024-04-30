@@ -37,3 +37,23 @@ export function createHealthBar(scene) {
     scene.healthBarDepletion.setOrigin(0, 0);
 
 }
+
+export function updateHealthBar(scene, healthChange) {
+
+    const maxHealth = scene.playerMaxHealth;
+
+    //adding the health change, ie. make sure negative health change written as negative integer
+    const updatedHealth = scene.playerHealth + healthChange; 
+
+    const healthPercentage = updatedHealth / maxHealth;
+    // Calculate the new height of the health bar based on the health percentage
+    const newHeight = scene.healthBarDepletion.height * healthPercentage;
+
+    // Tween the height of the health bar
+    scene.scene.tweens.add({
+        targets: scene.healthBarDepletion,
+        scaleY: newHeight / scene.healthBarDepletion.height, // Scale Y to adjust the height
+        duration: 500, // Duration of the tween in milliseconds
+        ease: 'Linear', // Easing function
+    });
+}
