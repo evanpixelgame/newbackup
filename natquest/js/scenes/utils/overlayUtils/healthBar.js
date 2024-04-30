@@ -8,8 +8,8 @@ export function createHealthBar(scene) {
         320,  // Height of the object
         0x000000  // Color of the object
     );
-        scene.healthBar.setScrollFactor(0, 0);
-        scene.healthBar.setDepth(100000);
+        scene.healthBarBackground.setScrollFactor(0, 0);
+        scene.healthBarBackground.setDepth(100000);
 
     
 
@@ -30,7 +30,7 @@ export function createHealthBar(scene) {
         300,  // Height of the object
         0xffffff  // Color of the object (red)
     );
-        scene.healthBar.setScrollFactor(0, 0);
-        scene.healthBar.setDepth(100002);
+        scene.healthBarDepletion.setScrollFactor(0, 0);
+        scene.healthBarDepletion.setDepth(100002);
 
 }
