@@ -97,7 +97,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
           //  healthBarReductionZone();
 
               break;
-
+//TITI IS GORGEOUS
 
             // Add more cases for other sensor names as needed
             default:
