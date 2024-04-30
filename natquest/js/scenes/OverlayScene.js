@@ -1,7 +1,7 @@
 import { createFullscreenIcon } from './utils/overlayUtils/fullscreen.js';
 import { createZoomIcons } from './utils/overlayUtils/zoom.js';
 import { resizeGame, setupResizeListener } from './utils/overlayUtils/resizer.js';
-import { createHealthBar, updateHealthBar } from './utils/overlayUtils/healthBar.js';
+import { createHealthBar } from './utils/overlayUtils/healthBar.js';
 import customEmitter from '../main.js';
 
 export default class OverlayScene extends Phaser.Scene {
@@ -15,6 +15,7 @@ export default class OverlayScene extends Phaser.Scene {
         this.activeScene = null;
         this.playerMaxHealth = 150;
         this.playerHealth = this.playerMaxHealth;
+        this.healthChange = -5;
     }
 
     preload() {
@@ -37,7 +38,11 @@ export default class OverlayScene extends Phaser.Scene {
 
         this.resizer = setupResizeListener(this);
 
-        customEmitter.on('healthChange', updateHealthBar);
+        const healthChangeHandler = (healthChange) => {
+            this.healthBarDepletion.tweenHeight(healthChange);
+        };
+
+        customEmitter.on('healthChange', healthChangeHandler);
 
     }
 

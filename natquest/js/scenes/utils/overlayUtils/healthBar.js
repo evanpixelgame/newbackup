@@ -36,24 +36,33 @@ export function createHealthBar(scene) {
     scene.healthBarDepletion.setDepth(100002);
     scene.healthBarDepletion.setOrigin(0, 0);
 
+    scene.healthBarDepletion.tweenHeight = function(healthChange) {
+        scene.tweens.add({
+            targets: scene.healthBarDepletion,
+            height: scene.healthBarDepletion.height + healthChange,
+            duration: 500,
+            ease: 'Linear'
+        });
+    };
 }
+    
+
+/*
 
 export function updateHealthBar(scene, healthChange) {
-
-    const maxHealth = scene.playerMaxHealth;
 
     //adding the health change, ie. make sure negative health change written as negative integer
     const updatedHealth = scene.playerHealth + healthChange; 
 
-    const healthPercentage = updatedHealth / maxHealth;
-    // Calculate the new height of the health bar based on the health percentage
-    const newHeight = scene.healthBarDepletion.height * healthPercentage;
-
     // Tween the height of the health bar
-    scene.scene.tweens.add({
+    scene.tweens.add({
         targets: scene.healthBarDepletion,
-        scaleY: newHeight / scene.healthBarDepletion.height, // Scale Y to adjust the height
+        props: {
+            height: updatedHealth, // Target height for the tween
+          },
         duration: 500, // Duration of the tween in milliseconds
         ease: 'Linear', // Easing function
     });
 }
+
+*/

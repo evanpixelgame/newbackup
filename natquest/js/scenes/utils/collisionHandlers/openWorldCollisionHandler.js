@@ -39,10 +39,6 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         scene.scene.pause('OpenWorld');
         scene.scene.resume('NewScene');
         scene.scene.bringToTop('NewScene'); 
-    //  scene.scene.bringToTop('OverlayScene');
-     // OverlayScene.handleSceneChange();
-      //overlayScene.customEmit('activeSceneChanged');  //if this works, add bring to top to the active scene change method
-      // scene.scene.get('OverlayScene').customEmit('activeSceneChanged');
       customEmitter.emit('activeSceneChanged', 'NewScene');
     } else {
       console.log('youve hit the door sensor for the first time');
@@ -53,17 +49,11 @@ export function sensorHandler(scene, map, player, transitionSensors) {
       scene.NewSceneLaunched = true;
       // If 'NewScene' is not active, launch it
         scene.scene.pause('OpenWorld');
-      // scene.scene.add('NewScene', NewScene);
         scene.scene.launch('NewScene', {
             player: scene.player,
             engine: scene.matter.world,
             world: scene.world,
         });
-   //   scene.scene.bringToTop('OverlayScene');
-      // OverlayScene.handleSceneChange();
-     // scene.eventEmitter = new Phaser.Events.EventEmitter();
-    // overlayScene.customEmit('activeSceneChanged'); //if this works, add bring to top to the active scene change method
-  //  scene.scene.get('OverlayScene').customEmit('activeSceneChanged');
         customEmitter.emit('activeSceneChanged', 'NewScene');
     }
     break;
@@ -72,6 +62,23 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               console.log('cue sirens, +2 speed');
               scene.velocityChange += 2; 
               break;
+
+
+              case 'slowZone': 
+              console.log('testing health bar');
+              scene.time.addEvent({
+                delay: 1000,
+                loop: true,
+                callback: () => {
+                    // Function to execute continuously
+                    console.log('Function executed continuously during overlap');
+                    customEmitter.emit('healthChange', -2)
+                },
+                callbackScope: scene
+            });
+
+              break;
+
 
             // Add more cases for other sensor names as needed
             default:
