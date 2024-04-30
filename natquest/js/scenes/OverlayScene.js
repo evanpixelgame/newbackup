@@ -10,12 +10,9 @@ export default class OverlayScene extends Phaser.Scene {
     }
 
     init(data) {
-        // this.player = data.player;
-        // this.player = this.activeScene.player;
         this.activeScene = null;
         this.playerMaxHealth = 150;
         this.playerHealth = this.playerMaxHealth;
-        this.healthChange = -5;
     }
 
     preload() {

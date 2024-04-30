@@ -26,6 +26,8 @@ export function sensorHandler(scene, map, player, transitionSensors) {
         // Get the other body involved in the collision
         const otherBody = pair.bodyA === player.body ? pair.bodyB : pair.bodyA;
         const isCustom = otherBody.isSensor == true;
+
+        // let healthBarReductionZone = null;
         
         if (isCustom) {
           switch (otherBody.customID) {
@@ -66,16 +68,33 @@ export function sensorHandler(scene, map, player, transitionSensors) {
 
               case 'slowZone': 
               console.log('testing health bar');
-              scene.time.addEvent({
+             scene.healthBarReductionZone = scene.time.addEvent({
                 delay: 1000,
                 loop: true,
                 callback: () => {
                     // Function to execute continuously
                     console.log('Function executed continuously during overlap');
+                    customEmitter.emit('healthChange', 2) //right now need to do +2 in order to subtract 2 health
+                },
+                callbackScope: scene
+            });
+          //  healthBarReductionZone();
+
+              break;
+
+              case 'teleportZone': 
+              console.log('testing health bar');
+             scene.healthBarIncreaseZone = scene.time.addEvent({
+                delay: 1000,
+                loop: true,
+                callback: () => {
+                    // Function to execute continuously
+                    console.log('THIS IS A HOSPITAL AND TITI IS THE MOST GORGEOUS HUMAN WHO EVER LIVED');
                     customEmitter.emit('healthChange', -2)
                 },
                 callbackScope: scene
             });
+          //  healthBarReductionZone();
 
               break;
 
@@ -109,7 +128,18 @@ export function sensorHandler(scene, map, player, transitionSensors) {
               console.log('whee woo, collision overlap over, -2 speed');
               scene.velocityChange -= 2; 
               break;
+
+
+              case 'slowZone': //reverses the velocity change made in the collisionstart fastZone switch case
+              console.log('remove health reduction tween');
+              scene.healthBarReductionZone.remove(); 
+              break;
               
+              case 'teleportZone': //reverses the velocity change made in the collisionstart fastZone switch case
+              console.log('remove health increase tween');
+              scene.healthBarIncreaseZone.remove(); 
+              break;
+
             // Add more cases for other sensor names as needed
             default:
               console.log('Ended collision with ' + otherBody.customID);
