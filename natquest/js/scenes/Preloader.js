@@ -58,6 +58,7 @@ export class Preloader extends Phaser.Scene {
         this.load.image('settingsIcon', 'assets/UI/icons/settings-icon.png');
         this.load.image('fullscreenIcon', 'assets/UI/icons/full-screen-icon.png');
         this.load.image('infoIcon', 'assets/UI/icons/info-icon.png');
+        this.load.image('emptyItemSlot', 'assets/images/inventory/emptyItemSlot.png'); //64x64px
 
         //***************************LOAD PLUGINS***************************************************************************    
         this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
