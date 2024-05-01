@@ -83,6 +83,9 @@ export default class Inventory {
     this.key8 = this.input.keyboard.addKey('8');
     this.key9 = this.input.keyboard.addKey('9');
     this.key0 = this.input.keyboard.addKey('0');
+
+    this.keyA.on('keydown', this.handleAKeyPress, this); // Example using 'keydown' event
+this.keyS.on('keydown', this.handleSKeyPress, this);
   }
    
 

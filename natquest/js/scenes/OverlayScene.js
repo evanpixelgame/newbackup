@@ -3,6 +3,7 @@ import { createZoomIcons } from './utils/overlayUtils/zoom.js';
 import { resizeGame, setupResizeListener } from './utils/overlayUtils/resizer.js';
 import { createHealthBar } from './utils/overlayUtils/healthBar.js';
 import Inventory from './utils/overlayUtils/inventory/inventory.js';
+import createInventoryIcon from './utils/overlayUtils/inventory/inventoryUtils/createInventoryIcon.js';
 import customEmitter from '../main.js';
 
 export default class OverlayScene extends Phaser.Scene {
@@ -46,6 +47,8 @@ export default class OverlayScene extends Phaser.Scene {
         this.inventory = new Inventory(this);
 
         this.inventory.createInventoryContainer(this);
+        
+        this.inventoryIcon = createInventoryIcon(this);
 
 
     }

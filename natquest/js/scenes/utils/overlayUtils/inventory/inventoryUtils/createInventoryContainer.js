@@ -1,7 +1,10 @@
 
 export function createInventoryContainer(scene) {
+
+const containerWidth = window.innerWidth * 1 / 2;
+const containerHeight = window.innerHeight * 1 / 2;
 // Create a container to hold the item slots
-const inventoryContainer = scene.add.container(window.innerWidth * 3 / 4, window.innerHeight * 3 / 4);
+const inventoryContainer = scene.add.container(containerWidth, containerHeight);
 
 // Define the number of rows and columns for the item slots
 const numRows = 2; // Example number of rows
@@ -13,8 +16,8 @@ const itemSlots = [];
 // Create item slot sprites and add them to the container
 const slotWidth = 64; // Example width of each item slot
 const slotHeight = 64; // Example height of each item slot
-const horizontalSpacing = 10; // Example horizontal spacing between item slots
-const verticalSpacing = 10; // Example vertical spacing between item slots
+const horizontalSpacing = 0; // Example horizontal spacing between item slots
+const verticalSpacing = 0; // Example vertical spacing between item slots
 for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
         const x = col * (slotWidth + horizontalSpacing);
