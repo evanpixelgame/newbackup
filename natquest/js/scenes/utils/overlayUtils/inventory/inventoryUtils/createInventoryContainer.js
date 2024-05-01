@@ -1,7 +1,7 @@
 
-export function createInventoryContainer() {
+export function createInventoryContainer(scene) {
 // Create a container to hold the item slots
-const inventoryContainer = this.add.container(window.innerWidth * 3 / 4, window.innerHeight * 3 / 4);
+const inventoryContainer = scene.add.container(window.innerWidth * 3 / 4, window.innerHeight * 3 / 4);
 
 // Define the number of rows and columns for the item slots
 const numRows = 2; // Example number of rows
@@ -19,7 +19,7 @@ for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
         const x = col * (slotWidth + horizontalSpacing);
         const y = row * (slotHeight + verticalSpacing);
-        const itemSlot = this.add.sprite(x, y, 'emptyItemSlot'); // Example sprite for item slot
+        const itemSlot = scene.add.sprite(x, y, 'emptyItemSlot'); // Example sprite for item slot
         inventoryContainer.add(itemSlot);
         itemSlots.push(itemSlot);
     }
@@ -30,7 +30,7 @@ for (let row = 0; row < numRows; row++) {
 export function populateItemSlot(slotIndex, itemIconKey) {
     const itemSlot = itemSlots[slotIndex];
     if (itemSlot) {
-        const itemIcon = this.add.sprite(0, 0, itemIconKey); // Example sprite for item icon
+        const itemIcon = scene.add.sprite(0, 0, itemIconKey); // Example sprite for item icon
         itemSlot.add(itemIcon);
     }
 }

@@ -1,11 +1,17 @@
 import { createInventoryContainer, populateItemSlot, depopulateItemSlot } from "./inventoryUtils/createInventoryContainer.js";
 
 export default class Inventory {
-    constructor() {
+    constructor(scene) {
+
+        scene.add.existing(this)
         this.items = [];
         this.inventoryContainer = [];
         this.activeItemBar = [];
+        
     }
+
+
+
 
     addItem(item) {
         const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
@@ -30,9 +36,9 @@ export default class Inventory {
         });
     }
 
-    createInventoryContainer() {
+    createInventoryContainer(scene) {
       console.log('call the import funct w/ method of same name');
-      createInventoryContainer();
+      createInventoryContainer(scene);
     }
 
 
