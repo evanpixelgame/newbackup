@@ -16,12 +16,3 @@ export default function createInventoryIcon(scene) {
     return scene.inventoryIcon;
 
 }
-
-function isInventoryVisible() {
-    return (
-        document.fullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement ||
-        document.msFullscreenElement
-    );
-}

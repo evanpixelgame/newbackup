@@ -27,6 +27,8 @@ for (let row = 0; row < numRows; row++) {
         itemSlots.push(itemSlot);
     }
 }
+
+scene.inventoryContainer.visible = false;
 }
 
 // Function to populate an item slot with an item icon

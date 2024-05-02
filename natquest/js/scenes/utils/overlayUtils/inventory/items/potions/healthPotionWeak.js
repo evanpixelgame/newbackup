@@ -1,4 +1,3 @@
-export function healthPotionWeak() {
 
 const healthPotionWeak = {
     name: 'Health Potion Weak',
@@ -10,6 +9,4 @@ const healthPotionWeak = {
     consumable: true,
   };
 
-}
-
-//add the methods for use in the item itself? or allow it to share common methods?
+export default healthPotionWeak;
