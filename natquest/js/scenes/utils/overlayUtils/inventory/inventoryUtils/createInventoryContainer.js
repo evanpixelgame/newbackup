@@ -23,13 +23,47 @@ for (let row = 0; row < numRows; row++) {
         const x = col * (slotWidth + horizontalSpacing);
         const y = row * (slotHeight + verticalSpacing);
         const itemSlot = scene.add.sprite(x, y, 'emptyItemSlot'); // Example sprite for item slot
+        const itemId = row * numCols + col; // Unique ID calculation based on row and column
+        itemSlot.setData('itemSlotId', itemId); // Set unique ID as data for the item slot
         scene.inventoryContainer.add(itemSlot);
         itemSlots.push(itemSlot);
     }
 }
 
+scene.inventoryContainer.itemSlots = itemSlots;
 scene.inventoryContainer.visible = false;
+
+
+
+const itemSlotContainers = [];
+
+// Create item slot containers and add them to the container
+for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+        const x = col * (slotWidth + horizontalSpacing);
+        const y = row * (slotHeight + verticalSpacing);
+        const itemSlotContainer = scene.add.container(x, y); // Create container for item slot
+        const emptySlotSprite = scene.add.sprite(0, 0, 'emptyItemSlot'); // Example sprite for empty slot
+        itemSlotContainer.add(emptySlotSprite); // Add empty slot sprite to container
+        scene.inventoryContainer.add(itemSlotContainer); // Add item slot container to inventory container
+        itemSlotContainers.push(itemSlotContainer);
+    }
 }
+
+// Store itemSlotContainers array as a property of inventoryContainer for easier access
+scene.inventoryContainer.itemSlotContainers = itemSlotContainers;
+
+
+}
+
+
+export function populateItemSlots(items) {
+    items.forEach((item, index) => {
+        console.log(`about to try to populate ${item} at index: ${index}`);
+        populateItemSlot(index, item.icon); // Assuming the item object has an 'icon' property
+    });
+}
+
 
 // Function to populate an item slot with an item icon
 export function populateItemSlot(slotIndex, itemIconKey) {

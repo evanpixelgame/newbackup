@@ -1,4 +1,4 @@
-import { createInventoryContainer, populateItemSlot, depopulateItemSlot } from "./inventoryUtils/createInventoryContainer.js";
+import { createInventoryContainer, populateItemSlots, populateItemSlot, depopulateItemSlot } from "./inventoryUtils/createInventoryContainer.js";
 
 export default class Inventory {
     constructor(scene) {
@@ -41,6 +41,21 @@ export default class Inventory {
       createInventoryContainer(scene);
     }
 
+
+    initializeInventoryItems(scene) {
+      const itemSlots = scene.inventoryContainer.itemSlotContainers;
+      const items = scene.inventory.items;
+  
+      // Loop through each item slot container and populate with items
+      itemSlots.forEach((itemSlotContainer, index) => {
+          const item = items[index]; // Get the item corresponding to the current index
+          if (item) {
+              const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
+              itemSlotContainer.add(itemIcon); // Add item icon to item slot container
+          }
+      });
+  }
+  
 
 }
 
