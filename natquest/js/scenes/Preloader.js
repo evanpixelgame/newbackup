@@ -65,7 +65,9 @@ export class Preloader extends Phaser.Scene {
 
         this.load.image('healthPotionWeak', 'assets/images/inventory/potions/healthPotionWeakIcon.png'); //64x64px
         this.load.image('poisonPotionWeak', 'assets/images/inventory/potions/poisonPotionWeakIcon.png'); //64x64px
-
+        this.load.image('manaPotionWeak', 'assets/images/inventory/potions/manaPotionWeakIcon.png'); //64x64px
+        this.load.image('emeraldRing', 'assets/images/inventory/equipment/rings/emeraldRingIcon.png'); //64x64px   
+        
         //***************************LOAD PLUGINS***************************************************************************    
         this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
         this.load.plugin('rexvirtualjoystickplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js', true);
