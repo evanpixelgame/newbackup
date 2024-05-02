@@ -4,7 +4,7 @@ export function createInventoryContainer(scene) {
 const containerWidth = window.innerWidth * 1 / 2;
 const containerHeight = window.innerHeight * 1 / 2;
 // Create a container to hold the item slots
-const inventoryContainer = scene.add.container(containerWidth, containerHeight);
+scene.inventoryContainer = scene.add.container(containerWidth, containerHeight);
 
 // Define the number of rows and columns for the item slots
 const numRows = 2; // Example number of rows
@@ -23,7 +23,7 @@ for (let row = 0; row < numRows; row++) {
         const x = col * (slotWidth + horizontalSpacing);
         const y = row * (slotHeight + verticalSpacing);
         const itemSlot = scene.add.sprite(x, y, 'emptyItemSlot'); // Example sprite for item slot
-        inventoryContainer.add(itemSlot);
+        scene.inventoryContainer.add(itemSlot);
         itemSlots.push(itemSlot);
     }
 }
