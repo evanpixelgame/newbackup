@@ -1,4 +1,6 @@
 
+
+
 export function createInventoryContainer(scene) {
 
 const containerWidth = window.innerWidth * 1 / 2;
@@ -18,21 +20,9 @@ const slotWidth = 64; // Example width of each item slot
 const slotHeight = 64; // Example height of each item slot
 const horizontalSpacing = 0; // Example horizontal spacing between item slots
 const verticalSpacing = 0; // Example vertical spacing between item slots
-for (let row = 0; row < numRows; row++) {
-    for (let col = 0; col < numCols; col++) {
-        const x = col * (slotWidth + horizontalSpacing);
-        const y = row * (slotHeight + verticalSpacing);
-        const itemSlot = scene.add.sprite(x, y, 'emptyItemSlot'); // Example sprite for item slot
-        const itemId = row * numCols + col; // Unique ID calculation based on row and column
-        itemSlot.setData('itemSlotId', itemId); // Set unique ID as data for the item slot
-        scene.inventoryContainer.add(itemSlot);
-        itemSlots.push(itemSlot);
-    }
-}
 
 scene.inventoryContainer.itemSlots = itemSlots;
 scene.inventoryContainer.visible = false;
-
 
 
 const itemSlotContainers = [];
@@ -52,7 +42,6 @@ for (let row = 0; row < numRows; row++) {
 
 // Store itemSlotContainers array as a property of inventoryContainer for easier access
 scene.inventoryContainer.itemSlotContainers = itemSlotContainers;
-
 
 }
 

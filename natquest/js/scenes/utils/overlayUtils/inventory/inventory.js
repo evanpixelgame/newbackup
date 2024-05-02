@@ -42,6 +42,57 @@ export default class Inventory {
   }
 
 
+/*
+  initializeInventoryItems(scene) {
+    const itemSlots = scene.inventoryContainer.itemSlotContainers;
+    const items = scene.inventory.items;
+
+    // Loop through each item slot container and populate with items
+    itemSlots.forEach((itemSlotContainer, index) => {
+        const item = items[index]; // Get the item corresponding to the current index
+        if (item) {
+            const emptySlotSprite = itemSlotContainer.getAt(0); // Assuming the empty slot sprite is the first child
+            
+            const itemIconContainer = scene.add.container(0, 0); // Create container for item icon
+itemSlotContainer.add(itemIconContainer); // Add item icon container as a child of itemSlotContainer
+
+            const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
+            itemIcon.setScale(0.7);
+            itemIcon.setInteractive({ draggable: true });
+            scene.input.setDraggable(itemIcon);
+
+            // Add drag event listeners
+            itemIcon.on('dragstart', function (pointer, dragX, dragY) {
+                // Optional visual feedback when dragging starts
+                console.log(`attempting to start dragstart`);
+                this.setAlpha(0.5);
+                this.setDepth(1e9);
+            });
+
+            itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
+                console.log(`attempting to start dragend`);
+                this.setAlpha(1); // Reset alpha
+                // Add logic for drag end (optional)
+            });
+
+            // Update the position of the item icon during drag
+            scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                if (gameObject === itemIcon) {
+                    gameObject.x = dragX; // Update the x position of the dragged item icon
+                    gameObject.y = dragY; // Update the y position of the dragged item icon
+                }
+            });
+
+            // Add the item icon sprite as a child of the empty slot sprite
+            itemIconContainer.addChild(itemIcon);
+        }
+    });
+}
+*/
+
+
+
+  // /*
   initializeInventoryItems(scene) {
     const itemSlots = scene.inventoryContainer.itemSlotContainers;
     const items = scene.inventory.items;
@@ -51,9 +102,44 @@ export default class Inventory {
       const item = items[index]; // Get the item corresponding to the current index
       if (item) {
         const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
+        itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
         scene.input.setDraggable(itemIcon);
 
+              // Add drag event listeners
+      itemIcon.on('dragstart', function (pointer, dragX, dragY) {
+        // Optional visual feedback when dragging starts
+        console.log(`attempting to start dragstart`);
+        this.setAlpha(0.5);
+        this.setDepth(1e9);
+      });
+
+      itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
+        console.log(`attempting to start dragend`);
+        this.setAlpha(1); // Reset alpha
+        // Add logic for drag end (optional)
+      });
+
+
+         // Update the position of the item icon during drag
+         scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+          if (gameObject === itemIcon) {
+            gameObject.x = dragX; // Update the x position of the dragged item icon
+            gameObject.y = dragY; // Update the y position of the dragged item icon
+          }
+        });
+        
+        itemSlotContainer.add(itemIcon); // Add item icon to item slot container
+      }
+    });
+  }
+
+
+//   */
+
+
+
+/*
 
         // Add drag events
         itemIcon.on('dragstart', function (pointer, dragX, dragY) {
@@ -77,7 +163,9 @@ export default class Inventory {
     });
 
   }
-
+*/
+  
+/*
   initializeInventoryItems(scene) {
     const itemSlots = scene.inventoryContainer.itemSlotContainers;
     const items = scene.inventory.items;
@@ -130,6 +218,7 @@ export default class Inventory {
       }
     });
   }
+  
 
 /*
   initializeDragAndDrop(scene) {

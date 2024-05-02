@@ -9,7 +9,7 @@ export function createHealthBar(scene) {
         0x000000  // Color of the object
     );
     scene.healthBarBackground.setScrollFactor(0, 0);
-    scene.healthBarBackground.setDepth(100000);
+    //scene.healthBarBackground.setDepth(100000);
     scene.healthBarBackground.setOrigin(0, 0);
 
 
@@ -22,7 +22,7 @@ export function createHealthBar(scene) {
         0xff0000  // Color of the object (red)
     );
     scene.healthBar.setScrollFactor(0, 0);
-    scene.healthBar.setDepth(100001);
+   // scene.healthBar.setDepth(100001);
     scene.healthBar.setOrigin(0, 0);
 
     scene.healthBarDepletion = scene.add.rectangle(
@@ -33,7 +33,7 @@ export function createHealthBar(scene) {
         0xffffff  // Color of the object (red)
     );
     scene.healthBarDepletion.setScrollFactor(0, 0);
-    scene.healthBarDepletion.setDepth(100002);
+   // scene.healthBarDepletion.setDepth(100002);
     scene.healthBarDepletion.setOrigin(0, 0);
 
     scene.healthBarDepletion.tweenHeight = function(healthChange) {

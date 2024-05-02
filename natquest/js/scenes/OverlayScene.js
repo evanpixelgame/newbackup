@@ -44,6 +44,10 @@ export default class OverlayScene extends Phaser.Scene {
 
         customEmitter.on('healthChange', healthChangeHandler);
 
+        // *********************************************************************************
+        //*********************************************************************************
+        //*********************************************************************************
+
 
         this.inventory = new Inventory(this);
 
@@ -59,8 +63,9 @@ export default class OverlayScene extends Phaser.Scene {
         this.inventory.addItem(itemsListFull.manaPotionWeak);
         this.inventory.addItem(itemsListFull.emeraldRing);
 
-        console.log(this.inventory.items);
 
+        console.log('consoling emerald ring and titi is beautiful :' + this.inventory.items[0].parent);
+        console.log(this.inventory.items);
         console.log(this.inventoryContainer.itemSlots);
 
         this.inventory.initializeInventoryItems(this);
