@@ -55,23 +55,14 @@ export default class OverlayScene extends Phaser.Scene {
 
 
         this.inventory.addItem(itemsListFull.healthPotionWeak);
+        this.inventory.addItem(itemsListFull.poisonPotionWeak);
 
         console.log(this.inventory.items);
 
         console.log(this.inventoryContainer.itemSlots);
 
         this.inventory.initializeInventoryItems(this);
-
-        /*
-        this.inventory.items.forEach((item, index) => {
-            console.log(`about to try to populate ${item} at index: ${index}`);
-           // const itemSlot = this.inventoryContainer.itemSlots[index];
-            if (this.inventoryContainer.itemSlots) {
-                const itemIcon = scene.add.sprite(0, 0, itemIconKey); // Example sprite for item icon
-                itemSlot.add(itemIcon);
-            } // Assuming the item object has an 'icon' property
-        });
-        */
+       // this.inventory.initializeDragAndDrop(this);
 
     }
 
