@@ -70,6 +70,7 @@ export default class OverlayScene extends Phaser.Scene {
 
         this.inventory.initializeInventoryItems(this);
        // this.inventory.initializeDragAndDrop(this);
+       
 
     }
 

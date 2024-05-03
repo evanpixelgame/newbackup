@@ -37,6 +37,11 @@ for (let row = 0; row < numRows; row++) {
         itemSlotContainer.add(emptySlotSprite); // Add empty slot sprite to container
         scene.inventoryContainer.add(itemSlotContainer); // Add item slot container to inventory container
         itemSlotContainers.push(itemSlotContainer);
+
+         // Assign an ID to the item slot container
+        const containerId = row * numCols + col + 1; // IDs start from 1
+        itemSlotContainer.setData('containerId', containerId);
+        itemSlotContainer.setName(`SlotContainer${containerId}`);
     }
 }
 

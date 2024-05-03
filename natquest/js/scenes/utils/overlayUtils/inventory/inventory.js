@@ -95,10 +95,34 @@ itemSlotContainer.add(itemIconContainer); // Add item icon container as a child 
   // /*
   initializeInventoryItems(scene) {
     const itemSlots = scene.inventoryContainer.itemSlotContainers;
+
     const items = scene.inventory.items;
 
+    //items.push(null);
+
+    const itemIconContainers = [];
+    console.log(items.length);
+
+// Iterate through itemSlotContainers
+itemSlots.forEach(itemSlotContainer => {
+  // Get the custom ID of the current itemSlotContainer
+  const containerId = itemSlotContainer.getData('containerId');
+
+  // Create a new container inside the itemSlotContainer
+  const itemIconContainer = scene.add.container(0, 0); // Example position
+  itemSlotContainer.add(itemIconContainer);
+
+  // Set the name of the new container based on the custom ID
+  itemIconContainer.setName(`ItemIconContainer${containerId}`);
+  console.log(itemIconContainer);
+  console.log(itemIconContainer.parentContainer)
+  console.log(itemSlotContainer);
+  itemIconContainers.push(itemIconContainer);
+});
+
+
     // Loop through each item slot container and populate with items
-    itemSlots.forEach((itemSlotContainer, index) => {
+    itemIconContainers.forEach((itemSlotContainer, index) => {
       const item = items[index]; // Get the item corresponding to the current index
       if (item) {
         const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
@@ -118,12 +142,14 @@ itemSlotContainer.add(itemIconContainer); // Add item icon container as a child 
         console.log(`attempting to start dragend`);
         this.setAlpha(1); // Reset alpha
         // Add logic for drag end (optional)
+        this.setDepth(1e9);
       });
 
 
          // Update the position of the item icon during drag
          scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
           if (gameObject === itemIcon) {
+            gameObject.setDepth(1e9);
             gameObject.x = dragX; // Update the x position of the dragged item icon
             gameObject.y = dragY; // Update the y position of the dragged item icon
           }
@@ -132,6 +158,10 @@ itemSlotContainer.add(itemIconContainer); // Add item icon container as a child 
         itemSlotContainer.add(itemIcon); // Add item icon to item slot container
       }
     });
+    
+    const containerIdlog = 2; // Example container ID you want to access
+    const itemSlotContainerlog = scene.inventoryContainer.itemSlotContainers.find(container => container.getData('containerId') === containerIdlog);
+    console.log(itemSlotContainerlog);
   }
 
 
