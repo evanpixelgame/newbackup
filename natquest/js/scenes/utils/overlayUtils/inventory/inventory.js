@@ -136,6 +136,7 @@ itemSlots.forEach(itemSlotContainer => {
         console.log(`attempting to start dragstart`);
         this.setAlpha(0.5);
         this.setDepth(1e9);
+   
       });
 
       itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
@@ -149,6 +150,17 @@ itemSlots.forEach(itemSlotContainer => {
          // Update the position of the item icon during drag
          scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
           if (gameObject === itemIcon) {
+          /*  
+            if (childContainer.parentContainer) {
+              childContainer.parentContainer.remove(childContainer);
+          }
+          */
+
+             /*  
+            if (gameObject.parentContainer) {
+              gameObject.parentContainer.remove(gameObject);
+          }
+          */
             gameObject.setDepth(1e9);
             gameObject.x = dragX; // Update the x position of the dragged item icon
             gameObject.y = dragY; // Update the y position of the dragged item icon
@@ -156,12 +168,14 @@ itemSlots.forEach(itemSlotContainer => {
         });
         
         itemSlotContainer.add(itemIcon); // Add item icon to item slot container
+        console.log(itemSlotContainer);
       }
     });
     
     const containerIdlog = 2; // Example container ID you want to access
     const itemSlotContainerlog = scene.inventoryContainer.itemSlotContainers.find(container => container.getData('containerId') === containerIdlog);
     console.log(itemSlotContainerlog);
+   
   }
 
 
