@@ -98,7 +98,7 @@ itemSlotContainer.add(itemIconContainer); // Add item icon container as a child 
 
     const items = scene.inventory.items;
 
-    //items.push(null);
+    items.push(null);
 
     const itemIconContainers = [];
     console.log(items.length);
@@ -118,6 +118,7 @@ itemSlots.forEach(itemSlotContainer => {
   console.log(itemIconContainer.parentContainer)
   console.log(itemSlotContainer);
   itemIconContainers.push(itemIconContainer);
+  
 });
 
 
@@ -136,6 +137,14 @@ itemSlots.forEach(itemSlotContainer => {
         console.log(`attempting to start dragstart`);
         this.setAlpha(0.5);
         this.setDepth(1e9);
+        console.log(itemIcon.parentContainer);
+        console.log(itemIcon.parentContainer.parentContainer);
+        itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+        scene.inventoryContainer.itemSlotContainers[6].add(itemIcon.parentContainer);
+        //itemIcon.parentContainer.setParent(scene.inventoryContainer.itemSlotContainers[6])
+        //itemIcon.parentContainer.remove(itemIcon);
+        //scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
+        console.log(itemIcon);
    
       });
 
@@ -155,11 +164,21 @@ itemSlots.forEach(itemSlotContainer => {
               childContainer.parentContainer.remove(childContainer);
           }
           */
-
              /*  
             if (gameObject.parentContainer) {
               gameObject.parentContainer.remove(gameObject);
           }
+          */
+         /*
+          const itemIconDragger = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
+          itemIconDragger.setScale(.6);
+          itemIconDragger.setInteractive({ draggable: true });
+          scene.input.setDraggable(itemIconDragger);
+              ItemIconDragger.setDepth(1e9);
+              ItemIconDragger.x = dragX; // Update the x position of the dragged item icon
+              ItemIconDragger.y = dragY; // Update the y position of the dragged item icon
+            }
+          });
           */
             gameObject.setDepth(1e9);
             gameObject.x = dragX; // Update the x position of the dragged item icon

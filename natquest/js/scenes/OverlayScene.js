@@ -66,7 +66,7 @@ export default class OverlayScene extends Phaser.Scene {
 
         console.log('consoling emerald ring and titi is beautiful :' + this.inventory.items[0].parent);
         console.log(this.inventory.items);
-        console.log(this.inventoryContainer.itemSlots);
+        console.log(this.inventoryContainer.itemSlotContainers);
 
         this.inventory.initializeInventoryItems(this);
        // this.inventory.initializeDragAndDrop(this);
