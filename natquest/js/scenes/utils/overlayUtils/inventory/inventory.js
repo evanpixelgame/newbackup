@@ -105,27 +105,57 @@ export default class Inventory {
         // Add drag event listeners
         itemIcon.on('dragstart', function (pointer, dragX, dragY) {
           // Optional visual feedback when dragging starts
-          console.log(`attempting to start dragstart`);
+          console.log(`attempting to start dragstart` + dropZonesList.length);
+          const newRelativeStartPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+         // console.log(`x and y of start drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+         
+         console.log(`x and y of start drag: x: ${newRelativeStartPos.x} and y ${newRelativeStartPos.y}`);
+          const dropZoneArrayLength = dropZonesList.length; 
+          console.log(dropZoneArrayLength);
+        // const startZone = scene.inventory.findZone(newRelativeStartPos, dropZonesList);
+        
+        for (let i = 0; i < dropZonesList.length; i++) {
+          const x = Math.abs(newRelativeStartPos.x);
+          const y = Math.abs(newRelativeStartPos.y);
+          const zone = dropZonesList[i];
+          if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+            console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
+            return i; // Return the index of the zone
+          } else {
+            console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+          }
+      }
+         // console.log('asdfasdfas' + scene.inventoryContainer.dropZones);
+         // console.log(`ideally the zone its starting from: ${startZone}`);
+
           this.setAlpha(0.5);
           this.setDepth(1e9);
           console.log(itemIcon.parentContainer);
           console.log(itemIcon.parentContainer.parentContainer);
           itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
           scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+          
+          
           //itemIcon.parentContainer.setParent(scene.inventoryContainer.itemSlotContainers[6])
           //itemIcon.parentContainer.remove(itemIcon);
           //scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
           console.log(itemIcon);
+        
           console.log(`this is the inventoryContainer.dropZones array: ${scene.inventoryContainer.dropZones}`);
 
         });
 
         itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
           console.log(`attempting to start dragend`);
+          const newRelativeEndPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
           this.setAlpha(1); // Reset alpha
           // Add logic for drag end (optional)
           this.setDepth(1e9);
-          
+          console.log(`x and y of end drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+          console.log(`x and y of end drag: x: ${newRelativeEndPos.x} and y ${newRelativeEndPos.y}`);
+         // const endZone = scene.inventory.findZone(newRelativeEndPos, dropZonesList);
+       //   console.log(`ideally the zone its dragged to ${endZone}`);
+
         });
 
 
@@ -210,7 +240,37 @@ updateItemPositionInDropZone(dropZone, tempPosition) {
 
 
 
+findZone(x, y, dropZones) {
+  console.log(dropZones);
+  for (let i = 0; i < dropZones.length; i++) {
+      const zone = dropZones[i];
+      if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+          return i; // Return the index of the zone
+      }
+  }
+  return -1; // If no zone contains the coordinate
+}
 
+getRelativePos(object, parentContainer) {
+  let x = object.x;
+  let y = object.y;
+  let currentContainer = object.parentContainer;
+
+  // Traverse up the hierarchy until the specified parentContainer is reached
+  while (currentContainer && currentContainer !== parentContainer) {
+      x -= currentContainer.x;
+      y -= currentContainer.y;
+      currentContainer = currentContainer.parentContainer;
+  }
+
+  // If the specified parentContainer is found, return the relative position
+  if (currentContainer === parentContainer) {
+      return { x, y };
+  } else {
+      // If the specified parentContainer is not found, return null or handle the error accordingly
+      return null;
+  }
+}
 
   //   */
 
