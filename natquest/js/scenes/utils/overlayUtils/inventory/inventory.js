@@ -103,6 +103,8 @@ itemSlotContainer.add(itemIconContainer); // Add item icon container as a child 
     const itemIconContainers = [];
     console.log(items.length);
 
+    scene.inventoryContainer.dropZones = []
+
 // Iterate through itemSlotContainers
 itemSlots.forEach(itemSlotContainer => {
   // Get the custom ID of the current itemSlotContainer
@@ -110,14 +112,32 @@ itemSlots.forEach(itemSlotContainer => {
 
   // Create a new container inside the itemSlotContainer
   const itemIconContainer = scene.add.container(0, 0); // Example position
+  
+  /*
+  const dropZones = [
+    { x: 100, y: 100, width: 50, height: 50, isEmpty: true }, // Example drop zone 1
+    { x: 200, y: 100, width: 50, height: 50, isEmpty: true }, // Example drop zone 2
+    // Add more drop zones as needed
+];
+*/
+
+  scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
+
+  itemIconContainer.setInteractive(); //make the actual bo the dropzone
   itemSlotContainer.add(itemIconContainer);
 
   // Set the name of the new container based on the custom ID
   itemIconContainer.setName(`ItemIconContainer${containerId}`);
-  console.log(itemIconContainer);
-  console.log(itemIconContainer.parentContainer)
-  console.log(itemSlotContainer);
+ // console.log(itemIconContainer);
+ // console.log(itemIconContainer.parentContainer)
+ // console.log(itemSlotContainer);
   itemIconContainers.push(itemIconContainer);
+  
+
+  itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
+ //itemIconContainer.setName();
+ console.log(itemIconContainer);
+
   
 });
 
@@ -140,7 +160,7 @@ itemSlots.forEach(itemSlotContainer => {
         console.log(itemIcon.parentContainer);
         console.log(itemIcon.parentContainer.parentContainer);
         itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
-        scene.inventoryContainer.itemSlotContainers[6].add(itemIcon.parentContainer);
+        scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
         //itemIcon.parentContainer.setParent(scene.inventoryContainer.itemSlotContainers[6])
         //itemIcon.parentContainer.remove(itemIcon);
         //scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);

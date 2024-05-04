@@ -40,6 +40,9 @@ for (let row = 0; row < numRows; row++) {
 
          // Assign an ID to the item slot container
         const containerId = row * numCols + col + 1; // IDs start from 1
+      //  const hitArea = emptySlotSprite.getBounds(); // Get child sprite's bounding box
+
+       // itemSlotContainer.setInteractive({ hitArea });
         itemSlotContainer.setData('containerId', containerId);
         itemSlotContainer.setName(`SlotContainer${containerId}`);
     }
