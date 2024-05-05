@@ -90,7 +90,7 @@ if (scene.inventory.items.includes(item)) {
 for (let i = 0; i < iconContainers.length; i++) {
 
   if (iconContainers[i].dropZone.isEmpty === false) {
-    return;
+    console.log('this itemIconContainer is filled, trying next one') //can delete these 3 lines after testing
   }
 
   if (iconContainers[i].dropZone.isEmpty === true) { //check if slot is empty
@@ -103,7 +103,7 @@ for (let i = 0; i < iconContainers.length; i++) {
    scene.input.setDraggable(itemIcon);
    scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
    iconContainers[i].dropZone.isEmpty = false; //change slot to not empty
-   this.setDragEvents(itemIcon);
+   this.setDragEvents(itemIcon, scene);
    return;
   
   } else {
@@ -112,44 +112,60 @@ for (let i = 0; i < iconContainers.length; i++) {
 }
 }
 
-setDragEvents(itemIcon) {
+setDragEvents(itemIcon, scene) {
 
-  this.itemDragStart(itemIcon);
-  this.itemDragEnd(itemIcon);
-  this.itemDrag(itemIcon);
+  this.itemDragStart(itemIcon, scene);
+  this.itemDragEnd(itemIcon, scene);
+  this.itemDrag(itemIcon, scene);
 
 }
 
-itemDragStart(itemIcon) {
+itemDragStart(itemIcon, scene) {
 
   itemIcon.on('dragstart', function (pointer, dragX, dragY) {
     console.log('dragStart');
     this.setAlpha(0.5);
     this.setDepth(1e9);
+    const newRelativePos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+    console.log(newRelativePos);
 });
 
 }
 
 
 
-itemDragEnd(itemIcon) {
+itemDragEnd(itemIcon, scene) {
 
   itemIcon.on('dragend', function (pointer, dragX, dragY) {
     console.log('dragEnd');
-    this.setAlpha(0.5);
+    this.setAlpha(1);
     this.setDepth(1e9);
+    this.setOrigin(.5, .5);
+
+   // this.x = dragX;
+   // this.y = dragY;
+    const newRelativePos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+    console.log(newRelativePos);
+  
   });
 
 }
 
 
 
-itemDrag(itemIcon) {
+itemDrag(itemIcon, scene) {
 
   itemIcon.on('drag', function (pointer, dragX, dragY) {
     console.log('drag');
-    this.setAlpha(0.5);
+    this.setAlpha(.5);
     this.setDepth(1e9);
+    this.setOrigin(.5, .5);
+    //this.x = pointer.x;
+    //this.y = pointer.y;
+    this.x = dragX;
+    this.y = dragY;
+    //pointer.x = this.x;
+   // pointer.y = this.y;
   });
   
 }
