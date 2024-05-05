@@ -167,6 +167,7 @@ for (let i = 0; i < iconContainers.length; i++) {
    //iconContainers[i].itemIcon = itemIcon;
    itemIcon.setScale(.7);
    itemIcon.setInteractive({ draggable: true });
+   itemIcon.setOrigin(.5, .5);
    scene.input.setDraggable(itemIcon);
    scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
    iconContainers[i].dropZone.isEmpty = false; //change slot to not empty
@@ -198,14 +199,17 @@ itemDragStart(itemIcon, scene) {
     console.log('dragStart');
     this.setAlpha(0.5);
    // this.setDepth(1e9);
-    this.setOrigin(.5, .5);
+  //  this.setOrigin(.5, .5);
     const newRelativePos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
     console.log(newRelativePos);
 
+    const relativePointerX = pointer.x - scene.inventoryContainer.x;
+    const relativePointerY = pointer.y - scene.inventoryContainer.y;
     const offsetX = pointer.x - itemIcon.x;
     const offsetY = pointer.y - itemIcon.y;
     // Save the offset for later use
 console.log(`offsetX: ${offsetX}  offsetY: ${offsetY}`);
+console.log(`relative pointer start pos: X: ${relativePointerX}  Y: ${relativePointerY}`);
     // Save the offset for later use
     itemIcon.offsetX = offsetX;
     itemIcon.offsetY = offsetY;
@@ -221,7 +225,7 @@ itemDragEnd(itemIcon, scene) {
     console.log('dragEnd');
     this.setAlpha(1);
     //this.setDepth(1e9);
-    this.setOrigin(.5, .5);
+  //  this.setOrigin(.5, .5);
 
    // this.x = dragX;
    // this.y = dragY;
@@ -250,7 +254,7 @@ itemDrag(itemIcon, scene) {
     console.log('drag');
     this.setAlpha(.5);
    // this.setDepth(1e9);
-    this.setOrigin(.5, .5);
+   // this.setOrigin(.5, .5);
     //this.x = pointer.x;
     //this.y = pointer.y;
     this.x = dragX;
