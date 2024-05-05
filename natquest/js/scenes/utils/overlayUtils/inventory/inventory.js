@@ -213,6 +213,8 @@ itemDragStart(itemIcon, scene) {
     // Save the offset for later use
     itemIcon.offsetX = offsetX;
     itemIcon.offsetY = offsetY;
+
+
 });
 
 }
@@ -240,8 +242,12 @@ console.log('drag x: ' + dragX + ' y: ' + dragY)
     console.log(`after drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
    // console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
    // console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
-    console.log(`pointer after: x: ${pointer.x - itemIcon.offsetX}, y: ${pointer.y - itemIcon.offsetY}`);
+   // console.log(`pointer after: x: ${pointer.x - itemIcon.offsetX}, y: ${pointer.y - itemIcon.offsetY}`);
   
+   itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+
+   scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
+
   });
 
 }
