@@ -42,6 +42,54 @@ export default class Inventory {
   }
 
 
+// Function to check if a drop zone is valid for dropping
+isValidDropZone(dropZone) {
+  // Implement logic to determine if the drop zone is valid for dropping
+  return dropZone.isEmpty; // Example: Assume drop zone is valid if it's empty
+}
+
+// Function to update the position of the item in the drop zone
+updateItemPositionInDropZone(dropZone, tempPosition) {
+  // Implement logic to update the position of the item in the drop zone
+  // For example, you may update the state of the drop zone to indicate that it's no longer empty
+  dropZone.isEmpty = false;
+}
+
+
+
+findZone(x, y, dropZones) {
+  console.log(dropZones);
+  for (let i = 0; i < dropZones.length; i++) {
+      const zone = dropZones[i];
+      if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+          return i; // Return the index of the zone
+      }
+  }
+  return -1; // If no zone contains the coordinate
+}
+
+getRelativePos(object, parentContainer) {
+  let x = object.x;
+  let y = object.y;
+  let currentContainer = object.parentContainer;
+
+  // Traverse up the hierarchy until the specified parentContainer is reached
+  while (currentContainer && currentContainer !== parentContainer) {
+      x -= currentContainer.x;
+      y -= currentContainer.y;
+      currentContainer = currentContainer.parentContainer;
+  }
+
+  // If the specified parentContainer is found, return the relative position
+  if (currentContainer === parentContainer) {
+      return { x, y };
+  } else {
+      // If the specified parentContainer is not found, return null or handle the error accordingly
+      return null;
+  }
+}
+
+
 createItemIconContainers(scene) {
 
     const itemSlots = scene.inventoryContainer.itemSlotContainers;
@@ -69,6 +117,25 @@ createItemIconContainers(scene) {
 
       itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
 
+     const dropZone = scene.add.zone(itemIconContainer.dropZone).setInteractive();
+     
+     dropZone.input.dropZone = true;
+
+     dropZone.input.hitArea.width = 64;
+     dropZone.input.hitArea.height = 64;
+    
+     dropZone.on('pointerover', function (pointer, gameObject) {
+      // Highlight the drop zone or provide feedback
+      console.log(itemIconContainer.dropZone.dropZoneID + 'is being draggedover now :D')
+  });
+
+  dropZone.on('drop', function (pointer, gameObject) {
+    // Process the dropped item
+    console.log('Item dropped onto drop zone :' + itemIconContainer.dropZone.dropZoneID + ' with object: ' + gameObject);
+});
+
+      console.log(dropZone);
+      
       scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
     });
 
@@ -112,7 +179,11 @@ for (let i = 0; i < iconContainers.length; i++) {
 }
 }
 
+
 setDragEvents(itemIcon, scene) {
+  
+  let dragXTotal = 0;
+  let dragYTotal = 0;
 
   this.itemDragStart(itemIcon, scene);
   this.itemDragEnd(itemIcon, scene);
@@ -122,12 +193,22 @@ setDragEvents(itemIcon, scene) {
 
 itemDragStart(itemIcon, scene) {
 
+
   itemIcon.on('dragstart', function (pointer, dragX, dragY) {
     console.log('dragStart');
     this.setAlpha(0.5);
-    this.setDepth(1e9);
+   // this.setDepth(1e9);
+    this.setOrigin(.5, .5);
     const newRelativePos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
     console.log(newRelativePos);
+
+    const offsetX = pointer.x - itemIcon.x;
+    const offsetY = pointer.y - itemIcon.y;
+    // Save the offset for later use
+console.log(`offsetX: ${offsetX}  offsetY: ${offsetY}`);
+    // Save the offset for later use
+    itemIcon.offsetX = offsetX;
+    itemIcon.offsetY = offsetY;
 });
 
 }
@@ -139,13 +220,23 @@ itemDragEnd(itemIcon, scene) {
   itemIcon.on('dragend', function (pointer, dragX, dragY) {
     console.log('dragEnd');
     this.setAlpha(1);
-    this.setDepth(1e9);
+    //this.setDepth(1e9);
     this.setOrigin(.5, .5);
 
    // this.x = dragX;
    // this.y = dragY;
+console.log('drag x: ' + dragX + ' y: ' + dragY)
+    //console.log('pointer pos before adjust' + pointer.x, pointer.y);
+    //const newPointer = scene.inventory.getRelativePos(pointer, scene);
+    //console.log(newPointer);
     const newRelativePos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
-    console.log(newRelativePos);
+    console.log(`before drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
+    newRelativePos.x += dragX;
+    newRelativePos.y += Math.abs(dragY);
+    console.log(`after drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
+    console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
+    console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
+    console.log(`pointer after: x: ${pointer.x - itemIcon.offsetX}, y: ${pointer.y - itemIcon.offsetY}`);
   
   });
 
@@ -158,7 +249,7 @@ itemDrag(itemIcon, scene) {
   itemIcon.on('drag', function (pointer, dragX, dragY) {
     console.log('drag');
     this.setAlpha(.5);
-    this.setDepth(1e9);
+   // this.setDepth(1e9);
     this.setOrigin(.5, .5);
     //this.x = pointer.x;
     //this.y = pointer.y;
@@ -166,6 +257,11 @@ itemDrag(itemIcon, scene) {
     this.y = dragY;
     //pointer.x = this.x;
    // pointer.y = this.y;
+
+   // Update the icon's position to match the pointer position with offset
+   //itemIcon.x = pointer.x - offsetX;
+   //itemIcon.y = pointer.y - offsetY;
+   
   });
   
 }
@@ -635,58 +731,5 @@ dropZonesList.forEach(dropZone => {
  }
 
  */
-
-
-
-
-
-// Function to check if a drop zone is valid for dropping
-isValidDropZone(dropZone) {
-  // Implement logic to determine if the drop zone is valid for dropping
-  return dropZone.isEmpty; // Example: Assume drop zone is valid if it's empty
-}
-
-// Function to update the position of the item in the drop zone
-updateItemPositionInDropZone(dropZone, tempPosition) {
-  // Implement logic to update the position of the item in the drop zone
-  // For example, you may update the state of the drop zone to indicate that it's no longer empty
-  dropZone.isEmpty = false;
-}
-
-
-
-findZone(x, y, dropZones) {
-  console.log(dropZones);
-  for (let i = 0; i < dropZones.length; i++) {
-      const zone = dropZones[i];
-      if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
-          return i; // Return the index of the zone
-      }
-  }
-  return -1; // If no zone contains the coordinate
-}
-
-getRelativePos(object, parentContainer) {
-  let x = object.x;
-  let y = object.y;
-  let currentContainer = object.parentContainer;
-
-  // Traverse up the hierarchy until the specified parentContainer is reached
-  while (currentContainer && currentContainer !== parentContainer) {
-      x -= currentContainer.x;
-      y -= currentContainer.y;
-      currentContainer = currentContainer.parentContainer;
-  }
-
-  // If the specified parentContainer is found, return the relative position
-  if (currentContainer === parentContainer) {
-      return { x, y };
-  } else {
-      // If the specified parentContainer is not found, return null or handle the error accordingly
-      return null;
-  }
-}
-
-
 
 }
