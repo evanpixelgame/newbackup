@@ -103,6 +103,7 @@ for (let i = 0; i < iconContainers.length; i++) {
    scene.input.setDraggable(itemIcon);
    scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
    iconContainers[i].dropZone.isEmpty = false; //change slot to not empty
+   this.setDragEvents(itemIcon);
    return;
   
   } else {
@@ -111,6 +112,47 @@ for (let i = 0; i < iconContainers.length; i++) {
 }
 }
 
+setDragEvents(itemIcon) {
+
+  this.itemDragStart(itemIcon);
+  this.itemDragEnd(itemIcon);
+  this.itemDrag(itemIcon);
+
+}
+
+itemDragStart(itemIcon) {
+
+  itemIcon.on('dragstart', function (pointer, dragX, dragY) {
+    console.log('dragStart');
+    this.setAlpha(0.5);
+    this.setDepth(1e9);
+});
+
+}
+
+
+
+itemDragEnd(itemIcon) {
+
+  itemIcon.on('dragend', function (pointer, dragX, dragY) {
+    console.log('dragEnd');
+    this.setAlpha(0.5);
+    this.setDepth(1e9);
+  });
+
+}
+
+
+
+itemDrag(itemIcon) {
+
+  itemIcon.on('drag', function (pointer, dragX, dragY) {
+    console.log('drag');
+    this.setAlpha(0.5);
+    this.setDepth(1e9);
+  });
+  
+}
 
 
 
