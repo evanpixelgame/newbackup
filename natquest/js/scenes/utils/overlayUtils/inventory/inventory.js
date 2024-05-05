@@ -240,7 +240,24 @@ console.log('drag x: ' + dragX + ' y: ' + dragY)
     newRelativePos.x += dragX;
     newRelativePos.y += Math.abs(dragY);
     console.log(`after drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
-   // console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
+    console.log(`after drag adjustment +32:x: ${Math.abs(newRelativePos.x) + 32}, y: ${newRelativePos.y + 32} `);
+    const dropZonesList = scene.inventoryContainer.dropZones;
+
+    for (let i = 0; i < dropZonesList.length; i++) {
+      const x = Math.abs(newRelativePos.x) + 32;
+      const y = Math.abs(newRelativePos.y) + 32;
+      const zone = dropZonesList[i];
+      if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+        console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
+       // return i; // Return the index of the zone //comment out so doesnt return early?
+      } else {
+       // console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+      }
+    }
+
+
+   
+    // console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
    // console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
    // console.log(`pointer after: x: ${pointer.x - itemIcon.offsetX}, y: ${pointer.y - itemIcon.offsetY}`);
   
