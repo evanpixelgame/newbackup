@@ -41,7 +41,227 @@ export default class Inventory {
     createInventoryContainer(scene);
   }
 
-  // /*
+
+createItemIconContainers(scene) {
+
+    const itemSlots = scene.inventoryContainer.itemSlotContainers;
+
+    const itemIconContainers = [];
+
+    //scene.inventoryContainer.itemIconContainers = [];
+    scene.inventoryContainer.dropZones = [];
+    scene.inventoryContainer.items = [];
+
+    // Iterate through itemSlotContainers
+    itemSlots.forEach(itemSlotContainer => {
+      // Get the custom ID of the current itemSlotContainer
+      const containerId = itemSlotContainer.getData('containerId');
+
+      // Create a new container inside the itemSlotContainer
+      const itemIconContainer = scene.add.container(0, 0); // Example position
+
+      itemSlotContainer.add(itemIconContainer);
+
+      // Set the name of the new container based on the custom ID
+      itemIconContainer.setName(`ItemIconContainer${containerId}`);
+
+      itemIconContainers.push(itemIconContainer);
+
+      itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
+
+      scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
+    });
+
+    scene.inventoryContainer.itemIconContainers = itemIconContainers;
+}
+
+
+addItemToContainer(scene, item) {
+
+const iconContainers = scene.inventoryContainer.itemIconContainers;
+const items = scene.inventory.items;
+
+if (scene.inventory.items.includes(item)) {
+  console.log('this item is already in inventory. now adding to container, is it stackable?');
+} else {
+  console.log('this item aint in your inventory');
+}
+
+for (let i = 0; i < iconContainers.length; i++) {
+
+  if (iconContainers[i].dropZone.isEmpty === false) {
+    return;
+  }
+
+  if (iconContainers[i].dropZone.isEmpty === true) { //check if slot is empty
+
+   const itemIcon = scene.add.sprite(0, 0, item.icon); //add sprite
+   iconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+   //iconContainers[i].itemIcon = itemIcon;
+   itemIcon.setScale(.7);
+   itemIcon.setInteractive({ draggable: true });
+   scene.input.setDraggable(itemIcon);
+   scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
+   iconContainers[i].dropZone.isEmpty = false; //change slot to not empty
+   return;
+  
+  } else {
+    console.log('sorry spots taken. your inventory is full.');
+  }
+}
+}
+
+
+
+
+  initializeInventoryItems(scene) {
+    const itemSlots = scene.inventoryContainer.itemSlotContainers;
+
+    const items = scene.inventory.items;
+
+    const itemIconContainers = [];
+    console.log(items.length);
+
+    scene.inventoryContainer.dropZones = [];
+    scene.inventoryContainer.items = [];
+
+    // Iterate through itemSlotContainers
+    itemSlots.forEach(itemSlotContainer => {
+      // Get the custom ID of the current itemSlotContainer
+      const containerId = itemSlotContainer.getData('containerId');
+
+      // Create a new container inside the itemSlotContainer
+      const itemIconContainer = scene.add.container(0, 0); // Example position
+
+      itemSlotContainer.add(itemIconContainer);
+
+      // Set the name of the new container based on the custom ID
+      itemIconContainer.setName(`ItemIconContainer${containerId}`);
+
+      itemIconContainers.push(itemIconContainer);
+
+      itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
+
+      scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
+    });
+
+
+    // Loop through each item slot container and populate with items
+    itemIconContainers.forEach((itemSlotContainer, index) => {
+      const item = items[index]; // Get the item corresponding to the current index
+      if (item) {
+        const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
+        itemIcon.setScale(.7);
+        itemIcon.setInteractive({ draggable: true });
+        scene.input.setDraggable(itemIcon);
+      
+        // Add drag event listeners
+        itemIcon.on('dragstart', function (pointer, dragX, dragY) {
+      
+        const newRelativeStartPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+         // console.log(`x and y of start drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+         
+         console.log(`x and y of start drag: x: ${newRelativeStartPos.x} and y ${newRelativeStartPos.y}`);
+      
+        
+        for (let i = 0; i < dropZonesList.length; i++) {
+          const x = Math.abs(newRelativeStartPos.x);
+          const y = Math.abs(newRelativeStartPos.y);
+          const zone = dropZonesList[i];
+          if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+            console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
+            return i; // Return the index of the zone
+          } else {
+           // console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+          }
+      }
+
+          this.setAlpha(0.5);
+          this.setDepth(1e9);
+          console.log(itemIcon.parentContainer);
+          console.log(itemIcon.parentContainer.parentContainer);
+
+
+          itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+
+           scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
+          console.log(itemIcon);
+        
+          console.log(`this is the inventoryContainer.dropZones array: ${scene.inventoryContainer.dropZones}`);
+
+        });
+
+
+        itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
+          console.log(`attempting to start dragend`);
+
+        });
+
+
+        // Update the position of the item icon during drag
+        scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+          if (gameObject === itemIcon) {
+
+            gameObject.setDepth(1e9);
+            gameObject.x = dragX; // Update the x position of the dragged item icon
+            gameObject.y = dragY; // Update the y position of the dragged item icon
+            for (let i = 0; i < dropZonesList.length; i++) {
+              const x = Math.abs(gameObject.x);
+              const y = Math.abs(gameObject.y);
+              const zone = dropZonesList[i];
+              if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+                console.log('THIS IS THE WHAT THE *END* INDEX OF ZONE SHOULD BE ' + i);  
+                return i; // Return the index of the zone
+              } else {
+                //console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+              }
+          }
+          }
+        });
+
+        itemSlotContainer.add(itemIcon); // Add item icon to item slot container
+       // console.log(itemSlotContainer);
+
+       console.log('item populating iconSlotContainer at ', index, itemSlotContainer);
+      }
+    });
+
+const dropZonesList = scene.inventoryContainer.dropZones;
+console.log(dropZonesList);
+
+// Enable input events for each drop zone
+dropZonesList.forEach(dropZone => {
+  const { x, y, width, height } = dropZone;
+
+  const zone = scene.add.zone(x, y, width, height).setRectangleDropZone(width, height);
+  zone.setData('dropZone', dropZone);
+  zone.setInteractive();
+  console.log(`created new zone: ${zone}`);
+
+  zone.on('drop', (pointer, gameObject, dropZone) => {
+      console.log(`tried to drop in zone: ${zone}`);
+      const { draggedItem, dropZoneData } = gameObject.getData();
+      if (draggedItem && isValidDropZone(dropZoneData)) {
+          const tempPosition = { x: draggedItem.x, y: draggedItem.y };
+          draggedItem.setPosition(dropZoneData.x, dropZoneData.y);
+          updateItemPositionInDropZone(dropZoneData, tempPosition);
+      }
+  });
+
+  zone.on('pointerover', () => {
+     // graphics.alpha = 0.7;
+     console.log(zone);
+  });
+
+  zone.on('pointerout', () => {
+     // graphics.alpha = 0.5;
+     console.log(zone);
+  });
+});
+
+  }
+
+   /*
   initializeInventoryItems(scene) {
     const itemSlots = scene.inventoryContainer.itemSlotContainers;
 
@@ -62,33 +282,21 @@ export default class Inventory {
       // Create a new container inside the itemSlotContainer
       const itemIconContainer = scene.add.container(0, 0); // Example position
 
-      /*
-      const dropZones = [
-        { x: 100, y: 100, width: 50, height: 50, isEmpty: true }, // Example drop zone 1
-        { x: 200, y: 100, width: 50, height: 50, isEmpty: true }, // Example drop zone 2
-        // Add more drop zones as needed
-    ];
-    */
-
-      //scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
-      //console.log(`logging itemIconContainer.dropZone: ${itemIconContainer.dropZone}`);
-
-      // itemIconContainer.setInteractive(); //make the actual bo the dropzone
       itemSlotContainer.add(itemIconContainer);
 
       // Set the name of the new container based on the custom ID
       itemIconContainer.setName(`ItemIconContainer${containerId}`);
-      // console.log(itemIconContainer);
-      // console.log(itemIconContainer.parentContainer)
-      // console.log(itemSlotContainer);
+
       itemIconContainers.push(itemIconContainer);
 
 
       itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
-      //itemIconContainer.setName();
-      console.log(itemIconContainer);
+
       scene.inventoryContainer.dropZones.push(itemIconContainer.dropZone);
 
+      // console.log(itemIconContainer);
+      // console.log(itemIconContainer.parentContainer)
+      // console.log(itemSlotContainer);
 
     });
 
@@ -101,17 +309,16 @@ export default class Inventory {
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
         scene.input.setDraggable(itemIcon);
-
+      
         // Add drag event listeners
         itemIcon.on('dragstart', function (pointer, dragX, dragY) {
-          // Optional visual feedback when dragging starts
-          console.log(`attempting to start dragstart` + dropZonesList.length);
-          const newRelativeStartPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+      
+        const newRelativeStartPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
          // console.log(`x and y of start drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
          
          console.log(`x and y of start drag: x: ${newRelativeStartPos.x} and y ${newRelativeStartPos.y}`);
           const dropZoneArrayLength = dropZonesList.length; 
-          console.log(dropZoneArrayLength);
+         // console.log(dropZoneArrayLength);
         // const startZone = scene.inventory.findZone(newRelativeStartPos, dropZonesList);
         
         for (let i = 0; i < dropZonesList.length; i++) {
@@ -122,7 +329,7 @@ export default class Inventory {
             console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
             return i; // Return the index of the zone
           } else {
-            console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+           // console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
           }
       }
          // console.log('asdfasdfas' + scene.inventoryContainer.dropZones);
@@ -132,18 +339,23 @@ export default class Inventory {
           this.setDepth(1e9);
           console.log(itemIcon.parentContainer);
           console.log(itemIcon.parentContainer.parentContainer);
+         // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+          //scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+          
+          //itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+         // scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+
           itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
-          scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
-          
-          
+         // scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
           //itemIcon.parentContainer.setParent(scene.inventoryContainer.itemSlotContainers[6])
           //itemIcon.parentContainer.remove(itemIcon);
-          //scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
+           scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
           console.log(itemIcon);
         
           console.log(`this is the inventoryContainer.dropZones array: ${scene.inventoryContainer.dropZones}`);
 
         });
+
 
         itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
           console.log(`attempting to start dragend`);
@@ -155,6 +367,23 @@ export default class Inventory {
           console.log(`x and y of end drag: x: ${newRelativeEndPos.x} and y ${newRelativeEndPos.y}`);
          // const endZone = scene.inventory.findZone(newRelativeEndPos, dropZonesList);
        //   console.log(`ideally the zone its dragged to ${endZone}`);
+       for (let i = 0; i < dropZonesList.length; i++) {
+        const x = Math.abs(newRelativeEndPos.x);
+        const y = Math.abs(newRelativeEndPos.y);
+        console.log(`x and y of end drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+        console.log(`x and y of end drag: x: ${x} and y ${y}`);
+       
+        const zone = dropZonesList[i];
+        if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+          console.log('THIS IS THE WHAT THE *END* INDEX OF ZONE SHOULD BE ' + i);  
+          return i; // Return the index of the zone
+        } else {
+          console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+        }
+    }
+
+
+   // scene.inventoryContainer.itemSlotContainers[6].add(itemIcon.parentContainer);
 
         });
 
@@ -163,20 +392,147 @@ export default class Inventory {
         scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
           if (gameObject === itemIcon) {
 
-            /*  
-           if (gameObject.parentContainer) {
-             gameObject.parentContainer.remove(gameObject);
-         }
-         */
-
             gameObject.setDepth(1e9);
             gameObject.x = dragX; // Update the x position of the dragged item icon
             gameObject.y = dragY; // Update the y position of the dragged item icon
+            for (let i = 0; i < dropZonesList.length; i++) {
+              const x = Math.abs(gameObject.x);
+              const y = Math.abs(gameObject.y);
+              const zone = dropZonesList[i];
+              if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+                console.log('THIS IS THE WHAT THE *END* INDEX OF ZONE SHOULD BE ' + i);  
+                return i; // Return the index of the zone
+              } else {
+                //console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+              }
+          }
           }
         });
 
+
+
+
         itemSlotContainer.add(itemIcon); // Add item icon to item slot container
-        console.log(itemSlotContainer);
+       // console.log(itemSlotContainer);
+
+       console.log('item populating iconSlotContainer at ', index, itemSlotContainer);
+      }
+      
+      else {
+console.log('no item yet at ', index, itemSlotContainer);
+
+//item.icon = 'emptyItemsSlot';
+//item.icon = '';
+const itemIcon = scene.add.sprite(0, 0); // Create item icon sprite
+itemIcon.setScale(.7);
+itemIcon.setInteractive({ draggable: true });
+scene.input.setDraggable(itemIcon);
+
+// Add drag event listeners
+itemIcon.on('dragstart', function (pointer, dragX, dragY) {
+
+const newRelativeStartPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+ // console.log(`x and y of start drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+ 
+ console.log(`x and y of start drag: x: ${newRelativeStartPos.x} and y ${newRelativeStartPos.y}`);
+  const dropZoneArrayLength = dropZonesList.length; 
+ // console.log(dropZoneArrayLength);
+// const startZone = scene.inventory.findZone(newRelativeStartPos, dropZonesList);
+
+for (let i = 0; i < dropZonesList.length; i++) {
+  const x = Math.abs(newRelativeStartPos.x);
+  const y = Math.abs(newRelativeStartPos.y);
+  const zone = dropZonesList[i];
+  if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+    console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
+    return i; // Return the index of the zone
+  } else {
+   // console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+  }
+}
+ // console.log('asdfasdfas' + scene.inventoryContainer.dropZones);
+ // console.log(`ideally the zone its starting from: ${startZone}`);
+
+  this.setAlpha(0.5);
+  this.setDepth(1e9);
+  console.log(itemIcon.parentContainer);
+  console.log(itemIcon.parentContainer.parentContainer);
+ // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+  //scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+  
+  //itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+ // scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+
+  itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+ // scene.inventoryContainer.itemSlotContainers[9].add(itemIcon.parentContainer);
+  //itemIcon.parentContainer.setParent(scene.inventoryContainer.itemSlotContainers[6])
+  //itemIcon.parentContainer.remove(itemIcon);
+   scene.inventoryContainer.itemSlotContainers.ItemIconContainer6.add(itemIcon);
+  console.log(itemIcon);
+
+  console.log(`this is the inventoryContainer.dropZones array: ${scene.inventoryContainer.dropZones}`);
+
+});
+
+
+itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
+  console.log(`attempting to start dragend`);
+  const newRelativeEndPos = scene.inventory.getRelativePos(itemIcon, scene.inventoryContainer);
+  this.setAlpha(1); // Reset alpha
+  // Add logic for drag end (optional)
+  this.setDepth(1e9);
+  console.log(`x and y of end drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+  console.log(`x and y of end drag: x: ${newRelativeEndPos.x} and y ${newRelativeEndPos.y}`);
+ // const endZone = scene.inventory.findZone(newRelativeEndPos, dropZonesList);
+//   console.log(`ideally the zone its dragged to ${endZone}`);
+for (let i = 0; i < dropZonesList.length; i++) {
+const x = Math.abs(newRelativeEndPos.x);
+const y = Math.abs(newRelativeEndPos.y);
+console.log(`x and y of end drag: x: ${itemIcon.x} and y: ${itemIcon.y}`);
+console.log(`x and y of end drag: x: ${x} and y ${y}`);
+
+const zone = dropZonesList[i];
+if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+  console.log('THIS IS THE WHAT THE *END* INDEX OF ZONE SHOULD BE ' + i);  
+  return i; // Return the index of the zone
+} else {
+  console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+}
+}
+
+
+// scene.inventoryContainer.itemSlotContainers[6].add(itemIcon.parentContainer);
+
+});
+
+
+// Update the position of the item icon during drag
+scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+  if (gameObject === itemIcon) {
+
+    gameObject.setDepth(1e9);
+    gameObject.x = dragX; // Update the x position of the dragged item icon
+    gameObject.y = dragY; // Update the y position of the dragged item icon
+    for (let i = 0; i < dropZonesList.length; i++) {
+      const x = Math.abs(gameObject.x);
+      const y = Math.abs(gameObject.y);
+      const zone = dropZonesList[i];
+      if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
+        console.log('THIS IS THE WHAT THE *END* INDEX OF ZONE SHOULD BE ' + i);  
+        return i; // Return the index of the zone
+      } else {
+        //console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
+      }
+  }
+  }
+});
+
+
+
+
+
+
+
       }
     });
 
@@ -217,9 +573,10 @@ dropZonesList.forEach(dropZone => {
 });
 
 
-    
+   
+ }
 
-  }
+ */
 
 
 
@@ -271,124 +628,6 @@ getRelativePos(object, parentContainer) {
       return null;
   }
 }
-
-  //   */
-
-
-
-  /*
-  
-          // Add drag events
-          itemIcon.on('dragstart', function (pointer, dragX, dragY) {
-            // Optionally, you can add visual feedback when dragging starts
-            this.setAlpha(0.5);
-          });
-  
-          itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
-            // Reset the alpha when dragging ends
-            this.setAlpha(1);
-  
-            if (!dropped) {
-              // If the item icon was not dropped onto a valid target, reset its position
-              this.x = this.input.dragStartX;
-              this.y = this.input.dragStartY;
-            }
-          });
-  
-          itemSlotContainer.add(itemIcon); // Add item icon to item slot container
-        }
-      });
-  
-    }
-  */
-
-  /*
-    initializeInventoryItems(scene) {
-      const itemSlots = scene.inventoryContainer.itemSlotContainers;
-      const items = scene.inventory.items;
-    
-      // Loop through each item slot container and populate with items
-      itemSlots.forEach((itemSlotContainer, index) => {
-        const item = items[index]; // Get the item corresponding to the current index
-    
-        if (item) {
-          const itemIcon = scene.add.sprite(0, 0, item.icon); // Create item icon sprite
-          itemIcon.setInteractive({ draggable: true });
-          scene.input.setDraggable(itemIcon);
-    
-          // Add drag events
-          itemIcon.on('dragstart', function (pointer, dragX, dragY) {
-            // Optional visual feedback
-            this.setAlpha(0.5);
-          });
-    
-          itemIcon.on('dragend', function (pointer, dragX, dragY, dropped) {
-            this.setAlpha(1); // Reset alpha
-    
-            if (dropped) {
-              const dropZone = scene.input.hitTest(pointer.x, pointer.y, { ignore: [itemIcon] }); // Check for drop zone (excluding the dragged icon)
-              if (dropZone.length > 0) {
-                const targetSlotContainer = dropZone[0].gameObject; // Get the target slot container
-    
-                // Check if the target is another valid slot container
-                if (targetSlotContainer !== itemSlotContainer && targetSlotContainer.canHoldItem(item)) {
-                  // Swap items in the items array
-                  const sourceIndex = index;
-                  const targetIndex = itemSlots.indexOf(targetSlotContainer);
-                  [items[sourceIndex], items[targetIndex]] = [items[targetIndex], items[sourceIndex]];
-    
-                  // Update item icons in both containers
-                  const targetIcon = targetSlotContainer.getChildAt(0); // Assuming one icon per slot
-                  targetIcon.setTexture(item.icon);
-    
-                  // Optional: Handle item swap logic (e.g., equip/unequip)
-                } else {
-                  // Reset position if not dropped on a valid target
-                  this.x = this.input.dragStartX;
-                  this.y = this.input.dragStartY;
-                }
-              }
-            }
-          });
-    
-          itemSlotContainer.add(itemIcon); // Add item icon to item slot container
-        }
-      });
-    }
-    
-  
-  /*
-    initializeDragAndDrop(scene) {
-      const itemSlotContainers = scene.inventoryContainer.itemSlotContainers;
-  
-  
-  // Add drop events
-  itemSlotContainers.forEach(itemSlotContainer => {
-    itemSlotContainer.on('drop', function (pointer, droppedItemIcon) {
-        // Get the source and target containers
-        const sourceContainer = droppedItemIcon.parentContainer;
-        const targetContainer = this;
-  
-        // Find the indices of the source and target containers
-        const sourceIndex = itemSlotContainers.indexOf(sourceContainer);
-        const targetIndex = itemSlotContainers.indexOf(targetContainer);
-  
-        // Swap item icons between the source and target containers
-        const sourceItemIcon = sourceContainer.getAt(1); // Assuming the item icon is the second child
-        const targetItemIcon = targetContainer.getAt(1); // Assuming the item icon is the second child
-        sourceContainer.remove(sourceItemIcon);
-        targetContainer.remove(targetItemIcon);
-        sourceContainer.add(targetItemIcon);
-        targetContainer.add(sourceItemIcon);
-  
-        // Swap items in the items array
-        const items = scene.inventory.items;
-        [items[sourceIndex], items[targetIndex]] = [items[targetIndex], items[sourceIndex]];
-    });
-  });
-  
-    }
-  */
 
 
 
