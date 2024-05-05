@@ -208,8 +208,8 @@ itemDragStart(itemIcon, scene) {
     const offsetX = pointer.x - itemIcon.x;
     const offsetY = pointer.y - itemIcon.y;
     // Save the offset for later use
-console.log(`offsetX: ${offsetX}  offsetY: ${offsetY}`);
-console.log(`relative pointer start pos: X: ${relativePointerX}  Y: ${relativePointerY}`);
+//console.log(`offsetX: ${offsetX}  offsetY: ${offsetY}`);
+//console.log(`relative pointer start pos: X: ${relativePointerX}  Y: ${relativePointerY}`);
     // Save the offset for later use
     itemIcon.offsetX = offsetX;
     itemIcon.offsetY = offsetY;
@@ -238,8 +238,8 @@ console.log('drag x: ' + dragX + ' y: ' + dragY)
     newRelativePos.x += dragX;
     newRelativePos.y += Math.abs(dragY);
     console.log(`after drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
-    console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
-    console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
+   // console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
+   // console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
     console.log(`pointer after: x: ${pointer.x - itemIcon.offsetX}, y: ${pointer.y - itemIcon.offsetY}`);
   
   });
