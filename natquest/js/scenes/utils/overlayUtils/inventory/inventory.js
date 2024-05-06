@@ -113,16 +113,25 @@ createItemIconContainers(scene) {
       // Set the name of the new container based on the custom ID
       itemIconContainer.setName(`ItemIconContainer${containerId}`);
 
-      itemIconContainers.push(itemIconContainer);
-
+      
       itemIconContainer.dropZone = { x: itemIconContainer.parentContainer.x, y: itemIconContainer.parentContainer.y, width: 64, height: 64, isEmpty: true, dropZoneID: containerId }
 
-     const dropZone = scene.add.zone(itemIconContainer.dropZone).setInteractive();
+     const dropZone = scene.add.zone(itemIconContainer.dropZone.x, itemIconContainer.dropZone.y, itemIconContainer.dropZone.width, itemIconContainer.dropZone.height, {
+      // Optional properties
+     // name: 'zone1', // Assign a custom name
+      fillColor: 0xffe000, // Set a fill color for debugging (with alpha)
+      alpha: 0.5, // Transparency of the fill color (0-1)
+    });
+     dropZone.setInteractive();
+    //const dropZone = new Zone(scene, itemIconContainer.parentContainer.x, itemIconContainer.parentContainer.y, 64, 64);
      
      dropZone.input.dropZone = true;
 
      dropZone.input.hitArea.width = 64;
      dropZone.input.hitArea.height = 64;
+
+      itemIconContainers.push(itemIconContainer);
+
     
      dropZone.on('pointerover', function (pointer, gameObject) {
       // Highlight the drop zone or provide feedback
@@ -242,6 +251,7 @@ console.log('drag x: ' + dragX + ' y: ' + dragY)
     console.log(`after drag adjustment:x: ${newRelativePos.x}, y: ${newRelativePos.y} `);
     console.log(`after drag adjustment +32:x: ${Math.abs(newRelativePos.x) + 32}, y: ${newRelativePos.y + 32} `);
     const dropZonesList = scene.inventoryContainer.dropZones;
+    let dropZone = 0;
 
     for (let i = 0; i < dropZonesList.length; i++) {
       const x = Math.abs(newRelativePos.x) + 32;
@@ -249,13 +259,14 @@ console.log('drag x: ' + dragX + ' y: ' + dragY)
       const zone = dropZonesList[i];
       if (x >= zone.x && x < zone.x + zone.width && y >= zone.y && y < zone.y + zone.height) {
         console.log('THIS IS THE WHAT THE INDEX OF ZONE SHOULD BE ' + i);  
+        dropZone = i;
        // return i; // Return the index of the zone //comment out so doesnt return early?
       } else {
        // console.log('ZONE INDEX NOT FOUND FOR, x: ' +  dropZonesList[i].x + 'y :' + dropZonesList[i].y);
       }
     }
 
-
+    console.log(`TITI IS BEAUTIFUL and dropzone# is: ${dropZone}`)
    
     // console.log(`pointer before: x: ${pointer.x}, y: ${pointer.y}`);
    // console.log(`offsetx: ${itemIcon.offsetX}, offsety: ${itemIcon.offsetY}`);
