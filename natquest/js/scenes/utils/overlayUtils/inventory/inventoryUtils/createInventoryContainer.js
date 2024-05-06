@@ -12,20 +12,22 @@ export function createInventoryContainer(scene) {
     const numRows = 2; // Example number of rows
     const numCols = 5; // Example number of columns
 
-    // Create an array to hold references to item slot sprites
-    const itemSlots = [];
-
     // Create item slot sprites and add them to the container
     const slotWidth = 64; // Example width of each item slot
     const slotHeight = 64; // Example height of each item slot
     const horizontalSpacing = 0; // Example horizontal spacing between item slots
     const verticalSpacing = 0; // Example vertical spacing between item slots
 
-    scene.inventoryContainer.itemSlots = itemSlots;
-    scene.inventoryContainer.visible = false;
 
+    // Create an array to hold references to item slot sprites
+    const itemSlots = [];
 
     const itemSlotContainers = [];
+
+    scene.inventoryContainer.itemZones = [];
+
+    scene.inventoryContainer.itemSlots = itemSlots;
+    scene.inventoryContainer.visible = false;
 
     // Create item slot containers and add them to the container
     for (let row = 0; row < numRows; row++) {
@@ -33,10 +35,10 @@ export function createInventoryContainer(scene) {
             const x = col * (slotWidth + horizontalSpacing);
             const y = row * (slotHeight + verticalSpacing);
             const itemSlotContainer = scene.add.container(x, y); // Create container for item slot
+           
             const emptySlotSprite = scene.add.sprite(0, 0, 'emptyItemSlot'); // Example sprite for empty slot
             itemSlotContainer.add(emptySlotSprite); // Add empty slot sprite to container
             scene.inventoryContainer.add(itemSlotContainer); // Add item slot container to inventory container
-            itemSlotContainers.push(itemSlotContainer);
 
 
 
@@ -44,18 +46,29 @@ export function createInventoryContainer(scene) {
             const containerId = row * numCols + col + 1; // IDs start from 1
             //  const hitArea = emptySlotSprite.getBounds(); // Get child sprite's bounding box
 
-            const zoneTest = scene.add.zone(0, 0, 64, 64);
-            zoneTest.setInteractive({ fillColor: 0xffe000, alpha: 0.3 });
-            zoneTest.on('pointerover', function (pointer, gameObject) {
+            const itemZone = scene.add.zone(0, 0, 64, 64);
+            itemZone.setInteractive({ fillColor: 0xffe000, alpha: 0.3 });
+            itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
                 console.log('titi esta muy bonita :D ' + containerId);
-                console.log(zoneTest.fillColor);
+
             });
-            itemSlotContainer.add(zoneTest);
+            itemZone.setName(`ItemZone${containerId}`);
+            scene.inventoryContainer.itemZones.push(itemZone);
+            itemSlotContainer.add(itemZone);
+            console.log(itemZone);
 
             // itemSlotContainer.setInteractive({ hitArea });
             itemSlotContainer.setData('containerId', containerId);
             itemSlotContainer.setName(`SlotContainer${containerId}`);
+
+            itemSlotContainers.push(itemSlotContainer);
+            const itemSlot = scene.add.container(0, 0); // Create container for item icon
+            itemSlot.isEmpty = true;
+            itemSlotContainer.add(itemSlot); // Add item slot container to inventory container
+            itemSlots.push(itemSlot);
+
+            console.log(itemSlot);
 
         }
     }
@@ -100,6 +113,7 @@ export function depopulateItemSlot(slotIndex) {
         itemSlot.removeAll(true); // Remove all children from the item slot
     }
 }
+
 
 // Example usage:
 // populateItemSlot(0, 'itemIcon'); // Populate item slot 0 with an item icon

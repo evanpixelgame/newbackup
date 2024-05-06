@@ -55,14 +55,13 @@ export default class OverlayScene extends Phaser.Scene {
 
         this.inventoryIcon = createInventoryIcon(this);
 
-        this.inventory.createItemIconContainers(this);
+      //   this.inventory.createItemIconContainers(this);
 
 
         this.inventory.addItem(itemsListFull.healthPotionWeak);
         this.inventory.addItem(itemsListFull.poisonPotionWeak);
         this.inventory.addItem(itemsListFull.manaPotionWeak);
         this.inventory.addItem(itemsListFull.emeraldRing);
-
 
         console.log('consoling emerald ring and titi is beautiful :' + this.inventory.items[0].parent);
         console.log(this.inventory.items);
@@ -75,7 +74,7 @@ export default class OverlayScene extends Phaser.Scene {
 
      //   this.inventory.initializeInventoryItems(this);
        // this.inventory.initializeDragAndDrop(this);
-    console.log(this.inventoryContainer.itemIconContainers);
+    console.log(this.inventoryContainer.itemSlots);
     console.log(this.inventoryContainer.items);
 
     }
