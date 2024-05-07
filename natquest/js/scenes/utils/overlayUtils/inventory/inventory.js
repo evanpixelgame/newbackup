@@ -185,6 +185,8 @@ export default class Inventory {
     // scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
      itemSlots[i].isEmpty = false; //change slot to not empty
      this.setDragEvents(itemIcon, scene);
+     scene.inventoryContainer.sprites.push(itemIcon);
+     console.log(itemIcon);
      return;
     
     } 
@@ -225,8 +227,21 @@ console.log(`set drag events being called;`);
       this.setAlpha(0.5);
       scene.inventoryContainer.itemZones.forEach(zone => {
         console.log(scene.test);
-
+        zone.setDepth(1e9);
       });
+      scene.inventoryContainer.sprites.forEach(sprite => {
+        if (sprite === itemIcon) {
+          console.log(`this is the current sprite`);
+        }
+        else {
+        console.log(`this is not the current sprite`);
+        sprite.disableInteractive();
+        }
+      });
+
+      itemIcon.setInteractive({ draggable: true });
+      scene.inventory.itemDrag(itemIcon, scene);
+
     });
   }
 

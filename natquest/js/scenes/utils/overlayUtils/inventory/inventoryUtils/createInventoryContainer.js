@@ -53,17 +53,14 @@ export function createInventoryContainer(scene) {
             itemSlotContainer.setName(`SlotContainer${containerId}`);
 
             itemSlotContainers.push(itemSlotContainer);
-            const itemSlot = scene.add.container(0, 0); // Create container for item icon
-            itemSlot.isEmpty = true;
-            itemSlotContainer.add(itemSlot); // Add item slot container to inventory container
-            itemSlots.push(itemSlot);
-            
+ 
 
             const itemZone = scene.add.zone(0, 0, 64, 64);
             itemZone.setInteractive();
             itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
                 console.log('titi esta muy bonita :D ' + containerId);
+                //   itemZone.disableInteractive();
 
             });
 
@@ -75,8 +72,12 @@ export function createInventoryContainer(scene) {
                 const containers = itemZone.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
                 console.log('pointerdown containers new log' + containers[0]);
                 console.log(containers[0].list[0]);
-                containers[0].list[0].x = pointer.x;
-                containers[0].list[0].y = pointer.y;
+              //  containers[0].list[0].x = pointer.x;
+               // containers[0].list[0].y = pointer.y;
+             //  itemZone.disableInteractive();
+              gameObject = containers[0].list[0];
+              console.log(gameObject);
+      
             });
 
             itemZone.on('pointerup', function (pointer, gameObject) {
@@ -88,11 +89,20 @@ export function createInventoryContainer(scene) {
             itemZone.setName(`ItemZone${containerId}`);
             itemZone.setDepth(5);
             scene.inventoryContainer.itemZones.push(itemZone);
+            scene.inventoryContainer.sprites = [];
             itemSlotContainer.add(itemZone);
             //itemSlot.add(itemZone);
             console.log(itemZone);
 
+           
+
+
+            const itemSlot = scene.add.container(0, 0); // Create container for item icon
+            itemSlot.isEmpty = true;
+            itemSlotContainer.add(itemSlot); // Add item slot container to inventory container
+            itemSlots.push(itemSlot);
             console.log(itemSlot);
+            
 
         }
     }
