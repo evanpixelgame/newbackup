@@ -1,4 +1,4 @@
-import { createInventoryContainer, populateItemSlots, populateItemSlot, depopulateItemSlot } from "./inventoryUtils/createInventoryContainer.js";
+import { createInventoryContainer, createInventoryZones, createItemSlots } from "./inventoryUtils/createInventoryContainer.js";
 
 export default class Inventory {
   constructor(scene) {
@@ -39,6 +39,8 @@ export default class Inventory {
   createInventoryContainer(scene) {
     console.log('call the import funct w/ method of same name');
     createInventoryContainer(scene);
+    createInventoryZones(scene);
+    createItemSlots(scene);
   }
 
 
@@ -185,7 +187,7 @@ export default class Inventory {
     // scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
      itemSlots[i].isEmpty = false; //change slot to not empty
      this.setDragEvents(itemIcon, scene);
-     scene.inventoryContainer.sprites.push(itemIcon);
+     scene.inventoryContainer.itemSlots.push(itemIcon);
      console.log(itemIcon);
      return;
     
@@ -225,10 +227,13 @@ console.log(`set drag events being called;`);
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+      /*
       scene.inventoryContainer.itemZones.forEach(zone => {
         console.log(scene.test);
-        zone.setDepth(1e9);
+        zone.setDepth(101); 
       });
+      */
+/*
       scene.inventoryContainer.sprites.forEach(sprite => {
         if (sprite === itemIcon) {
           console.log(`this is the current sprite`);
@@ -241,8 +246,10 @@ console.log(`set drag events being called;`);
 
       itemIcon.setInteractive({ draggable: true });
       scene.inventory.itemDrag(itemIcon, scene);
-
+ */
     });
+   
+
   }
 
   itemDragEnd(itemIcon, scene) {
@@ -250,8 +257,35 @@ console.log(`set drag events being called;`);
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
       console.log('dragEnd');
       this.setAlpha(1);
+
+      /*
+      scene.inventoryContainer.sprites.forEach(sprite => {
+        if (sprite === itemIcon) {
+          console.log(`this sprite should already be interactive`);
+        }
+        else {
+        console.log(`this sprite needs to be made interactive again`);
+        itemIcon.setInteractive({ draggable: true });
+        scene.inventory.itemDrag(itemIcon, scene);
+        }
+      });
+      */
+    
+      // scene.time.delayedCall(500, () => delayDisable(scene));
+
+
+      /*
+      scene.inventoryContainer.itemZones.forEach(zone => {
+        console.log('dsiabling zone');
+        zone.setDepth(99); 
+       // zone.disableInteractive();
+      });
+      */
+
     });
   }
+
+
 
 
 
@@ -863,5 +897,17 @@ dropZonesList.forEach(dropZone => {
  }
 
  */
+
+}
+
+function delayDisable(scene) {
+
+
+
+  scene.inventoryContainer.itemZones.forEach(zone => {
+    console.log('dsiabling zone');
+    zone.setDepth(99); 
+    zone.disableInteractive();
+  });
 
 }
