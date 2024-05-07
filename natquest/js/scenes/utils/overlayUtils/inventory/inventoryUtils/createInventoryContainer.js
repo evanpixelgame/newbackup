@@ -47,16 +47,13 @@ export function createInventoryContainer(scene) {
             //  const hitArea = emptySlotSprite.getBounds(); // Get child sprite's bounding box
 
             const itemZone = scene.add.zone(0, 0, 64, 64);
-            itemZone.setInteractive({ fillColor: 0xffe000, alpha: 0.3 });
+            itemZone.setInteractive();
             itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
-               // console.log('titi esta muy bonita :D ' + containerId);
+                console.log('titi esta muy bonita :D ' + containerId);
 
             });
-            itemZone.setName(`ItemZone${containerId}`);
-            scene.inventoryContainer.itemZones.push(itemZone);
-            itemSlotContainer.add(itemZone);
-            console.log(itemZone);
+
 
             itemZone.on('pointerdown', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
@@ -69,6 +66,12 @@ export function createInventoryContainer(scene) {
                 console.log('pointerup (click release)' + containerId);
                 console.log('pointerup (click release) and itemzone.parentcontainer ' + itemZone.parentContainer);
             });
+
+            itemZone.setName(`ItemZone${containerId}`);
+            itemZone.setDepth(5);
+            scene.inventoryContainer.itemZones.push(itemZone);
+            itemSlotContainer.add(itemZone);
+            console.log(itemZone);
 
             // itemSlotContainer.setInteractive({ hitArea });
             itemSlotContainer.setData('containerId', containerId);

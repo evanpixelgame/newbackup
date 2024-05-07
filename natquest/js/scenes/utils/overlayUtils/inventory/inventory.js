@@ -213,6 +213,7 @@ console.log(`set drag events being called;`);
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
+      scene.inventoryContainer.itemZones
     });
   }
 
@@ -222,6 +223,10 @@ console.log(`set drag events being called;`);
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+      scene.inventoryContainer.itemZones.forEach(zone => {
+        console.log(scene.test);
+
+      });
     });
   }
 
