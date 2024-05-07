@@ -46,6 +46,19 @@ export function createInventoryContainer(scene) {
             const containerId = row * numCols + col + 1; // IDs start from 1
             //  const hitArea = emptySlotSprite.getBounds(); // Get child sprite's bounding box
 
+           
+
+            // itemSlotContainer.setInteractive({ hitArea });
+            itemSlotContainer.setData('containerId', containerId);
+            itemSlotContainer.setName(`SlotContainer${containerId}`);
+
+            itemSlotContainers.push(itemSlotContainer);
+            const itemSlot = scene.add.container(0, 0); // Create container for item icon
+            itemSlot.isEmpty = true;
+            itemSlotContainer.add(itemSlot); // Add item slot container to inventory container
+            itemSlots.push(itemSlot);
+            
+
             const itemZone = scene.add.zone(0, 0, 64, 64);
             itemZone.setInteractive();
             itemZone.on('pointerover', function (pointer, gameObject) {
@@ -59,6 +72,11 @@ export function createInventoryContainer(scene) {
                 // Highlight the drop zone or provide feedback
                 console.log('pointerdown' + containerId);
                 console.log('pointerdown and itemzone.parentcontainer ' + itemZone.parentContainer);
+                const containers = itemZone.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
+                console.log('pointerdown containers new log' + containers[0]);
+                console.log(containers[0].list[0]);
+                containers[0].list[0].x = pointer.x;
+                containers[0].list[0].y = pointer.y;
             });
 
             itemZone.on('pointerup', function (pointer, gameObject) {
@@ -71,17 +89,8 @@ export function createInventoryContainer(scene) {
             itemZone.setDepth(5);
             scene.inventoryContainer.itemZones.push(itemZone);
             itemSlotContainer.add(itemZone);
+            //itemSlot.add(itemZone);
             console.log(itemZone);
-
-            // itemSlotContainer.setInteractive({ hitArea });
-            itemSlotContainer.setData('containerId', containerId);
-            itemSlotContainer.setName(`SlotContainer${containerId}`);
-
-            itemSlotContainers.push(itemSlotContainer);
-            const itemSlot = scene.add.container(0, 0); // Create container for item icon
-            itemSlot.isEmpty = true;
-            itemSlotContainer.add(itemSlot); // Add item slot container to inventory container
-            itemSlots.push(itemSlot);
 
             console.log(itemSlot);
 
