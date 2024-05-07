@@ -50,13 +50,25 @@ export function createInventoryContainer(scene) {
             itemZone.setInteractive({ fillColor: 0xffe000, alpha: 0.3 });
             itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
-                console.log('titi esta muy bonita :D ' + containerId);
+               // console.log('titi esta muy bonita :D ' + containerId);
 
             });
             itemZone.setName(`ItemZone${containerId}`);
             scene.inventoryContainer.itemZones.push(itemZone);
             itemSlotContainer.add(itemZone);
             console.log(itemZone);
+
+            itemZone.on('pointerdown', function (pointer, gameObject) {
+                // Highlight the drop zone or provide feedback
+                console.log('pointerdown' + containerId);
+                console.log('pointerdown and itemzone.parentcontainer ' + itemZone.parentContainer);
+            });
+
+            itemZone.on('pointerup', function (pointer, gameObject) {
+                // Highlight the drop zone or provide feedback
+                console.log('pointerup (click release)' + containerId);
+                console.log('pointerup (click release) and itemzone.parentcontainer ' + itemZone.parentContainer);
+            });
 
             // itemSlotContainer.setInteractive({ hitArea });
             itemSlotContainer.setData('containerId', containerId);

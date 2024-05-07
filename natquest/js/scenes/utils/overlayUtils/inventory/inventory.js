@@ -89,6 +89,7 @@ export default class Inventory {
     }
   }
 
+  /*
 
   createItemIconContainers(scene) {
 
@@ -151,6 +152,8 @@ export default class Inventory {
     scene.inventoryContainer.itemIconContainers = itemIconContainers;
   }
 
+  */
+
   // /*
   addItemToContainer(scene, item) {
   
@@ -202,7 +205,7 @@ console.log(`set drag events being called;`);
 
   }
 
-/*
+
   itemDrag(itemIcon, scene) {
 
     itemIcon.on('drag', function (pointer, dragX, dragY) {
@@ -230,7 +233,7 @@ console.log(`set drag events being called;`);
     });
   }
 
-*/
+
 
 
  /*
@@ -274,8 +277,7 @@ console.log(`set drag events being called;`);
 */
 
 
-
- //  /*
+   /*
 itemDragStart(itemIcon, scene) {
 
   itemIcon.on('dragstart', function (pointer, dragX, dragY) {
@@ -376,7 +378,7 @@ itemDrag(itemIcon, scene) {
   
 }
 
-//   */
+  */
 
   initializeInventoryItems(scene) {
       const itemSlots = scene.inventoryContainer.itemSlotContainers;
