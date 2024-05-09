@@ -322,6 +322,28 @@ export default class Inventory {
       //if it overlaps more than one zone, see which one it overlaps the most
       //or just return to original position if it overlaps 2
 
+      let maxOverlap = 0;
+      let bestDropZoneIndex = -1;
+      
+      for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
+          let dropZone = scene.inventoryContainer.itemSlotContainers[i];
+          let overlapArea = Phaser.Geom.Rectangle.Intersection(dropZone.getBounds(), itemIcon.getBounds()).width * Phaser.Geom.Rectangle.Intersection(dropZone.getBounds(), itemIcon.getBounds()).height;
+      
+          if (overlapArea > maxOverlap) {
+              maxOverlap = overlapArea;
+              bestDropZoneIndex = i;
+          }
+      }
+      
+      if (bestDropZoneIndex !== -1) {
+          console.log(`Dropped in Zone ${bestDropZoneIndex}`);
+      } else {
+          console.log("No drop zone detected");
+      }
+      
+
+
+/*
       for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
         let dropZone = scene.inventoryContainer.itemSlotContainers[i];
         let isDropZone = Phaser.Geom.Rectangle.Overlaps(dropZone.getBounds(), itemIcon.getBounds());
@@ -329,6 +351,7 @@ export default class Inventory {
           console.log(`Dropped in Zone ${i}`)
         }
       }
+      */
 
     });
   }
