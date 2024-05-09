@@ -249,7 +249,9 @@ export default class Inventory {
       this.setAlpha(0.5);
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
+      scene.inventoryContainer.startSpriteState = itemIcon;
       console.log(itemIcon.getBounds());
+      console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
        console.log(scene.inventoryContainer.dragStartParent);
@@ -268,18 +270,23 @@ export default class Inventory {
 
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
       console.log('dragEnd');
+
       this.setAlpha(1);
 
-      console.log(itemIcon.x, itemIcon.y);
-      console.log(pointer.x, pointer.y);
+      const itemIconContainers = scene.inventoryContainer.itemIconContainers;
 
-      console.log(itemIcon.x, itemIcon.y);
-      console.log(itemIcon);
-      console.log(scene.inventoryContainer.dragStartParent);
+      //console.log(itemIcon.x, itemIcon.y);
+     // console.log(pointer.x, pointer.y);
+
+     // console.log(itemIcon.x, itemIcon.y);
+     // console.log(itemIcon);
+    //  console.log(scene.inventoryContainer.dragStartParent);
 
       let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
       if (isValidDropZone) {
+      
+      
         // The draggable item is overlapping with the drop target
         console.log("Dragged onto drop target");
         console.log(`This Dragend was started at x: ${scene.inventoryContainer.dragStartX}, y: ${scene.inventoryContainer.dragStartY}`);
@@ -301,6 +308,34 @@ export default class Inventory {
       }
 
       else {
+        const startX = scene.inventoryContainer.dragStartX;
+        const startY = scene.inventoryContainer.dragStartY;
+
+        const newX = scene.inventoryContainer.x + startX;
+        const newY = scene.inventoryContainer.y + startY;
+
+       // itemIcon.x = startX;
+       // itemIcon.y = startY;
+
+const itemIconStart = scene.inventoryContainer.startSpriteState;
+//itemIcon = itemIconStart;
+//itemIcon.x = startX;
+//itemIcon.y = startY;
+const containerWidth = window.innerWidth * 1 / 2;
+const containerHeight = window.innerHeight * 1 / 2;
+        console.log(itemIcon);
+        const endX = ((startX / 4) - containerWidth);
+        const endY = ((startY / 4) - containerHeight);
+
+        const endXY = scene.inventory.getRelativePos({x: startX, y: startY}, scene);
+        //itemIcon.setPosition(startX / 2, startY / 2);
+        itemIcon.setPosition(endXY);
+
+
+       // scene.inventory.addItemToContainer(scene, itemIcon.texture.key);
+
+       // itemIconContainers[0].add(itemIcon); 
+        /*
         //scene.inventoryContainer.dragStartParent.add(itemIcon);
         const startX = scene.inventoryContainer.dragStartX;
         const startY = scene.inventoryContainer.dragStartY;
@@ -322,6 +357,7 @@ export default class Inventory {
 
       //  itemIcon.x += dragX;
        // itemIcon.y += dragY;
+       */
 
       }
 
