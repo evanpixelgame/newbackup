@@ -173,7 +173,7 @@ export default class Inventory {
 
       //if (itemIconContainers[i].dropZone.isEmpty === false) {
       if (itemIconContainers[i].isEmpty === false) {
-      // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
+        // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
         console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
       }
       else { //check if slot is empty
@@ -188,7 +188,7 @@ export default class Inventory {
         // scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
         itemIconContainers[i].isEmpty = false; //change slot to not empty
         this.setDragEvents(itemIcon, scene);
-       // scene.inventoryContainer.itemSlots.push(itemIcon);
+        // scene.inventoryContainer.itemSlots.push(itemIcon);
         console.log(itemIcon);
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
         return;
@@ -219,23 +219,23 @@ export default class Inventory {
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
-     // scene.inventoryContainer.itemZones
+      // scene.inventoryContainer.itemZones
       //customEmitter.on('zoneChange')
-        //in collision handlers, custom emitter passes new scene key when transitioning scenes, this subscribes to that emitter
-       
-        customEmitter.on('activeSceneChanged', () => {
-          console.log(`event emitter caught in itemdrag, now in zone`);
+      //in collision handlers, custom emitter passes new scene key when transitioning scenes, this subscribes to that emitter
+
+      customEmitter.on('activeSceneChanged', () => {
+        console.log(`event emitter caught in itemdrag, now in zone`);
       });
 
-        customEmitter.on('activeSceneChanged', (i) => {
-          console.log(`event emitter caught in itemdrag, now in zone ${i}`);
+      customEmitter.on('activeSceneChanged', (i) => {
+        console.log(`event emitter caught in itemdrag, now in zone ${i}`);
       });
 
       var isOverlapping = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.itemSlotContainers[2], itemIcon.getBounds());
 
       if (isOverlapping) {
-          // The draggable item is overlapping with the drop target
-          console.log("Dragged onto drop target");
+        // The draggable item is overlapping with the drop target
+        console.log("Dragged onto drop target");
       }
 
     });
@@ -247,11 +247,15 @@ export default class Inventory {
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+      scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
+      scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
+      console.log(itemIcon.getBounds());
+
       const zoneContainers = scene.inventoryContainer.itemZoneContainers;
       console.log(zoneContainers);
       scene.children.bringToTop(zoneContainers);
       zoneContainers.forEach(zone => {
-       
+
       });
       console.log(zoneContainers);
 
@@ -270,29 +274,33 @@ export default class Inventory {
       console.log(pointer.x, pointer.y);
 
 
-    let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
+      let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
-    if (isValidDropZone) {
+      if (isValidDropZone) {
         // The draggable item is overlapping with the drop target
         console.log("Dragged onto drop target");
-
+        console.log(`This Dragend was started at x: ${scene.inventoryContainer.dragStartX}, y: ${scene.inventoryContainer.dragStartY}`);
         //now iterate through zones and see which one it was dropped on
-    } else {
-      //do something to return it to original position then return?
-      //return;
-    }
+      }
 
-   
-    //if it overlaps more than one zone, see which one it overlaps the most
-    //or just return to original position if it overlaps 2
+      else {
 
-for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
-    let dropZone = scene.inventoryContainer.itemSlotContainers[i];
-    let isDropZone = Phaser.Geom.Rectangle.Overlaps(dropZone.getBounds(), itemIcon.getBounds());
-    if (isDropZone) {
-      console.log(`Dropped in Zone ${i}`)
-    }
-}
+        itemIcon.x += dragX;
+        itemIcon.y += dragY;
+
+      }
+
+
+      //if it overlaps more than one zone, see which one it overlaps the most
+      //or just return to original position if it overlaps 2
+
+      for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
+        let dropZone = scene.inventoryContainer.itemSlotContainers[i];
+        let isDropZone = Phaser.Geom.Rectangle.Overlaps(dropZone.getBounds(), itemIcon.getBounds());
+        if (isDropZone) {
+          console.log(`Dropped in Zone ${i}`)
+        }
+      }
 
     });
   }
@@ -923,5 +931,5 @@ function delayDisable(scene) {
   });
 
 
-  
+
 }
