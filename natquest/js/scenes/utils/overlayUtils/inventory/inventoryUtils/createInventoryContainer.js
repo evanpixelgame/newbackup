@@ -1,4 +1,7 @@
 
+import customEmitter from '../../../../../main.js';
+
+
 const containerWidth = window.innerWidth * 1 / 2;
 const containerHeight = window.innerHeight * 1 / 2;
 // Define the number of rows and columns for the item slots
@@ -67,6 +70,8 @@ export function createInventoryZones(scene) {
             itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
                 console.log('titi esta muy bonita :D ' + i);
+                //customEmitter.emit('zoneChange', i);
+                customEmitter.emit('zoneChange', i);
             });
 
 
@@ -79,6 +84,7 @@ export function createInventoryZones(scene) {
             itemZone.on('pointerup', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
                 console.log('pointerup (click release)');
+                customEmitter.emit('zoneChange');
             });
 
             // push to scene.inventoryContainer.
@@ -164,6 +170,7 @@ export function createInventoryZones2(scene) {
         itemZone.on('pointerover', function (pointer, gameObject) {
             // Highlight the drop zone or provide feedback
             console.log('titi esta muy bonita :D ' + i);
+            customEmitter.emit('zoneChange', i);
         });
 
 

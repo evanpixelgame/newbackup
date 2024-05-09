@@ -1,4 +1,5 @@
 import { createInventoryContainer, createInventoryZones, createItemSlots } from "./inventoryUtils/createInventoryContainer.js";
+import customEmitter from '../../../../main.js';
 
 export default class Inventory {
   constructor(scene) {
@@ -219,6 +220,16 @@ export default class Inventory {
       this.x = dragX;
       this.y = dragY;
       scene.inventoryContainer.itemZones
+      //customEmitter.on('zoneChange')
+        //in collision handlers, custom emitter passes new scene key when transitioning scenes, this subscribes to that emitter
+       
+        customEmitter.on('activeSceneChanged', () => {
+          console.log(`event emitter caught in itemdrag, now in zone`);
+      });
+
+        customEmitter.on('activeSceneChanged', (i) => {
+          console.log(`event emitter caught in itemdrag, now in zone ${i}`);
+      });
     });
   }
 
@@ -228,13 +239,18 @@ export default class Inventory {
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+      const zoneContainers = scene.inventoryContainer.itemZoneContainers;
+      zoneContainers.forEach(zone => {
+       // console.log(zone);
+      });
+
 /*
       scene.inventoryContainer.itemZoneContainers.forEach(zone => {
         console.log(scene.test);
         zone.setDepth(200);
         zone.bringToTop();
       });
-      */
+     
 
       scene.inventoryContainer.itemSlotContainers.forEach(itemSlotContainer => {
         const containers = itemSlotContainer.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
@@ -243,7 +259,7 @@ export default class Inventory {
         console.log('dragstarttestorder' + containers[0].list);
       });
 
-
+ */
       /*
       scene.inventoryContainer.itemZones.forEach(zone => {
         console.log(scene.test);
@@ -280,7 +296,7 @@ export default class Inventory {
         zone.bringToTop();
         console.log(zone);
       });
-*/
+
       
       scene.inventoryContainer.itemSlotContainers.forEach(itemSlotContainer => {
         const containers = itemSlotContainer.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
@@ -297,7 +313,7 @@ export default class Inventory {
             // You can perform any actions here, such as handling the drop or triggering events
         }
     });
-
+*/
       /*
       scene.inventoryContainer.sprites.forEach(sprite => {
         if (sprite === itemIcon) {

@@ -74,11 +74,26 @@ export default class OverlayScene extends Phaser.Scene {
 
      //   this.inventory.initializeInventoryItems(this);
        // this.inventory.initializeDragAndDrop(this);
-    console.log(this.inventoryContainer.itemSlots);
+    console.log(this.inventoryContainer);
     console.log(this.inventoryContainer.items);
+   // this.inventory.inventoryContainer.bringToTop();
+
+   const zoneContainers = this.inventoryContainer.itemZoneContainers;
+      zoneContainers.forEach(zone => {
+        zone.setDepth(1000);
+      });
+
+      customEmitter.on('zoneChange', (i) => {
+        this.logNewZone(i);
+    });
 
     }
 
+    logNewZone = (i) => {
+        this.scene.bringToTop('OverlayScene');
+        console.log('customemitted from zone change');
+        console.log(i);
+    }
 
 
     updateActiveScene = (newSceneKey) => {
