@@ -275,13 +275,6 @@ export default class Inventory {
 
       const itemIconContainers = scene.inventoryContainer.itemIconContainers;
 
-      //console.log(itemIcon.x, itemIcon.y);
-     // console.log(pointer.x, pointer.y);
-
-     // console.log(itemIcon.x, itemIcon.y);
-     // console.log(itemIcon);
-    //  console.log(scene.inventoryContainer.dragStartParent);
-
       let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
       if (isValidDropZone) {
@@ -311,56 +304,20 @@ export default class Inventory {
         const startX = scene.inventoryContainer.dragStartX;
         const startY = scene.inventoryContainer.dragStartY;
 
-        const newX = scene.inventoryContainer.x + startX;
-        const newY = scene.inventoryContainer.y + startY;
-
-       // itemIcon.x = startX;
-       // itemIcon.y = startY;
-
-const itemIconStart = scene.inventoryContainer.startSpriteState;
-//itemIcon = itemIconStart;
-//itemIcon.x = startX;
-//itemIcon.y = startY;
-const containerWidth = window.innerWidth * 1 / 2;
-const containerHeight = window.innerHeight * 1 / 2;
         console.log(itemIcon);
-        const endX = ((startX / 4) - containerWidth);
-        const endY = ((startY / 4) - containerHeight);
-
         const endXY = scene.inventory.getRelativePos({x: startX, y: startY}, scene);
-        //itemIcon.setPosition(startX / 2, startY / 2);
         itemIcon.setPosition(endXY);
 
-
-       // scene.inventory.addItemToContainer(scene, itemIcon.texture.key);
-
-       // itemIconContainers[0].add(itemIcon); 
         /*
-        //scene.inventoryContainer.dragStartParent.add(itemIcon);
-        const startX = scene.inventoryContainer.dragStartX;
-        const startY = scene.inventoryContainer.dragStartY;
-        console.log(startX, startY);
-        const endX = itemIcon.getBounds().x;
-        const endY = itemIcon.getBounds().y;
-        console.log(endX, endY);
-        const difX = startX - endX;
-        const difY = startY - endY;
-        console.log(difX, difY);
-
         const tween = scene.tweens.add({
           targets: itemIcon,
-          x: difX / 64,
-          y: difY / 64,
+          x: endXY.x,
+          y: endXY.y,
           ease: 'Power2', // Adjust easing for desired movement
           duration: 300, // Adjust duration for animation speed
       });
-
-      //  itemIcon.x += dragX;
-       // itemIcon.y += dragY;
        */
-
       }
-
 
       //if it overlaps more than one zone, see which one it overlaps the most
       //or just return to original position if it overlaps 2
