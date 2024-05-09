@@ -283,17 +283,39 @@ export default class Inventory {
         // The draggable item is overlapping with the drop target
         console.log("Dragged onto drop target");
         console.log(`This Dragend was started at x: ${scene.inventoryContainer.dragStartX}, y: ${scene.inventoryContainer.dragStartY}`);
+        const startX = scene.inventoryContainer.dragStartX;
+        const startY = scene.inventoryContainer.dragStartY;
+        console.log(startX, startY);
+        const endX = itemIcon.getBounds().x;
+        const endY = itemIcon.getBounds().y;
+        console.log(endX, endY);
+        const difX = startX - endX;
+        const difY = startY - endY;
+        console.log(difX, difY);
         console.log(itemIcon.getBounds().x, itemIcon.getBounds().y);
+        console.log('drag diff: ' + itemIcon.getBounds().x - scene.inventoryContainer.dragStartX, itemIcon.getBounds().y - scene.inventoryContainer.dragStartY);
         //now iterate through zones and see which one it was dropped on
+        const dragDifX = itemIcon.getBounds().x - scene.inventoryContainer.dragStartX;
+        const dragDifY = itemIcon.getBounds().x - scene.inventoryContainer.dragStartX;
+        console.log(dragDifX, dragDifY);
       }
 
       else {
         //scene.inventoryContainer.dragStartParent.add(itemIcon);
+        const startX = scene.inventoryContainer.dragStartX;
+        const startY = scene.inventoryContainer.dragStartY;
+        console.log(startX, startY);
+        const endX = itemIcon.getBounds().x;
+        const endY = itemIcon.getBounds().y;
+        console.log(endX, endY);
+        const difX = startX - endX;
+        const difY = startY - endY;
+        console.log(difX, difY);
 
         const tween = scene.tweens.add({
           targets: itemIcon,
-          x: scene.inventoryContainer.dragStartX,
-          y: scene.inventoryContainer.dragStartY,
+          x: difX / 64,
+          y: difY / 64,
           ease: 'Power2', // Adjust easing for desired movement
           duration: 300, // Adjust duration for animation speed
       });
