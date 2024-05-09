@@ -26,7 +26,6 @@ export function createInventoryContainer(scene) {
     scene.inventoryContainer.dragStartX = 0;
     scene.inventoryContainer.dragStartY = 0;
     scene.inventoryContainer.dragStartParent;
-    scene.inventoryContainer.startSpriteState;
 
     // Create item slot containers and add them to the container
     for (let row = 0; row < numRows; row++) {
@@ -73,9 +72,9 @@ export function createInventoryZones(scene) {
 
             itemZone.on('pointerover', function (pointer, gameObject) {
                 // Highlight the drop zone or provide feedback
-                console.log('titi esta muy bonita :D ' + i);
+               // console.log('titi esta muy bonita :D ' + i);
                 //customEmitter.emit('zoneChange', i);
-                customEmitter.emit('zoneChange', i);
+               // customEmitter.emit('zoneChange', i);
             });
 
 
