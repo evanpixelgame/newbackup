@@ -251,17 +251,17 @@ export default class Inventory {
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
       console.log(itemIcon.getBounds());
 
-      const zoneContainers = scene.inventoryContainer.itemZoneContainers;
-      console.log(zoneContainers);
-      scene.children.bringToTop(zoneContainers);
-      zoneContainers.forEach(zone => {
+      scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
+       console.log(scene.inventoryContainer.dragStartParent);
+       console.log(scene.inventoryContainer.dragStartParent.getBounds());
+ // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+// itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+ //console.log(itemIcon);
 
-      });
-      console.log(zoneContainers);
+ // scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
+
 
     });
-
-
   }
 
   itemDragEnd(itemIcon, scene) {
@@ -273,6 +273,9 @@ export default class Inventory {
       console.log(itemIcon.x, itemIcon.y);
       console.log(pointer.x, pointer.y);
 
+      console.log(itemIcon.x, itemIcon.y);
+      console.log(itemIcon);
+      console.log(scene.inventoryContainer.dragStartParent);
 
       let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
@@ -280,13 +283,23 @@ export default class Inventory {
         // The draggable item is overlapping with the drop target
         console.log("Dragged onto drop target");
         console.log(`This Dragend was started at x: ${scene.inventoryContainer.dragStartX}, y: ${scene.inventoryContainer.dragStartY}`);
+        console.log(itemIcon.getBounds().x, itemIcon.getBounds().y);
         //now iterate through zones and see which one it was dropped on
       }
 
       else {
+        //scene.inventoryContainer.dragStartParent.add(itemIcon);
 
-        itemIcon.x += dragX;
-        itemIcon.y += dragY;
+        const tween = scene.tweens.add({
+          targets: itemIcon,
+          x: scene.inventoryContainer.dragStartX,
+          y: scene.inventoryContainer.dragStartY,
+          ease: 'Power2', // Adjust easing for desired movement
+          duration: 300, // Adjust duration for animation speed
+      });
+
+      //  itemIcon.x += dragX;
+       // itemIcon.y += dragY;
 
       }
 

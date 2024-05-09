@@ -25,6 +25,7 @@ export function createInventoryContainer(scene) {
     scene.inventoryContainer.itemSlotContainers = [];
     scene.inventoryContainer.dragStartX = 0;
     scene.inventoryContainer.dragStartY = 0;
+    scene.inventoryContainer.dragStartParent;
 
     // Create item slot containers and add them to the container
     for (let row = 0; row < numRows; row++) {
