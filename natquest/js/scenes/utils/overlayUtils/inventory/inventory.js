@@ -219,7 +219,7 @@ export default class Inventory {
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
-      scene.inventoryContainer.itemZones
+     // scene.inventoryContainer.itemZones
       //customEmitter.on('zoneChange')
         //in collision handlers, custom emitter passes new scene key when transitioning scenes, this subscribes to that emitter
        
@@ -230,6 +230,14 @@ export default class Inventory {
         customEmitter.on('activeSceneChanged', (i) => {
           console.log(`event emitter caught in itemdrag, now in zone ${i}`);
       });
+
+      var isOverlapping = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.itemSlotContainers[2], itemIcon.getBounds());
+
+      if (isOverlapping) {
+          // The draggable item is overlapping with the drop target
+          console.log("Dragged onto drop target");
+      }
+
     });
   }
 
@@ -240,46 +248,13 @@ export default class Inventory {
       console.log('dragStart');
       this.setAlpha(0.5);
       const zoneContainers = scene.inventoryContainer.itemZoneContainers;
+      console.log(zoneContainers);
+      scene.children.bringToTop(zoneContainers);
       zoneContainers.forEach(zone => {
-       // console.log(zone);
+       
       });
+      console.log(zoneContainers);
 
-/*
-      scene.inventoryContainer.itemZoneContainers.forEach(zone => {
-        console.log(scene.test);
-        zone.setDepth(200);
-        zone.bringToTop();
-      });
-     
-
-      scene.inventoryContainer.itemSlotContainers.forEach(itemSlotContainer => {
-        const containers = itemSlotContainer.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
-       console.log('dragteststartbefore' + containers[0]);
-        itemSlotContainer.parentContainer.swap(containers[0], containers[1]);
-        console.log('dragstarttestorder' + containers[0].list);
-      });
-
- */
-      /*
-      scene.inventoryContainer.itemZones.forEach(zone => {
-        console.log(scene.test);
-        zone.setDepth(101); 
-      });
-      */
-      /*
-            scene.inventoryContainer.sprites.forEach(sprite => {
-              if (sprite === itemIcon) {
-                console.log(`this is the current sprite`);
-              }
-              else {
-              console.log(`this is not the current sprite`);
-              sprite.disableInteractive();
-              }
-            });
-      
-            itemIcon.setInteractive({ draggable: true });
-            scene.inventory.itemDrag(itemIcon, scene);
-       */
     });
 
 
@@ -290,53 +265,34 @@ export default class Inventory {
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
       console.log('dragEnd');
       this.setAlpha(1);
-     /*
-      scene.inventoryContainer.itemZoneContainers.forEach(zone => {
-        zone.setDepth(200);
-        zone.bringToTop();
-        console.log(zone);
-      });
 
-      
-      scene.inventoryContainer.itemSlotContainers.forEach(itemSlotContainer => {
-        const containers = itemSlotContainer.parentContainer.list.filter(obj => obj instanceof Phaser.GameObjects.Container);
-       //console.log('dragteststartbefore' + containers[0]);
-        itemSlotContainer.parentContainer.swap(containers[0], containers[1]);
-       // console.log('dragstarttestorder' + containers[0].list);
-      });
-
-      scene.inventoryContainer.itemZoneContainers.forEach((zone) => {
-         
-        if (Phaser.Geom.Intersects.RectangleToRectangle(zone.getBounds(), itemIcon.getBounds())) {
-            // DragObject dropped over the current zone
-            console.log('DragObject dropped over zone:', zone);
-            // You can perform any actions here, such as handling the drop or triggering events
-        }
-    });
-*/
-      /*
-      scene.inventoryContainer.sprites.forEach(sprite => {
-        if (sprite === itemIcon) {
-          console.log(`this sprite should already be interactive`);
-        }
-        else {
-        console.log(`this sprite needs to be made interactive again`);
-        itemIcon.setInteractive({ draggable: true });
-        scene.inventory.itemDrag(itemIcon, scene);
-        }
-      });
-      */
-
-      // scene.time.delayedCall(500, () => delayDisable(scene));
+      console.log(itemIcon.x, itemIcon.y);
+      console.log(pointer.x, pointer.y);
 
 
-      /*
-      scene.inventoryContainer.itemZones.forEach(zone => {
-        console.log('dsiabling zone');
-        zone.setDepth(99); 
-       // zone.disableInteractive();
-      });
-      */
+    let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
+
+    if (isValidDropZone) {
+        // The draggable item is overlapping with the drop target
+        console.log("Dragged onto drop target");
+
+        //now iterate through zones and see which one it was dropped on
+    } else {
+      //do something to return it to original position then return?
+      //return;
+    }
+
+   
+    //if it overlaps more than one zone, see which one it overlaps the most
+    //or just return to original position if it overlaps 2
+
+for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
+    let dropZone = scene.inventoryContainer.itemSlotContainers[i];
+    let isDropZone = Phaser.Geom.Rectangle.Overlaps(dropZone.getBounds(), itemIcon.getBounds());
+    if (isDropZone) {
+      console.log(`Dropped in Zone ${i}`)
+    }
+}
 
     });
   }
@@ -966,4 +922,6 @@ function delayDisable(scene) {
     zone.disableInteractive();
   });
 
+
+  
 }

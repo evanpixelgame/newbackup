@@ -91,8 +91,8 @@ export default class OverlayScene extends Phaser.Scene {
 
     logNewZone = (i) => {
         this.scene.bringToTop('OverlayScene');
-        console.log('customemitted from zone change');
-        console.log(i);
+       // console.log('customemitted from zone change');
+       // console.log(i);
     }
 
 
