@@ -1,22 +1,22 @@
 
+const containerWidth = window.innerWidth * 1 / 2;
+const containerHeight = window.innerHeight * 1 / 2;
+// Define the number of rows and columns for the item slots
+const numRows = 2; // Example number of rows
+const numCols = 5; // Example number of columns
+
+// Create item slot sprites and add them to the container
+const slotWidth = 64; // Example width of each item slot
+const slotHeight = 64; // Example height of each item slot
+const horizontalSpacing = 0; // Example horizontal spacing between item slots
+const verticalSpacing = 0; // Example vertical spacing between item slots
+
+
 export function createInventoryContainer(scene) {
 
-    const containerWidth = window.innerWidth * 1 / 2;
-    const containerHeight = window.innerHeight * 1 / 2;
     // Create a container to hold the item slots
     scene.inventoryContainer = scene.add.container(containerWidth, containerHeight);
     scene.inventoryContainer.visible = false;
-
-    // Define the number of rows and columns for the item slots
-    const numRows = 2; // Example number of rows
-    const numCols = 5; // Example number of columns
-
-    // Create item slot sprites and add them to the container
-    const slotWidth = 64; // Example width of each item slot
-    const slotHeight = 64; // Example height of each item slot
-    const horizontalSpacing = 0; // Example horizontal spacing between item slots
-    const verticalSpacing = 0; // Example vertical spacing between item slots
-
 
     // Create an array to hold references to item slot sprites
     scene.inventoryContainer.itemSlotContainers = [];
@@ -43,9 +43,113 @@ export function createInventoryContainer(scene) {
     }
 }
 
-
-
 export function createInventoryZones(scene) {
+
+    scene.inventoryContainer.zonesContainer = scene.add.container(containerWidth, containerHeight);
+    scene.inventoryContainer.zonesContainer.visible = false;
+
+    // Create an array to hold references to item slot sprites
+    scene.inventoryContainer.itemZoneContainers = [];
+
+    // Create item slot containers and add them to the container
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+
+            const x = col * (slotWidth + horizontalSpacing);
+            const y = row * (slotHeight + verticalSpacing);
+
+            const itemZoneContainer = scene.add.container(x, y);
+            const itemZone = scene.add.zone(0, 0, 64, 64);
+            const i = row * numCols + col + 1;
+
+            itemZone.setInteractive();
+
+            itemZone.on('pointerover', function (pointer, gameObject) {
+                // Highlight the drop zone or provide feedback
+                console.log('titi esta muy bonita :D ' + i);
+            });
+
+
+            itemZone.on('pointerdown', function (pointer, gameObject) {
+                // Highlight the drop zone or provide feedback
+                console.log('pointerdown');
+            });
+
+
+            itemZone.on('pointerup', function (pointer, gameObject) {
+                // Highlight the drop zone or provide feedback
+                console.log('pointerup (click release)');
+            });
+
+            // push to scene.inventoryContainer.
+            scene.inventoryContainer.itemZoneContainers.push(itemZoneContainer);
+
+            itemZoneContainer.setName(`ZoneContainer${i}`);
+            itemZoneContainer.add(itemZone);
+            scene.inventoryContainer.zonesContainer.add(itemZoneContainer);
+        }
+    }
+}
+
+
+export function createItemSlots(scene) {
+
+    scene.inventoryContainer.itemIconsContainer = scene.add.container(containerWidth, containerHeight);
+    scene.inventoryContainer.itemIconsContainer.visible = false;
+
+
+    // Create an array to hold references to item slot sprites
+    scene.inventoryContainer.itemIconContainers = [];
+
+    // Create item slot containers and add them to the container
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+
+            const x = col * (slotWidth + horizontalSpacing);
+            const y = row * (slotHeight + verticalSpacing);
+
+            const itemIconContainer = scene.add.container(x, y);
+            const i = row * numCols + col + 1;
+
+            itemIconContainer.setName(`itemIconContainer${i}`);
+
+            itemIconContainer.isEmpty = true;
+
+            scene.inventoryContainer.itemIconContainers.push(itemIconContainer);
+
+            scene.inventoryContainer.itemIconsContainer.add(itemIconContainer);
+
+          //  itemIconContainer.add(item);
+        }
+    }
+}
+
+export function createItemSlots2(scene) {
+
+    // Create an array to hold references to item slot sprites
+    scene.inventoryContainer.itemSlots = [];
+
+    // Create item slot containers and add them to the container
+    for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
+
+        const itemSlot = scene.add.container(0, 0);
+
+        itemSlot.isEmpty = true;
+
+        itemSlot.setName(`ItemSlot${i}`);
+
+        scene.inventoryContainer.itemSlotContainers[i].add(itemSlot);
+        scene.inventoryContainer.itemSlots.push(itemSlot);
+
+        console.log(itemSlot);
+
+    }
+}
+
+
+
+
+export function createInventoryZones2(scene) {
 
     // Create an array to hold references to item slot sprites
     scene.inventoryContainer.itemZoneContainers = [];
@@ -59,7 +163,7 @@ export function createInventoryZones(scene) {
 
         itemZone.on('pointerover', function (pointer, gameObject) {
             // Highlight the drop zone or provide feedback
-            console.log('titi esta muy bonita :D ' + i );
+            console.log('titi esta muy bonita :D ' + i);
         });
 
 
@@ -81,32 +185,12 @@ export function createInventoryZones(scene) {
         itemZoneContainer.add(itemZone);
 
         scene.inventoryContainer.itemSlotContainers[i].add(itemZoneContainer);
-
+        // scene.inventoryContainer.add(itemZoneContainer);
     }
 }
 
 
-export function createItemSlots(scene) {
 
-    // Create an array to hold references to item slot sprites
-    scene.inventoryContainer.itemSlots = [];
-
-    // Create item slot containers and add them to the container
-    for (let i = 0; i < scene.inventoryContainer.itemZoneContainers.length; i++) {
-      
-        const itemSlot = scene.add.container(0, 0);
-
-        itemSlot.isEmpty = true;
-
-        itemSlot.setName(`ItemSlot${i}`);
-      
-        scene.inventoryContainer.itemZoneContainers[i].add(itemSlot);
-        scene.inventoryContainer.itemSlots.push(itemSlot);
-    
-        console.log(itemSlot);
-
-    }
-}
 
 /*
 const itemSlot = scene.add.container(0, 0); // Create container for item icon
