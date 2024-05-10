@@ -244,10 +244,17 @@ export default class Inventory {
             console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-            //itemIcon.x /= 4;
-            //itemIcon.y /= 4;
           } else {
             console.log(`swap icon spots`);
+            console.log(itemIconContainers[bestDropZoneIndex].first);
+            const otherIcon = itemIconContainers[bestDropZoneIndex].first;
+            itemParent.add(otherIcon);
+            itemIconContainers[bestDropZoneIndex].add(itemIcon);
+            const endXY = scene.inventory.getRelativePos(itemIcon, scene);
+            itemIcon.setPosition(endXY);
+            const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
+            otherIcon.setPosition(endXYotherIcon);
+            
           }
       } else {
           console.log("No drop zone detected == Too little of sprite in dropZone");
