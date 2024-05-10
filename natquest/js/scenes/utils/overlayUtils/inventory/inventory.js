@@ -220,6 +220,7 @@ export default class Inventory {
         
       let maxOverlap = 0;
       let bestDropZoneIndex = -1;
+      let slotID = 0;
       
       for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
           let dropZone = scene.inventoryContainer.itemSlotContainers[i];
@@ -228,11 +229,17 @@ export default class Inventory {
           if (overlapArea > maxOverlap) {
               maxOverlap = overlapArea;
               bestDropZoneIndex = i;
+              slotID = i + 1;
           }
       }
       
       if (bestDropZoneIndex !== -1) {
           console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
+          if (itemIconContainers[bestDropZoneIndex].isEmpty === true) {
+            console.log(`add icon to new empty slot and switch parent container`);
+          } else {
+            console.log(`swap icon spots`);
+          }
       } else {
           console.log("No drop zone detected == Too little of sprite in dropZone");
           const startX = scene.inventoryContainer.dragStartX;
