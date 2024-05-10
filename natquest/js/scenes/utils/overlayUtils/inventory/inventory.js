@@ -209,6 +209,7 @@ export default class Inventory {
       this.setAlpha(1);
 
       const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+      const itemParent = itemIcon.parentContainer;
 
       let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
@@ -237,6 +238,14 @@ export default class Inventory {
           console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
           if (itemIconContainers[bestDropZoneIndex].isEmpty === true) {
             console.log(`add icon to new empty slot and switch parent container`);
+            itemIconContainers[bestDropZoneIndex].isEmpty = false;
+            itemIconContainers[bestDropZoneIndex].add(itemIcon);
+            itemParent.isEmpty = true;
+            console.log(itemIcon);
+            const endXY = scene.inventory.getRelativePos(itemIcon, scene);
+            itemIcon.setPosition(endXY);
+            //itemIcon.x /= 4;
+            //itemIcon.y /= 4;
           } else {
             console.log(`swap icon spots`);
           }
