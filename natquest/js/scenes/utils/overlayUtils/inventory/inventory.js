@@ -124,6 +124,16 @@ export default class Inventory {
         itemIconContainers[i].isEmpty = false; //change slot to not empty
         this.setDragEvents(itemIcon, scene);
         // scene.inventoryContainer.itemSlots.push(itemIcon);
+        itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
+          // Check if it's a right-click
+          if (event.rightButton) {
+            event.preventDefault();
+              // Right-click detected
+              console.log('Right-clicked on sprite');
+              
+              // Add your custom logic for right-click here
+          }
+      });
         console.log(itemIcon);
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
         return;
@@ -182,6 +192,14 @@ export default class Inventory {
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+     
+      let draggingAllowed = true;
+
+      if (!draggingAllowed) {
+        // Cancel the drag operation
+        return false;
+    }
+
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
       scene.inventoryContainer.startSpriteState = itemIcon;
