@@ -112,7 +112,7 @@ itemIcon.on('click', function(pointer) {
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
-          console.log('pointerDowndetected');
+         //  console.log('pointerDowndetected');
 
           //let currentTime = scene.scene.time.now;
           let currentTime = this.scene.time.now; //deleted this by try isntead?
@@ -146,7 +146,7 @@ itemIcon.on('click', function(pointer) {
         itemIconContainers[i].isEmpty = false; //change slot to not empty
 
         
-        console.log(itemIcon);
+      //  console.log(itemIcon);
         
         return;
 
@@ -159,7 +159,7 @@ itemIcon.on('click', function(pointer) {
 
     let dragXTotal = 0;
     let dragYTotal = 0;
-    console.log(`set drag events being called;`);
+  //  console.log(`set drag events being called;`);
     this.itemDragStart(itemIcon, scene);
     this.itemDragEnd(itemIcon, scene);
     this.itemDrag(itemIcon, scene);
@@ -170,7 +170,7 @@ itemIcon.on('click', function(pointer) {
   itemDrag(itemIcon, scene) {
 
     itemIcon.on('drag', function (pointer, dragX, dragY) {
-      console.log('drag');
+   //   console.log('drag');
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
@@ -191,19 +191,19 @@ itemIcon.on('click', function(pointer) {
       let timeSinceLastDrag = scene.inventoryContainer.dragStartTime - lastDragEndTime;
       console.log('REAL time since last drag should be: ' + timeSinceLastDrag);
 
-      console.log(pointer);
-      console.log(scene.inventoryContainer.dragStartTime);
+     // console.log(pointer);
+     // console.log(scene.inventoryContainer.dragStartTime);
 
 
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
       scene.inventoryContainer.startSpriteState = itemIcon;
-      console.log(itemIcon.getBounds());
-      console.log(itemIcon);
+    //  console.log(itemIcon.getBounds());
+     // console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
-      console.log(scene.inventoryContainer.dragStartParent);
-      console.log(scene.inventoryContainer.dragStartParent.getBounds());
+    //  console.log(scene.inventoryContainer.dragStartParent);
+    //  console.log(scene.inventoryContainer.dragStartParent.getBounds());
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
       //console.log(itemIcon);
@@ -217,13 +217,13 @@ itemIcon.on('click', function(pointer) {
   itemDragEnd(itemIcon, scene) {
 
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
-      console.log('dragEnd');
-      console.log(pointer);
+     // console.log('dragEnd');
+    //  console.log(pointer);
 
       let prevTime = scene.inventoryContainer.dragStartTime;
       scene.inventoryContainer.lastDragEndTime = this.scene.time.now;
       let dragDur = scene.inventoryContainer.lastDragEndTime - prevTime;
-      console.log('REAL drag duration should be: ' + dragDur);
+      console.log('drag duration should be: ' + dragDur);
 
 
 /*
@@ -260,7 +260,7 @@ itemIcon.on('click', function(pointer) {
       if (isValidDropZone) {
 
         // The draggable item is overlapping with the drop target
-        console.log("Dragged onto drop target");
+      //  console.log("Dragged onto drop target");
 
 
         let maxOverlap = 0;
@@ -279,18 +279,18 @@ itemIcon.on('click', function(pointer) {
         }
 
         if (bestDropZoneIndex !== -1) {
-          console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
+        //  console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
           if (itemIconContainers[bestDropZoneIndex].isEmpty === true) {
-            console.log(`add icon to new empty slot and switch parent container`);
+         //   console.log(`add icon to new empty slot and switch parent container`);
             itemIconContainers[bestDropZoneIndex].isEmpty = false;
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             itemParent.isEmpty = true;
-            console.log(itemIcon);
+        //    console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
           } else {
             console.log(`swap icon spots`);
-            console.log(itemIconContainers[bestDropZoneIndex].first);
+            //console.log(itemIconContainers[bestDropZoneIndex].first);
             const otherIcon = itemIconContainers[bestDropZoneIndex].first;
             itemParent.add(otherIcon);
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
@@ -305,7 +305,7 @@ itemIcon.on('click', function(pointer) {
           const startX = scene.inventoryContainer.dragStartX;
           const startY = scene.inventoryContainer.dragStartY;
 
-          console.log(itemIcon);
+        //  console.log(itemIcon);
           const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
           itemIcon.setPosition(endXY);
         }
@@ -317,7 +317,7 @@ itemIcon.on('click', function(pointer) {
         const startX = scene.inventoryContainer.dragStartX;
         const startY = scene.inventoryContainer.dragStartY;
 
-        console.log(itemIcon);
+      //  console.log(itemIcon);
         const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
         itemIcon.setPosition(endXY);
 
