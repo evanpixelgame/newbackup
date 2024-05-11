@@ -1,4 +1,5 @@
 import { createInventoryContainer, createItemSlots } from "./inventoryUtils/createInventoryContainer.js";
+import itemContextMenu from "./inventoryUtils/inventoryItemContextMenu.js";
 import customEmitter from '../../../../main.js';
 
 export default class Inventory {
@@ -92,24 +93,8 @@ export default class Inventory {
         itemIcon.setInteractive({ draggable: true });
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
+        itemIcon.ContextMenu = false;
        
-     /*  
-        let clickTime = null;
-        // Define the double click time window (in milliseconds)
-const DOUBLE_CLICK_TIME = 2500;
-
-itemIcon.on('click', function(pointer) {
-  if (clickTime === null || (pointer.time - clickTime) < DOUBLE_CLICK_TIME) {
-    // First click or within time window
-    clickTime = pointer.time;
-  } else {
-    // Double click detected!
-    clickTime = null;
-    console.log('Double click on myObject');
-    // Perform actions specific to double click here
-  }
-});
-*/
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
@@ -205,6 +190,16 @@ itemIcon.on('click', function(pointer) {
        // pointer.stopImmediatePropagation();
       //  pointer.stopPropagation();
       scene.inventoryContainer.allowDrag = false;
+      if (!itemIcon.contextMenu) {
+        console.log('startmakingcontextmenu');
+        // Create context menu if it doesn't exist
+        itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y);
+        //itemIcon.contextMenu = true;
+    } else {
+        // Update context menu position
+        itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
+        itemIcon.contextMenu.setVisible(true);
+    }
       return false;
       }
 
