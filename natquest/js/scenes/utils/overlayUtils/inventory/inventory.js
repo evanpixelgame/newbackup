@@ -92,6 +92,23 @@ export default class Inventory {
         itemIcon.setInteractive({ draggable: true });
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
+        let clickTime = null;
+        // Define the double click time window (in milliseconds)
+const DOUBLE_CLICK_TIME = 2500;
+
+itemIcon.on('click', function(pointer) {
+  if (clickTime === null || (pointer.time - clickTime) < DOUBLE_CLICK_TIME) {
+    // First click or within time window
+    clickTime = pointer.time;
+  } else {
+    // Double click detected!
+    clickTime = null;
+    console.log('Double click on myObject');
+    // Perform actions specific to double click here
+  }
+});
+
+
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
@@ -107,6 +124,7 @@ export default class Inventory {
           if (clickTimeDifference < doubleClickDelay) {
               // Double-click detected
               console.log('Double-clicked on sprite');
+              lastClickTime = 0;
       
               // Add your logic for double-click here
           }
@@ -168,25 +186,14 @@ export default class Inventory {
       let lastClickTime = 0;
       let doubleClickDelay = 4000; 
 
-      let currentTime = this.scene.time.now; //deleted this by try isntead?
+      scene.inventoryContainer.dragStartTime = this.scene.time.now; //deleted this by try isntead?
+      let lastDragEndTime = scene.inventoryContainer.lastDragEndTime;
+      let timeSinceLastDrag = scene.inventoryContainer.dragStartTime - lastDragEndTime;
+      console.log('REAL time since last drag should be: ' + timeSinceLastDrag);
 
-      // Calculate time since last click
-      let clickTimeDifference = currentTime - lastClickTime;
-  
-      // Check if it's a double click
-      if (clickTimeDifference < doubleClickDelay) {
-          // Double-click detected
-          console.log('Double-clicked on sprite from dragStart');
-  
-          // Add your logic for double-click here
-      }
+      console.log(pointer);
+      console.log(scene.inventoryContainer.dragStartTime);
 
-      let draggingAllowed = true;
-
-      if (!draggingAllowed) {
-        // Cancel the drag operation
-        return false;
-      }
 
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
@@ -211,6 +218,37 @@ export default class Inventory {
 
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
       console.log('dragEnd');
+      console.log(pointer);
+
+      let prevTime = scene.inventoryContainer.dragStartTime;
+      scene.inventoryContainer.lastDragEndTime = this.scene.time.now;
+      let dragDur = scene.inventoryContainer.lastDragEndTime - prevTime;
+      console.log('REAL drag duration should be: ' + dragDur);
+
+
+/*
+      //also add check to make sure it was dropped in same container it started
+      if (dragDur < 500 && scene.inventoryContainer.quickClicks === 0) {
+        console.log('dragEnd DoubleClick listen, first click');
+        scene.inventoryContainer.quickClicks = 1;
+      } else {
+        console.log('too slow for doubleclick, first click');
+      }
+
+      if (dragDur > 500) {
+        scene.inventoryContainer.quickClicks = 0;
+      }
+
+      if (dragDur < 500 && scene.inventoryContainer.quickClicks === 1) {
+        console.log('dragEnd DoubleClick listen, second click');
+       // scene.inventoryContainer.quickClicks = 0;
+      } else {
+        console.log('too slow for doubleclick, second click');
+      }
+*/
+
+
+
 
       this.setAlpha(1);
 
