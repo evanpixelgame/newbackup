@@ -97,6 +97,7 @@ export default class Inventory {
           // if (event.rightButton) {
           if (pointer.button == 2) {
             console.log('Right-clicked on sprite');
+            pointer.event.preventDefault();
           //  pointer.preventDefault();
             // Right-click detected
             
