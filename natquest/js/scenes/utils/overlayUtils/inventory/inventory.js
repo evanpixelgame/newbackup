@@ -90,32 +90,35 @@ export default class Inventory {
         itemIcon.setDepth(100);
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
-        // itemIcon.setOrigin(.5, .5);
-        scene.input.setDraggable(itemIcon);
-        // scene.inventoryContainer.items.push(itemIcon); //add item to inventorycontainer.items vs inventory.items
-        itemIconContainers[i].isEmpty = false; //change slot to not empty
-        this.setDragEvents(itemIcon, scene);
-        // scene.inventoryContainer.itemSlots.push(itemIcon);
+
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
+          console.log('pointerDowndetected');
           // Check if it's a right-click
-        // if (event.rightButton) {
-          if (event.button === 2) {
-            event.preventDefault();
-              // Right-click detected
-              console.log('Right-clicked on sprite');
-              
-              // Add your custom logic for right-click here
+          // if (event.rightButton) {
+          if (pointer.button == 2) {
+            console.log('Right-clicked on sprite');
+          //  pointer.preventDefault();
+            // Right-click detected
+            
+
+            // Add your custom logic for right-click here
           }
-      });
-        console.log(itemIcon);
+        });
+
+        scene.input.setDraggable(itemIcon);
+        this.setDragEvents(itemIcon, scene);
+
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+        itemIconContainers[i].isEmpty = false; //change slot to not empty
+
+        
+        console.log(itemIcon);
+        
         return;
 
       }
     }
   }
-
-  // */
 
 
   setDragEvents(itemIcon, scene) {
@@ -137,25 +140,6 @@ export default class Inventory {
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
-      // scene.inventoryContainer.itemZones
-      //customEmitter.on('zoneChange')
-      //in collision handlers, custom emitter passes new scene key when transitioning scenes, this subscribes to that emitter
-
-      customEmitter.on('activeSceneChanged', () => {
-        console.log(`event emitter caught in itemdrag, now in zone`);
-      });
-
-      customEmitter.on('activeSceneChanged', (i) => {
-        console.log(`event emitter caught in itemdrag, now in zone ${i}`);
-      });
-
-      var isOverlapping = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.itemSlotContainers[2], itemIcon.getBounds());
-
-      if (isOverlapping) {
-        // The draggable item is overlapping with the drop target
-        console.log("Dragged onto drop target");
-      }
-
     });
   }
 
@@ -165,13 +149,13 @@ export default class Inventory {
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
-     
+
       let draggingAllowed = true;
 
       if (!draggingAllowed) {
         // Cancel the drag operation
         return false;
-    }
+      }
 
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
@@ -180,13 +164,13 @@ export default class Inventory {
       console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
-       console.log(scene.inventoryContainer.dragStartParent);
-       console.log(scene.inventoryContainer.dragStartParent.getBounds());
- // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
-// itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
- //console.log(itemIcon);
+      console.log(scene.inventoryContainer.dragStartParent);
+      console.log(scene.inventoryContainer.dragStartParent.getBounds());
+      // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+      // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
+      //console.log(itemIcon);
 
- // scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
+      // scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
 
 
     });
@@ -205,27 +189,27 @@ export default class Inventory {
       let isValidDropZone = Phaser.Geom.Rectangle.Overlaps(scene.inventoryContainer.getBounds(), itemIcon.getBounds());
 
       if (isValidDropZone) {
-    
+
         // The draggable item is overlapping with the drop target
         console.log("Dragged onto drop target");
 
-        
-      let maxOverlap = 0;
-      let bestDropZoneIndex = -1;
-      let slotID = 0;
-      
-      for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
+
+        let maxOverlap = 0;
+        let bestDropZoneIndex = -1;
+        let slotID = 0;
+
+        for (let i = 0; i < scene.inventoryContainer.itemSlotContainers.length; i++) {
           let dropZone = scene.inventoryContainer.itemSlotContainers[i];
           let overlapArea = Phaser.Geom.Rectangle.Intersection(dropZone.getBounds(), itemIcon.getBounds()).width * Phaser.Geom.Rectangle.Intersection(dropZone.getBounds(), itemIcon.getBounds()).height;
-      
+
           if (overlapArea > maxOverlap) {
-              maxOverlap = overlapArea;
-              bestDropZoneIndex = i;
-              slotID = i + 1;
+            maxOverlap = overlapArea;
+            bestDropZoneIndex = i;
+            slotID = i + 1;
           }
-      }
-      
-      if (bestDropZoneIndex !== -1) {
+        }
+
+        if (bestDropZoneIndex !== -1) {
           console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
           if (itemIconContainers[bestDropZoneIndex].isEmpty === true) {
             console.log(`add icon to new empty slot and switch parent container`);
@@ -245,18 +229,18 @@ export default class Inventory {
             itemIcon.setPosition(endXY);
             const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
             otherIcon.setPosition(endXYotherIcon);
-            
+
           }
-      } else {
+        } else {
           console.log("No drop zone detected == Too little of sprite in dropZone");
           const startX = scene.inventoryContainer.dragStartX;
           const startY = scene.inventoryContainer.dragStartY;
-  
+
           console.log(itemIcon);
-          const endXY = scene.inventory.getRelativePos({x: startX, y: startY}, scene);
+          const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
           itemIcon.setPosition(endXY);
-      }
-      
+        }
+
 
       }
 
@@ -265,7 +249,7 @@ export default class Inventory {
         const startY = scene.inventoryContainer.dragStartY;
 
         console.log(itemIcon);
-        const endXY = scene.inventory.getRelativePos({x: startX, y: startY}, scene);
+        const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
         itemIcon.setPosition(endXY);
 
         /*
