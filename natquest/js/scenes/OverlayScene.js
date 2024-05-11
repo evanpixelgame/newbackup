@@ -78,6 +78,13 @@ export default class OverlayScene extends Phaser.Scene {
     console.log(this.inventoryContainer.items);
    // this.inventory.inventoryContainer.bringToTop();
 
+   this.input.on('pointerdown', function(pointer) {
+    if (pointer.button === 2) {
+      pointer.preventDefault();
+      // Show your custom inventory context menu here
+    }
+  });
+
    const zoneContainers = this.inventoryContainer.itemZoneContainers;
       zoneContainers.forEach(zone => {
         zone.setDepth(1000);

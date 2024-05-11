@@ -126,7 +126,8 @@ export default class Inventory {
         // scene.inventoryContainer.itemSlots.push(itemIcon);
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
           // Check if it's a right-click
-          if (event.rightButton) {
+        // if (event.rightButton) {
+          if (event.button === 2) {
             event.preventDefault();
               // Right-click detected
               console.log('Right-clicked on sprite');
