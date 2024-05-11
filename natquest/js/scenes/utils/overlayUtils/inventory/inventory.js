@@ -88,12 +88,12 @@ export default class Inventory {
 
         const itemIcon = scene.add.sprite(0, 0, item.icon); //add sprite
         //itemIconContainers[i].itemIcon = itemIcon;
-        itemIcon.setDepth(100);
+       // itemIcon.setDepth(100);
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
-        itemIcon.ContextMenu = false;
+        itemIcon.ContextMenu;
        
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
@@ -194,6 +194,8 @@ export default class Inventory {
         console.log('startmakingcontextmenu');
         // Create context menu if it doesn't exist
         itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y);
+        itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
+        itemIcon.contextMenu.setVisible(true);
         //itemIcon.contextMenu = true;
     } else {
         // Update context menu position

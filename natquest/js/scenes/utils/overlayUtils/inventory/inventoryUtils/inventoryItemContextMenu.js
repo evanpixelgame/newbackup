@@ -3,15 +3,17 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         super(scene, x, y);
         this.scene = scene;
 
-
-        this.contextMenuBackground = this.scene.add.rectangle(0, 0, 50, 50, 0xdddddd, 0.5);
+        this.setSize(64, 64);
+        
+        this.contextMenuBackground = this.scene.add.rectangle(this.width/2, this.height/2, 64, 64, 0xdddddd, 0.5);
         this.add(this.contextMenuBackground);
 
         // Create menu options
-        this.useOption = this.createOption('Use');
-        this.consumeOption = this.createOption('Consume');
-        this.dropOption = this.createOption('Drop');
-        this.discardOption = this.createOption('Discard');
+        this.useOption = this.createOption('Use', 0);
+        this.useOption.setPosition()
+        this.consumeOption = this.createOption('Consume', 10);
+        this.dropOption = this.createOption('Drop', 20);
+        this.discardOption = this.createOption('Discard', 30);
 
         // Add options to the menu
         this.add([this.useOption, this.consumeOption, this.dropOption, this.discardOption]);
@@ -30,8 +32,11 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     }
 
 
-    createOption(text) {
-        let option = this.scene.add.text(0, 0, text, { fill: '#ffffff' }).setInteractive();
+    createOption(text, y) {
+        let option = this.scene.add.text(0, y, text, { 
+            fill: '#ffffff', 
+            fontSize: '12px' // Add fontSize property here
+          }).setInteractive();
         return option;
     }
 
