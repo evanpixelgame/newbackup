@@ -92,6 +92,8 @@ export default class Inventory {
         itemIcon.setInteractive({ draggable: true });
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
+       
+     /*  
         let clickTime = null;
         // Define the double click time window (in milliseconds)
 const DOUBLE_CLICK_TIME = 2500;
@@ -107,8 +109,7 @@ itemIcon.on('click', function(pointer) {
     // Perform actions specific to double click here
   }
 });
-
-
+*/
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
@@ -171,9 +172,15 @@ itemIcon.on('click', function(pointer) {
 
     itemIcon.on('drag', function (pointer, dragX, dragY) {
    //   console.log('drag');
+   if (scene.inventoryContainer.allowDrag){
       this.setAlpha(.5);
       this.x = dragX;
       this.y = dragY;
+   } else {
+    console.log(`cant drag now, resetting allowDrag to true`);
+    scene.inventoryContainer.allowDrag = true;
+    //return false;
+   }
     });
   }
 
@@ -184,12 +191,22 @@ itemIcon.on('click', function(pointer) {
       console.log('dragStart');
       this.setAlpha(0.5);
       let lastClickTime = 0;
-      let doubleClickDelay = 4000; 
+      let doubleClickDelay = 4000;
+      scene.inventoryContainer.allowDrag = true;
 
       scene.inventoryContainer.dragStartTime = this.scene.time.now; //deleted this by try isntead?
       let lastDragEndTime = scene.inventoryContainer.lastDragEndTime;
       let timeSinceLastDrag = scene.inventoryContainer.dragStartTime - lastDragEndTime;
       console.log('REAL time since last drag should be: ' + timeSinceLastDrag);
+
+      if (timeSinceLastDrag < 100) { //also make sure its dropped on same container
+        console.log(`Double Clicked on item`);
+        //event.stopImmediatePropagation();
+       // pointer.stopImmediatePropagation();
+      //  pointer.stopPropagation();
+      scene.inventoryContainer.allowDrag = false;
+      return false;
+      }
 
      // console.log(pointer);
      // console.log(scene.inventoryContainer.dragStartTime);
@@ -223,7 +240,7 @@ itemIcon.on('click', function(pointer) {
       let prevTime = scene.inventoryContainer.dragStartTime;
       scene.inventoryContainer.lastDragEndTime = this.scene.time.now;
       let dragDur = scene.inventoryContainer.lastDragEndTime - prevTime;
-      console.log('drag duration should be: ' + dragDur);
+      console.log('dragend: drag duration should be: ' + dragDur);
 
 
 /*
