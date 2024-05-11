@@ -1,4 +1,4 @@
-import { createInventoryContainer, createInventoryZones, createItemSlots } from "./inventoryUtils/createInventoryContainer.js";
+import { createInventoryContainer, createItemSlots } from "./inventoryUtils/createInventoryContainer.js";
 import customEmitter from '../../../../main.js';
 
 export default class Inventory {
@@ -40,7 +40,7 @@ export default class Inventory {
   createInventoryContainer(scene) {
     console.log('call the import funct w/ method of same name');
     createInventoryContainer(scene);
-    createInventoryZones(scene);
+    //createInventoryZones(scene);
     createItemSlots(scene);
   }
 
