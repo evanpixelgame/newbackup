@@ -90,20 +90,35 @@ export default class Inventory {
         itemIcon.setDepth(100);
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
+        let lastClickTime = 0;
+        let doubleClickDelay = 4000; // Adjust this value as needed
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
+
           console.log('pointerDowndetected');
+
+          //let currentTime = scene.scene.time.now;
+          let currentTime = this.scene.time.now; //deleted this by try isntead?
+
+          // Calculate time since last click
+          let clickTimeDifference = currentTime - lastClickTime;
+      
+          // Check if it's a double click
+          if (clickTimeDifference < doubleClickDelay) {
+              // Double-click detected
+              console.log('Double-clicked on sprite');
+      
+              // Add your logic for double-click here
+          }
+
+       
           // Check if it's a right-click
-          // if (event.rightButton) {
           if (pointer.button == 2) {
             console.log('Right-clicked on sprite');
             pointer.event.preventDefault();
-          //  pointer.preventDefault();
-            // Right-click detected
-            
-
-            // Add your custom logic for right-click here
+            pointer.event.stopPropagation();
           }
+
         });
 
         scene.input.setDraggable(itemIcon);
@@ -150,6 +165,21 @@ export default class Inventory {
     itemIcon.on('dragstart', function (pointer, dragX, dragY) {
       console.log('dragStart');
       this.setAlpha(0.5);
+      let lastClickTime = 0;
+      let doubleClickDelay = 4000; 
+
+      let currentTime = this.scene.time.now; //deleted this by try isntead?
+
+      // Calculate time since last click
+      let clickTimeDifference = currentTime - lastClickTime;
+  
+      // Check if it's a double click
+      if (clickTimeDifference < doubleClickDelay) {
+          // Double-click detected
+          console.log('Double-clicked on sprite from dragStart');
+  
+          // Add your logic for double-click here
+      }
 
       let draggingAllowed = true;
 
