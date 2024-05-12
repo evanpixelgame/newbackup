@@ -74,7 +74,7 @@ export function sensorHandler(scene, map, player, transitionSensors) {
                 callback: () => {
                     // Function to execute continuously
                     console.log('Function executed continuously during overlap');
-                    customEmitter.emit('healthChange', 2) //right now need to do +2 in order to subtract 2 health
+                    customEmitter.emit('healthChange', 2); //right now need to do +2 in order to subtract 2 health
                 },
                 callbackScope: scene
             });

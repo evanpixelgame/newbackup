@@ -1,4 +1,4 @@
-
+import customEmitter from '../../../../../../main.js';
 import Item from '../itemsClass.js';
 
 const wealthPotion = new Item(
@@ -16,6 +16,7 @@ const wealthPotion = new Item(
 
     () => { //onConsume method
         console.log('wealthPotion on consume method');
+        customEmitter.emit('healthChange', -30);
     }
     );
 
