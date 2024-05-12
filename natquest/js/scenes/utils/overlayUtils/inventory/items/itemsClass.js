@@ -1,6 +1,6 @@
 // Define an item class
 export default class Item {
-    constructor(name, textureKey, icon, quantity, description, flavorText, stackable, consumable) {
+    constructor(name, textureKey, icon, quantity, description, flavorText, stackable, consumable, onUse, onConsume) {
         this.name = name;
         this.textureKey = textureKey;
         this.icon = icon;
