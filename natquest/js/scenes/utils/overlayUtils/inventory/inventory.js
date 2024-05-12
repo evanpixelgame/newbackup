@@ -88,34 +88,45 @@ export default class Inventory {
 
         const itemIcon = scene.add.sprite(0, 0, item.icon); //add sprite
         //itemIconContainers[i].itemIcon = itemIcon;
-       // itemIcon.setDepth(100);
+        // itemIcon.setDepth(100);
+
+        // Add properties of sourceObject to sprite
+        itemIcon.name = item.name;
+        itemIcon.textureKey = item.textureKey;
+        itemIcon.icon = item.icon;
+        itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
+        itemIcon.description = item.description;
+        itemIcon.flavorText = item.flavorText;
+        itemIcon.stackable = item.stackable;
+        itemIcon.consumable = item.consumable;
+
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
         itemIcon.ContextMenu;
-       
+
 
         itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
-         //  console.log('pointerDowndetected');
+          //  console.log('pointerDowndetected');
 
           //let currentTime = scene.scene.time.now;
           let currentTime = this.scene.time.now; //deleted this by try isntead?
 
           // Calculate time since last click
           let clickTimeDifference = currentTime - lastClickTime;
-      
+
           // Check if it's a double click
           if (clickTimeDifference < doubleClickDelay) {
-              // Double-click detected
-              console.log('Double-clicked on sprite');
-              lastClickTime = 0;
-      
-              // Add your logic for double-click here
+            // Double-click detected
+            console.log('Double-clicked on sprite');
+            lastClickTime = 0;
+
+            // Add your logic for double-click here
           }
 
-       
+
           // Check if it's a right-click
           if (pointer.button == 2) {
             console.log('Right-clicked on sprite');
@@ -131,9 +142,9 @@ export default class Inventory {
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
         itemIconContainers[i].isEmpty = false; //change slot to not empty
 
-        
-      //  console.log(itemIcon);
-        
+
+        //  console.log(itemIcon);
+
         return;
 
       }
@@ -145,7 +156,7 @@ export default class Inventory {
 
     let dragXTotal = 0;
     let dragYTotal = 0;
-  //  console.log(`set drag events being called;`);
+    //  console.log(`set drag events being called;`);
     this.itemDragStart(itemIcon, scene);
     this.itemDragEnd(itemIcon, scene);
     this.itemDrag(itemIcon, scene);
@@ -156,16 +167,16 @@ export default class Inventory {
   itemDrag(itemIcon, scene) {
 
     itemIcon.on('drag', function (pointer, dragX, dragY) {
-   //   console.log('drag');
-   if (scene.inventoryContainer.allowDrag){
-      this.setAlpha(.5);
-      this.x = dragX;
-      this.y = dragY;
-   } else {
-    console.log(`cant drag now, resetting allowDrag to true`);
-    scene.inventoryContainer.allowDrag = true;
-    //return false;
-   }
+      //   console.log('drag');
+      if (scene.inventoryContainer.allowDrag) {
+        this.setAlpha(.5);
+        this.x = dragX;
+        this.y = dragY;
+      } else {
+        console.log(`cant drag now, resetting allowDrag to true`);
+        scene.inventoryContainer.allowDrag = true;
+        //return false;
+      }
     });
   }
 
@@ -188,37 +199,37 @@ export default class Inventory {
         console.log(`Double Clicked on item`);
         //event.stopImmediatePropagation();
         console.log(itemIcon);
-       // pointer.stopImmediatePropagation();
-      //  pointer.stopPropagation();
-      scene.inventoryContainer.allowDrag = false;
-      if (!itemIcon.contextMenu) {
-        console.log('startmakingcontextmenu');
-        // Create context menu if it doesn't exist
-        itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y, itemIcon);
-        itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
-        itemIcon.contextMenu.setVisible(true);
-        //itemIcon.contextMenu = true;
-    } else {
-        // Update context menu position
-        itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
-        itemIcon.contextMenu.setVisible(true);
-    }
-      return false;
+        // pointer.stopImmediatePropagation();
+        //  pointer.stopPropagation();
+        scene.inventoryContainer.allowDrag = false;
+        if (!itemIcon.contextMenu) {
+          console.log('startmakingcontextmenu');
+          // Create context menu if it doesn't exist
+          itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y, itemIcon);
+          itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
+          itemIcon.contextMenu.setVisible(true);
+          //itemIcon.contextMenu = true;
+        } else {
+          // Update context menu position
+          itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
+          itemIcon.contextMenu.setVisible(true);
+        }
+        return false;
       }
 
-     // console.log(pointer);
-     // console.log(scene.inventoryContainer.dragStartTime);
+      // console.log(pointer);
+      // console.log(scene.inventoryContainer.dragStartTime);
 
 
       scene.inventoryContainer.dragStartX = itemIcon.getBounds().x;
       scene.inventoryContainer.dragStartY = itemIcon.getBounds().y;
       scene.inventoryContainer.startSpriteState = itemIcon;
-    //  console.log(itemIcon.getBounds());
-     // console.log(itemIcon);
+      //  console.log(itemIcon.getBounds());
+      // console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
-    //  console.log(scene.inventoryContainer.dragStartParent);
-    //  console.log(scene.inventoryContainer.dragStartParent.getBounds());
+      //  console.log(scene.inventoryContainer.dragStartParent);
+      //  console.log(scene.inventoryContainer.dragStartParent.getBounds());
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
       //console.log(itemIcon);
@@ -232,8 +243,8 @@ export default class Inventory {
   itemDragEnd(itemIcon, scene) {
 
     itemIcon.on('dragend', function (pointer, dragX, dragY) {
-     // console.log('dragEnd');
-    //  console.log(pointer);
+      // console.log('dragEnd');
+      //  console.log(pointer);
 
       let prevTime = scene.inventoryContainer.dragStartTime;
       scene.inventoryContainer.lastDragEndTime = this.scene.time.now;
@@ -241,26 +252,26 @@ export default class Inventory {
       console.log('dragend: drag duration should be: ' + dragDur);
 
 
-/*
-      //also add check to make sure it was dropped in same container it started
-      if (dragDur < 500 && scene.inventoryContainer.quickClicks === 0) {
-        console.log('dragEnd DoubleClick listen, first click');
-        scene.inventoryContainer.quickClicks = 1;
-      } else {
-        console.log('too slow for doubleclick, first click');
-      }
-
-      if (dragDur > 500) {
-        scene.inventoryContainer.quickClicks = 0;
-      }
-
-      if (dragDur < 500 && scene.inventoryContainer.quickClicks === 1) {
-        console.log('dragEnd DoubleClick listen, second click');
-       // scene.inventoryContainer.quickClicks = 0;
-      } else {
-        console.log('too slow for doubleclick, second click');
-      }
-*/
+      /*
+            //also add check to make sure it was dropped in same container it started
+            if (dragDur < 500 && scene.inventoryContainer.quickClicks === 0) {
+              console.log('dragEnd DoubleClick listen, first click');
+              scene.inventoryContainer.quickClicks = 1;
+            } else {
+              console.log('too slow for doubleclick, first click');
+            }
+      
+            if (dragDur > 500) {
+              scene.inventoryContainer.quickClicks = 0;
+            }
+      
+            if (dragDur < 500 && scene.inventoryContainer.quickClicks === 1) {
+              console.log('dragEnd DoubleClick listen, second click');
+             // scene.inventoryContainer.quickClicks = 0;
+            } else {
+              console.log('too slow for doubleclick, second click');
+            }
+      */
 
 
 
@@ -275,7 +286,7 @@ export default class Inventory {
       if (isValidDropZone) {
 
         // The draggable item is overlapping with the drop target
-      //  console.log("Dragged onto drop target");
+        //  console.log("Dragged onto drop target");
 
 
         let maxOverlap = 0;
@@ -294,13 +305,13 @@ export default class Inventory {
         }
 
         if (bestDropZoneIndex !== -1) {
-        //  console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
+          //  console.log(`Dropped in Zone ${bestDropZoneIndex}, slot number: ${bestDropZoneIndex + 1}`);
           if (itemIconContainers[bestDropZoneIndex].isEmpty === true) {
-         //   console.log(`add icon to new empty slot and switch parent container`);
+            //   console.log(`add icon to new empty slot and switch parent container`);
             itemIconContainers[bestDropZoneIndex].isEmpty = false;
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             itemParent.isEmpty = true;
-        //    console.log(itemIcon);
+            //    console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
           } else {
@@ -320,7 +331,7 @@ export default class Inventory {
           const startX = scene.inventoryContainer.dragStartX;
           const startY = scene.inventoryContainer.dragStartY;
 
-        //  console.log(itemIcon);
+          //  console.log(itemIcon);
           const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
           itemIcon.setPosition(endXY);
         }
@@ -332,7 +343,7 @@ export default class Inventory {
         const startX = scene.inventoryContainer.dragStartX;
         const startY = scene.inventoryContainer.dragStartY;
 
-      //  console.log(itemIcon);
+        //  console.log(itemIcon);
         const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
         itemIcon.setPosition(endXY);
 
