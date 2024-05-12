@@ -38,6 +38,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
             this.consumeOption.on('pointerdown', this.consumeItem, this);
         } else {
             console.log('item doesnt need consume listener');
+             //make consume appeare but be inactive and grayed out ^^^
             this.consumeOption.on('pointerdown', this.consumeItem, this)
         }
         this.inspectOption.on('pointerdown', this.inspectItem, this);
@@ -61,12 +62,21 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     useItem() {
         // Logic for using the item
         console.log('Item used');
+        if (typeof this.item.onUse === 'function') {
+            console.log(`custom itemclass on use method`)
+            this.item.onUse();
+        }
+
         this.setVisible(false);
     }
 
     consumeItem() {
         // Logic for using the item
         console.log('Item used');
+        if (typeof this.item.onConsume === 'function') {
+            console.log(`custom itemclass on consume method`)
+            this.item.onConsume();
+        }
         this.setVisible(false);
     }
 

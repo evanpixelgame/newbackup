@@ -99,6 +99,8 @@ export default class Inventory {
         itemIcon.flavorText = item.flavorText;
         itemIcon.stackable = item.stackable;
         itemIcon.consumable = item.consumable;
+        itemIcon.onUse = item.onUse;
+        itemIcon.onConsume = item.onConsume;
 
         itemIcon.setScale(.7);
         itemIcon.setInteractive({ draggable: true });
