@@ -1,12 +1,6 @@
-import Item from './itemsClass.js';
-import healthPotionWeak from './potions/healthPotionWeak.js';
-import poisonPotionWeak from './potions/poisonPotionWeak.js';
-import manaPotionWeak from './potions/manaPotionWeak.js';
-import wealthPotion from './potions/wealthPotion.js';
-import emeraldRing from './equipment/rings/emeraldRing.js';
-import itemNull from './itemNull.js';
 
-/*
+import Item from '../itemsClass.js';
+
 const wealthPotion = new Item(
     'Wealth Potion', //name
     'wealthPotionTexture', //texture key
@@ -24,17 +18,5 @@ const wealthPotion = new Item(
         console.log('wealthPotion on consume method');
     }
     );
-    */
 
-const itemsListFull = {
-
-itemNull,
-healthPotionWeak,
-poisonPotionWeak,
-manaPotionWeak,
-emeraldRing,
-wealthPotion,
-
-};
-
-export default itemsListFull;
+    export default wealthPotion;

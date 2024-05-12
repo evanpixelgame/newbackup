@@ -1,3 +1,5 @@
+import customEmitter from '../../../../../main.js';
+
 // Define an item class
 export default class Item {
     constructor(name, textureKey, icon, quantity, description, flavorText, stackable, consumable, onUse, onConsume) {
