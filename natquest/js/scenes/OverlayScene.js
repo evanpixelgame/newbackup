@@ -39,7 +39,7 @@ export default class OverlayScene extends Phaser.Scene {
         this.resizer = setupResizeListener(this);
 
         const healthChangeHandler = (healthChange) => {
-            this.healthBarDepletion.tweenHeight(healthChange);
+            this.healthBarDepletion.tweenHeight(healthChange * -1); //now should make it so that neg input = neg health
         };
 
         customEmitter.on('healthChange', healthChangeHandler);
