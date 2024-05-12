@@ -4,19 +4,20 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         this.scene = scene;
 
         this.setSize(64, 64);
-        
+
         this.contextMenuBackground = this.scene.add.rectangle(this.width/2, this.height/2, 64, 64, 0xdddddd, 0.5);
         this.add(this.contextMenuBackground);
 
         // Create menu options
         this.useOption = this.createOption('Use', 0);
-        this.useOption.setPosition()
         this.consumeOption = this.createOption('Consume', 10);
         this.dropOption = this.createOption('Drop', 20);
         this.discardOption = this.createOption('Discard', 30);
+        this.inspectOption = this.createOption('Inspect', 40);
+        this.closeOption = this.createOption('Close', 50);
 
         // Add options to the menu
-        this.add([this.useOption, this.consumeOption, this.dropOption, this.discardOption]);
+        this.add([this.useOption, this.consumeOption, this.inspectOption, this.dropOption, this.discardOption, this.closeOption]);
 
         // Hide menu initially
         this.setVisible(false);
@@ -24,8 +25,10 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         // Register click event listeners
         this.useOption.on('pointerdown', this.useItem, this);
         this.consumeOption.on('pointerdown', this.consumeItem, this);
+        this.inspectOption.on('pointerdown', this.inspectItem, this);
         this.dropOption.on('pointerdown', this.dropItem, this);
         this.discardOption.on('pointerdown', this.discardItem, this);
+        this.closeOption.on('pointerdown', this.closeMenu, this);
 
         // Add the menu to the scene
         scene.add.existing(this);
@@ -52,15 +55,30 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         this.setVisible(false);
     }
 
+    
+    inspectItem() {
+        // Logic for dropping the item
+        console.log('Inspect Item');
+        this.setVisible(false);
+    }
+
     dropItem() {
         // Logic for dropping the item
         console.log('Item dropped');
         this.setVisible(false);
     }
 
+
     discardItem() {
         // Logic for dropping the item
         console.log('Item dropped');
+        this.setVisible(false);
+    }
+
+
+    closeMenu() {
+        // Logic for dropping the item
+        console.log('CloseMenu');
         this.setVisible(false);
     }
 }
