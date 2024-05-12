@@ -187,6 +187,7 @@ export default class Inventory {
       if (timeSinceLastDrag < 100) { //also make sure its dropped on same container
         console.log(`Double Clicked on item`);
         //event.stopImmediatePropagation();
+        console.log(itemIcon);
        // pointer.stopImmediatePropagation();
       //  pointer.stopPropagation();
       scene.inventoryContainer.allowDrag = false;
