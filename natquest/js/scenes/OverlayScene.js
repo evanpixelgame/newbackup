@@ -42,7 +42,9 @@ export default class OverlayScene extends Phaser.Scene {
             this.healthBarDepletion.tweenHeight(healthChange * -1); //now should make it so that neg input = neg health
         };
 
+
         customEmitter.on('healthChange', healthChangeHandler);
+
 
         // *********************************************************************************
         //*********************************************************************************
@@ -79,6 +81,17 @@ export default class OverlayScene extends Phaser.Scene {
        // this.inventory.initializeDragAndDrop(this);
     console.log(this.inventoryContainer);
     console.log(this.inventoryContainer.items);
+
+    const itemRemovalHandler = (item) => {
+        this.inventory.removeItem(this, item); //now should make it so that neg input = neg health
+    };
+
+
+     customEmitter.on('removeItem', itemRemovalHandler);
+
+      //  customEmitter.on('removeItem', function(item) {
+       //     this.inventory.removeItem(this, item);
+      //  });
     }
 
 

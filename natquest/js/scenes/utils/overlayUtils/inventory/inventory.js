@@ -22,11 +22,29 @@ export default class Inventory {
     }
   }
 
-  removeItem(item) {
+  removeItem(scene, item) {
+    console.log('attemptingtoremoveItem from inventory.removeItem');
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
     const index = this.items.indexOf(item);
     if (index !== -1) {
       this.items.splice(index, 1);
     }
+
+    itemIconContainers.forEach((container) => {
+      console.log(container.first);
+      console.log(container.first.icon);
+      if (container.first.icon === item) { //later switch with container.first.texture or .textureKey
+        container.remove(container.first);
+      } else {
+        console.log('wrong container');
+      }
+  });
+/*
+    const containerIndex = this.items.indexOf(item);
+    if (containerIndex !== -1) {
+      itemIconContainers.splice(containerIndex, 1);
+    }
+    */
   }
 
   displayFullInventory() {
