@@ -1,3 +1,4 @@
+import customEmitter from '../../../../../main.js';
 export default class itemContextMenu extends Phaser.GameObjects.Container {
     constructor(scene, x, y, item) {
         super(scene, x, y);
@@ -16,9 +17,9 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         } else {
             console.log('menu item not consumable');
         }
-        this.dropOption = this.createOption('Drop', 20);
-        this.discardOption = this.createOption('Discard', 30);
-        this.inspectOption = this.createOption('Inspect', 40);
+        this.inspectOption = this.createOption('Inspect', 20);
+        this.dropOption = this.createOption('Drop', 30);
+        this.discardOption = this.createOption('Discard', 40);
         this.closeOption = this.createOption('Close', 50);
 
         // Add options to the menu
@@ -84,6 +85,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     inspectItem() {
         // Logic for dropping the item
         console.log('Inspect Item');
+        console.log(this.item.flavorText);
         this.setVisible(false);
     }
 
@@ -96,7 +98,8 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
 
     discardItem() {
         // Logic for dropping the item
-        console.log('Item dropped');
+        console.log('Item discarded');
+        customEmitter.emit('removeItem', this.item.textureKey);
         this.setVisible(false);
     }
 
