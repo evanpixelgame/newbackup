@@ -10,6 +10,8 @@ export default class Item {
         this.flavorText = flavorText;
         this.stackable = stackable;
         this.consumable = consumable;
+        this.onUse = onUse;
+        this.onConsume = onConsume;
     }
 }
 

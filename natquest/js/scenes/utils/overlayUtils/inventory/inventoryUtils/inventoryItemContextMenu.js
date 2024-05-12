@@ -38,6 +38,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
             this.consumeOption.on('pointerdown', this.consumeItem, this);
         } else {
             console.log('item doesnt need consume listener');
+            this.consumeOption.on('pointerdown', this.consumeItem, this)
         }
         this.inspectOption.on('pointerdown', this.inspectItem, this);
         this.dropOption.on('pointerdown', this.dropItem, this);
