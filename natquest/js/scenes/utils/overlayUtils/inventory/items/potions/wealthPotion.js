@@ -3,8 +3,7 @@ import Item from '../itemsClass.js';
 
 const wealthPotion = new Item(
     'Wealth Potion', //name
-    'wealthPotionTexture', //texture key
-    'wealthPotionTexture', //icon key, will be replaced with texture so delete after 
+    'wealthPotion', //texture key
     1, //quantity
     'Restores 10 coins. Consumable.', // use description
     'It looks slightly worn out, but probably still good', // flavor text 
@@ -17,7 +16,7 @@ const wealthPotion = new Item(
     () => { //onConsume method
         console.log('wealthPotion on consume method');
         customEmitter.emit('healthChange', -30);
-        customEmitter.emit('removeItem', 'wealthPotionTexture')
+        customEmitter.emit('removeItem', 'wealthPotion')
     }
     );
 

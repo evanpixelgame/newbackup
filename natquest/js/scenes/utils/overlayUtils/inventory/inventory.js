@@ -23,28 +23,41 @@ export default class Inventory {
   }
 
   removeItem(scene, item) {
+    /*  
+    //make remove take stackCount into consideration
+
+        if (item.stackable === true && item.quantity !== 0) {
+          //reduce the stack count by 1 (or amount of item used)
+        } else {
+          // otherwise continue with the removal logic
+        }
+        */
+
     console.log('attemptingtoremoveItem from inventory.removeItem');
     const itemIconContainers = scene.inventoryContainer.itemIconContainers;
     const index = this.items.indexOf(item);
+    console.log(index);
     if (index !== -1) {
       this.items.splice(index, 1);
     }
 
     itemIconContainers.forEach((container) => {
+      if (container.list.length !== 0) {
       console.log(container.first);
-      console.log(container.first.icon);
-      if (container.first.icon === item) { //later switch with container.first.texture or .textureKey
-        container.remove(container.first);
+      console.log(container.first.texture.key);
+      if (container.first.textureKey === item) { //later switch with container.first.texture or .textureKey
+       // container.remove(container.first);
+       container.first.destroy();
+        container.isEmpty = true;
       } else {
-        console.log('wrong container');
+        //console.log('wrong container');
       }
-  });
-/*
-    const containerIndex = this.items.indexOf(item);
-    if (containerIndex !== -1) {
-      itemIconContainers.splice(containerIndex, 1);
+    } else {
+      console.log('emptyContainer');
     }
-    */
+    });
+    console.log(this.items);
+    console.log(itemIconContainers);
   }
 
   displayFullInventory() {
@@ -104,14 +117,13 @@ export default class Inventory {
       }
       else { //check if slot is empty
 
-        const itemIcon = scene.add.sprite(0, 0, item.icon); //add sprite
+        const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
         //itemIconContainers[i].itemIcon = itemIcon;
         // itemIcon.setDepth(100);
 
         // Add properties of sourceObject to sprite
         itemIcon.name = item.name;
         itemIcon.textureKey = item.textureKey;
-        itemIcon.icon = item.icon;
         itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
         itemIcon.description = item.description;
         itemIcon.flavorText = item.flavorText;

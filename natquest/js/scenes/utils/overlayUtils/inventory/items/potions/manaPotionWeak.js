@@ -1,11 +1,24 @@
-const manaPotionWeak = {
-    name: 'mana Potion Weak',
-    quantity: 1, // Adjust to desired quantity if stacking is enabled
-    icon: 'manaPotionWeak', // Replace with your icon image key from preloader
-    description: 'Restores 10 MP. Consumable.',
-    flavorText: 'It looks slightly worn out, but probably still good',
-    stackable: true,
-    consumable: true,
-  };
 
-export default manaPotionWeak;
+import customEmitter from '../../../../../../main.js';
+import Item from '../itemsClass.js';
+
+const manaPotionWeak = new Item(
+    'Mana Potion', //name
+    'manaPotionWeak', //texture key
+    1, //quantity
+    'Restores 10 HP. Consumable.', // use description
+    'It looks slightly worn out, but probably still good', // flavor text 
+    true, //stackable
+    true, //consumable
+    () => { //onUse method
+        console.log('manaPotion on use method');
+    },
+
+    () => { //onConsume method
+        console.log('manaPotion on consume method');
+        //customEmitter.emit('manaChange', 30);
+        customEmitter.emit('removeItem', 'manaPotionWeak')
+    }
+    );
+
+    export default manaPotionWeak;

@@ -1,12 +1,24 @@
 
-const poisonPotionWeak = {
-    name: 'Poison Potion Weak',
-    quantity: 1, // Adjust to desired quantity if stacking is enabled
-    icon: 'poisonPotionWeak', // Replace with your icon image key from preloader
-    description: `Poison. Don't drink. But if you do, -20 HP. Consumable.`,
-    flavorText: 'Looks gross, but definitely tastes worse.',
-    stackable: true,
-    consumable: true,
-  };
+import customEmitter from '../../../../../../main.js';
+import Item from '../itemsClass.js';
 
-export default poisonPotionWeak;
+const poisonPotionWeak = new Item(
+    'Poison Potion Weak', //name
+    'poisonPotionWeak', //texture key
+    1, //quantity
+    `Poison. Don't drink. But if you do, -30 HP. Consumable.`, // use description
+    'Looks gross, but definitely tastes worse.', // flavor text 
+    true, //stackable
+    true, //consumable
+    () => { //onUse method
+        console.log('poisonPotion on use method');
+    },
+
+    () => { //onConsume method
+        console.log('poisonPotion on consume method');
+        customEmitter.emit('healthChange', -30);
+        customEmitter.emit('removeItem', 'poisonPotionWeak')
+    }
+    );
+
+    export default poisonPotionWeak;

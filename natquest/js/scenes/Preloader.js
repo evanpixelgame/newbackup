@@ -66,7 +66,7 @@ export class Preloader extends Phaser.Scene {
         this.load.image('healthPotionWeak', 'assets/images/inventory/potions/healthPotionWeakIcon.png'); //64x64px
         this.load.image('poisonPotionWeak', 'assets/images/inventory/potions/poisonPotionWeakIcon.png'); //64x64px
         this.load.image('manaPotionWeak', 'assets/images/inventory/potions/manaPotionWeakIcon.png'); //64x64px
-        this.load.image('wealthPotionTexture', 'assets/images/inventory/potions/wealthPotionTexture.png'); //64x64px
+        this.load.image('wealthPotion', 'assets/images/inventory/potions/wealthPotionTexture.png'); //64x64px
         this.load.image('emeraldRing', 'assets/images/inventory/equipment/rings/emeraldRingIcon.png'); //64x64px   
         
         //***************************LOAD PLUGINS***************************************************************************    

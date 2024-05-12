@@ -2,10 +2,9 @@ import customEmitter from '../../../../../main.js';
 
 // Define an item class
 export default class Item {
-    constructor(name, textureKey, icon, quantity, description, flavorText, stackable, consumable, onUse, onConsume) {
+    constructor(name, textureKey, quantity, description, flavorText, stackable, consumable, onUse, onConsume) {
         this.name = name;
         this.textureKey = textureKey;
-        this.icon = icon; //replace icon with texture in everything else then delete icon property
         this.quantity = quantity; // Adjust to desired quantity if stacking is enabled
       //  this.icon: '', // Replace with your icon image key from preloader
         this.description = description;

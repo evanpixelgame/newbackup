@@ -1,11 +1,23 @@
-const emeraldRing = {
-    name: 'Emerald Ring',
-    quantity: 1, // Adjust to desired quantity if stacking is enabled
-    icon: 'emeraldRing', // Replace with your icon image key from preloader
-    description: 'Looks pretty. +2 Charisma.',
-    flavorText: `This ring could have belonged to a king...or maybe it's just a cheap fake?`,
-    stackable: false,
-    consumable: false,
-  };
+import customEmitter from '../../../../../../../main.js';
+import Item from '../../itemsClass.js';
 
-export default emeraldRing;
+const emeraldRing = new Item(
+    'Emerald Ring', //name
+    'emeraldRing', //texture key
+    1, //quantity
+    'Looks pretty. +2 Charisma.', // use description
+    `This ring could have belonged to a king...or maybe it's just a cheap fake?`, // flavor text 
+    true, //stackable
+    true, //consumable
+    () => { //onUse method
+        console.log('emeraldRing on use method');
+    },
+
+    () => { //onConsume method
+        console.log('emeraldRing on consume method');
+       // customEmitter.emit('healthChange', -30);
+        customEmitter.emit('removeItem', 'emeraldRing')
+    }
+    );
+
+    export default emeraldRing;
