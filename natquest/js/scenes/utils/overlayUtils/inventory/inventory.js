@@ -193,7 +193,7 @@ export default class Inventory {
       if (!itemIcon.contextMenu) {
         console.log('startmakingcontextmenu');
         // Create context menu if it doesn't exist
-        itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y);
+        itemIcon.contextMenu = new itemContextMenu(scene, pointer.x, pointer.y, itemIcon);
         itemIcon.contextMenu.setPosition(pointer.x, pointer.y);
         itemIcon.contextMenu.setVisible(true);
         //itemIcon.contextMenu = true;

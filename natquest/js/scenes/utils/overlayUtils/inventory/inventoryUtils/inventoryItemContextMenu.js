@@ -1,30 +1,44 @@
 export default class itemContextMenu extends Phaser.GameObjects.Container {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, item) {
         super(scene, x, y);
         this.scene = scene;
+        this.item = item;
 
         this.setSize(64, 64);
 
-        this.contextMenuBackground = this.scene.add.rectangle(this.width/2, this.height/2, 64, 64, 0xdddddd, 0.5);
+        this.contextMenuBackground = this.scene.add.rectangle(this.width / 2, this.height / 2, 64, 64, 0xdddddd, 0.5);
         this.add(this.contextMenuBackground);
 
         // Create menu options
         this.useOption = this.createOption('Use', 0);
-        this.consumeOption = this.createOption('Consume', 10);
+        if (this.item.consumable === true) {
+            this.consumeOption = this.createOption('Consume', 10);
+        } else {
+            console.log('menu item not consumable');
+        }
         this.dropOption = this.createOption('Drop', 20);
         this.discardOption = this.createOption('Discard', 30);
         this.inspectOption = this.createOption('Inspect', 40);
         this.closeOption = this.createOption('Close', 50);
 
         // Add options to the menu
-        this.add([this.useOption, this.consumeOption, this.inspectOption, this.dropOption, this.discardOption, this.closeOption]);
+        this.add([this.useOption, this.inspectOption, this.dropOption, this.discardOption, this.closeOption]);
+        if (this.item.consumable === true) {
+            this.add([this.consumeOption]);
+        }
 
         // Hide menu initially
         this.setVisible(false);
 
+
         // Register click event listeners
+
         this.useOption.on('pointerdown', this.useItem, this);
-        this.consumeOption.on('pointerdown', this.consumeItem, this);
+        if (this.item.consumable === true) {
+            this.consumeOption.on('pointerdown', this.consumeItem, this);
+        } else {
+            console.log('item doesnt need consume listener');
+        }
         this.inspectOption.on('pointerdown', this.inspectItem, this);
         this.dropOption.on('pointerdown', this.dropItem, this);
         this.discardOption.on('pointerdown', this.discardItem, this);
@@ -36,10 +50,10 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
 
 
     createOption(text, y) {
-        let option = this.scene.add.text(0, y, text, { 
-            fill: '#ffffff', 
+        let option = this.scene.add.text(0, y, text, {
+            fill: '#ffffff',
             fontSize: '12px' // Add fontSize property here
-          }).setInteractive();
+        }).setInteractive();
         return option;
     }
 
@@ -55,7 +69,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         this.setVisible(false);
     }
 
-    
+
     inspectItem() {
         // Logic for dropping the item
         console.log('Inspect Item');
