@@ -94,14 +94,19 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         console.log('Item dropped');
         this.item.parentContainer.remove(this.item);
         console.log(this.item);
-       // this.item.parentContainer.parentContainer.remove(this.item); 
+
         console.log(this.scene.activeScene);// remove from inventorycontainer and put in scene ideally next to player
         this.scene.activeScene.add.existing(this.item);
-       // this.item.setPosition(window.innerWidth/2, window.innerHeight/2);
-     //  this.item.setPosition(300, 300);
+//make it so that if you drop multiple items in same spot, theres a slight offset to show roughly how many items are stacked there
      this.item.setPosition(this.scene.activeScene.player.x + 30, this.scene.activeScene.player.y + 30)
         this.item.setScrollFactor(1, 1);
-        this.item.setScale(.3);
+        this.item.setScale(.4);
+        this.item.setInteractive();
+        this.item.on('pointerdown', function (pointer, localX, localY, event) {
+            console.log('readding the item to inventory container');
+            this.scene.inventory.addItem(this.item);
+            this.scene.inventory.addItemToContainer(this.item);
+          });
         console.log(this.item);
         this.setVisible(false);
     }
