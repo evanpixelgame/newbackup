@@ -96,9 +96,11 @@ export default class BaseScene extends Phaser.Scene {
                 scene.inventory.addItemToContainer(scene, item);
             });
         };
-        console.log(this);
-        console.log(this.scene);
+
         customEmitter.on('dropItem', itemDropHandler);
+
+
+
 
     }
 
