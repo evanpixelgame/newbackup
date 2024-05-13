@@ -7,7 +7,7 @@ const emeraldRing = new Item(
     1, //quantity
     'Looks pretty. +2 Charisma.', // use description
     `This ring could have belonged to a king...or maybe it's just a cheap fake?`, // flavor text 
-    true, //stackable
+    false, //stackable
     true, //consumable
     () => { //onUse method
         console.log('emeraldRing on use method');
