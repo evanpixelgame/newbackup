@@ -80,6 +80,8 @@ export default class BaseScene extends Phaser.Scene {
         //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
         createPlayerAnimations(this);
 
+
+
         const itemDropHandler = (scene, item) => {
 
             const activeScene = scene.activeScene;
@@ -103,6 +105,7 @@ export default class BaseScene extends Phaser.Scene {
             });
         };
 
+        //subscribe to listen for dropItem emits
         customEmitter.on('dropItem', itemDropHandler);
 
 
