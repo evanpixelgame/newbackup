@@ -86,8 +86,13 @@ export default class OverlayScene extends Phaser.Scene {
         this.inventory.removeItem(this, item); //now should make it so that neg input = neg health
     };
 
+    const itemDropHandler = (item) => {
+        this.inventory.dropItem(this, item); //now should make it so that neg input = neg health
+    };
+
 
      customEmitter.on('removeItem', itemRemovalHandler);
+     customEmitter.on('dropItem', itemDropHandler);
 
       //  customEmitter.on('removeItem', function(item) {
        //     this.inventory.removeItem(this, item);

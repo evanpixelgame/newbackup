@@ -60,6 +60,21 @@ export default class Inventory {
     console.log(itemIconContainers);
   }
 
+dropItem(scene, item) {
+  const activeScene = scene.activeScene;
+  activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
+  item.setScrollFactor(1, 1);
+  item.setScale(.4);
+  item.setInteractive();
+  item.on('pointerdown', function (pointer, localX, localY, event) {
+      console.log('readding the item to inventory container');
+      scene.inventory.addItem(this.item);
+      scene.inventory.addItemToContainer(this.item);
+    });
+  console.log(item);
+}
+
+
   displayFullInventory() {
     console.log('Inventory:');
     this.items.forEach(item => {

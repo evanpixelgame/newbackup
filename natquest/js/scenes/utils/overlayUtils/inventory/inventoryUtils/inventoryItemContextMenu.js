@@ -92,22 +92,31 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     dropItem() {
         // Logic for dropping the item
         console.log('Item dropped');
+     //   customEmitter.emit('removeItem', this.item.textureKey);
+      //  customEmitter.emit('dropItem', this.item.textureKey);
+    
         this.item.parentContainer.remove(this.item);
         console.log(this.item);
-
         console.log(this.scene.activeScene);// remove from inventorycontainer and put in scene ideally next to player
-        this.scene.activeScene.add.existing(this.item);
+       const droppedItem = this.item;
+       const activeScene = this.scene.activeScene;
+        activeScene.add.existing(droppedItem);
+        droppedItem.scene = activeScene;
+       // this.scene.scene.get(activeScene.scene.key).add.existing(droppedItem);
+       // activeScene.add(droppedItem);
 //make it so that if you drop multiple items in same spot, theres a slight offset to show roughly how many items are stacked there
-     this.item.setPosition(this.scene.activeScene.player.x + 30, this.scene.activeScene.player.y + 30)
-        this.item.setScrollFactor(1, 1);
-        this.item.setScale(.4);
-        this.item.setInteractive();
-        this.item.on('pointerdown', function (pointer, localX, localY, event) {
+     droppedItem.setPosition(activeScene.player.x + 30, activeScene.player.y + 30)
+        droppedItem.setScrollFactor(1, 1);
+        droppedItem.setScale(.4);
+        droppedItem.setInteractive();
+        droppedItem.on('pointerdown', function (pointer, localX, localY, event) {
             console.log('readding the item to inventory container');
-            this.scene.inventory.addItem(this.item);
-            this.scene.inventory.addItemToContainer(this.item);
+            this.scene.inventory.addItem(droppedItem);
+            this.scene.inventory.addItemToContainer(droppedItem);
           });
-        console.log(this.item);
+        console.log(droppedItem);
+        console.log(activeScene);
+        
         this.setVisible(false);
     }
 
