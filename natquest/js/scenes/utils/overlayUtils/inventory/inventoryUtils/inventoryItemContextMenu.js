@@ -108,8 +108,12 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
      droppedItem.setPosition(activeScene.player.x + 30, activeScene.player.y + 30)
         droppedItem.setScrollFactor(1, 1);
         droppedItem.setScale(.4);
+        droppedItem.disableInteractive();
+
+// Remove all previous event listeners
+droppedItem.removeAllListeners();
         droppedItem.setInteractive();
-        droppedItem.on('pointerdown', function (pointer, localX, localY, event) {
+        droppedItem.on('pointerdown', function () {
             console.log('readding the item to inventory container');
             this.scene.inventory.addItem(droppedItem);
             this.scene.inventory.addItemToContainer(droppedItem);
