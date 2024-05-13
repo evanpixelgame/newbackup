@@ -92,9 +92,9 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     dropItem() {
         // Logic for dropping the item
         console.log('Item dropped');
-     //   customEmitter.emit('removeItem', this.item.textureKey);
-      //  customEmitter.emit('dropItem', this.item.textureKey);
-    
+        customEmitter.emit('removeItem', this.item.textureKey);
+        customEmitter.emit('dropItem', this.item);
+    /*
         this.item.parentContainer.remove(this.item);
         console.log(this.item);
         console.log(this.scene.activeScene);// remove from inventorycontainer and put in scene ideally next to player
@@ -120,6 +120,9 @@ droppedItem.removeAllListeners();
           });
         console.log(droppedItem);
         console.log(activeScene);
+
+        
+        */
         
         this.setVisible(false);
     }

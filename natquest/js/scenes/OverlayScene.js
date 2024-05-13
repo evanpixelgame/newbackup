@@ -92,7 +92,7 @@ export default class OverlayScene extends Phaser.Scene {
 
 
      customEmitter.on('removeItem', itemRemovalHandler);
-     customEmitter.on('dropItem', itemDropHandler);
+    // customEmitter.on('dropItem', itemDropHandler);
 
       //  customEmitter.on('removeItem', function(item) {
        //     this.inventory.removeItem(this, item);

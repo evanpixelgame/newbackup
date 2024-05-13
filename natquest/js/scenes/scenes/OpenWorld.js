@@ -1,6 +1,7 @@
 import BaseScene from '../BaseScene.js';
 import { sensorHandler } from '../utils/collisionHandlers/openWorldCollisionHandler.js';
 import OverlayScene from '../OverlayScene.js';
+import customEmitter from '../../main.js';
 
 export default class OpenWorld extends BaseScene {
     constructor() {
@@ -23,6 +24,7 @@ export default class OpenWorld extends BaseScene {
 
     create() {
         super.create();
+
         this.sensorHandling = sensorHandler(this, this.map, this.player);
         this.scene.add('OverlayScene', OverlayScene);
         this.scene.launch('OverlayScene');
