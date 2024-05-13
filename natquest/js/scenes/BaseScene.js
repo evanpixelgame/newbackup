@@ -80,20 +80,24 @@ export default class BaseScene extends Phaser.Scene {
         //creates the animations associated with the user input, ie. 'a' key triggers 'walk-left' animation
         createPlayerAnimations(this);
 
-        const itemDropHandler = (item) => {
-          //  this.scene.scene.get('OverlayScene').inventory.dropItem(this, item); //now should make it so that neg input = neg health
-         // var redRectangle = this.add.rectangle(this.player.x + 20, this.player.y + 30, 50, 100, 0xff0000);
-         var redRectangle = this.add.sprite(this.player.x + 20, this.player.y + 30, item.textureKey);
-          // Set the rectangle interactive so it can receive input events
-          redRectangle.setInteractive();
-      
-          // Set up a click event handler for the rectangle
-          redRectangle.on('pointerdown', function() {
-              console.log('Red rectangle clicked!');
-              customEmitter.emit('newThing');
-          });
-        };
+        const itemDropHandler = (scene, item) => {
 
+            const activeScene = scene.activeScene;
+
+            const droppedItem = activeScene.add.sprite(this.player.x + 20, this.player.y + 30, item.textureKey);
+            droppedItem.setScale(.35);
+            
+            // Set the rectangle interactive so it can receive input events
+            droppedItem.setInteractive();
+            // Set up a click event handler for the rectangle
+            droppedItem.on('pointerdown', function () {
+                droppedItem.destroy();
+                scene.inventory.addItem(item);
+                scene.inventory.addItemToContainer(scene, item);
+            });
+        };
+        console.log(this);
+        console.log(this.scene);
         customEmitter.on('dropItem', itemDropHandler);
 
     }

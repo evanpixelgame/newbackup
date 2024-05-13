@@ -93,7 +93,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         // Logic for dropping the item
         console.log('Item dropped');
         customEmitter.emit('removeItem', this.item.textureKey);
-        customEmitter.emit('dropItem', this.item);
+        customEmitter.emit('dropItem', this.scene, this.item);
     /*
         this.item.parentContainer.remove(this.item);
         console.log(this.item);
