@@ -205,7 +205,16 @@ export default class Inventory {
           console.log(container.first.name); // Print each number to the console
           if (container.first.name === item.name && item.stackable === true) {
             console.log('weve got a match, increasing stackable items quantity');
-            container.first.quantity += item.quantity;
+            container.first.quantity = this.items[existingItemIndex].quantity;
+            const itemQuant = scene.add.text(container.first.quantity);
+            itemQuant.fontSize = "20px";
+            itemQuant.fill = "#ffffff";
+            container.add(itemQuant);
+            console.log(`itemQuant`)
+            console.log(itemQuant);
+           
+            //container.add.newContainer(0, 0, 20, 20);
+
             // Update the text to show the quantity
             //container.first.quantityText.setText(container.first.quantity);
            // container.first.quantityText = scene.add.text(container.first.x + 20, container.first.y + 20, container.first.quantity, { fontSize: '20px', fill: '#ffffff' });
@@ -218,11 +227,9 @@ export default class Inventory {
         }
       });
     } else {
+
+      //if item not already in inventory container and/or not stackable, create the icon for it now
       this.items.push(item);
-   
-
-
-
 
     if (scene.inventory.items.includes(item)) {
       console.log('this item is already in inventory. now adding to container, is it stackable?');
