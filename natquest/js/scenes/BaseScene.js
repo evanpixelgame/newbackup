@@ -100,8 +100,8 @@ export default class BaseScene extends Phaser.Scene {
             // Set up a click event handler for the rectangle
             droppedItem.on('pointerdown', function () {
                 droppedItem.destroy();
-                scene.inventory.addItem(item);
-                scene.inventory.addItemToContainer(scene, item);
+                scene.inventory.addItem(scene, item);
+                //scene.inventory.addItemToContainer(scene, item);
             });
         };
 

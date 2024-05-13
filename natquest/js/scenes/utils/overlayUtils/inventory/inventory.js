@@ -11,7 +11,7 @@ export default class Inventory {
     this.activeItemBar = [];
 
   }
-
+/*
 
   addItem(item) {
     const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
@@ -21,6 +21,7 @@ export default class Inventory {
       this.items.push(item);
     }
   }
+  */
 
   removeItem(scene, item) {
     /*  
@@ -112,8 +113,19 @@ dropItem(scene, item) {
   }
 
 
-  addItemToContainer(scene, item) {
+  addItem(scene, item) {
 
+
+    //add to this.items first
+    const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
+    if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
+      this.items[existingItemIndex].quantity += item.quantity;
+    } else {
+      this.items.push(item);
+    }
+
+
+    //then add to inventoryContainer
     const itemIconContainers = scene.inventoryContainer.itemIconContainers;
     const items = scene.inventory.items;
 

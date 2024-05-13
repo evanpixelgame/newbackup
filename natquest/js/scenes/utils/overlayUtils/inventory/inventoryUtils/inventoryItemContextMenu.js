@@ -12,11 +12,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
 
         // Create menu options
         this.useOption = this.createOption('Use', 0);
-        if (this.item.consumable === true) {
-            this.consumeOption = this.createOption('Consume', 15);
-        } else {
-            console.log('menu item not consumable');
-        }
+        this.consumeOption = this.createOption('Consume', 15);
         this.inspectOption = this.createOption('Inspect', 30);
         this.dropOption = this.createOption('Drop', 45);
         this.discardOption = this.createOption('Discard', 60);
@@ -26,6 +22,9 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         this.add([this.useOption, this.inspectOption, this.dropOption, this.discardOption, this.closeOption]);
         if (this.item.consumable === true) {
             this.add([this.consumeOption]);
+        } else {
+            this.add([this.consumeOption]);
+           // this.consumeAction.disableInteractive(); 
         }
 
         // Hide menu initially
