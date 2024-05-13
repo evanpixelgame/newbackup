@@ -11,6 +11,184 @@ export default class Inventory {
     this.activeItemBar = [];
 
   }
+  /*
+
+  addItem(scene, item) {
+    // Add to this.items first
+    const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
+    if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
+        this.items[existingItemIndex].quantity += item.quantity;
+    } else {
+        this.items.push(item);
+    }
+
+    // Then add to inventoryContainer
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+    const items = scene.inventory.items;
+
+    let existingItemIcon;
+    if (scene.inventory.items.includes(item)) {
+        // Item already exists in the inventory, find its icon
+        existingItemIcon = itemIconContainers.find(container => container.first.textureKey === item.textureKey);
+    }
+
+    if (existingItemIcon && item.stackable) {
+        // If the item is stackable and already exists, increase the quantity
+        existingItemIcon.quantity += item.quantity;
+
+        // Update the text to show the quantity
+        existingItemIcon.quantityText.setText(existingItemIcon.quantity);
+    } else {
+        // Item is not in the inventory or is not stackable, add a new icon
+        for (let i = 0; i < itemIconContainers.length; i++) {
+            if (!itemIconContainers[i].isEmpty) {
+                console.log('this itemIconContainer is filled, trying next one');
+            } else { // Check if slot is empty
+                const itemIcon = scene.add.sprite(0, 0, item.textureKey);
+                itemIcon.name = item.name;
+                itemIcon.quantity = item.quantity;
+                itemIcon.stackable = item.stackable;
+                itemIcon.consumable = item.consumable;
+                itemIcon.onUse = item.onUse;
+                itemIcon.onConsume = item.onConsume;
+
+                itemIcon.setScale(.7);
+                itemIcon.setInteractive({ draggable: true });
+
+                // Add a text object to display the quantity
+                itemIcon.quantityText = scene.add.text(itemIcon.x + 20, itemIcon.y + 20, item.quantity, { fontSize: '20px', fill: '#ffffff' });
+
+                itemIcon.on('pointerdown', function (pointer) {
+                    // Handle pointer events
+                });
+
+                scene.input.setDraggable(itemIcon);
+                this.setDragEvents(itemIcon, scene);
+
+                itemIconContainers[i].add(itemIcon);
+                itemIconContainers[i].isEmpty = false;
+
+                return;
+            }
+        }
+    }
+}
+*/
+
+/*
+  addItem(scene, item) {
+
+    //then add to inventoryContainer
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+    const items = scene.inventory.items;
+
+    //add to this.items first
+    const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
+    if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
+      this.items[existingItemIndex].quantity += item.quantity;
+     
+      itemIconContainers.forEach(container => {
+        if (container.first) {
+          console.log(container.first);
+          if (container.first.name === item.name && item.stackable === true) {
+            console.log('this item already exists increase its quantity cuz its stackable');
+          } else {
+            console.log('not stackable or doesnt exist already');
+          }
+        } else {
+          console.log('no sprite in container');
+        }
+        console.log(container); // Print each number to the console
+    });
+    } else {
+      this.items.push(item);
+  
+
+
+
+
+    if (scene.inventory.items.includes(item)) {
+      console.log('this item is already in inventory. now adding to container, is it stackable?');
+    
+    } else {
+      console.log('this item aint in your inventory');
+    }
+
+    for (let i = 0; i < itemIconContainers.length; i++) {
+
+      //if (itemIconContainers[i].dropZone.isEmpty === false) {
+      if (itemIconContainers[i].isEmpty === false) {
+        // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
+        console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
+      }
+      else { //check if slot is empty
+
+        const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
+        //itemIconContainers[i].itemIcon = itemIcon;
+        // itemIcon.setDepth(100);
+
+        // Add properties of sourceObject to sprite
+        itemIcon.name = item.name;
+        itemIcon.textureKey = item.textureKey;
+        itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
+        itemIcon.description = item.description;
+        itemIcon.flavorText = item.flavorText;
+        itemIcon.stackable = item.stackable;
+        itemIcon.consumable = item.consumable;
+        itemIcon.onUse = item.onUse;
+        itemIcon.onConsume = item.onConsume;
+
+        itemIcon.setScale(.7);
+        itemIcon.setInteractive({ draggable: true });
+        let lastClickTime = 0;
+        let doubleClickDelay = 4000; // Adjust this value as needed
+        itemIcon.ContextMenu;
+
+
+        itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
+
+          //  console.log('pointerDowndetected');
+
+          //let currentTime = scene.scene.time.now;
+          let currentTime = this.scene.time.now; //deleted this by try isntead?
+
+          // Calculate time since last click
+          let clickTimeDifference = currentTime - lastClickTime;
+
+          // Check if it's a double click
+          if (clickTimeDifference < doubleClickDelay) {
+            // Double-click detected
+            console.log('Double-clicked on sprite');
+            lastClickTime = 0;
+
+            // Add your logic for double-click here
+          }
+
+
+          // Check if it's a right-click
+          if (pointer.button == 2) {
+            console.log('Right-clicked on sprite');
+            pointer.event.preventDefault();
+            pointer.event.stopPropagation();
+          }
+
+        });
+
+        scene.input.setDraggable(itemIcon);
+        this.setDragEvents(itemIcon, scene);
+
+        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+        itemIconContainers[i].isEmpty = false; //change slot to not empty
+
+
+        //  console.log(itemIcon);
+
+        return;
+      }
+      }
+    }
+  }
+*/
 
 
   addItem(scene, item) {
@@ -30,6 +208,7 @@ export default class Inventory {
 
     if (scene.inventory.items.includes(item)) {
       console.log('this item is already in inventory. now adding to container, is it stackable?');
+    
     } else {
       console.log('this item aint in your inventory');
     }

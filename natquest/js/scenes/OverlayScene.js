@@ -82,7 +82,7 @@ export default class OverlayScene extends Phaser.Scene {
      //   this.inventory.initializeInventoryItems(this);
        // this.inventory.initializeDragAndDrop(this);
     console.log(this.inventoryContainer);
-    console.log(this.inventoryContainer.items);
+    console.log(this.inventory.items);
 
     const itemRemovalHandler = (item) => {
         this.inventory.removeItem(this, item); //now should make it so that neg input = neg health
