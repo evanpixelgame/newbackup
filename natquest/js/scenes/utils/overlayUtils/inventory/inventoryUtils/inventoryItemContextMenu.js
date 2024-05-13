@@ -92,6 +92,17 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     dropItem() {
         // Logic for dropping the item
         console.log('Item dropped');
+        this.item.parentContainer.remove(this.item);
+        console.log(this.item);
+       // this.item.parentContainer.parentContainer.remove(this.item); 
+        console.log(this.scene.activeScene);// remove from inventorycontainer and put in scene ideally next to player
+        this.scene.activeScene.add.existing(this.item);
+       // this.item.setPosition(window.innerWidth/2, window.innerHeight/2);
+     //  this.item.setPosition(300, 300);
+     this.item.setPosition(this.scene.activeScene.player.x + 30, this.scene.activeScene.player.y + 30)
+        this.item.setScrollFactor(1, 1);
+        this.item.setScale(.3);
+        console.log(this.item);
         this.setVisible(false);
     }
 
