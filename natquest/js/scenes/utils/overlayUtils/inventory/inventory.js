@@ -208,7 +208,7 @@ export default class Inventory {
            
             container.first.quantity = this.items[existingItemIndex].quantity;
 
-          
+            
           //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
           let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
           itemQuant.setOrigin(0, 0);
@@ -253,7 +253,6 @@ export default class Inventory {
       }
       else { //check if slot is empty
 
-        const groupContainer = scene.add.container(0, 0);
         const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
         //itemIconContainers[i].itemIcon = itemIcon;
         // itemIcon.setDepth(100);
@@ -308,7 +307,9 @@ export default class Inventory {
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
 
-        let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+
+        //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+        let itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
         itemQuant.setOrigin(0, 0);
         itemQuant.fontSize = "12px";
         itemQuant.fill = "#ffffff";
@@ -318,15 +319,15 @@ export default class Inventory {
         //container.add(itemQuant);
 
       //  container.add(itemQuant);
-groupContainer.add(itemIcon);
-groupContainer.add(itemQuant);
-itemIconContainers[i].add(groupContainer); 
-      // itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-       // itemIconContainers[i].add(itemQuant); 
+
+itemIcon.quantCounter = itemQuant;
+//itemIcon.quantCounter.setVisible(false);
+
+        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+        itemIconContainers[i].add(itemQuant); 
         itemIconContainers[i].isEmpty = false; //change slot to not empty
         console.log(`itemQuant`)
         console.log(itemQuant);
-        console.log( itemIconContainers[i]);
 
         //  console.log(itemIcon);
 
@@ -448,6 +449,9 @@ itemIconContainers[i].add(groupContainer);
         this.setAlpha(.5);
         this.x = dragX;
         this.y = dragY;
+        
+this.quantCounter.x = dragX;
+this.quantCounter.y = dragY;
       } else {
         console.log(`cant drag now, resetting allowDrag to true`);
         scene.inventoryContainer.allowDrag = true;
