@@ -205,13 +205,19 @@ export default class Inventory {
           console.log(container.first.name); // Print each number to the console
           if (container.first.name === item.name && item.stackable === true) {
             console.log('weve got a match, increasing stackable items quantity');
+           
             container.first.quantity = this.items[existingItemIndex].quantity;
-            const itemQuant = scene.add.text(container.first.quantity);
-            itemQuant.fontSize = "20px";
+          //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
+            const itemQuant = scene.add.text(0, 0, container.first.quantity);
+            itemQuant.fontSize = "12px";
             itemQuant.fill = "#ffffff";
-            container.add(itemQuant);
+           // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
+           // itemQuant.setPosition(this.container.x, this.container.y);
+            itemQuant.setDepth(1000);
+            //container.add(itemQuant);
             console.log(`itemQuant`)
             console.log(itemQuant);
+            container.add(itemQuant);
            
             //container.add.newContainer(0, 0, 20, 20);
 
@@ -301,9 +307,23 @@ export default class Inventory {
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
 
-        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-        itemIconContainers[i].isEmpty = false; //change slot to not empty
 
+        const itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+        itemQuant.setOrigin(0, 0);
+        itemQuant.fontSize = "12px";
+        itemQuant.fill = "#ffffff";
+       // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
+       // itemQuant.setPosition(this.container.x, this.container.y);
+        itemQuant.setDepth(1000);
+        //container.add(itemQuant);
+
+      //  container.add(itemQuant);
+
+        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+        itemIconContainers[i].add(itemQuant); 
+        itemIconContainers[i].isEmpty = false; //change slot to not empty
+        console.log(`itemQuant`)
+        console.log(itemQuant);
 
         //  console.log(itemIcon);
 
