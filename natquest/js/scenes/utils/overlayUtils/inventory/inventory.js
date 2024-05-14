@@ -208,16 +208,14 @@ export default class Inventory {
            
             container.first.quantity = this.items[existingItemIndex].quantity;
           //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
-            const itemQuant = scene.add.text(0, 0, container.first.quantity);
-            itemQuant.fontSize = "12px";
-            itemQuant.fill = "#ffffff";
-           // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
-           // itemQuant.setPosition(this.container.x, this.container.y);
-            itemQuant.setDepth(1000);
-            //container.add(itemQuant);
-            console.log(`itemQuant`)
-            console.log(itemQuant);
-            container.add(itemQuant);
+          let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
+          itemQuant.setOrigin(0, 0);
+          itemQuant.fontSize = "12px";
+          itemQuant.fill = "#ffffff";
+         // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
+         // itemQuant.setPosition(this.container.x, this.container.y);
+          itemQuant.setDepth(1000);
+          container.add(itemQuant);
            
             //container.add.newContainer(0, 0, 20, 20);
 
@@ -308,7 +306,7 @@ export default class Inventory {
         this.setDragEvents(itemIcon, scene);
 
 
-        const itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+        let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
         itemQuant.setOrigin(0, 0);
         itemQuant.fontSize = "12px";
         itemQuant.fill = "#ffffff";
