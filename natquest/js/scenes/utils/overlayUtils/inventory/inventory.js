@@ -207,6 +207,8 @@ export default class Inventory {
             console.log('weve got a match, increasing stackable items quantity');
            
             container.first.quantity = this.items[existingItemIndex].quantity;
+
+          
           //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
           let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
           itemQuant.setOrigin(0, 0);
@@ -251,6 +253,7 @@ export default class Inventory {
       }
       else { //check if slot is empty
 
+        const groupContainer = scene.add.container(0, 0);
         const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
         //itemIconContainers[i].itemIcon = itemIcon;
         // itemIcon.setDepth(100);
@@ -305,7 +308,6 @@ export default class Inventory {
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
 
-
         let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
         itemQuant.setOrigin(0, 0);
         itemQuant.fontSize = "12px";
@@ -316,12 +318,15 @@ export default class Inventory {
         //container.add(itemQuant);
 
       //  container.add(itemQuant);
-
-        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-        itemIconContainers[i].add(itemQuant); 
+groupContainer.add(itemIcon);
+groupContainer.add(itemQuant);
+itemIconContainers[i].add(groupContainer); 
+      // itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+       // itemIconContainers[i].add(itemQuant); 
         itemIconContainers[i].isEmpty = false; //change slot to not empty
         console.log(`itemQuant`)
         console.log(itemQuant);
+        console.log( itemIconContainers[i]);
 
         //  console.log(itemIcon);
 
