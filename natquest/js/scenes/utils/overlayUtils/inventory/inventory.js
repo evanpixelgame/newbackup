@@ -208,7 +208,7 @@ export default class Inventory {
 
             container.first.quantity = this.items[existingItemIndex].quantity;
 
-
+/*
             //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
             let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
             itemQuant.setOrigin(0, 0);
@@ -224,7 +224,7 @@ export default class Inventory {
             // Update the text to show the quantity
             //container.first.quantityText.setText(container.first.quantity);
             // container.first.quantityText = scene.add.text(container.first.x + 20, container.first.y + 20, container.first.quantity, { fontSize: '20px', fill: '#ffffff' });
-
+*/
           } else {
             console.log('no match');
           }
@@ -454,11 +454,16 @@ export default class Inventory {
         this.x = dragX;
         this.y = dragY;
 
-        
+        const xy = scene.inventory.getRelativePos(this, null);
+        const absXY = { x: Math.abs(xy.x) - 20, y: Math.abs(xy.y) + 12 };
+        console.log(absXY);
+       // itemIcon.quantCounter.setPosition(absXY.x, absXY.y);
+       this.quantCounter.y = pointer.y + 12;
+       this.quantCounter.x = pointer.x - 20;
 
 
-        this.quantCounter.x = dragX;
-        this.quantCounter.y = dragY;
+       // this.quantCounter.x = dragX;
+      //  this.quantCounter.y = dragY;
       } else {
         console.log(`cant drag now, resetting allowDrag to true`);
         scene.inventoryContainer.allowDrag = true;
@@ -515,6 +520,9 @@ export default class Inventory {
       // console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
+
+      this.quantCounter.y = pointer.y - 20;
+      this.quantCounter.x = pointer.x + 12;
       //  console.log(scene.inventoryContainer.dragStartParent);
       //  console.log(scene.inventoryContainer.dragStartParent.getBounds());
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
