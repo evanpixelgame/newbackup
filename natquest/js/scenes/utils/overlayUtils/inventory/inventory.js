@@ -205,26 +205,26 @@ export default class Inventory {
           console.log(container.first.name); // Print each number to the console
           if (container.first.name === item.name && item.stackable === true) {
             console.log('weve got a match, increasing stackable items quantity');
-
+           
             container.first.quantity = this.items[existingItemIndex].quantity;
-
 /*
-            //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
-            let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
-            itemQuant.setOrigin(0, 0);
-            itemQuant.fontSize = "12px";
-            itemQuant.fill = "#ffffff";
-            // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
-            // itemQuant.setPosition(this.container.x, this.container.y);
-            itemQuant.setDepth(1000);
-            container.add(itemQuant);
-
+            
+          //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
+          let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
+          itemQuant.setOrigin(0, 0);
+          itemQuant.fontSize = "12px";
+          itemQuant.fill = "#ffffff";
+         // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
+         // itemQuant.setPosition(this.container.x, this.container.y);
+          itemQuant.setDepth(1000);
+          container.add(itemQuant);
+      */    
             //container.add.newContainer(0, 0, 20, 20);
 
             // Update the text to show the quantity
             //container.first.quantityText.setText(container.first.quantity);
-            // container.first.quantityText = scene.add.text(container.first.x + 20, container.first.y + 20, container.first.quantity, { fontSize: '20px', fill: '#ffffff' });
-*/
+           // container.first.quantityText = scene.add.text(container.first.x + 20, container.first.y + 20, container.first.quantity, { fontSize: '20px', fill: '#ffffff' });
+
           } else {
             console.log('no match');
           }
@@ -237,109 +237,107 @@ export default class Inventory {
       //if item not already in inventory container and/or not stackable, create the icon for it now
       this.items.push(item);
 
-      if (scene.inventory.items.includes(item)) {
-        console.log('this item is already in inventory. now adding to container, is it stackable?');
+    if (scene.inventory.items.includes(item)) {
+      console.log('this item is already in inventory. now adding to container, is it stackable?');
 
-      } else {
-        console.log('this item aint in your inventory');
+    } else {
+      console.log('this item aint in your inventory');
+    }
+
+    for (let i = 0; i < itemIconContainers.length; i++) {
+
+      //if (itemIconContainers[i].dropZone.isEmpty === false) {
+      if (itemIconContainers[i].isEmpty === false) {
+        // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
+        console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
       }
+      else { //check if slot is empty
 
-      for (let i = 0; i < itemIconContainers.length; i++) {
+        const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
+        //itemIconContainers[i].itemIcon = itemIcon;
+        // itemIcon.setDepth(100);
 
-        //if (itemIconContainers[i].dropZone.isEmpty === false) {
-        if (itemIconContainers[i].isEmpty === false) {
-          // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
-          console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
-        }
-        else { //check if slot is empty
+        // Add properties of sourceObject to sprite
+        itemIcon.name = item.name;
+        itemIcon.textureKey = item.textureKey;
+        itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
+        itemIcon.description = item.description;
+        itemIcon.flavorText = item.flavorText;
+        itemIcon.stackable = item.stackable;
+        itemIcon.consumable = item.consumable;
+        itemIcon.onUse = item.onUse;
+        itemIcon.onConsume = item.onConsume;
 
-          const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
-          //itemIconContainers[i].itemIcon = itemIcon;
-          // itemIcon.setDepth(100);
-
-          // Add properties of sourceObject to sprite
-          itemIcon.name = item.name;
-          itemIcon.textureKey = item.textureKey;
-          itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
-          itemIcon.description = item.description;
-          itemIcon.flavorText = item.flavorText;
-          itemIcon.stackable = item.stackable;
-          itemIcon.consumable = item.consumable;
-          itemIcon.onUse = item.onUse;
-          itemIcon.onConsume = item.onConsume;
-
-          itemIcon.setScale(.7);
-          itemIcon.setInteractive({ draggable: true });
-          let lastClickTime = 0;
-          let doubleClickDelay = 4000; // Adjust this value as needed
-          itemIcon.ContextMenu;
+        itemIcon.setScale(.7);
+        itemIcon.setInteractive({ draggable: true });
+        let lastClickTime = 0;
+        let doubleClickDelay = 4000; // Adjust this value as needed
+        itemIcon.ContextMenu;
 
 
-          itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
+        itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
 
-            //  console.log('pointerDowndetected');
+          //  console.log('pointerDowndetected');
 
-            //let currentTime = scene.scene.time.now;
-            let currentTime = this.scene.time.now; //deleted this by try isntead?
+          //let currentTime = scene.scene.time.now;
+          let currentTime = this.scene.time.now; //deleted this by try isntead?
 
-            // Calculate time since last click
-            let clickTimeDifference = currentTime - lastClickTime;
+          // Calculate time since last click
+          let clickTimeDifference = currentTime - lastClickTime;
 
-            // Check if it's a double click
-            if (clickTimeDifference < doubleClickDelay) {
-              // Double-click detected
-              console.log('Double-clicked on sprite');
-              lastClickTime = 0;
+          // Check if it's a double click
+          if (clickTimeDifference < doubleClickDelay) {
+            // Double-click detected
+            console.log('Double-clicked on sprite');
+            lastClickTime = 0;
 
-              // Add your logic for double-click here
-            }
-
-
-            // Check if it's a right-click
-            if (pointer.button == 2) {
-              console.log('Right-clicked on sprite');
-              pointer.event.preventDefault();
-              pointer.event.stopPropagation();
-            }
-
-          });
-
-          scene.input.setDraggable(itemIcon);
-          this.setDragEvents(itemIcon, scene);
+            // Add your logic for double-click here
+          }
 
 
-          //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
-          let itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-          itemQuant.setOrigin(0, 0);
-          itemQuant.fontSize = "12px";
-          itemQuant.fill = "#ffffff";
-          // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
-          // itemQuant.setPosition(this.container.x, this.container.y);
-          itemQuant.setDepth(1000);
-          //container.add(itemQuant);
+          // Check if it's a right-click
+          if (pointer.button == 2) {
+            console.log('Right-clicked on sprite');
+            pointer.event.preventDefault();
+            pointer.event.stopPropagation();
+          }
 
-          //  container.add(itemQuant);
+        });
 
-          itemIcon.quantCounter = itemQuant;
-          //itemIcon.quantCounter.setVisible(false);
+        scene.input.setDraggable(itemIcon);
+        this.setDragEvents(itemIcon, scene);
 
-          itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-          // itemIconContainers[i].add(itemQuant); 
-          itemIconContainers[i].isEmpty = false; //change slot to not empty
-          console.log(`itemQuant`)
-          console.log(itemQuant);
+/*
+        //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+        let itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+        itemQuant.setOrigin(0, 0);
+        itemQuant.fontSize = "12px";
+        itemQuant.fill = "#ffffff";
+        itemQuant.setDepth(1000);
 
-          const xy = scene.inventory.getRelativePos(itemIcon, null);
-          const absXY = { x: Math.abs(xy.x) - 20, y: Math.abs(xy.y) + 12 };
-          console.log(absXY);
-          itemQuant.setPosition(absXY.x, absXY.y);
-          //  console.log(itemIcon);
+itemIcon.quantCounter = itemQuant;
+//itemIcon.quantCounter.setVisible(false);
+*/
+        //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+        itemIcon.itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+        itemQuant.setOrigin(0, 0);
+        itemQuant.fontSize = "12px";
+        itemQuant.fill = "#ffffff";
+        itemQuant.setDepth(1000);
 
-          return;
+        itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
+        itemIconContainers[i].add(itemIcon.itemQuant); 
+        itemIconContainers[i].isEmpty = false; //change slot to not empty
+      //  console.log(`itemQuant`)
+        //console.log(itemQuant);
 
-        }
+        //  console.log(itemIcon);
+
+        return;
+
       }
     }
+  }
   }
 
 
@@ -453,17 +451,9 @@ export default class Inventory {
         this.setAlpha(.5);
         this.x = dragX;
         this.y = dragY;
-
-        const xy = scene.inventory.getRelativePos(this, null);
-        const absXY = { x: Math.abs(xy.x) - 20, y: Math.abs(xy.y) + 12 };
-        console.log(absXY);
-       // itemIcon.quantCounter.setPosition(absXY.x, absXY.y);
-       this.quantCounter.y = pointer.y + 12;
-       this.quantCounter.x = pointer.x - 20;
-
-
-       // this.quantCounter.x = dragX;
-      //  this.quantCounter.y = dragY;
+        
+//this.quantCounter.x = dragX;
+//this.quantCounter.y = dragY;
       } else {
         console.log(`cant drag now, resetting allowDrag to true`);
         scene.inventoryContainer.allowDrag = true;
@@ -520,9 +510,6 @@ export default class Inventory {
       // console.log(itemIcon);
 
       scene.inventoryContainer.dragStartParent = itemIcon.parentContainer;
-
-      this.quantCounter.y = pointer.y - 20;
-      this.quantCounter.x = pointer.x + 12;
       //  console.log(scene.inventoryContainer.dragStartParent);
       //  console.log(scene.inventoryContainer.dragStartParent.getBounds());
       // itemIcon.parentContainer.parentContainer.remove(itemIcon.parentContainer);
@@ -609,12 +596,6 @@ export default class Inventory {
             //    console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-        //itemIcon.quantCounter.setPosition(endXY);
-        const xy = scene.inventory.getRelativePos(itemIcon, null);
-        const absXY = { x: Math.abs(xy.x) - 20, y: Math.abs(xy.y) + 12 };
-        console.log(absXY);
-        itemIcon.quantCounter.setPosition(absXY.x, absXY.y);
-
           } else {
             console.log(`swap icon spots`);
             //console.log(itemIconContainers[bestDropZoneIndex].first);
@@ -623,17 +604,8 @@ export default class Inventory {
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-            const xy = scene.inventory.getRelativePos(itemIcon, null);
-            const absXY = { x: Math.abs(xy.x) - 20, y: Math.abs(xy.y) + 12 };
-            console.log(absXY);
-            itemIcon.quantCounter.setPosition(absXY.x, absXY.y);
-
             const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
             otherIcon.setPosition(endXYotherIcon);
-            const xyO = scene.inventory.getRelativePos(otherIcon, null);
-            const absXYO = { x: Math.abs(xyO.x) - 20, y: Math.abs(xyO.y) + 12 };
-            console.log(absXYO);
-            itemIcon.quantCounter.setPosition(absXYO.x, absXYO.y);
 
           }
         } else {
