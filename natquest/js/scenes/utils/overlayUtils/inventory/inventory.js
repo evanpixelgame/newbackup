@@ -66,35 +66,6 @@ export default class Inventory {
         itemIcon.ContextMenu;
 
 
-        itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
-
-          //  console.log('pointerDowndetected');
-
-          //let currentTime = scene.scene.time.now;
-          let currentTime = this.scene.time.now; //deleted this by try isntead?
-
-          // Calculate time since last click
-          let clickTimeDifference = currentTime - lastClickTime;
-
-          // Check if it's a double click
-          if (clickTimeDifference < doubleClickDelay) {
-            // Double-click detected
-            console.log('Double-clicked on sprite');
-            lastClickTime = 0;
-
-            // Add your logic for double-click here
-          }
-
-
-          // Check if it's a right-click
-          if (pointer.button == 2) {
-            console.log('Right-clicked on sprite');
-            pointer.event.preventDefault();
-            pointer.event.stopPropagation();
-          }
-
-        });
-
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
 
