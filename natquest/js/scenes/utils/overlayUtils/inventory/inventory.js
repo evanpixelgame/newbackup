@@ -11,235 +11,126 @@ export default class Inventory {
     this.activeItemBar = [];
 
   }
-  /*
+/*
 
-  addItem(scene, item) {
-    // Add to this.items first
+  addItem(item) {
     const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
     if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
-        this.items[existingItemIndex].quantity += item.quantity;
+      this.items[existingItemIndex].quantity += item.quantity;
     } else {
-        this.items.push(item);
+      this.items.push(item);
     }
-
-    // Then add to inventoryContainer
-    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
-    const items = scene.inventory.items;
-
-    let existingItemIcon;
-    if (scene.inventory.items.includes(item)) {
-        // Item already exists in the inventory, find its icon
-        existingItemIcon = itemIconContainers.find(container => container.first.textureKey === item.textureKey);
-    }
-
-    if (existingItemIcon && item.stackable) {
-        // If the item is stackable and already exists, increase the quantity
-        existingItemIcon.quantity += item.quantity;
-
-        // Update the text to show the quantity
-        existingItemIcon.quantityText.setText(existingItemIcon.quantity);
-    } else {
-        // Item is not in the inventory or is not stackable, add a new icon
-        for (let i = 0; i < itemIconContainers.length; i++) {
-            if (!itemIconContainers[i].isEmpty) {
-                console.log('this itemIconContainer is filled, trying next one');
-            } else { // Check if slot is empty
-                const itemIcon = scene.add.sprite(0, 0, item.textureKey);
-                itemIcon.name = item.name;
-                itemIcon.quantity = item.quantity;
-                itemIcon.stackable = item.stackable;
-                itemIcon.consumable = item.consumable;
-                itemIcon.onUse = item.onUse;
-                itemIcon.onConsume = item.onConsume;
-
-                itemIcon.setScale(.7);
-                itemIcon.setInteractive({ draggable: true });
-
-                // Add a text object to display the quantity
-                itemIcon.quantityText = scene.add.text(itemIcon.x + 20, itemIcon.y + 20, item.quantity, { fontSize: '20px', fill: '#ffffff' });
-
-                itemIcon.on('pointerdown', function (pointer) {
-                    // Handle pointer events
-                });
-
-                scene.input.setDraggable(itemIcon);
-                this.setDragEvents(itemIcon, scene);
-
-                itemIconContainers[i].add(itemIcon);
-                itemIconContainers[i].isEmpty = false;
-
-                return;
-            }
-        }
-    }
-}
-*/
-
-  /*
-    addItem(scene, item) {
-  
-      //then add to inventoryContainer
-      const itemIconContainers = scene.inventoryContainer.itemIconContainers;
-      const items = scene.inventory.items;
-  
-      //add to this.items first
-      const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
-      if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
-        this.items[existingItemIndex].quantity += item.quantity;
-       
-        itemIconContainers.forEach(container => {
-          if (container.first) {
-            console.log(container.first);
-            if (container.first.name === item.name && item.stackable === true) {
-              console.log('this item already exists increase its quantity cuz its stackable');
-            } else {
-              console.log('not stackable or doesnt exist already');
-            }
-          } else {
-            console.log('no sprite in container');
-          }
-          console.log(container); // Print each number to the console
-      });
-      } else {
-        this.items.push(item);
-    
-  
-  
-  
-  
-      if (scene.inventory.items.includes(item)) {
-        console.log('this item is already in inventory. now adding to container, is it stackable?');
-      
-      } else {
-        console.log('this item aint in your inventory');
-      }
-  
-      for (let i = 0; i < itemIconContainers.length; i++) {
-  
-        //if (itemIconContainers[i].dropZone.isEmpty === false) {
-        if (itemIconContainers[i].isEmpty === false) {
-          // const itemIcon = scene.add.sprite(0, 0, 'emptySlotSprite');
-          console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
-        }
-        else { //check if slot is empty
-  
-          const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
-          //itemIconContainers[i].itemIcon = itemIcon;
-          // itemIcon.setDepth(100);
-  
-          // Add properties of sourceObject to sprite
-          itemIcon.name = item.name;
-          itemIcon.textureKey = item.textureKey;
-          itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
-          itemIcon.description = item.description;
-          itemIcon.flavorText = item.flavorText;
-          itemIcon.stackable = item.stackable;
-          itemIcon.consumable = item.consumable;
-          itemIcon.onUse = item.onUse;
-          itemIcon.onConsume = item.onConsume;
-  
-          itemIcon.setScale(.7);
-          itemIcon.setInteractive({ draggable: true });
-          let lastClickTime = 0;
-          let doubleClickDelay = 4000; // Adjust this value as needed
-          itemIcon.ContextMenu;
-  
-  
-          itemIcon.on('pointerdown', function (pointer, localX, localY, event) {
-  
-            //  console.log('pointerDowndetected');
-  
-            //let currentTime = scene.scene.time.now;
-            let currentTime = this.scene.time.now; //deleted this by try isntead?
-  
-            // Calculate time since last click
-            let clickTimeDifference = currentTime - lastClickTime;
-  
-            // Check if it's a double click
-            if (clickTimeDifference < doubleClickDelay) {
-              // Double-click detected
-              console.log('Double-clicked on sprite');
-              lastClickTime = 0;
-  
-              // Add your logic for double-click here
-            }
-  
-  
-            // Check if it's a right-click
-            if (pointer.button == 2) {
-              console.log('Right-clicked on sprite');
-              pointer.event.preventDefault();
-              pointer.event.stopPropagation();
-            }
-  
-          });
-  
-          scene.input.setDraggable(itemIcon);
-          this.setDragEvents(itemIcon, scene);
-  
-          itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-          itemIconContainers[i].isEmpty = false; //change slot to not empty
-  
-  
-          //  console.log(itemIcon);
-  
-          return;
-        }
-        }
-      }
-    }
+  }
   */
+
+  removeItem(scene, item) {
+    /*  
+    //make remove take stackCount into consideration
+
+        if (item.stackable === true && item.quantity !== 0) {
+          //reduce the stack count by 1 (or amount of item used)
+        } else {
+          // otherwise continue with the removal logic
+        }
+        */
+
+    console.log('attemptingtoremoveItem from inventory.removeItem');
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+    const index = this.items.indexOf(item);
+    console.log(index);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
+
+    itemIconContainers.forEach((container) => {
+      if (container.list.length !== 0) {
+      console.log(container.first);
+      console.log(container.first.texture.key);
+      if (container.first.textureKey === item) { //later switch with container.first.texture or .textureKey
+       // container.remove(container.first);
+       container.first.destroy();
+        container.isEmpty = true;
+      } else {
+        //console.log('wrong container');
+      }
+    } else {
+      console.log('emptyContainer');
+    }
+    });
+    console.log(this.items);
+    console.log(itemIconContainers);
+  }
+
+dropItem(scene, item) {
+  const activeScene = scene.activeScene;
+  activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
+  item.setScrollFactor(1, 1);
+  item.setScale(.4);
+  item.setInteractive();
+  item.on('pointerdown', function (pointer, localX, localY, event) {
+      console.log('readding the item to inventory container');
+      scene.inventory.addItem(this.item);
+      scene.inventory.addItemToContainer(this.item);
+    });
+  console.log(item);
+}
+
+
+  displayFullInventory() {
+    console.log('Inventory:');
+    this.items.forEach(item => {
+      console.log(item);
+    });
+  }
+
+  createInventoryContainer(scene) {
+    console.log('call the import funct w/ method of same name');
+    createInventoryContainer(scene);
+    //createInventoryZones(scene);
+    createItemSlots(scene);
+  }
+
+
+  getRelativePos(object, parentContainer) {
+    let x = object.x;
+    let y = object.y;
+    let currentContainer = object.parentContainer;
+
+    // Traverse up the hierarchy until the specified parentContainer is reached
+    while (currentContainer && currentContainer !== parentContainer) {
+      x -= currentContainer.x;
+      y -= currentContainer.y;
+      currentContainer = currentContainer.parentContainer;
+    }
+
+    // If the specified parentContainer is found, return the relative position
+    if (currentContainer === parentContainer) {
+      return { x, y };
+    } else {
+      // If the specified parentContainer is not found, return null or handle the error accordingly
+      return null;
+    }
+  }
 
 
   addItem(scene, item) {
-    //then add to inventoryContainer
-    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
-    const items = scene.inventory.items;
+
 
     //add to this.items first
     const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
     if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
       this.items[existingItemIndex].quantity += item.quantity;
-      itemIconContainers.forEach(container => {
-        if (container.list.length !== 0) {
-          console.log(container.first.name); // Print each number to the console
-          if (container.first.name === item.name && item.stackable === true) {
-            console.log('weve got a match, increasing stackable items quantity');
-           
-            container.first.quantity = this.items[existingItemIndex].quantity;
-/*
-            
-          //  const itemRel = scene.inventory.getRelativePos({x: container.first.x, y: container.first.y}, scene);
-          let itemQuant = scene.add.text(-20, 12, `${item.quantity}`);
-          itemQuant.setOrigin(0, 0);
-          itemQuant.fontSize = "12px";
-          itemQuant.fill = "#ffffff";
-         // const newTextPos = scene.inventory.getRelativePos({x: this.container.x, y: this.container.y}, scene);
-         // itemQuant.setPosition(this.container.x, this.container.y);
-          itemQuant.setDepth(1000);
-          container.add(itemQuant);
-      */    
-            //container.add.newContainer(0, 0, 20, 20);
-
-            // Update the text to show the quantity
-            //container.first.quantityText.setText(container.first.quantity);
-           // container.first.quantityText = scene.add.text(container.first.x + 20, container.first.y + 20, container.first.quantity, { fontSize: '20px', fill: '#ffffff' });
-
-          } else {
-            console.log('no match');
-          }
-        } else {
-          console.log('no sprite in container');
-        }
-      });
     } else {
-
-      //if item not already in inventory container and/or not stackable, create the icon for it now
       this.items.push(item);
+    }
+
+
+    //then add to inventoryContainer
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+    const items = scene.inventory.items;
 
     if (scene.inventory.items.includes(item)) {
       console.log('this item is already in inventory. now adding to container, is it stackable?');
-
     } else {
       console.log('this item aint in your inventory');
     }
@@ -307,128 +198,15 @@ export default class Inventory {
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
 
-/*
-        //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
-        let itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-        itemQuant.setOrigin(0, 0);
-        itemQuant.fontSize = "12px";
-        itemQuant.fill = "#ffffff";
-        itemQuant.setDepth(1000);
-
-itemIcon.quantCounter = itemQuant;
-//itemIcon.quantCounter.setVisible(false);
-*/
-        //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
-        const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-        itemQuant.setOrigin(0, 0);
-        itemQuant.fontSize = "12px";
-        itemQuant.fill = "#ffffff";
-        itemQuant.setDepth(1000);
-
-        itemIcon.itemQuant = itemQuant;
-
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
-        itemIconContainers[i].add(itemIcon.itemQuant); 
         itemIconContainers[i].isEmpty = false; //change slot to not empty
-      //  console.log(`itemQuant`)
-        //console.log(itemQuant);
+
 
         //  console.log(itemIcon);
 
         return;
 
       }
-    }
-  }
-  }
-
-
-  removeItem(scene, item) {
-    /*  
-    //make remove take stackCount into consideration
-
-        if (item.stackable === true && item.quantity !== 0) {
-          //reduce the stack count by 1 (or amount of item used)
-        } else {
-          // otherwise continue with the removal logic
-        }
-        */
-
-    console.log('attemptingtoremoveItem from inventory.removeItem');
-    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
-    const index = this.items.indexOf(item);
-    console.log(index);
-    if (index !== -1) {
-      this.items.splice(index, 1);
-    }
-
-    itemIconContainers.forEach((container) => {
-      if (container.list.length !== 0) {
-        console.log(container.first);
-        console.log(container.first.texture.key);
-        if (container.first.textureKey === item) { //later switch with container.first.texture or .textureKey
-          // container.remove(container.first);
-          container.first.destroy();
-          container.isEmpty = true;
-        } else {
-          //console.log('wrong container');
-        }
-      } else {
-        console.log('emptyContainer');
-      }
-    });
-    console.log(this.items);
-    console.log(itemIconContainers);
-  }
-
-  dropItem(scene, item) {
-    const activeScene = scene.activeScene;
-    activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
-    item.setScrollFactor(1, 1);
-    item.setScale(.4);
-    item.setInteractive();
-    item.on('pointerdown', function (pointer, localX, localY, event) {
-      console.log('readding the item to inventory container');
-      scene.inventory.addItem(this.item);
-      scene.inventory.addItemToContainer(this.item);
-    });
-    console.log(item);
-  }
-
-
-  displayFullInventory() {
-    console.log('Inventory:');
-    this.items.forEach(item => {
-      console.log(item);
-    });
-  }
-
-  createInventoryContainer(scene) {
-    console.log('call the import funct w/ method of same name');
-    createInventoryContainer(scene);
-    //createInventoryZones(scene);
-    createItemSlots(scene);
-  }
-
-
-  getRelativePos(object, parentContainer) {
-    let x = object.x;
-    let y = object.y;
-    let currentContainer = object.parentContainer;
-
-    // Traverse up the hierarchy until the specified parentContainer is reached
-    while (currentContainer && currentContainer !== parentContainer) {
-      x -= currentContainer.x;
-      y -= currentContainer.y;
-      currentContainer = currentContainer.parentContainer;
-    }
-
-    // If the specified parentContainer is found, return the relative position
-    if (currentContainer === parentContainer) {
-      return { x, y };
-    } else {
-      // If the specified parentContainer is not found, return null or handle the error accordingly
-      return null;
     }
   }
 
@@ -453,9 +231,6 @@ itemIcon.quantCounter = itemQuant;
         this.setAlpha(.5);
         this.x = dragX;
         this.y = dragY;
-        
-//this.quantCounter.x = dragX;
-//this.quantCounter.y = dragY;
       } else {
         console.log(`cant drag now, resetting allowDrag to true`);
         scene.inventoryContainer.allowDrag = true;
@@ -519,8 +294,6 @@ itemIcon.quantCounter = itemQuant;
       //console.log(itemIcon);
 
       // scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
-              //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
-itemIcon.itemQuant.destroy();
 
 
     });
@@ -600,52 +373,16 @@ itemIcon.itemQuant.destroy();
             //    console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-            
-            const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-            itemQuant.setOrigin(0, 0);
-            itemQuant.fontSize = "12px";
-            itemQuant.fill = "#ffffff";
-            itemQuant.setDepth(1000);
-    
-            itemIcon.itemQuant = itemQuant;
-
-            itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
-
           } else {
             console.log(`swap icon spots`);
             //console.log(itemIconContainers[bestDropZoneIndex].first);
-           // const otherIcon = itemIconContainers[bestDropZoneIndex].first;
-            const otherIcon = itemIconContainers[bestDropZoneIndex].getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
-           otherIcon.itemQuant.destroy();
+            const otherIcon = itemIconContainers[bestDropZoneIndex].first;
             itemParent.add(otherIcon);
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-
-            const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-            itemQuant.setOrigin(0, 0);
-            itemQuant.fontSize = "12px";
-            itemQuant.fill = "#ffffff";
-            itemQuant.setDepth(1000);
-    
-            itemIcon.itemQuant = itemQuant;
-
-            itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
-
-
             const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
             otherIcon.setPosition(endXYotherIcon);
-
-            const itemQuantOther = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-            itemQuantOther.setOrigin(0, 0);
-            itemQuantOther.fontSize = "12px";
-            itemQuantOther.fill = "#ffffff";
-            itemQuantOther.setDepth(1000);
-    
-            otherIcon.itemQuant = itemQuantOther;
-
-          //  itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
-            itemParent.add(otherIcon.itemQuant);
 
           }
         } else {
@@ -656,18 +393,6 @@ itemIcon.itemQuant.destroy();
           //  console.log(itemIcon);
           const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
           itemIcon.setPosition(endXY);
-
-
-          const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
-          itemQuant.setOrigin(0, 0);
-          itemQuant.fontSize = "12px";
-          itemQuant.fill = "#ffffff";
-          itemQuant.setDepth(1000);
-  
-          itemIcon.itemQuant = itemQuant;
-
-          itemIcon.parentContainer.add(itemIcon.itemQuant);
-
         }
 
 
