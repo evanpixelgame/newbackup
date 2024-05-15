@@ -44,27 +44,35 @@ export default class Inventory {
       }
       else { //check if slot is empty
 
-        const itemIcon = scene.add.sprite(0, 0, item.textureKey); //add sprite
-        //itemIconContainers[i].itemIcon = itemIcon;
-        // itemIcon.setDepth(100);
+        const itemSprite = scene.add.sprite(0, 0, item.textureKey); //add sprite
+        //itemSpriteContainers[i].itemSprite = itemSprite;
+        // itemSprite.setDepth(100);
 
         // Add properties of sourceObject to sprite
-        itemIcon.name = item.name;
-        itemIcon.textureKey = item.textureKey;
-        itemIcon.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
-        itemIcon.description = item.description;
-        itemIcon.flavorText = item.flavorText;
-        itemIcon.stackable = item.stackable;
-        itemIcon.consumable = item.consumable;
-        itemIcon.onUse = item.onUse;
-        itemIcon.onConsume = item.onConsume;
+        itemSprite.name = item.name;
+        itemSprite.textureKey = item.textureKey;
+        itemSprite.quantity = item.quantity; // Adjust to desired quantity if stacking is enabled
+        itemSprite.description = item.description;
+        itemSprite.flavorText = item.flavorText;
+        itemSprite.stackable = item.stackable;
+        itemSprite.consumable = item.consumable;
+        itemSprite.onUse = item.onUse;
+        itemSprite.onConsume = item.onConsume;
 
-        itemIcon.setScale(.7);
-        itemIcon.setInteractive({ draggable: true });
+        itemSprite.setScale(.7);
+    
         let lastClickTime = 0;
         let doubleClickDelay = 4000; // Adjust this value as needed
-        itemIcon.ContextMenu;
+        itemSprite.ContextMenu;
+  
 
+
+
+        const itemIcon = scene.add.container(0, 0);
+        itemIcon.setSize(64, 64);
+        itemIcon.add(itemSprite);
+        
+        itemIcon.setInteractive({ draggable: true });
 
         scene.input.setDraggable(itemIcon);
         this.setDragEvents(itemIcon, scene);
@@ -338,7 +346,7 @@ dropItem(scene, item) {
           } else {
             console.log(`swap icon spots`);
             //console.log(itemIconContainers[bestDropZoneIndex].first);
-            let otherSprite = itemIconContainers[bestDropZoneIndex].getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+            let otherSprite = itemIconContainers[bestDropZoneIndex].getAll().find(child => child instanceof Phaser.GameObjects.Container);
            // const otherIcon = itemIconContainers[bestDropZoneIndex].first;
             itemParent.add(otherSprite);
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
