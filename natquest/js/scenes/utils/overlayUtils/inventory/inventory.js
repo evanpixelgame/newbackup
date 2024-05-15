@@ -319,11 +319,13 @@ itemIcon.quantCounter = itemQuant;
 //itemIcon.quantCounter.setVisible(false);
 */
         //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
-        itemIcon.itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+        const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
         itemQuant.setOrigin(0, 0);
         itemQuant.fontSize = "12px";
         itemQuant.fill = "#ffffff";
         itemQuant.setDepth(1000);
+
+        itemIcon.itemQuant = itemQuant;
 
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
         itemIconContainers[i].add(itemIcon.itemQuant); 
@@ -517,6 +519,8 @@ itemIcon.quantCounter = itemQuant;
       //console.log(itemIcon);
 
       // scene.inventoryContainer.itemIconContainers[6].add(itemIcon);
+              //let itemQuant = scene.add.text(-20, 12, `${itemIcon.quantity}`);
+itemIcon.itemQuant.destroy();
 
 
     });
@@ -596,16 +600,52 @@ itemIcon.quantCounter = itemQuant;
             //    console.log(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
+            
+            const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+            itemQuant.setOrigin(0, 0);
+            itemQuant.fontSize = "12px";
+            itemQuant.fill = "#ffffff";
+            itemQuant.setDepth(1000);
+    
+            itemIcon.itemQuant = itemQuant;
+
+            itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
+
           } else {
             console.log(`swap icon spots`);
             //console.log(itemIconContainers[bestDropZoneIndex].first);
-            const otherIcon = itemIconContainers[bestDropZoneIndex].first;
+           // const otherIcon = itemIconContainers[bestDropZoneIndex].first;
+            const otherIcon = itemIconContainers[bestDropZoneIndex].getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+           otherIcon.itemQuant.destroy();
             itemParent.add(otherIcon);
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
+
+            const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+            itemQuant.setOrigin(0, 0);
+            itemQuant.fontSize = "12px";
+            itemQuant.fill = "#ffffff";
+            itemQuant.setDepth(1000);
+    
+            itemIcon.itemQuant = itemQuant;
+
+            itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
+
+
             const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
             otherIcon.setPosition(endXYotherIcon);
+
+            const itemQuantOther = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+            itemQuantOther.setOrigin(0, 0);
+            itemQuantOther.fontSize = "12px";
+            itemQuantOther.fill = "#ffffff";
+            itemQuantOther.setDepth(1000);
+    
+            otherIcon.itemQuant = itemQuantOther;
+
+          //  itemIconContainers[bestDropZoneIndex].add(itemIcon.itemQuant);
+            itemParent.add(otherIcon.itemQuant);
 
           }
         } else {
@@ -616,6 +656,18 @@ itemIcon.quantCounter = itemQuant;
           //  console.log(itemIcon);
           const endXY = scene.inventory.getRelativePos({ x: startX, y: startY }, scene);
           itemIcon.setPosition(endXY);
+
+
+          const itemQuant = scene.add.text(itemIcon.x - 20, itemIcon.y + 12, `${itemIcon.quantity}`);
+          itemQuant.setOrigin(0, 0);
+          itemQuant.fontSize = "12px";
+          itemQuant.fill = "#ffffff";
+          itemQuant.setDepth(1000);
+  
+          itemIcon.itemQuant = itemQuant;
+
+          itemIcon.parentContainer.add(itemIcon.itemQuant);
+
         }
 
 
