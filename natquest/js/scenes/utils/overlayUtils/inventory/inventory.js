@@ -11,106 +11,6 @@ export default class Inventory {
     this.activeItemBar = [];
 
   }
-/*
-
-  addItem(item) {
-    const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
-    if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
-      this.items[existingItemIndex].quantity += item.quantity;
-    } else {
-      this.items.push(item);
-    }
-  }
-  */
-
-  removeItem(scene, item) {
-    /*  
-    //make remove take stackCount into consideration
-
-        if (item.stackable === true && item.quantity !== 0) {
-          //reduce the stack count by 1 (or amount of item used)
-        } else {
-          // otherwise continue with the removal logic
-        }
-        */
-
-    console.log('attemptingtoremoveItem from inventory.removeItem');
-    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
-    const index = this.items.indexOf(item);
-    console.log(index);
-    if (index !== -1) {
-      this.items.splice(index, 1);
-    }
-
-    itemIconContainers.forEach((container) => {
-      if (container.list.length !== 0) {
-      console.log(container.first);
-      console.log(container.first.texture.key);
-      if (container.first.textureKey === item) { //later switch with container.first.texture or .textureKey
-       // container.remove(container.first);
-       container.first.destroy();
-        container.isEmpty = true;
-      } else {
-        //console.log('wrong container');
-      }
-    } else {
-      console.log('emptyContainer');
-    }
-    });
-    console.log(this.items);
-    console.log(itemIconContainers);
-  }
-
-dropItem(scene, item) {
-  const activeScene = scene.activeScene;
-  activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
-  item.setScrollFactor(1, 1);
-  item.setScale(.4);
-  item.setInteractive();
-  item.on('pointerdown', function (pointer, localX, localY, event) {
-      console.log('readding the item to inventory container');
-      scene.inventory.addItem(this.item);
-      scene.inventory.addItemToContainer(this.item);
-    });
-  console.log(item);
-}
-
-
-  displayFullInventory() {
-    console.log('Inventory:');
-    this.items.forEach(item => {
-      console.log(item);
-    });
-  }
-
-  createInventoryContainer(scene) {
-    console.log('call the import funct w/ method of same name');
-    createInventoryContainer(scene);
-    //createInventoryZones(scene);
-    createItemSlots(scene);
-  }
-
-
-  getRelativePos(object, parentContainer) {
-    let x = object.x;
-    let y = object.y;
-    let currentContainer = object.parentContainer;
-
-    // Traverse up the hierarchy until the specified parentContainer is reached
-    while (currentContainer && currentContainer !== parentContainer) {
-      x -= currentContainer.x;
-      y -= currentContainer.y;
-      currentContainer = currentContainer.parentContainer;
-    }
-
-    // If the specified parentContainer is found, return the relative position
-    if (currentContainer === parentContainer) {
-      return { x, y };
-    } else {
-      // If the specified parentContainer is not found, return null or handle the error accordingly
-      return null;
-    }
-  }
 
 
   addItem(scene, item) {
@@ -209,6 +109,97 @@ dropItem(scene, item) {
       }
     }
   }
+
+  removeItem(scene, item) {
+    /*  
+    //make remove take stackCount into consideration
+
+        if (item.stackable === true && item.quantity !== 0) {
+          //reduce the stack count by 1 (or amount of item used)
+        } else {
+          // otherwise continue with the removal logic
+        }
+        */
+
+    console.log('attemptingtoremoveItem from inventory.removeItem');
+    const itemIconContainers = scene.inventoryContainer.itemIconContainers;
+    const index = this.items.indexOf(item);
+    console.log(index);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
+
+    itemIconContainers.forEach((container) => {
+      if (container.list.length !== 0) {
+      //console.log(container.first);
+      //console.log(container.first.texture.key);
+      let firstSprite = container.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+      if (firstSprite.textureKey === item) { //later switch with container.first.texture or .textureKey
+       // container.remove(container.first);
+       firstSprite.destroy();
+        container.isEmpty = true;
+      } else {
+        //console.log('wrong container');
+      }
+    } else {
+      console.log('emptyContainer');
+    }
+    });
+    console.log(this.items);
+    console.log(itemIconContainers);
+  }
+
+dropItem(scene, item) {
+  const activeScene = scene.activeScene;
+  activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
+  item.setScrollFactor(1, 1);
+  item.setScale(.4);
+  item.setInteractive();
+  item.on('pointerdown', function (pointer, localX, localY, event) {
+      console.log('readding the item to inventory container');
+      scene.inventory.addItem(this.item);
+      scene.inventory.addItemToContainer(this.item);
+    });
+  console.log(item);
+}
+
+
+  displayFullInventory() {
+    console.log('Inventory:');
+    this.items.forEach(item => {
+      console.log(item);
+    });
+  }
+
+  createInventoryContainer(scene) {
+    console.log('call the import funct w/ method of same name');
+    createInventoryContainer(scene);
+    //createInventoryZones(scene);
+    createItemSlots(scene);
+  }
+
+
+  getRelativePos(object, parentContainer) {
+    let x = object.x;
+    let y = object.y;
+    let currentContainer = object.parentContainer;
+
+    // Traverse up the hierarchy until the specified parentContainer is reached
+    while (currentContainer && currentContainer !== parentContainer) {
+      x -= currentContainer.x;
+      y -= currentContainer.y;
+      currentContainer = currentContainer.parentContainer;
+    }
+
+    // If the specified parentContainer is found, return the relative position
+    if (currentContainer === parentContainer) {
+      return { x, y };
+    } else {
+      // If the specified parentContainer is not found, return null or handle the error accordingly
+      return null;
+    }
+  }
+
 
 
   setDragEvents(itemIcon, scene) {
@@ -376,13 +367,14 @@ dropItem(scene, item) {
           } else {
             console.log(`swap icon spots`);
             //console.log(itemIconContainers[bestDropZoneIndex].first);
-            const otherIcon = itemIconContainers[bestDropZoneIndex].first;
-            itemParent.add(otherIcon);
+            let otherSprite = itemIconContainers[bestDropZoneIndex].getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+           // const otherIcon = itemIconContainers[bestDropZoneIndex].first;
+            itemParent.add(otherSprite);
             itemIconContainers[bestDropZoneIndex].add(itemIcon);
             const endXY = scene.inventory.getRelativePos(itemIcon, scene);
             itemIcon.setPosition(endXY);
-            const endXYotherIcon = scene.inventory.getRelativePos(otherIcon, scene);
-            otherIcon.setPosition(endXYotherIcon);
+            const endXYotherIcon = scene.inventory.getRelativePos(otherSprite, scene);
+            otherSprite.setPosition(endXYotherIcon);
 
           }
         } else {
