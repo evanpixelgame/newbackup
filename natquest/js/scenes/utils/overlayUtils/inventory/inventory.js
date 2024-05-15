@@ -109,17 +109,36 @@ export default class Inventory {
     }
 
     itemIconContainers.forEach((container) => {
+      console.log(container);
       if (container.list.length !== 0) {
       //console.log(container.first);
       //console.log(container.first.texture.key);
-      let firstSprite = container.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
-      if (firstSprite.textureKey === item) { //later switch with container.first.texture or .textureKey
+      let firstContainer = container.getAll().find(child => child instanceof Phaser.GameObjects.Container);
+      let firstSprite = firstContainer.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+      /*
+      if (item.list.length !== 0) {
+      let checkItem = item.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+    }
+    */
+    
+    
+
+      console.log(firstContainer);
+      console.log(firstSprite);
+      console.log(item);
+      if (item.list.length !== 0) {
+      if (firstSprite.textureKey === item.first.textureKey) { //later switch with container.first.texture or .textureKey
        // container.remove(container.first);
-       firstSprite.destroy();
+       //firstContainer.destroy();
+       console.log('fixing for a switching');
+     // firstSprite.destroy();
+     console.log(firstContainer);
+     firstContainer.destroy();
+     firstSprite.destroy();
         container.isEmpty = true;
       } else {
         //console.log('wrong container');
-      }
+      }} else {}
     } else {
       console.log('emptyContainer');
     }
