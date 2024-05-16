@@ -64,7 +64,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         console.log('Item used');
         if (typeof this.item.sprite.onUse === 'function') {
             console.log(`custom itemclass on use method`)
-            this.item.onUse();
+            this.item.sprite.onUse();
         }
 
         this.setVisible(false);

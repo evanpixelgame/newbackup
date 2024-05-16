@@ -65,13 +65,21 @@ export default class Inventory {
         let doubleClickDelay = 4000; // Adjust this value as needed
         itemSprite.ContextMenu;
   
+        const itemQuant = scene.add.text(itemSprite.x - 20, itemSprite.y + 12, `${itemSprite.quantity}`);
+        itemQuant.setOrigin(0, 0);
+        itemQuant.fontSize = "12px";
+        itemQuant.fill = "#ffffff";
+        itemQuant.setDepth(1000);
 
+      
 
 
         const itemIcon = scene.add.container(0, 0);
         itemIcon.sprite = itemSprite;
+        itemIcon.sprite.itemQuant = itemQuant;
         itemIcon.setSize(64, 64);
         itemIcon.add(itemIcon.sprite);
+        itemIcon.add(itemIcon.sprite.itemQuant);
         
         itemIcon.setInteractive({ draggable: true });
 
