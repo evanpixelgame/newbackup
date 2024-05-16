@@ -92,7 +92,7 @@ export default class BaseScene extends Phaser.Scene {
             let dropY = this.player.y + 20 + randomInteger;
 
             //const droppedItem = activeScene.add.sprite(this.player.x + 20 + randomInteger, this.player.y + 30  + randomInteger, item.textureKey);
-            const droppedItem = activeScene.add.sprite(dropX, dropY, item.textureKey);
+            const droppedItem = activeScene.add.sprite(dropX, dropY, item.sprite.textureKey);
             droppedItem.setScale(.35);
             
             // Set the rectangle interactive so it can receive input events

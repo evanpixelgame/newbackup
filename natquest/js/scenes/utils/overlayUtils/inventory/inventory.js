@@ -69,8 +69,9 @@ export default class Inventory {
 
 
         const itemIcon = scene.add.container(0, 0);
+        itemIcon.sprite = itemSprite;
         itemIcon.setSize(64, 64);
-        itemIcon.add(itemSprite);
+        itemIcon.add(itemIcon.sprite);
         
         itemIcon.setInteractive({ draggable: true });
 
@@ -115,30 +116,29 @@ export default class Inventory {
       //console.log(container.first.texture.key);
       let firstContainer = container.getAll().find(child => child instanceof Phaser.GameObjects.Container);
       let firstSprite = firstContainer.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
-      /*
+      
       if (item.list.length !== 0) {
       let checkItem = item.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
     }
-    */
     
     
 
       console.log(firstContainer);
       console.log(firstSprite);
       console.log(item);
-      if (item.list.length !== 0) {
-      if (firstSprite.textureKey === item.first.textureKey) { //later switch with container.first.texture or .textureKey
+
+      if (firstContainer.sprite.textureKey === item.sprite.textureKey) { //later switch with container.first.texture or .textureKey
        // container.remove(container.first);
        //firstContainer.destroy();
        console.log('fixing for a switching');
      // firstSprite.destroy();
      console.log(firstContainer);
      firstContainer.destroy();
-     firstSprite.destroy();
+    // firstSprite.destroy();
         container.isEmpty = true;
       } else {
         //console.log('wrong container');
-      }} else {}
+      }
     } else {
       console.log('emptyContainer');
     }
@@ -148,15 +148,28 @@ export default class Inventory {
   }
 
 dropItem(scene, item) {
+  console.log(`should be dropping a new trackkkk`)
   const activeScene = scene.activeScene;
-  activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, item.textureKey);
-  item.setScrollFactor(1, 1);
-  item.setScale(.4);
-  item.setInteractive();
-  item.on('pointerdown', function (pointer, localX, localY, event) {
+  let dropItem = item.sprite;
+  console.log(scene);
+  console.log(item);
+  console.log(dropItem);
+  console.log(activeScene.player);
+
+  let randomInteger = Phaser.Math.Between(1, 12);
+  let dropX = this.player.x + 20 + randomInteger;
+  let dropY = this.player.y + 20 + randomInteger;
+
+  //const droppedItem = activeScene.add.sprite(this.player.x + 20 + randomInteger, this.player.y + 30  + randomInteger, item.textureKey);
+  const droppedItem = activeScene.add.sprite(dropX, dropY, item.textureKey);
+ //const droppedItem = activeScene.add.sprite(activeScene.player.x + 30, activeScene.player.x + 30, dropItem.textureKey);
+  droppedItem.setScrollFactor(1, 1);
+  droppedItem.setScale(.4);
+  droppedItem.setInteractive();
+  droppedItem.on('pointerdown', function (pointer, localX, localY, event) {
       console.log('readding the item to inventory container');
-      scene.inventory.addItem(this.item);
-      scene.inventory.addItemToContainer(this.item);
+      scene.inventory.addItem(dropItem);
+     // scene.inventory.addItemToContainer(dropItem);
     });
   console.log(item);
 }
