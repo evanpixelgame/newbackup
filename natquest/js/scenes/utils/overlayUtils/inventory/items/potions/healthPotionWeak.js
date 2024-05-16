@@ -17,7 +17,7 @@ const healthPotionWeak = new Item(
     () => { //onConsume method
         console.log('healthPotion on consume method');
         customEmitter.emit('healthChange', 30);
-        customEmitter.emit('removeItem', 'healthPotionWeak')
+
     }
     );
 

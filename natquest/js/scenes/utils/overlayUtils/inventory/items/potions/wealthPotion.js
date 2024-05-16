@@ -16,7 +16,7 @@ const wealthPotion = new Item(
     () => { //onConsume method
         console.log('wealthPotion on consume method');
         customEmitter.emit('healthChange', -30);
-        customEmitter.emit('removeItem', 'wealthPotion')
+
     }
     );
 

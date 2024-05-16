@@ -117,9 +117,9 @@ export default class Inventory {
       let firstContainer = container.getAll().find(child => child instanceof Phaser.GameObjects.Container);
       let firstSprite = firstContainer.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
       
-      if (item.list.length !== 0) {
-      let checkItem = item.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
-    }
+    //  if (item.list.length !== 0) {
+    //  let checkItem = item.getAll().find(child => child instanceof Phaser.GameObjects.Sprite);
+  //  }
     
     
 

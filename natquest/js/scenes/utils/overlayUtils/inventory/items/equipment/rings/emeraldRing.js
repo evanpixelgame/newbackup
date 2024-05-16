@@ -19,7 +19,7 @@ const emeraldRing = new Item(
         //make ring poopable if consumed, loses 1 coin resale value per poop
         //if gets neg you will have to pay ppl to buy
         //achievement for paying someone to buy neg value ring
-        customEmitter.emit('removeItem', 'emeraldRing');
+     
     }
     );
 

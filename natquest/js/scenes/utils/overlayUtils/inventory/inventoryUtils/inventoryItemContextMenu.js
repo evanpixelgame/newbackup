@@ -62,7 +62,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     useItem() {
         // Logic for using the item
         console.log('Item used');
-        if (typeof this.item.onUse === 'function') {
+        if (typeof this.item.sprite.onUse === 'function') {
             console.log(`custom itemclass on use method`)
             this.item.onUse();
         }
@@ -73,9 +73,10 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     consumeItem() {
         // Logic for using the item
         console.log('Item used');
-        if (typeof this.item.onConsume === 'function') {
+        if (typeof this.item.sprite.onConsume === 'function') {
             console.log(`custom itemclass on consume method`)
-            this.item.onConsume();
+            this.item.sprite.onConsume();
+            customEmitter.emit('removeItem', this.item);  
         }
         this.setVisible(false);
     }
@@ -84,7 +85,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
     inspectItem() {
         // Logic for dropping the item
         console.log('Inspect Item');
-        console.log(this.item.flavorText);
+        console.log(this.item.sprite.flavorText);
         this.setVisible(false);
     }
 
