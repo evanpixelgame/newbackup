@@ -17,7 +17,7 @@ const manaPotionWeak = new Item(
     () => { //onConsume method
         console.log('manaPotion on consume method');
         //customEmitter.emit('manaChange', 30);
-
+        //add mana bar
     }
     );
 
