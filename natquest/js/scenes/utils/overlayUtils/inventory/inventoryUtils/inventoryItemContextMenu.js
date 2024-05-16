@@ -92,38 +92,7 @@ export default class itemContextMenu extends Phaser.GameObjects.Container {
         // Logic for dropping the item
         console.log('Item dropped');
         customEmitter.emit('dropItem', this.scene, this.item);
-        customEmitter.emit('removeItem', this.item);
-        
-    /*
-        this.item.parentContainer.remove(this.item);
-        console.log(this.item);
-        console.log(this.scene.activeScene);// remove from inventorycontainer and put in scene ideally next to player
-       const droppedItem = this.item;
-       const activeScene = this.scene.activeScene;
-        activeScene.add.existing(droppedItem);
-        droppedItem.scene = activeScene;
-       // this.scene.scene.get(activeScene.scene.key).add.existing(droppedItem);
-       // activeScene.add(droppedItem);
-//make it so that if you drop multiple items in same spot, theres a slight offset to show roughly how many items are stacked there
-     droppedItem.setPosition(activeScene.player.x + 30, activeScene.player.y + 30)
-        droppedItem.setScrollFactor(1, 1);
-        droppedItem.setScale(.4);
-        droppedItem.disableInteractive();
-
-// Remove all previous event listeners
-droppedItem.removeAllListeners();
-        droppedItem.setInteractive();
-        droppedItem.on('pointerdown', function () {
-            console.log('readding the item to inventory container');
-            this.scene.inventory.addItem(droppedItem);
-            this.scene.inventory.addItemToContainer(droppedItem);
-          });
-        console.log(droppedItem);
-        console.log(activeScene);
-
-        
-        */
-        
+        customEmitter.emit('removeItem', this.item);   
         this.setVisible(false);
     }
 

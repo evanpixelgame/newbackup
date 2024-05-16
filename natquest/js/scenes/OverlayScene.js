@@ -57,17 +57,6 @@ export default class OverlayScene extends Phaser.Scene {
 
         this.inventoryIcon = createInventoryIcon(this);
 
-      //   this.inventory.createItemIconContainers(this);
-
-
-       // this.inventory.addItem(itemsListFull.healthPotionWeak);
-     //   this.inventory.addItem(itemsListFull.poisonPotionWeak);
-      //  this.inventory.addItem(itemsListFull.manaPotionWeak);
-      //  this.inventory.addItem(itemsListFull.emeraldRing);
-      //  this.inventory.addItem(itemsListFull.wealthPotion);
-
-      //  console.log('consoling emerald ring and titi is beautiful :' + this.inventory.items[0].parent);
-
 
         this.inventory.addItem(this, itemsListFull.emeraldRing);
         this.inventory.addItem(this, itemsListFull.manaPotionWeak);
@@ -89,18 +78,8 @@ export default class OverlayScene extends Phaser.Scene {
         this.inventory.removeItem(this, item); //now should make it so that neg input = neg health
     };
 
-    const itemDropHandler = (scene, item) => {
-        console.log(item);
-        this.inventory.dropItem(this, item); //now should make it so that neg input = neg health
-    };
-
-
      customEmitter.on('removeItem', itemRemovalHandler);
-   //  customEmitter.on('dropItem', itemDropHandler);
 
-      //  customEmitter.on('removeItem', function(item) {
-       //     this.inventory.removeItem(this, item);
-      //  });
     }
 
 
