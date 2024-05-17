@@ -19,8 +19,8 @@ export default class Inventory {
     //add to this.items first
     const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
     if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
-    //  this.items[existingItemIndex].quantity += item.quantity;
-    this.items[existingItemIndex].quantity++;
+    //  this.items[existingItemIndex].quantity += item.quantity; //make it later so can add multiple items at once without having to call multiple times
+    this.items[existingItemIndex].quantity++; //currently increases the quantity by 1 for each time called
     } else {
       this.items.push(item);
     }
