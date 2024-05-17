@@ -29,11 +29,25 @@ export default class Inventory {
     const itemIconContainers = scene.inventoryContainer.itemIconContainers;
     const items = scene.inventory.items;
 
-    if (scene.inventory.items.includes(item)) {
+    if (scene.inventoryContainer.containerSprites.includes(item) && item.stackable === true) {
       console.log('this item is already in inventory. now adding to container, is it stackable?');
+     scene.inventoryContainer.containerSprites.forEach((sprite) => {
+      console.log(sprite);
+      console.log(item);
+      if (sprite === item) {
+        console.log(`if sprite === item ::::::::::::::::::::::::`)
+        console.log(item);
+        const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
+        sprite.quantity = this.items[existingItemIndex].quantity;
+       
+      } else {
+        //existingitem doesnt have quantity property or max count is full?
+      }
+
+     });
+      //increase the item quant counter by amount
     } else {
-      console.log('this item aint in your inventory');
-    }
+      console.log('this item aint in your inventory container or aint stackable, add new one');
 
     for (let i = 0; i < itemIconContainers.length; i++) {
 
@@ -43,7 +57,8 @@ export default class Inventory {
         console.log('this itemIconContainer is filled, trying next one'); //can delete these 3 lines after testing
       }
       else { //check if slot is empty
-
+        
+        console.log('creatingnewinventorysprite::::::::')
         const itemSprite = scene.add.sprite(0, 0, item.textureKey); //add sprite
         //itemSpriteContainers[i].itemSprite = itemSprite;
         // itemSprite.setDepth(100);
@@ -89,13 +104,15 @@ export default class Inventory {
         itemIconContainers[i].add(itemIcon); //add the icon as child of first available iconContainer
         itemIconContainers[i].isEmpty = false; //change slot to not empty
 
-
+      //  scene.inventoryContainer.containerItems.push(item);
+        scene.inventoryContainer.containerSprites.push(item);
         //  console.log(itemIcon);
 
         return;
 
       }
     }
+  }
   }
 
   removeItem(scene, item) {
