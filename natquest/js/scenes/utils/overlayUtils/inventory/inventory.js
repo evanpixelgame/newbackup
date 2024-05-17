@@ -19,7 +19,8 @@ export default class Inventory {
     //add to this.items first
     const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
     if (existingItemIndex !== -1 && item.stackable) { // Item is stackable and already exists
-      this.items[existingItemIndex].quantity += item.quantity;
+    //  this.items[existingItemIndex].quantity += item.quantity;
+    this.items[existingItemIndex].quantity++;
     } else {
       this.items.push(item);
     }
@@ -42,7 +43,8 @@ export default class Inventory {
         sprite.quantity = this.items[existingItemIndex].quantity;
         console.log(sprite.quantity);
        // sprite.itemQuant._text = sprite.quantity;
-        sprite.itemQuant.setText(`${sprite.quantity}`);
+        sprite.itemQuant.setText(sprite.quantity);
+       // sprite.itemQuant.setText(5);
        console.log(scene.inventoryContainer.sprites);
        
       } else {
