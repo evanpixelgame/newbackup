@@ -12,6 +12,15 @@ export default class Inventory {
 
   }
 
+/*
+  itemSplitPopup(scene, item) {
+//maybe make this part of the context menu class that opens a further menu upon or popup on drop/discards
+//to make the rest of the inventory inactive during the time of popup, maybe add a temporary rectangle
+//on top of the inventory container so something non interactive is on top blocking input
+//and then just destroy the rectangle or container after, probably pause or sleep activeScene too
+  }
+*/
+
 
   addItem(scene, item) {
 
