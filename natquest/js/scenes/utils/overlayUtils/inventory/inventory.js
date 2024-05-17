@@ -39,6 +39,7 @@ export default class Inventory {
         console.log(item);
         const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
         sprite.quantity = this.items[existingItemIndex].quantity;
+       console.log(scene.inventoryContainer.sprites);
        
       } else {
         //existingitem doesnt have quantity property or max count is full?
@@ -106,6 +107,7 @@ export default class Inventory {
 
       //  scene.inventoryContainer.containerItems.push(item);
         scene.inventoryContainer.containerSprites.push(item);
+        scene.inventoryContainer.sprites.push(itemIcon.sprite);
         //  console.log(itemIcon);
 
         return;

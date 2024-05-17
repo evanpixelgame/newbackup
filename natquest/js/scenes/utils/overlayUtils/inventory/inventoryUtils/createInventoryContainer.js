@@ -21,6 +21,7 @@ export function createInventoryContainer(scene) {
     // Create an array to hold references to item slot sprites
     scene.inventoryContainer.itemSlotContainers = [];
     scene.inventoryContainer.containerSprites = [];
+    scene.inventoryContainer.sprites = [];
     scene.inventoryContainer.dragStartX = 0;
     scene.inventoryContainer.dragStartY = 0;
     scene.inventoryContainer.dragStartParent;
