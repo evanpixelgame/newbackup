@@ -31,14 +31,18 @@ export default class Inventory {
 
     if (scene.inventoryContainer.containerSprites.includes(item) && item.stackable === true) {
       console.log('this item is already in inventory. now adding to container, is it stackable?');
-     scene.inventoryContainer.containerSprites.forEach((sprite) => {
+     scene.inventoryContainer.sprites.forEach((sprite) => {
       console.log(sprite);
       console.log(item);
-      if (sprite === item) {
+      if (sprite.textureKey === item.textureKey) {
         console.log(`if sprite === item ::::::::::::::::::::::::`)
         console.log(item);
+        console.log(sprite);
         const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.name);
         sprite.quantity = this.items[existingItemIndex].quantity;
+        console.log(sprite.quantity);
+       // sprite.itemQuant._text = sprite.quantity;
+        sprite.itemQuant.setText(`${sprite.quantity}`);
        console.log(scene.inventoryContainer.sprites);
        
       } else {
