@@ -124,16 +124,23 @@ export default class Inventory {
   }
 
   removeItem(scene, item) {
-    /*  
+      
     //make remove take stackCount into consideration
+    console.log(item);
 
-        if (item.stackable === true && item.quantity !== 0) {
-          //reduce the stack count by 1 (or amount of item used)
-        } else {
+  
+  const existingItemIndex = this.items.findIndex(existingItem => existingItem.name === item.sprite.name);
+    console.log(this.items[existingItemIndex]);
+  
+    //make sure to reduce amount in this.items and scene.inventoryContainer sprites
+  if (existingItemIndex !== -1 && item.sprite.stackable && this.items[existingItemIndex].quantity > 1 && item.sprite.quantity > 1) { // Item is stackable and already exists
+      //this.items[existingItemIndex].quantity += item.quantity; //make it later so can add multiple items at once without having to call multiple times
+      this.items[existingItemIndex].quantity--; //currently increases the quantity by 1 for each time called
+     item.sprite.quantity--;
+      item.sprite.itemQuant.setText(this.items[existingItemIndex].quantity);
+    } 
+      else {
           // otherwise continue with the removal logic
-        }
-        */
-
     console.log('attemptingtoremoveItem from inventory.removeItem');
     const itemIconContainers = scene.inventoryContainer.itemIconContainers;
     const index = this.items.indexOf(item);
@@ -178,6 +185,8 @@ export default class Inventory {
     });
     console.log(this.items);
     console.log(itemIconContainers);
+  }
+  console.log(this.items);
   }
 
 dropItem(scene, item) {
